@@ -11,9 +11,9 @@ public class Subscription {
     private String userId;
     private LocalDate startDate;
     private int moviesLeftCount;
-    private Map<String, Object> plan;
+    Plan plan;
 
-    public Subscription (String id, String userId, LocalDate startDate, Map<String, Object> plan, int moviesLeftCount) {
+    public Subscription (String id, String userId, LocalDate startDate, Plan plan, int moviesLeftCount) {
         this.id = id;
         this.userId = userId;
         this.startDate = startDate;
@@ -45,11 +45,11 @@ public class Subscription {
         return startDate;
     }
 
-    public Map<String, Object> getPlan() {
+    public Plan getPlan() {
         return plan;
     }
 
-    public void setPlan(Map<String, Object> plan) {
+    public void setPlan(Plan plan) {
         this.plan = plan;
     }
 
@@ -68,7 +68,7 @@ public class Subscription {
         return subscriptions;
     }
 
-    public boolean isActive() {
+    public boolean isSubscriptionActive() {
         LocalDate currentDate = LocalDate.now();
         return startDate.plusDays(30).compareTo(currentDate) > -1;
     }
@@ -93,13 +93,11 @@ public class Subscription {
         int standardPlanSubscriptionCount = 0;
         int premiumPlanSubscriptionCount = 0;
         Map<String, Integer> plansMap = new HashMap<>();
-        ArrayList<Subscription> subscriptions = getSubscriptions();
-        for (Subscription subscription : subscriptions) {
-            String name = (String) subscription.plan.get("name");
-            if (name.equals("basic")) {
+        for (Subscription subscription : getSubscriptions()) {
+            if (subscription.plan instanceof BasicPlan) {
                 basicPlanSubscriptionCount++;
             }
-            else if (name.equals("standard")) {
+            else if (subscription.plan instanceof StandardPlan) {
                 standardPlanSubscriptionCount++;
             }
             else {
@@ -113,9 +111,8 @@ public class Subscription {
     }
 
     private int findSubscriptionIndex() {
-        ArrayList<Subscription> subscriptions = getSubscriptions();
-        for (int i = 0; i < subscriptions.size(); i++) {
-            if (subscriptions.get(i).getId().equals(getId())) {
+        for (int i = 0; i < getSubscriptions().size(); i++) {
+            if (getSubscriptions().get(i).getId().equals(getId())) {
                 return i;
             }
         }

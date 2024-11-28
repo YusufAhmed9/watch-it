@@ -20,7 +20,7 @@ public class JsonReader {
             if (jsonFile.length() == 0) {
                 return new ArrayList<>();
             }
-            objects = objectMapper.readValue(new File(filePath), new TypeReference<ArrayList<T>>() {});
+            objects = objectMapper.readValue(jsonFile, new TypeReference<ArrayList<T>>() {});
             return objects;
         }
         catch (IOException e) {
