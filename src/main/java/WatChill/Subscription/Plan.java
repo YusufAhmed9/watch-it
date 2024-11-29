@@ -4,11 +4,6 @@ abstract public class Plan {
     private int maxMoviesCount;
     private double price;
 
-    public int getMaxMoviesCount() {
-        return maxMoviesCount;
-    }
-
-    public double getPrice() {
-        return price;
-    }
+    abstract public double getPrice();
+    abstract public int getMaxMoviesCount();
 }
