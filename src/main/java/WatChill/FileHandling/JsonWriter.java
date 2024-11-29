@@ -10,10 +10,13 @@ import java.util.ArrayList;
 
 public class JsonWriter {
     public static <T> void writeJsonToFile(String filePath, ArrayList<T> objects) {
-        ObjectMapper objectMapper = new ObjectMapper();
+        // ObjectMapper instance for Json processing
+        ObjectMapper objectMapper = new JsonMapper();
+        // Add support for Java Date and Time to Jackson
         objectMapper.registerModule(new JavaTimeModule());
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), objects);
+            File file = new File(filePath); // // A File object for the json file
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, objects); // Write Json to file
         } catch (IOException e) {
             e.printStackTrace();
         }
