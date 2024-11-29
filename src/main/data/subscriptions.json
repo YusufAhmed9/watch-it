@@ -1,5 +1,21 @@
 [ {
   "id" : "1",
   "userId" : "1",
-  "startDate" : [ 2024, 11, 28 ]
+  "startDate" : [ 2024, 11, 29 ],
+  "plan" : {
+    "type" : "BasicPlan",
+    "maxMoviesCount" : 5,
+    "price" : 10.0
+  },
+  "moviesLeftCount" : 5
+}, {
+  "id" : "2",
+  "userId" : "1",
+  "startDate" : [ 2024, 11, 29 ],
+  "plan" : {
+    "type" : "BasicPlan",
+    "maxMoviesCount" : 5,
+    "price" : 10.0
+  },
+  "moviesLeftCount" : 5
 } ]
