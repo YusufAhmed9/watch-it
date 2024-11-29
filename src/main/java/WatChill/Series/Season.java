@@ -78,4 +78,14 @@ public class Season {
         seasonAverageRating /= getReviews().size();
         return seasonAverageRating;
     }
+
+    public int getViewsCount(){
+        //Initialize total views count to zero
+        int totalViewsCount = 0;
+        for(Episode episode : getEpisodes()){
+            //Sums all episodes of the season view count
+            totalViewsCount += episode.getViewsCount();
+        }
+        return totalViewsCount;
+    }
 }

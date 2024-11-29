@@ -11,13 +11,32 @@ public class Episode {
     private String title;
     private int duration;
     private Date releaseDate;
+    private int viewsCount;
 
-    public Episode(String id, ArrayList<Review> reviews, String title, int duration, Date releaseDate) {
+    public int getViewsCount() {
+        return viewsCount;
+    }
+
+    public void setViewsCount(int viewsCount) {
+        this.viewsCount = viewsCount;
+    }
+
+    public Episode(String id, ArrayList<Review> reviews, String title, int duration, Date releaseDate) {//This constructor is made for when an episode is created for first time
         this.id = id;
         this.reviews = reviews;
         this.title = title;
         this.duration = duration;
         this.releaseDate = releaseDate;
+        this.viewsCount = 0;
+    }
+
+    public Episode(String id, ArrayList<Review> reviews, String title, int duration, Date releaseDate, int viewsCount) {//This constructor is made for when an episode is retrieved from file
+        this.id = id;
+        this.reviews = reviews;
+        this.title = title;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.viewsCount = viewsCount;
     }
 
     public String getId() {
