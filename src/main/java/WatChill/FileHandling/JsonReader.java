@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JsonReader {
-    public static <T> ArrayList<T> readJsonFile(String filePath) {
+    public static <T> ArrayList<T> readJsonFile(String filePath, Class<T> type) {
         ArrayList<T> objects;
         ObjectMapper objectMapper = new JsonMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -20,7 +20,10 @@ public class JsonReader {
             if (jsonFile.length() == 0) {
                 return new ArrayList<>();
             }
-            objects = objectMapper.readValue(jsonFile, new TypeReference<ArrayList<T>>() {});
+            objects = objectMapper.readValue(
+                jsonFile,
+                objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type)
+            );
             return objects;
         }
         catch (IOException e) {
