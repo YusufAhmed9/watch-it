@@ -1,8 +1,11 @@
 package WatChill.Subscription;
 
 import WatChill.FileHandling.JsonReader;
+import WatChill.FileHandling.JsonWriter;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.*;
 
 public class Subscription {
@@ -63,7 +66,7 @@ public class Subscription {
 
     public static ArrayList<Subscription> getSubscriptions() {
         if (subscriptions == null) {
-            subscriptions = JsonReader.readJsonFile("./src/main/subscriptions.json");
+            subscriptions = JsonReader.readJsonFile("./src/main/data/subscriptions.json");
         }
         return subscriptions;
     }
@@ -110,6 +113,22 @@ public class Subscription {
         return plansMap;
     }
 
+    public static String getHighestMonthRevenue() {
+        double[] monthsRevenues = new double[12];
+        double maxRevenue = monthsRevenues[0];
+        int maxRevenueIndex = 0;
+        for (Subscription subscription : getSubscriptions()) {
+            monthsRevenues[subscription.getStartDate().getMonth().getValue() - 1] += subscription.plan.getPrice();
+        }
+        for (int i = 0; i < monthsRevenues.length; i++) {
+            if (monthsRevenues[i] > maxRevenue) {
+                maxRevenue = monthsRevenues[i];
+                maxRevenueIndex = i;
+            }
+        }
+        return Month.of(maxRevenueIndex + 1).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+    }
+
     private int findSubscriptionIndex() {
         for (int i = 0; i < getSubscriptions().size(); i++) {
             if (getSubscriptions().get(i).getId().equals(getId())) {
@@ -117,6 +136,10 @@ public class Subscription {
             }
         }
         return -1;
+    }
+
+    public static void storeSubscriptions() {
+        JsonWriter.writeJsonToFile("./src/main/data/subscriptions.json", getSubscriptions());
     }
 
 }
