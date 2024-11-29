@@ -1,24 +1,28 @@
 package WatChill.Series;
 
+import WatChill.FileHandling.JsonReader;
+import WatChill.FileHandling.JsonWriter;
 import WatChill.Review.Review;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Series {
     private String id;
     private String title;
-    private int releaseYear;
+    private Date releaseDate;
     private ArrayList<Season> seasons;
     private ArrayList<Review>reviews;
     private String description;
     private ArrayList<String> languages;
     private String country;
     private ArrayList<String> genres;
+    private static ArrayList<Series> series;
 
-    public Series(String id, String title, int releaseYear, ArrayList<Season> seasons, ArrayList<Review> reviews, String description, ArrayList<String> languages, String country, ArrayList<String> genres) {
+    public Series(String id, String title, Date releaseDate, ArrayList<Season> seasons, ArrayList<Review> reviews, String description, ArrayList<String> languages, String country, ArrayList<String> genres) {
         this.id = id;
         this.title = title;
-        this.releaseYear = releaseYear;
+        this.releaseDate = releaseDate;
         this.seasons = seasons;
         this.reviews = reviews;
         this.description = description;
@@ -99,12 +103,12 @@ public class Series {
         seasons.add(season);
     }
 
-    public int getReleaseYear() {
-        return releaseYear;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getTitle() {
@@ -124,5 +128,42 @@ public class Series {
         //Divide by number of reviewers
         seasonAverageRating /= getReviews().size();
         return seasonAverageRating;
+    }
+
+    public int getViewsCount(){
+        //Initialize total views count to zero
+        int totalViewsCount = 0;
+        for(Season season : getSeasons()){
+            //Sums all seasons of the series view count
+            totalViewsCount += season.getViewsCount();
+        }
+        return totalViewsCount;
+    }
+
+    private static void setSeries(){
+        if(series == null)//If series is not read yet
+            series = JsonReader.readJsonFile("./src/main/data/Series.json");
+    }
+
+    private int findSeriesIndex(){
+        setSeries();
+        for(int i = 0; i < series.size(); i++){
+            //Comparing every series id in the database to current id
+            if(series.get(i).getId().equals(getId()))//If true then it is already stored
+                return i;
+        }
+        //if -1 then it was not found in database
+        return -1;
+    }
+
+    public void addCurrentSeriesToList(){
+        if(findSeriesIndex() == -1)//If it wasn't found in database
+            series.add(this);//add to database
+        else //Was found "There's a chance it's not updated"
+            series.set(findSeriesIndex(), this);//Update it's value in database
+    }
+
+    public static void storeSeries() {
+        JsonWriter.writeJsonToFile("./src/main/data/Series.json", series);
     }
 }
