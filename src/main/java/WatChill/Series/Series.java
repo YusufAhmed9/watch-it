@@ -142,7 +142,7 @@ public class Series {
 
     private static void setSeries(){
         if(series == null)//If series is not read yet
-            series = JsonReader.readJsonFile("./src/main/data/Series.json");
+            series = JsonReader.readJsonFile("./src/main/data/Series.json", Series.class);
     }
 
     private int findSeriesIndex(){
