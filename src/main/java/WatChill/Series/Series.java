@@ -12,19 +12,17 @@ public class Series {
     private String title;
     private Date releaseDate;
     private ArrayList<Season> seasons;
-    private ArrayList<Review>reviews;
     private String description;
     private ArrayList<String> languages;
     private String country;
     private ArrayList<String> genres;
-    private static ArrayList<Series> series;
+    private static ArrayList<Series> fileSeries;
 
-    public Series(String id, String title, Date releaseDate, ArrayList<Season> seasons, ArrayList<Review> reviews, String description, ArrayList<String> languages, String country, ArrayList<String> genres) {
+    public Series(String id, String title, Date releaseDate, ArrayList<Season> seasons, String description, ArrayList<String> languages, String country, ArrayList<String> genres) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
         this.seasons = seasons;
-        this.reviews = reviews;
         this.description = description;
         this.languages = languages;
         this.country = country;
@@ -71,18 +69,6 @@ public class Series {
         this.country = country;
     }
 
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
-    }
-
     public String getId() {
         return id;
     }
@@ -119,17 +105,6 @@ public class Series {
         this.title = title;
     }
 
-    public float calculateSeasonRating(){
-        //Calculates season's rating
-        float seasonAverageRating = 0.0f;
-        for(Review review : getReviews()){
-            seasonAverageRating += review.getRating();
-        }
-        //Divide by number of reviewers
-        seasonAverageRating /= getReviews().size();
-        return seasonAverageRating;
-    }
-
     public int getViewsCount(){
         //Initialize total views count to zero
         int totalViewsCount = 0;
@@ -140,16 +115,17 @@ public class Series {
         return totalViewsCount;
     }
 
-    private static void setSeries(){
-        if(series == null)//If series is not read yet
-            series = JsonReader.readJsonFile("./src/main/data/Series.json", Series.class);
+    public static ArrayList<Series> retrieveSeries(){
+        if(fileSeries == null)//If series is not read yet
+            return fileSeries = JsonReader.readJsonFile("./src/main/data/Series.json", Series.class);
+        return fileSeries;
     }
 
     private int findSeriesIndex(){
-        setSeries();
-        for(int i = 0; i < series.size(); i++){
+        retrieveSeries();
+        for(int i = 0; i < fileSeries.size(); i++){
             //Comparing every series id in the database to current id
-            if(series.get(i).getId().equals(getId()))//If true then it is already stored
+            if(fileSeries.get(i).getId().equals(getId()))//If true then it is already stored
                 return i;
         }
         //if -1 then it was not found in database
@@ -158,12 +134,25 @@ public class Series {
 
     public void addCurrentSeriesToList(){
         if(findSeriesIndex() == -1)//If it wasn't found in database
-            series.add(this);//add to database
+            fileSeries.add(this);//add to database
         else //Was found "There's a chance it's not updated"
-            series.set(findSeriesIndex(), this);//Update it's value in database
+            fileSeries.set(findSeriesIndex(), this);//Update it's value in database
     }
 
-    public static void storeSeries() {
-        JsonWriter.writeJsonToFile("./src/main/data/Series.json", series);
+    public static void storeSeries() {//Function that write all series to a json file
+        JsonWriter.writeJsonToFile("./src/main/data/Series.json", fileSeries);
+    }
+
+    public static ArrayList<Series> findSeriesByGenre(String genre){
+        retrieveSeries();
+        //ArrayList to store series with wanted genre
+        ArrayList<Series>desiredSeries = new ArrayList<>();
+        for(Series series : retrieveSeries()){
+            if(series.getGenres().indexOf(genre) == -1)//If the genre is not found inside this series then it won't make it to list
+                continue;
+            //Adds series with the desired genre
+            desiredSeries.add(series);
+        }
+        return desiredSeries;
     }
 }

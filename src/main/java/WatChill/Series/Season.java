@@ -9,7 +9,6 @@ public class Season {
     private String title;
     private Date releaseDate;
     private String description;
-    private ArrayList<Review> reviews;
     private ArrayList<Episode> episodes;
 
     public Season(String title, String description, Date releaseDate, ArrayList<Episode> episodes) {
@@ -17,18 +16,6 @@ public class Season {
         this.description = description;
         this.releaseDate = releaseDate;
         this.episodes = episodes;
-    }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
     }
 
     public Date getReleaseDate() {
@@ -65,18 +52,6 @@ public class Season {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public float calculateSeasonRating(){
-        //Calculates the average rating for the season
-        float seasonAverageRating = 0.0f;
-        for(Review review : getReviews()){
-            //Sum all the ratings
-            seasonAverageRating += review.getRating();
-        }
-        //Divide them by number of ratings
-        seasonAverageRating /= getReviews().size();
-        return seasonAverageRating;
     }
 
     public int getViewsCount(){
