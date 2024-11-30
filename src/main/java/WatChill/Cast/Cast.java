@@ -1,22 +1,41 @@
 package WatChill.Cast;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+import WatChill.FileHandling.JsonReader;
+import WatChill.FileHandling.JsonWriter;
 import WatChill.Movie.Movie;
+import WatChill.Series.Series;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Cast {
+    private static ArrayList<Cast> casts;
+    private String id;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     private String gender;
-    private List<Movie> movies;
+    private ArrayList<Movie> movies;
+    private ArrayList<Series> serieses;
     private String nationality;
     private String instagramLink;
     private String twitterLink;
 
-    public Cast(String firstName, String lastName, String dateOfBirth, String gender, String nationality, String instagramLink, String twitterLink) {
+    @JsonCreator
+    public Cast(
+        @JsonProperty("id") String id,
+        @JsonProperty("firstName") String firstName,
+        @JsonProperty("lastName") String lastName,
+        @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
+        @JsonProperty("gender") String gender,
+        @JsonProperty("nationality") String nationality,
+        @JsonProperty("instagramLink") String instagramLink,
+        @JsonProperty("twitterLink") String twitterLink,
+        @JsonProperty("movies") ArrayList<Movie> movies,
+        @JsonProperty("serieses") ArrayList<Series> serieses
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -24,11 +43,12 @@ public class Cast {
         this.nationality = nationality;
         this.instagramLink = instagramLink;
         this.twitterLink = twitterLink;
-        this.movies = new ArrayList<>();
+        this.movies = movies;
+        this.serieses = serieses;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -39,7 +59,7 @@ public class Cast {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -47,8 +67,12 @@ public class Cast {
         this.gender = gender;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(ArrayList<Movie> movies) {
         this.movies = movies;
+    }
+
+    public void setSerieses(ArrayList<Series> serieses) {
+        this.serieses = serieses;
     }
 
     public void setNationality(String nationality) {
@@ -63,11 +87,19 @@ public class Cast {
         this.twitterLink = twitterLink;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -75,12 +107,20 @@ public class Cast {
         return gender;
     }
 
-    public List<Movie> getMovies() {
+    public ArrayList<Movie> getMovies() {
         return movies;
+    }
+
+    public ArrayList<Series> getSerieses() {
+        return serieses;
     }
 
     public void addMovie(Movie movie) {
         this.movies.add(movie);
+    }
+
+    public void addSeries(Series series) {
+        this.serieses.add(series);
     }
 
     public String getNationality() {
@@ -95,8 +135,24 @@ public class Cast {
         return twitterLink;
     }
 
-    public void printCastInfo() {
+    public static ArrayList<Cast> getCasts() {
+        if (casts == null) {
+            casts = JsonReader.readJsonFile("./src/main/data/Casts.json", Cast.class);
+        }
+        return casts;
+    }
 
+    public void saveCast() {
+        int castIndex = findCastIndex();
+        if (castIndex == -1) {
+            getCasts().add(this);
+        }
+        else {
+            getCasts().set(castIndex, this);
+        }
+    }
+
+    public void printCastInfo() {
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Date of Birth: " + getDateOfBirth());
         System.out.println("Gender: " + getGender());
@@ -108,28 +164,28 @@ public class Cast {
             System.out.println(movie.getTitle() + " (" + movie.getReleaseYear() + ") - " + movie.getGenre());
         }
     }
-    public static void searchCast(List<Cast> casts, String name) {
-        // Search for an actor by name
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an actor's name to search:");
-        String searchName = scanner.nextLine();
 
-        for (Cast cast : casts) {
-            if (cast.getFirstName().toLowerCase().contains(searchName.toLowerCase()) ||
-                    cast.getLastName().toLowerCase().contains(searchName.toLowerCase())) {
-                System.out.println("Name: " + cast.getFirstName() + " " + cast.getLastName());
-                System.out.println("Date of Birth: " + cast.getDateOfBirth());
-                System.out.println("Gender: " + cast.getGender());
-                System.out.println("Nationality: " + cast.getNationality());
-                System.out.println("Instagram: " + cast.getInstagramLink());
-                System.out.println("Twitter: " + cast.getTwitterLink());
-                System.out.println("Movies:");
-                for (Movie movie : cast.getMovies()) {
-                    System.out.println(movie.getTitle() + " (" + movie.getReleaseYear() + ") - " + movie.getGenre());
-                }
+    // Search for actor by name
+    public static ArrayList<Cast> searchCastsByName(String name) {
+        ArrayList<Cast> filteredCasts = getCasts();
+        // Filter actors whose names do not contain the search query
+        filteredCasts.removeIf(cast -> !cast.getFirstName().concat(" " + cast.getLastName()).toLowerCase().contains(name.strip().toLowerCase()));
+        return filteredCasts;
+    }
+
+    private int findCastIndex() {
+        for (int i = 0; i < getCasts().size(); i++) {
+            if (getCasts().get(i).getId().equals(getId())) {
+                return i;
             }
         }
+        return -1;
     }
+
+    public static void storeCasts() {
+        JsonWriter.writeJsonToFile("./src/main/data/Casts.json", getCasts());
+    }
+
 }
 
 

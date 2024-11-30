@@ -1,22 +1,41 @@
 package WatChill.Director;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
+import WatChill.FileHandling.JsonReader;
+import WatChill.FileHandling.JsonWriter;
 import WatChill.Movie.Movie;
+import WatChill.Series.Series;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Director {
+    private static ArrayList<Director> directors;
+    private String id;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     private String gender;
-    private List<Movie> movies;
+    private ArrayList<Movie> movies;
+    private ArrayList<Series> serieses;
     private String nationality;
     private String instagramLink;
     private String twitterLink;
 
-    public Director(String firstName, String lastName, String dateOfBirth, String gender, String nationality, String instagramLink, String twitterLink) {
+    @JsonCreator
+    public Director(
+            @JsonProperty("id") String id,
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
+            @JsonProperty("gender") String gender,
+            @JsonProperty("nationality") String nationality,
+            @JsonProperty("instagramLink") String instagramLink,
+            @JsonProperty("twitterLink") String twitterLink,
+            @JsonProperty("movies") ArrayList<Movie> movies,
+            @JsonProperty("serieses") ArrayList<Series> serieses
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -24,11 +43,12 @@ public class Director {
         this.nationality = nationality;
         this.instagramLink = instagramLink;
         this.twitterLink = twitterLink;
-        this.movies = new ArrayList<>();
+        this.movies = movies;
+        this.serieses = serieses;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -39,7 +59,7 @@ public class Director {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -47,7 +67,7 @@ public class Director {
         this.gender = gender;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(ArrayList<Movie> movies) {
         this.movies = movies;
     }
 
@@ -63,11 +83,15 @@ public class Director {
         this.twitterLink = twitterLink;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -75,8 +99,12 @@ public class Director {
         return gender;
     }
 
-    public List<Movie> getMovies() {
+    public ArrayList<Movie> getMovies() {
         return movies;
+    }
+
+    public ArrayList<Series> getSerieses() {
+        return serieses;
     }
 
     public void addMovie(Movie movie) {
@@ -95,8 +123,21 @@ public class Director {
         return twitterLink;
     }
 
-    public void printDirectorInfo() {
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public void saveDirector() {
+        int directorIndex = findDirectorIndex();
+        if (directorIndex == -1) {
+            getDirectors().add(this);
+        }
+        else {
+            getDirectors().set(directorIndex, this);
+        }
+    }
+
+    public void printDirectorInfo() {
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Date of Birth: " + getDateOfBirth());
         System.out.println("Gender: " + getGender());
@@ -109,25 +150,32 @@ public class Director {
         }
     }
 
-    public static void searchDirector(List<Director> directors) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a director's name to search:");
-        String searchName = scanner.nextLine();
+    public static ArrayList<Director> getDirectors() {
+        if (directors == null) {
+            directors = JsonReader.readJsonFile("./src/main/data/Directors.json", Director.class);
+        }
+        return directors;
+    }
 
-        for (Director director : directors) {
-            if (director.getFirstName().toLowerCase().contains(searchName.toLowerCase()) ||
-                    director.getLastName().toLowerCase().contains(searchName.toLowerCase())) {
-                System.out.println("Name: " + director.getFirstName() + " " + director.getLastName());
-                System.out.println("Date of Birth: " + director.getDateOfBirth());
-                System.out.println("Gender: " + director.getGender());
-                System.out.println("Nationality: " + director.getNationality());
-                System.out.println("Instagram: " + director.getInstagramLink());
-                System.out.println("Twitter: " + director.getTwitterLink());
-                System.out.println("Movies:");
-                for (Movie movie : director.getMovies()) {
-                    System.out.println(movie.getTitle() + " (" + movie.getReleaseYear() + ") - " + movie.getGenre());
-                }
+    // Search for directors by name
+    public ArrayList<Director> searchDirectorsByName(String name) {
+        ArrayList<Director> filteredDirectors = getDirectors();
+        // Filter directors whose names do not contain the search query
+        filteredDirectors.removeIf(director -> !director.getFirstName().concat(director.getLastName()).toLowerCase().contains(name.strip().toLowerCase()));
+        return filteredDirectors;
+    }
+
+    private int findDirectorIndex() {
+        for (int i = 0; i < getDirectors().size(); i++) {
+            if (getDirectors().get(i).getId().equals(getId())) {
+                return i;
             }
         }
+        return -1;
     }
+
+    public static void storeDirectors() {
+        JsonWriter.writeJsonToFile("./src/main/data/Directors.json", getDirectors());
+    }
+
 }
