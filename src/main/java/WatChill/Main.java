@@ -13,7 +13,5 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        for(Series series : Series.getTopTen())
-            System.out.println(series.getTitle());
     }
 }
