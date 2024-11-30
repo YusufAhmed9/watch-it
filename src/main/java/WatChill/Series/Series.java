@@ -232,4 +232,12 @@ public class Series {
         return new ArrayList<>(topTenSeries);
 
     }
+
+    // Search for series by title
+    public static ArrayList<Series> searchCast(String name) {
+        ArrayList<Series> filteredSeries = retrieveSeries();
+        // Filter series whose titles do not contain the search query
+        filteredSeries.removeIf(series -> !series.getTitle().toLowerCase().contains(name.strip().toLowerCase()));
+        return filteredSeries;
+    }
 }
