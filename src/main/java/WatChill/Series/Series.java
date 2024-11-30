@@ -234,7 +234,7 @@ public class Series {
     }
 
     // Search for series by title
-    public static ArrayList<Series> searchCast(String name) {
+    public static ArrayList<Series> searchSeriesByTitle(String title) {
         ArrayList<Series> filteredSeries = retrieveSeries();
         // Filter series whose titles do not contain the search query
         filteredSeries.removeIf(series -> !series.getTitle().toLowerCase().contains(name.strip().toLowerCase()));
