@@ -1,18 +1,22 @@
 package WatChill.Series;
 
 import WatChill.Review.Review;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
+// Specify the attributes for jackson and ignore getter methods
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Episode {
     private String id;
     private String title;
     private int duration;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private int viewsCount;
 
-    public Episode(String id, ArrayList<Review> reviews, String title, int duration, Date releaseDate) {//This constructor is made for when an episode is created for first time
+    public Episode(String id, String title, int duration, LocalDate releaseDate) {//This constructor is made for when an episode is created for first time
         this.id = id;
         this.title = title;
         this.duration = duration;
@@ -20,7 +24,14 @@ public class Episode {
         this.viewsCount = 0;
     }
 
-    public Episode(String id, ArrayList<Review> reviews, String title, int duration, Date releaseDate, int viewsCount) {//This constructor is made for when an episode is retrieved from file
+    // Specify the constructor and parameters for jackson to serialize rhe class
+    @JsonCreator
+    public Episode(
+            @JsonProperty("id") String id,
+            @JsonProperty("title") String title,
+            @JsonProperty("duration") int duration,
+            @JsonProperty("releaseDate") LocalDate releaseDate,
+            @JsonProperty("viewsCount") int viewsCount) {//This constructor is made for when an episode is retrieved from file
         this.id = id;
         this.title = title;
         this.duration = duration;
@@ -60,11 +71,11 @@ public class Episode {
         this.duration = duration;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 }

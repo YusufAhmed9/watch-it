@@ -1,12 +1,229 @@
 [ {
   "id" : "1",
-  "title" : "AOT",
-  "releaseDate" : 1732841502195,
-  "seasons" : [ ],
-  "reviews" : [ ],
-  "description" : "Great",
+  "title" : "Attack on twin towers",
+  "releaseDate" : 1732995234252,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234251,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234251,
+      "viewsCount" : 0
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234251,
+      "viewsCount" : 0
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234251,
+      "viewsCount" : 0
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234251,
+      "viewsCount" : 0
+    } ]
+  } ],
+  "description" : "s",
   "languages" : [ ],
   "country" : "Japan",
-  "genres" : [ ],
-  "viewsCount" : 0
+  "genres" : [ ]
+}, {
+  "id" : "2",
+  "title" : "Sucking bad",
+  "releaseDate" : 1732995234947,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234947,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 100
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 10000
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 10000000
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 10000000
+    } ]
+  } ],
+  "description" : "s",
+  "languages" : [ ],
+  "country" : "Japan",
+  "genres" : [ ]
+}, {
+  "id" : "3",
+  "title" : "Better call ball",
+  "releaseDate" : 1732995234947,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234947,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 500
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 2340
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 1323
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 4231432
+    } ]
+  } ],
+  "description" : "s",
+  "languages" : [ ],
+  "country" : "Japan",
+  "genres" : [ ]
+}, {
+  "id" : "4",
+  "title" : "game of thoughts",
+  "releaseDate" : 1732995234947,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234947,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    } ]
+  } ],
+  "description" : "s",
+  "languages" : [ ],
+  "country" : "Japan",
+  "genres" : [ ]
+}, {
+  "id" : "5",
+  "title" : "FNAF",
+  "releaseDate" : 1732995234947,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234947,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    } ]
+  } ],
+  "description" : "s",
+  "languages" : [ ],
+  "country" : "Japan",
+  "genres" : [ ]
+}, {
+  "id" : "6",
+  "title" : "",
+  "releaseDate" : 1732995234947,
+  "seasons" : [ {
+    "title" : "2",
+    "description" : "Nice",
+    "releaseDate" : 1732995234947,
+    "episodes" : [ {
+      "id" : "1",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "2",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "3",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    }, {
+      "id" : "4",
+      "title" : "1",
+      "duration" : 25,
+      "releaseDate" : 1732995234947,
+      "viewsCount" : 0
+    } ]
+  } ],
+  "description" : "s",
+  "languages" : [ ],
+  "country" : "Japan",
+  "genres" : [ ]
 } ]
