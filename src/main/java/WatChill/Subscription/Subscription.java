@@ -159,6 +159,16 @@ public class Subscription {
         return -1;
     }
 
+    // Get active subscription by userId
+    public static Subscription getUserSubscription(String userId) {
+        for (Subscription subscription : getSubscriptions()) {
+            if (subscription.getUserId().equals(userId) && subscription.isSubscriptionActive()) {
+                return subscription;
+            }
+        }
+        return null;
+    }
+
     // Save subscriptions in Json file
     public static void storeSubscriptions() {
         JsonWriter.writeJsonToFile("./src/main/data/subscriptions.json", getSubscriptions());
