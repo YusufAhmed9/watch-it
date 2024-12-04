@@ -146,7 +146,7 @@ public class Director {
         System.out.println("Twitter: " + getTwitterLink());
         System.out.println("Movies:");
         for (Movie movie : getMovies()) {
-            System.out.println(movie.getTitle() + " (" + movie.getReleaseYear() + ") - " + movie.getGenre());
+            System.out.println(movie.getTitle() + " (" + movie.getReleaseDate() + ") - " + movie.getGenres());
         }
     }
 
