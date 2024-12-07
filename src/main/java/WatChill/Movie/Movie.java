@@ -160,6 +160,10 @@ public class Movie {
         public int compare(Movie m1, Movie m2) {
             return Integer.compare(m2.getViewsCount(), m1.getViewsCount()); // Sort in descending order by views
         }
+
+        public int CompareDates(Movie m1, Movie m2) {//Comparator that sorts series by release date in descending order
+            return m2.getReleaseDate().compareTo(m1.getReleaseDate());
+        }
     }
 
     // Method to get the top 10 most-viewed movies
@@ -167,5 +171,13 @@ public class Movie {
         ArrayList<Movie> sortedMovies = new ArrayList<>(retrieveMovies());
         sortedMovies.sort(new MovieComparator()); // Sort movies by views
         return new ArrayList<>(sortedMovies.subList(0, Math.min(10, sortedMovies.size()))); // Return the top 10 movies
+    }
+
+    public static ArrayList<Movie> getMostRecent() {
+        ArrayList<Movie> sortedSeriesByDate = retrieveSeries();
+        // Using a comparator to sort by release date in descending order
+        sortedSeriesByDate.sort((s1, s2) -> s2.getReleaseDate().compareTo(s1.getReleaseDate()));
+        // Get top ten series after sorting
+        return new ArrayList<>(sortedSeriesByDate.subList(0, Math.min(10, sortedSeriesByDate.size())));
     }
 }
