@@ -133,7 +133,8 @@ public class Subscription {
     }
 
     public static String getHighestMonthRevenue() {
-        double[] monthsRevenues = new double[13]; // Array to store all 12 months revenues
+        final int NUMBEROFMONTHS = 12;
+        double[] monthsRevenues = new double[NUMBEROFMONTHS + 1]; // Array to store all 12 months revenues
         int maxRevenueIndex = 0;
         for (Subscription subscription : getSubscriptions()) {
             int monthIndex = subscription.getStartDate().getMonth().getValue(); // Get month index (not 0-based) from subscription start date

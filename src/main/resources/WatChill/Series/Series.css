@@ -1,0 +1,22 @@
+.episode-container {
+    -fx-padding: 0 0 0 40;
+}
+
+.episode-image {
+    -fx-effect: innershadow(three-pass-box, #0d0d0d, 28.32, 0.76, 0, 0);
+}
+
+.episode-title {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 27;
+    -fx-font-family: Helvetica;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 0 10;
+}
+.episode-release-date{
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 18;
+    -fx-font-family: Helvetica;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 15;
+}
