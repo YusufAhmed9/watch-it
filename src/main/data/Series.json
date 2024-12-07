@@ -1,12 +1,42 @@
-[ {
-  "id" : "1",
-  "title" : "AOT",
-  "releaseDate" : 1732841502195,
-  "seasons" : [ ],
-  "reviews" : [ ],
-  "description" : "Great",
-  "languages" : [ ],
-  "country" : "Japan",
-  "genres" : [ ],
-  "viewsCount" : 0
-} ]
+[
+  {
+    "id": "1",
+    "title": "Attack On Titan",
+    "releaseDate": [
+      2024,
+      12,
+      3
+    ],
+    "seasons": [
+      {
+        "title": "Season 1",
+        "description": "Greatest season ever",
+        "releaseDate": [
+          2024,
+          12,
+          3
+        ],
+        "episodes": [
+          {
+            "id": "1",
+            "title": "Amoot",
+            "duration": 25,
+            "releaseDate": [
+              2024,
+              12,
+              3
+            ],
+            "viewsCount": 0
+          }
+        ]
+      }
+    ],
+    "description": "Greatest series ever",
+    "languages": [],
+    "country": "Japan",
+    "genres": [],
+    "casts": [],
+    "directors": [],
+    "poster": "/WatChill/Series/media/AOTPoster.jpg"
+  }
+]
