@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Search.SearchController">
+      <content>
+          <VBox alignment="TOP_CENTER" prefWidth="639.0" style="-fx-background-color: #141414;">
+              <children>
+                  <StackPane id="body" alignment="TOP_CENTER" style="-fx-background-color: #141414;">
+                      <children>
+                          <BorderPane maxHeight="1.7976931348623157E308" prefWidth="639.0" StackPane.alignment="TOP_CENTER">
+                              <top>
+                                  <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
+                                      <children>
+                                          <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                              <image>
+                                                  <Image url="@../../Logo.png" />
+                                              </image>
+                                              <HBox.margin>
+                                                  <Insets />
+                                              </HBox.margin>
+                                          </ImageView>
+                                      </children>
+                                  </HBox>
+                              </top>
+                     <center>
+                        <VBox prefHeight="399.0" prefWidth="501.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox fx:id="filtersContainer" alignment="CENTER_LEFT">
+                                 <children>
+                                    <MenuButton fx:id="sortMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Sort By">
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" text="Rating" />
+                                        <MenuItem mnemonicParsing="false" text="Views" />
+                                          <MenuItem mnemonicParsing="false" text="Release Date" />
+                                          <MenuItem mnemonicParsing="false" text="Duration" />
+                                          <MenuItem mnemonicParsing="false" text="Name A-Z" />
+                                      </items>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </MenuButton>
+                                    <MenuButton fx:id="languageMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Language">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </MenuButton>
+                                    <MenuButton fx:id="genreMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Genre">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </MenuButton>
+                                    <Button fx:id="clearFiltersButton" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Clear Filters">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox fx:id="searchResultsContainer" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="374.0" prefWidth="424.0" style="-fx-background-color: #141414; -fx-background: transparent;" />
+                           </children>
+                        </VBox>
+                     </center>
+                          </BorderPane>
+                      </children>
+                  </StackPane>
+              </children>
+          </VBox>
+      </content>
+  </ScrollPane>

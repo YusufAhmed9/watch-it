@@ -126,4 +126,11 @@ public class Movie extends Content implements WatchableContent {
     public void updateRating() {
 
     }
+
+    public static ArrayList<Movie> searchMoviesByName(String title) {
+        ArrayList<Movie> filteredMovies = new ArrayList<>(retrieveMovies());
+        // Filter directors whose names do not contain the search query
+        filteredMovies.removeIf(movie -> !movie.getTitle().toLowerCase().contains(title.replaceAll(" ", "").toLowerCase()));
+        return filteredMovies;
+    }
 }

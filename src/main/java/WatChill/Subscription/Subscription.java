@@ -24,11 +24,11 @@ public class Subscription {
     // Specify the constructor and parameters for jackson to serialize rhe class
     @JsonCreator
     public Subscription(
-        @JsonProperty("id") String id,
-        @JsonProperty("userId") String userId,
-        @JsonProperty("startDate") LocalDate startDate,
-        @JsonProperty("plan") Plan plan,
-        @JsonProperty("moviesLeftCount") int moviesLeftCount
+            @JsonProperty("id") String id,
+            @JsonProperty("userId") String userId,
+            @JsonProperty("startDate") LocalDate startDate,
+            @JsonProperty("plan") Plan plan,
+            @JsonProperty("moviesLeftCount") int moviesLeftCount
     ) {
         this.id = id;
         this.userId = userId;
@@ -107,7 +107,7 @@ public class Subscription {
         }
     }
 
-    public Map<String, Integer> getPlansSubscriptions() {
+    public static Map<String, Integer> getPlansSubscriptions() {
         // Counter variables for every plan type
         int basicPlanSubscriptionCount = 0;
         int standardPlanSubscriptionCount = 0;
@@ -133,8 +133,7 @@ public class Subscription {
     }
 
     public static String getHighestMonthRevenue() {
-        final int NUMBEROFMONTHS = 12;
-        double[] monthsRevenues = new double[NUMBEROFMONTHS + 1]; // Array to store all 12 months revenues
+        double[] monthsRevenues = new double[13]; // Array to store all 12 months revenues
         int maxRevenueIndex = 0;
         for (Subscription subscription : getSubscriptions()) {
             int monthIndex = subscription.getStartDate().getMonth().getValue(); // Get month index (not 0-based) from subscription start date
