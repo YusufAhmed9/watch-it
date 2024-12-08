@@ -1,22 +1,69 @@
-.episode-container {
-    -fx-padding: 0 0 0 40;
+.episodes-container {
+    -fx-padding: 0 40;
+    -fx-spacing: 20;
+    -fx-background-color: #1F1F1F;
 }
 
-.episode-image {
-    -fx-effect: innershadow(three-pass-box, #0d0d0d, 28.32, 0.76, 0, 0);
+.episode-container {
+    -fx-alignment: center left;
+    -fx-cursor: hand;
+    -fx-background-color: #0F0F0F;
+    -fx-border-color: #FFF;
+    -fx-border-width: 0 0 1;
+}
+
+.episode-poster {
+    -fx-padding: 10 0 10 40;
+    -fx-fit-width: 200;
+    -fx-fit-height: 112;
 }
 
 .episode-title {
+    -fx-font-family: Manrope SemiBold;
+    -fx-font-size: 27px;
     -fx-text-fill: #D3D3D3;
-    -fx-font-size: 27;
-    -fx-font-family: Helvetica;
-    -fx-font-weight: bold;
     -fx-padding: 5 0 0 10;
 }
-.episode-release-date{
+
+.episode-release-date {
+    -fx-font-family: Manrope Medium;
+    -fx-font-size: 18px;
     -fx-text-fill: #D3D3D3;
-    -fx-font-size: 18;
-    -fx-font-family: Helvetica;
-    -fx-font-weight: bold;
-    -fx-padding: 0 0 0 15;
+    -fx-padding: 5 0 0 15;
+}
+
+.episode-description {
+    -fx-font-family: Manrope Medium;
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+    -fx-opacity: 0.5;
+}
+
+.episode-labels {
+    -fx-padding: 10 0 10 10;
+    -fx-pref-width: 788;
+    -fx-pref-height: 677;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: #0d0d0d;
+}
+
+.button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-alignment: center;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 5;
 }
