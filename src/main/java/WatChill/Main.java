@@ -1,31 +1,21 @@
 package WatChill;
 
-import WatChill.Series.Episode;
-import WatChill.Series.Season;
-import WatChill.Series.Series;
-import WatChill.Series.SeriesController;
+import WatChill.Content.Series.SeriesController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Image appIcon = new Image("AppIcon.png");
+            Image appIcon = new Image("AppLogo.png");
 
             stage.getIcons().add(appIcon);
             stage.setTitle("WatChill");

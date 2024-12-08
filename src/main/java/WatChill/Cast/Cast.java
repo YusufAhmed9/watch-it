@@ -3,10 +3,10 @@ package WatChill.Cast;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import WatChill.Content.Series.Series;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.Movie.Movie;
-import WatChill.Series.Series;
+import WatChill.Content.Movie.Movie;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,19 +22,21 @@ public class Cast {
     private String nationality;
     private String instagramLink;
     private String twitterLink;
+    private String picture;
 
     @JsonCreator
     public Cast(
-        @JsonProperty("id") String id,
-        @JsonProperty("firstName") String firstName,
-        @JsonProperty("lastName") String lastName,
-        @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
-        @JsonProperty("gender") String gender,
-        @JsonProperty("nationality") String nationality,
-        @JsonProperty("instagramLink") String instagramLink,
-        @JsonProperty("twitterLink") String twitterLink,
-        @JsonProperty("movies") ArrayList<Movie> movies,
-        @JsonProperty("serieses") ArrayList<Series> serieses
+            @JsonProperty("id") String id,
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
+            @JsonProperty("gender") String gender,
+            @JsonProperty("nationality") String nationality,
+            @JsonProperty("instagramLink") String instagramLink,
+            @JsonProperty("twitterLink") String twitterLink,
+            @JsonProperty("movies") ArrayList<Movie> movies,
+            @JsonProperty("serieses") ArrayList<Series> serieses,
+            @JsonProperty("picture") String picture
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,6 +47,15 @@ public class Cast {
         this.twitterLink = twitterLink;
         this.movies = movies;
         this.serieses = serieses;
+        this.picture = picture;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public void setId(String id) {
@@ -146,8 +157,7 @@ public class Cast {
         int castIndex = findCastIndex();
         if (castIndex == -1) {
             getCasts().add(this);
-        }
-        else {
+        } else {
             getCasts().set(castIndex, this);
         }
     }

@@ -1,9 +1,11 @@
-package WatChill.Series;
+package WatChill.Content.Series;
 
 import WatChill.Cast.Cast;
+import WatChill.Content.Content;
 import WatChill.Director.Director;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
+import WatChill.Content.Series.Season;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,19 +16,10 @@ import java.util.*;
 // Specify the attributes for jackson and ignore getter methods
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 
-public class Series {
-    private String id;
-    private String title;
-    private LocalDate releaseDate;
+public class Series extends Content {
+
     private ArrayList<Season> seasons;
-    private String description;
-    private ArrayList<String> languages;
-    private String country;
-    private ArrayList<String> genres;
     private static ArrayList<Series> fileSeries;
-    private ArrayList<Director> directors;
-    private ArrayList<Cast> casts;
-    private String poster;
 
     // Specify the constructor and parameters for jackson to serialize rhe class
     @JsonCreator
@@ -41,99 +34,12 @@ public class Series {
             @JsonProperty("genres") ArrayList<String> genres,
             @JsonProperty("director") ArrayList<Director> directors,
             @JsonProperty("casts") ArrayList<Cast> casts,
-            @JsonProperty("poster") String poster
+            @JsonProperty("poster") String poster,
+            double budget,
+            double revenue
     ) {
-        this.id = id;
-        this.title = title;
-        this.releaseDate = releaseDate;
+        super(id, title, releaseDate, description, languages, country, genres, directors, casts, poster, budget, revenue);
         this.seasons = seasons;
-        this.description = description;
-        this.languages = languages;
-        this.country = country;
-        this.genres = genres;
-        this.directors = directors;
-        this.casts = casts;
-        this.poster = poster;
-    }
-
-    public String getPoster() {
-        return poster;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    public ArrayList<Director> getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(ArrayList<Director> directors) {
-        this.directors = directors;
-    }
-
-    public void addDirector(Director director) {
-        directors.add(director);
-    }
-
-    public ArrayList<Cast> getCasts() {
-        return casts;
-    }
-
-    public void setCasts(ArrayList<Cast> casts) {
-        this.casts = casts;
-    }
-
-    public void addCast(Cast cast) {
-        casts.add(cast);
-    }
-
-    public ArrayList<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(ArrayList<String> genres) {
-        this.genres = genres;
-    }
-
-    public void addGenre(String genre) {
-        genres.add(genre);
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ArrayList<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(ArrayList<String> languages) {
-        this.languages = languages;
-    }
-
-    public void addLanguage(String language) {
-        languages.add(language);
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public ArrayList<Season> getSeasons() {
@@ -148,22 +54,7 @@ public class Series {
         seasons.add(season);
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    @Override
     public int getViewsCount() {
         //Initialize total views count to zero
         int totalViewsCount = 0;
@@ -181,7 +72,8 @@ public class Series {
         return fileSeries;
     }
 
-    private int findSeriesIndex() {
+    @Override
+    protected int findIndex() {
         retrieveSeries();
         for (int seriesIndex = 0; seriesIndex < fileSeries.size(); seriesIndex++) {
             //Comparing every series id in the database to current id
@@ -194,11 +86,12 @@ public class Series {
     }
 
     public void addSeries() {
-        if (findSeriesIndex() == -1) {//If it wasn't found in database
+        int index = findIndex();
+        if (index == -1) {//If it wasn't found in database
             fileSeries.add(this);
         }//add to database
         else { //Was found "There's a chance it's not updated"
-            fileSeries.set(findSeriesIndex(), this);//Update it's value in database
+            fileSeries.set(index, this);//Update it's value in database
         }
     }
 

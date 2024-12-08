@@ -6,8 +6,8 @@ module WatChill.watchit {
 
 
     opens WatChill to javafx.fxml, com.fasterxml.jackson.databind;
-    opens WatChill.Movie to javafx.fxml, com.fasterxml.jackson.databind;
-    opens WatChill.Series to javafx.fxml, com.fasterxml.jackson.databind;
+    opens WatChill.Content.Movie to javafx.fxml, com.fasterxml.jackson.databind;
+    opens WatChill.Content.Series to javafx.fxml, com.fasterxml.jackson.databind;
     opens WatChill.Subscription to javafx.fxml, com.fasterxml.jackson.databind;
     opens WatChill.Cast to javafx.fxml, com.fasterxml.jackson.databind;
     opens WatChill.Director to javafx.fxml, com.fasterxml.jackson.databind;

@@ -1,13 +1,13 @@
-package WatChill.Series;
+package WatChill.Content.Series;
 
-import WatChill.Review.Review;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
+import WatChill.Content.Series.Episode;
 
 // Specify the attributes for jackson and ignore getter methods
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
@@ -17,6 +17,7 @@ public class Season {
     private LocalDate releaseDate;
     private String description;
     private ArrayList<Episode> episodes;
+    private String poster;
 
     // Specify the constructor and parameters for jackson to serialize rhe class
     @JsonCreator
@@ -24,11 +25,22 @@ public class Season {
             @JsonProperty("title") String title,
             @JsonProperty("description") String description,
             @JsonProperty("releaseDate") LocalDate releaseDate,
-            @JsonProperty("episodes") ArrayList<Episode> episodes) {
+            @JsonProperty("episodes") ArrayList<Episode> episodes,
+            @JsonProperty("poster") String poster
+    ) {
         this.title = title;
         this.description = description;
         this.releaseDate = releaseDate;
         this.episodes = episodes;
+        this.poster = poster;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public LocalDate getReleaseDate() {

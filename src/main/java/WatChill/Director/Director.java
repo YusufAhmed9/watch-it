@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.Movie.Movie;
-import WatChill.Series.Series;
+import WatChill.Content.Movie.Movie;
+import WatChill.Content.Series.Series;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

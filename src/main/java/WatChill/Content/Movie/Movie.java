@@ -1,9 +1,11 @@
-package WatChill.Movie;
+package WatChill.Content.Movie;
 
 import WatChill.Cast.Cast;
+import WatChill.Content.Content;
 import WatChill.Director.Director;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
+import WatChill.WatchableContent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,94 +15,44 @@ import java.util.*;
 
 // Specifying Jackson properties: make fields visible and hide getters
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-public class Movie {
+public class Movie extends Content implements WatchableContent {
 
-    // Attributes:
-    private String id;
-    private String title;
-    private LocalDate releaseDate;
-    private Float duration;
-    private ArrayList<String> languages;
-    private ArrayList<String> genres;
-    private ArrayList<Cast> casts;
-    private ArrayList<Director> directors;
-    private String country;
-    private Double budget;
-    private Double revenue;
-    private String poster; // URL or path to the image
+    private float duration;
     private static ArrayList<Movie> moviesFile = new ArrayList<>();
     private int viewsCount = 0;
 
-    // Constructor:
     @JsonCreator
     public Movie(
             @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("releaseDate") LocalDate releaseDate,
-            @JsonProperty("duration") Float duration,
+            @JsonProperty("duration") float duration,
             @JsonProperty("languages") ArrayList<String> languages,
             @JsonProperty("genres") ArrayList<String> genres,
             @JsonProperty("casts") ArrayList<Cast> casts,
             @JsonProperty("director") ArrayList<Director> directors,
             @JsonProperty("country") String country,
-            @JsonProperty("budget") Double budget,
-            @JsonProperty("revenue") Double revenue,
+            @JsonProperty("budget") double budget,
+            @JsonProperty("revenue") double revenue,
             @JsonProperty("poster") String poster,
-            @JsonProperty("viewsCount") int viewsCount
+            @JsonProperty("viewsCount") int viewsCount,
+            @JsonProperty("description") String description
     ) {
-        this.id = id;
-        this.title = title;
-        this.releaseDate = releaseDate;
+        super(id, title, releaseDate, description, languages, country, genres, directors, casts, poster, budget, revenue);
         this.duration = duration;
-        this.languages = languages;
-        this.genres = genres;
-        this.casts = casts;
-        this.directors = directors;
-        this.country = country;
-        this.budget = budget;
-        this.revenue = revenue;
-        this.poster = poster;
         this.viewsCount = viewsCount;
     }
 
-    // Getters and Setters:
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public Float getDuration() {
+        return duration;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
-
-    public LocalDate getReleaseDate() { return releaseDate; }
-    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
-
-    public Float getDuration() { return duration; }
-    public void setDuration(Float duration) { this.duration = duration; }
-
-    public ArrayList<String> getLanguages() { return languages; }
-    public void setLanguages(ArrayList<String> languages) { this.languages = languages; }
-
-    public ArrayList<String> getGenres() { return genres; }
-    public void setGenres(ArrayList<String> genres) { this.genres = genres; }
-
-    public ArrayList<Cast> getCasts() { return casts; }
-    public void setCasts(ArrayList<Cast> casts) { this.casts = casts; }
-
-    public ArrayList<Director> getDirectors() { return directors; }
-    public void setDirectors(ArrayList<Director> directors) { this.directors = directors; }
-
-    public String getCountry() { return country; }
-    public void setCountry(String country) { this.country = country; }
-
-    public Double getBudget() { return budget; }
-    public void setBudget(Double budget) { this.budget = budget; }
-
-    public Double getRevenue() { return revenue; }
-    public void setRevenue(Double revenue) { this.revenue = revenue; }
-
-    public String getPoster() { return poster; }
-    public void setPoster(String poster) { this.poster = poster; }
+    public void setDuration(Float duration) {
+        this.duration = duration;
+    }
 
     // Method to get the total views count for the movie
+    @Override
     public int getViewsCount() {
         return this.viewsCount;
     }
@@ -114,9 +66,10 @@ public class Movie {
     }
 
     // Method to search for a movie by its ID
-    private int findMovieIndex() {
+    @Override
+    protected int findIndex() {
         for (int i = 0; i < moviesFile.size(); i++) {
-            if (moviesFile.get(i).getId().equals(this.id)) {
+            if (moviesFile.get(i).getId().equals(getId())) {
                 return i; // Movie found
             }
         }
@@ -124,8 +77,8 @@ public class Movie {
     }
 
     // Method to add a new movie or update an existing one
-    public void addOrUpdateMovie() {
-        int index = findMovieIndex();
+    public void addMovie() {
+        int index = findIndex();
         if (index == -1) {
             moviesFile.add(this); // Add movie if not found
         } else {
@@ -167,5 +120,10 @@ public class Movie {
         ArrayList<Movie> sortedMovies = new ArrayList<>(retrieveMovies());
         sortedMovies.sort(new MovieComparator()); // Sort movies by views
         return new ArrayList<>(sortedMovies.subList(0, Math.min(10, sortedMovies.size()))); // Return the top 10 movies
+    }
+
+    @Override
+    public void updateRating() {
+
     }
 }
