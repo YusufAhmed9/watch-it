@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.Movie.Movie;
-import WatChill.Series.Series;
+import WatChill.Content.Movie.Movie;
+import WatChill.Content.Series.Series;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -158,7 +158,7 @@ public class Director {
     }
 
     // Search for directors by name
-    public ArrayList<Director> searchDirectorsByName(String name) {
+    public static ArrayList<Director> searchDirectorsByName(String name) {
         ArrayList<Director> filteredDirectors = getDirectors();
         // Filter directors whose names do not contain the search query
         filteredDirectors.removeIf(director -> !director.getFirstName().concat(director.getLastName()).toLowerCase().contains(name.strip().toLowerCase()));

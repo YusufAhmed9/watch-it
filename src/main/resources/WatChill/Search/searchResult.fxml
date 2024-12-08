@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="100.0" prefWidth="623.0" style="-fx-background-color: rgba(20, 20, 20, 0.508);" styleClass="search-result-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Search.SearchResultController">
+    <children>
+        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Series/media/AOTPoster.jpg" />
+            </image>
+        </ImageView>
+        <VBox prefHeight="112.0" prefWidth="540.0" styleClass="text-container" HBox.hgrow="ALWAYS">
+            <children>
+                <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Attack On Titan" wrappingWidth="493.1014764592511">
+                    <font>
+                        <Font name="Manrope SemiBold" size="22.0" />
+                    </font>
+                </Text>
+                <Text fx:id="releaseDateText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
+               <font>
+                  <Font name="Manrope Medium" size="12.0" />
+               </font></Text>
+                <Text fx:id="descriptionText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
+               <font>
+                  <Font name="Manrope Medium" size="12.0" />
+               </font></Text>
+            </children>
+            <padding>
+                <Insets left="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
+</HBox>

@@ -2,13 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,146 +20,395 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #0d0d0d; -fx-fit-to-width: true; -fx-fit-to-height: true;" stylesheets="@Series.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Series.SeriesController">
-   <content>
-      <VBox style="-fx-background-color: #0d0d0d;">
-         <children>
-            <StackPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0d0d0d;">
+<ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #141414; -fx-fit-to-width: true; -fx-fit-to-height: true;" stylesheets="@Series.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.Series.SeriesController">
+    <content>
+        <VBox style="-fx-background-color: #141414;">
+            <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="86.0">
                <children>
-                  <ImageView cacheHint="SPEED" fitHeight="412.0" fitWidth="1280.0" nodeOrientation="INHERIT" opacity="0.4" style="-fx-fit-width: true;" styleClass="series-cover" StackPane.alignment="TOP_CENTER">
-                     <image>
-                        <Image url="@media/AOTxANIPLUS-main-banner-landscape.jpg" />
-                     </image>
-                     <effect>
-                        <InnerShadow blurType="TWO_PASS_BOX" choke="0.73" height="255.0" radius="127.0" width="255.0">
-                           <color>
-                              <Color red="0.05098039284348488" green="0.05098039284348488" blue="0.05098039284348488" opacity="0.9300000071525574" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </ImageView>
-                  <ImageView fitHeight="45.0" fitWidth="40.0" nodeOrientation="INHERIT" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
-                     <image>
-                        <Image url="@media/plus.png" />
-                     </image>
-                     <StackPane.margin>
-                        <Insets left="200.0" top="100.0" />
-                     </StackPane.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #D3D3D3;" styleClass="series-title" stylesheets="@Series.css" text="Series Title" textAlignment="JUSTIFY" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font name="Helvetica‭ ‬עבה" size="34.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="40.0" />
-                     </StackPane.margin>
-                  </Label>
-                  <Label fx:id="episodesButton" alignment="CENTER" style="-fx-text-fill: #D3D3D3;" text="Episodes" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font name="Helvetica‭ ‬עבה" size="22.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="40.0" top="500.0" />
-                     </StackPane.margin>
-                  </Label>
-                  <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #FE0008, #C900A8); -fx-background-radius: 15px;" styleClass="seasons-button" text="Seasons" textAlignment="CENTER" textFill="LIGHTGRAY" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font name="Helvetica‭ ‬עבה" size="21.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="40.0" top="100.0" />
-                     </StackPane.margin>
-                     <effect>
-                        <ColorAdjust />
-                     </effect>
-                  </MenuButton>
-                  <Label fx:id="detailsButton" alignment="CENTER" style="-fx-text-fill: #D3D3D3;" text="Details" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font name="Helvetica‭ ‬עבה" size="22.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="170.0" top="500.0" />
-                     </StackPane.margin>
-                  </Label>
-                  <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #D3D3D3;" text="Series Description" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font name="Helvetica‭ ‬עבה" size="15.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets left="40.0" top="200.0" />
-                     </StackPane.margin>
-                  </Text>
-                  <ImageView fx:id="seriesPoster" fitHeight="200.0" fitWidth="148.0" StackPane.alignment="TOP_LEFT">
-                     <image>
-                        <Image url="@media/MV5BNjY4MDQxZTItM2JjMi00NjM5LTk0MWYtOTBlNTY2YjBiNmFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
-                     </image>
-                     <StackPane.margin>
-                        <Insets left="40.0" top="130.0" />
-                     </StackPane.margin>
-                  </ImageView>
-                  <ImageView fitHeight="65.0" fitWidth="200.0" StackPane.alignment="TOP_LEFT">
+                  <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Logo.png" />
                      </image>
-                     <StackPane.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </StackPane.margin>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </ImageView>
-               </children>
-            </StackPane>
-            <VBox>
-               <children>
-                  <HBox prefHeight="128.0" prefWidth="1280.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="217.0">
-                           <image>
-                              <Image url="@media/lvkk8zmqfsr61.jpg" />
-                           </image>
-                           <effect>
-                              <InnerShadow choke="0.76" height="53.24" radius="27.585" width="59.1">
-                                 <color>
-                                    <Color red="0.05098039284348488" green="0.05098039284348488" blue="0.05098039284348488" />
-                                 </color>
-                              </InnerShadow>
-                           </effect>
-                        </ImageView>
-                        <VBox>
+                        <AnchorPane>
                            <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets right="100.0" />
                            </HBox.margin>
                            <children>
-                              <Label style="-fx-text-fill: #D3D3D3;" text="S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1" textFill="LIGHTGRAY">
-                                 <font>
-                                    <Font name="Helvetica‭ ‬עבה" size="27.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="10.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label alignment="CENTER" style="-fx-text-fill: #D3D3D3;" text="September 28, 2013">
-                                 <padding>
-                                    <Insets left="15.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Helvetica‭ ‬עבה" size="18.0" />
-                                 </font>
-                              </Label>
+                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="MenuButton">
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" text="Movies" />
+                                          <MenuItem mnemonicParsing="false" text="Series" />
+                                          <MenuItem mnemonicParsing="false" text="Cast" />
+                                          <MenuItem mnemonicParsing="false" text="Director" />
+                                       </items>
+                                       <padding>
+                                          <Insets bottom="4.0" top="4.0" />
+                                       </padding>
+                                    </MenuButton>
+                                    <TextField fx:id="searchInput" prefHeight="25.0" prefWidth="474.0" promptText="Search WatChill..." style="-fx-background-radius: 5 0 0 5; -fx-background-color: #111; -fx-text-fill: #fff;">
+                                       <padding>
+                                          <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                                       </padding>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #333;">
+                                       <graphic>
+                                          <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../loupe.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
+                        </AnchorPane>
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Sign In">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Manrope Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Sign Up">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Manrope Bold" size="12.0" />
+                           </font>
+                        </Button>
+
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+                <StackPane style="-fx-background-color: #141414;">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#displayEpisodes" StackPane.alignment="CENTER_LEFT">
+                            <StackPane.margin>
+                                <Insets />
+                            </StackPane.margin>
+                            <children>
+                                <ImageView fx:id="seriesPoster" fitHeight="285.0" fitWidth="211.0" preserveRatio="true">
+                                    <image>
+                                        <Image url="@media/Attack%20On%20Titan/AOTPoster.jpg" />
+                                    </image>
+                                    <effect>
+                                        <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" spread="1.0" width="10.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                                    </effect>
+                                </ImageView>
+                                <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" stylesheets="@Series.css" text="Series Title" textFill="WHITE">
+                                    <font>
+                                        <Font name="Manrope Bold" size="34.0" />
+                                    </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                                </Label>
+                                  <Text fx:id="seasonDescription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Series Description" textAlignment="CENTER">
+                                      <font>
+                                          <Font name="Manrope SemiBold" size="18.0" />
+                                      </font>
+                                      <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                      </VBox.margin>
+                                  </Text>
+                        <HBox>
+                           <children>
+                              <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Manrope SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                                <HBox alignment="CENTER_LEFT">
+                                    <children>
+                                        <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-background-radius: 15px; -fx-cursor: hand;" styleClass="seasons-button" text="Seasons" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="Manrope Bold" size="18.0" />
+                                            </font>
+                                            <effect>
+                                                <ColorAdjust />
+                                            </effect>
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" />
+                                            </HBox.margin>
+                                        </MenuButton>
+                                        <ImageView fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" preserveRatio="true">
+                                            <image>
+                                                <Image url="@media/plus.png" />
+                                            </image>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="15.0" />
+                                            </HBox.margin>
+                                        </ImageView>
+                                    </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                                </HBox>
+                            </children>
+                     <padding>
+                        <Insets left="40.0" top="100.0" />
+                     </padding>
                         </VBox>
+                    </children>
+                </StackPane>
+            <VBox>
+               <children>
+                  <HBox style="-fx-background-color: #1F1F1F;">
+                     <children>
+                              <Label fx:id="episodesButton" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Episodes" textFill="WHITE">
+                                  <font>
+                                      <Font name="Manrope Bold" size="26.0" />
+                                  </font>
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                           <padding>
+                              <Insets bottom="5.0" left="40.0" top="5.0" />
+                           </padding>
+                              </Label>
+                     </children>
+                  </HBox>
+                      <VBox fx:id="episodesContainer" fillWidth="false" style="-fx-background-color: #1F1F1F;">
+                          <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="172.0" style="-fx-background-color: #0F0F0F; -fx-border-color: #fff; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <ImageView fitHeight="112.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@media/Attack%20On%20Titan/Episode1.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="40.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="677.0" prefWidth="788.0">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label style="-fx-text-fill: #fff;" text="S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1" textFill="LIGHTGRAY">
+                                       <font>
+                                          <Font name="Manrope SemiBold" size="27.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="September 28, 2013">
+                                       <padding>
+                                          <Insets left="15.0" top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Manrope Medium" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" opacity="0.48" style="-fx-text-fill: #fff;" text="Episode's description" textFill="LIGHTGRAY">
+                                       <padding>
+                                          <Insets left="15.0" top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Manrope Medium" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="172.0" style="-fx-background-color: #0F0F0F; -fx-border-color: #fff; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <ImageView fitHeight="112.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@media/Attack%20On%20Titan/Episode2.jpg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="40.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="677.0" prefWidth="788.0">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label style="-fx-text-fill: #fff;" text="S1 E2 - To You, in 2000 Years/The Fall of Shiganshina, Part 2" textFill="LIGHTGRAY">
+                                       <font>
+                                          <Font name="Manrope SemiBold" size="27.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="October 5, 2013">
+                                       <padding>
+                                          <Insets left="15.0" top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Manrope Medium" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" opacity="0.48" style="-fx-text-fill: #fff;" text="Episode's description" textFill="LIGHTGRAY">
+                                       <padding>
+                                          <Insets left="15.0" top="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Manrope Medium" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </HBox>
+                          </children>
+                     <padding>
+                        <Insets left="40.0" right="40.0" />
+                     </padding>
+                      </VBox>
+                  <HBox style="-fx-background-color: #1F1F1F;">
+                     <children>
+                        <Label fx:id="episodesButton1" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Cast" textFill="WHITE">
+                           <font>
+                              <Font name="Manrope Bold" size="26.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
                      <padding>
                         <Insets left="40.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
+                  </HBox>
+                  <VBox>
+                     <children>
+                        <VBox fx:id="episodesContainer1" alignment="CENTER_LEFT" fillWidth="false" style="-fx-background-color: #1F1F1F;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                 <children>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@media/Attack%20On%20Titan/Cast1.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="LIGHTGRAY">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="27.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@media/Attack%20On%20Titan/Cast1.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="LIGHTGRAY">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="27.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@media/Attack%20On%20Titan/Cast1.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="LIGHTGRAY">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="27.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="40.0" right="40.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <HBox style="-fx-background-color: #1F1F1F;">
+                     <children>
+                        <Label fx:id="episodesButton11" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Creator(s): " textFill="WHITE">
+                           <font>
+                              <Font name="Manrope Bold" size="26.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="40.0" top="10.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
-         </children>
-      </VBox>
-   </content>
+            </children>
+        </VBox>
+    </content>
 </ScrollPane>
