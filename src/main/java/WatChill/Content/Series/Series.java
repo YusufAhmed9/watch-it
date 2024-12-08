@@ -35,8 +35,8 @@ public class Series extends Content {
             @JsonProperty("director") ArrayList<Director> directors,
             @JsonProperty("casts") ArrayList<Cast> casts,
             @JsonProperty("poster") String poster,
-            double budget,
-            double revenue
+            @JsonProperty("budget") double budget,
+            @JsonProperty("revenue") double revenue
     ) {
         super(id, title, releaseDate, description, languages, country, genres, directors, casts, poster, budget, revenue);
         this.seasons = seasons;
@@ -144,7 +144,7 @@ public class Series extends Content {
 
     // Search for series by title
     public static ArrayList<Series> searchSeriesByTitle(String title) {
-        ArrayList<Series> filteredSeries = retrieveSeries();
+        ArrayList<Series> filteredSeries = new ArrayList<>(retrieveSeries());
         // Filter series whose titles do not contain the search query
         filteredSeries.removeIf(series -> !series.getTitle().toLowerCase().contains(title.strip().toLowerCase()));
         return filteredSeries;

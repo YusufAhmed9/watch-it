@@ -177,9 +177,9 @@ public class Cast {
 
     // Search for actor by name
     public static ArrayList<Cast> searchCastsByName(String name) {
-        ArrayList<Cast> filteredCasts = getCasts();
+        ArrayList<Cast> filteredCasts = new ArrayList<>(getCasts());
         // Filter actors whose names do not contain the search query
-        filteredCasts.removeIf(cast -> !cast.getFirstName().concat(" " + cast.getLastName()).toLowerCase().contains(name.strip().toLowerCase()));
+        filteredCasts.removeIf(cast -> !cast.getFirstName().concat(" " + cast.getLastName()).toLowerCase().contains(name.replaceAll(" ", "").toLowerCase()));
         return filteredCasts;
     }
 

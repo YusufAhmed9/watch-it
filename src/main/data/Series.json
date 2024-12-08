@@ -47,11 +47,70 @@
       }
     ],
     "description": "Greatest series ever",
-    "languages": [],
+    "languages": ["English"],
     "country": "Japan",
     "genres": [],
     "casts": [],
     "directors": [],
-    "poster": "/WatChill/Series/media/Attack On Titan/AOTPoster.jpg"
+    "poster": "/WatChill/Series/media/Attack On Titan/AOTPoster.jpg",
+    "budget": 44.0,
+    "revenue": 500.0
+  },
+  {
+    "id": "2",
+    "title": "Battack On Titan",
+    "releaseDate": [
+      2024,
+      12,
+      20
+    ],
+    "seasons": [
+      {
+        "title": "Season 1",
+        "description": "Greatest season ever",
+        "releaseDate": [
+          2024,
+          12,
+          3
+        ],
+        "episodes": [
+          {
+            "id": "1",
+            "title": "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+            "duration": 25,
+            "releaseDate": [
+              2024,
+              12,
+              3
+            ],
+            "viewsCount": 0,
+            "poster": "/WatChill/Series/media/Attack On Titan/Episode1.jpg",
+            "description": "Nice one"
+          },
+          {
+            "id": "2",
+            "title": "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 2",
+            "duration": 25,
+            "releaseDate": [
+              2024,
+              12,
+              3
+            ],
+            "viewsCount": 0,
+            "poster": "/WatChill/Series/media/Attack On Titan/Episode2.jpg",
+            "description": "Nice one"
+          }
+        ]
+      }
+    ],
+    "description": "Greatest series ever",
+    "languages": ["Arabic"],
+    "country": "Japan",
+    "genres": ["Anime"],
+    "casts": [],
+    "directors": [],
+    "poster": "/WatChill/Series/media/Attack On Titan/AOTPoster.jpg",
+    "budget": 44.0,
+    "revenue": 500.0
   }
 ]

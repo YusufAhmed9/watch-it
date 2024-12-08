@@ -22,8 +22,8 @@ public abstract class Content {
     protected String poster;
     protected double budget;
     protected double revenue;
-    public static HashSet<String> allContentLanguages;
-    public static HashSet<String> allContentGenres;
+    public static HashSet<String> allContentLanguages = new HashSet<>();
+    public static HashSet<String> allContentGenres = new HashSet<>();
 
     protected Content(String id, String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, ArrayList<Director> directors, ArrayList<Cast> casts, String poster, double budget, double revenue) {
         this.id = id;
@@ -39,7 +39,7 @@ public abstract class Content {
         this.budget = budget;
         this.revenue = revenue;
         allContentLanguages.addAll(languages);
-        allContentGenres.addAll(languages);
+        allContentGenres.addAll(genres);
     }
 
     public String getId() {
