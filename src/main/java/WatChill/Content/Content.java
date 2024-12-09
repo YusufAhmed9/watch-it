@@ -1,13 +1,19 @@
 package WatChill.Content;
 
-import WatChill.Cast.Cast;
-import WatChill.Content.Series.Season;
+import WatChill.Crew.Cast.Cast;
+import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
-import WatChill.Director.Director;
+import WatChill.Crew.Crew;
+import WatChill.Crew.Director.Director;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.UUID;
+
+import static WatChill.Content.Movie.Movie.retrieveMovies;
+import static WatChill.Content.Series.Series.retrieveSeries;
 
 public abstract class Content {
     protected String id;
@@ -17,15 +23,15 @@ public abstract class Content {
     protected ArrayList<String> languages;
     protected String country;
     protected ArrayList<String> genres;
-    protected ArrayList<Director> directors;
-    protected ArrayList<Cast> casts;
+    ArrayList<Crew> crews;
     protected String poster;
     protected double budget;
     protected double revenue;
+    protected double rating;
     public static HashSet<String> allContentLanguages = new HashSet<>();
     public static HashSet<String> allContentGenres = new HashSet<>();
 
-    protected Content(String id, String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, ArrayList<Director> directors, ArrayList<Cast> casts, String poster, double budget, double revenue) {
+    protected Content(String id, String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, ArrayList<Crew> crews, String poster, double budget, double revenue, double rating) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -33,13 +39,30 @@ public abstract class Content {
         this.languages = languages;
         this.country = country;
         this.genres = genres;
-        this.directors = directors;
-        this.casts = casts;
+        this.crews = crews;
         this.poster = poster;
         this.budget = budget;
         this.revenue = revenue;
         allContentLanguages.addAll(languages);
         allContentGenres.addAll(genres);
+        this.rating = rating;
+    }
+
+    protected Content(String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, String poster, double budget, double revenue) {
+        this.id = UUID.randomUUID().toString();
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.description = description;
+        this.languages = languages;
+        this.country = country;
+        this.genres = genres;
+        crews = new ArrayList<>();
+        this.poster = poster;
+        this.budget = budget;
+        this.revenue = revenue;
+        allContentLanguages.addAll(languages);
+        allContentGenres.addAll(genres);
+        rating = 0;
     }
 
     public String getId() {
@@ -106,28 +129,16 @@ public abstract class Content {
         genres.add(genre);
     }
 
-    public ArrayList<Director> getDirectors() {
-        return directors;
+    public ArrayList<Crew> getCrews() {
+        return crews;
     }
 
-    public void setDirectors(ArrayList<Director> directors) {
-        this.directors = directors;
+    public void setCrews(ArrayList<Crew> crews) {
+        this.crews = crews;
     }
 
-    public void addDirector(Director director) {
-        directors.add(director);
-    }
-
-    public ArrayList<Cast> getCasts() {
-        return casts;
-    }
-
-    public void setCasts(ArrayList<Cast> casts) {
-        this.casts = casts;
-    }
-
-    public void addCast(Cast cast) {
-        casts.add(cast);
+    public void addCrew(Crew crew) {
+        crews.add(crew);
     }
 
     public String getPoster() {
@@ -153,6 +164,38 @@ public abstract class Content {
     public void setRevenue(double revenue) {
         this.revenue = revenue;
     }
+
+    public static ArrayList<Content> findByGenre(String genre) {
+        ArrayList<Content> filteredContent = new ArrayList<>();
+        for (Movie movie : retrieveMovies()) {
+            if (movie.getGenres().contains(genre)) {
+                filteredContent.add(movie); // Add movie if it matches the genre
+            }
+        }
+        for (Series series : retrieveSeries()) {
+            if (series.getGenres().contains(genre)) {
+                filteredContent.add(series); // Add movie if it matches the genre
+            }
+        }
+        return filteredContent;
+    }
+
+    public static ArrayList<Content> findMostRecent() {
+        ArrayList<Content> mostRecentContent = new ArrayList<>();
+        mostRecentContent.addAll(retrieveSeries());
+        mostRecentContent.addAll(retrieveMovies());
+        mostRecentContent.sort(Comparator.comparing(Content::getReleaseDate));
+        return mostRecentContent;
+    }
+
     public abstract int getViewsCount();
+
     protected abstract int findIndex();
+
+    protected abstract void save();
+
+    protected abstract void update();
+
+    protected abstract void delete();
+
 }

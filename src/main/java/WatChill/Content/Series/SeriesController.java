@@ -1,7 +1,8 @@
 package WatChill.Content.Series;
 
-import WatChill.Content.Series.Episode;
-import WatChill.Content.Series.Season;
+import WatChill.Crew.Cast.Cast;
+import WatChill.Crew.Crew;
+import WatChill.Crew.Director.Director;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -26,20 +27,53 @@ public class SeriesController {
     private Label episodesButton;
     @FXML
     private VBox episodesContainer;
+    @FXML
+    private HBox genresBox;
+    @FXML
+    private HBox ratingBox;
+    @FXML
+    private HBox castsBox;
+    @FXML
+    private HBox directorsBox;
+
     private void initializeSeries(String seriesId) {
-        this.currentSeries = Series.getSeriesById(seriesId);
+        this.currentSeries = Series.findById(seriesId);
         seriesTitle.setText(currentSeries.getTitle());
         for (Season season : currentSeries.getSeasons()) {
             MenuItem currentSeriesSeason = new MenuItem(season.getTitle());
-            currentSeriesSeason.setOnAction(e -> seasonsMenu.setText(currentSeriesSeason.getText()));
+            currentSeriesSeason.setOnAction(e -> {
+                seasonsMenu.setText(currentSeriesSeason.getText());
+                displayEpisodes();
+            });
             seasonsMenu.getItems().add(currentSeriesSeason);
         }
         seasonsMenu.setText(seasonsMenu.getItems().getFirst().getText());
         seasonDescription.setText(currentSeries.getDescription());
         Image seriesImage = new Image(getClass().getResource(currentSeries.getPoster()).toExternalForm());
         seriesPoster.setImage(seriesImage);
+        addGenres();
         displayEpisodes();
+        addCast();
+        addDirectors();
     }
+
+    public void addGenres() {
+        genresBox.getChildren().clear();
+        for (String genre : currentSeries.getGenres()) {
+            Label genreLabel = new Label(genre);
+            genreLabel.getStyleClass().add("genre");
+            genresBox.getChildren().add(genreLabel);
+            Label bullet = new Label("•");
+            bullet.getStyleClass().add("genre");
+            genresBox.getChildren().add(bullet);
+        }
+        genresBox.getChildren().removeLast();
+        genresBox.getStyleClass().add("genres-box");
+    }
+//
+//    public void addRating() {
+//        for(int star = 1; star <= currentSeries.getRating())
+//    }
 
     public void displayEpisodes() {
         clearEpisodes();
@@ -76,11 +110,50 @@ public class SeriesController {
                 }
             }
         }
+
     }
-    public void clearEpisodes(){
-        if(!episodesContainer.getChildren().isEmpty()){
-            episodesContainer.getChildren().clear();
+
+    public void clearEpisodes() {
+        episodesContainer.getChildren().clear();
+    }
+
+    public void addCast() {
+        clearCast();
+        for (Crew crew : currentSeries.getCrews()) {
+            if (crew instanceof Cast) {
+                VBox castBox = new VBox();
+                ImageView castImage = new ImageView(crew.getPicture());
+                castBox.getChildren().add(castImage);
+                Label castName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
+                castName.getStyleClass().add("cast-label");
+                castBox.getChildren().add(castName);
+                castBox.getStyleClass().add("cast-box");
+                castsBox.getChildren().add(castBox);
+            }
         }
+    }
+
+    public void clearCast() {
+        castsBox.getChildren().clear();
+    }
+
+    public void addDirectors() {
+        clearDirectors();
+        for (Crew crew : currentSeries.getCrews()) {
+            if (crew instanceof Director) {
+                Label directorName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
+                directorName.getStyleClass().add("director-name");
+                directorsBox.getChildren().add(directorName);
+                Label comma = new Label(", ");
+                comma.getStyleClass().add("director-name");
+                directorsBox.getChildren().add(comma);
+            }
+        }
+        directorsBox.getChildren().removeLast();
+    }
+
+    public void clearDirectors() {
+        directorsBox.getChildren().clear();
     }
 
     public void build(String seriesId) {
