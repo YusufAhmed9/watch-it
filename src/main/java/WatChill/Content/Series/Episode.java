@@ -1,6 +1,6 @@
 package WatChill.Content.Series;
 
-import WatChill.WatchableContent;
+import WatChill.Content.WatchableContent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
