@@ -16,4 +16,5 @@ module WatChill.watchit {
     opens WatChill.Search to javafx.fxml, com.fasterxml.jackson.databind;
 
     exports WatChill;
+    exports WatChill.Content;
 }
