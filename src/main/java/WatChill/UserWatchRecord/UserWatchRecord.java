@@ -1,18 +1,19 @@
 package WatChill.UserWatchRecord;
 
-import WatChill.Cast.Cast;
-import WatChill.Review.Review;
-import WatChill.Content.WatchableContent;
+import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
-import WatChill.FileHandling.JsonReader;
-import WatChill.FileHandling.JsonWriter;
+import WatChill.Content.Series.Series;
+import WatChill.Crew.Crew;
+import WatChill.Review.Review;
+import WatChill.Content.WatchableContent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class UserWatchRecord {
@@ -64,7 +65,7 @@ public class UserWatchRecord {
     //Methods
 
     // Method to display watched content
-    public static ArrayList<UserWatchRecord>getUserWatchRecord(String userId) {
+    public static ArrayList<UserWatchRecord> getUserWatchRecord(String userId) {
         // Filter and display only records associated with the specified userId
         ArrayList<UserWatchRecord> userWatchHistory = new ArrayList<>();
         System.out.println("WatchableContent watched by user " + userId + ":");
@@ -77,73 +78,70 @@ public class UserWatchRecord {
     }
 
     // Method to add content with a review
-    public void addWatchableContentRating(WatchableContent content,String userID, Review review) {
-        records.add(new UserWatchRecord(userID,review,content));
+    public void addWatchableContentRating(WatchableContent content, String userID, Review review) {
+        records.add(new UserWatchRecord(userID, review, content));
     }
 
     // Method to recommends content to user
-    public static ArrayList<WatchableContent> recommendWatchableContent(String userId, ArrayList<WatchableContent> allWatchableContents) {
+    public static ArrayList<Content> recommendWatchableContent(String userId) {
+        ArrayList<Content> userWatchedContent = new ArrayList<>();
+        for (UserWatchRecord userRecord : getUserWatchRecord(userId)) {
+            if (userRecord.watchedContent instanceof Movie) {
+                userWatchedContent.add((Movie) userRecord.watchedContent);
+            } else {
+                userWatchedContent.add(Series.findById(((Episode) userRecord.watchedContent).getSeriesId()));
+            }
+        }
+        String preferredGenre = getPreferredGenre(userWatchedContent);
+        Crew preferredCrew = getPreferredCrew(userWatchedContent);
+        ArrayList<Content>preferredContent = new ArrayList<>();
+        for(Content content : Movie.retrieveMovies()){
+            if(content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)){
+                preferredContent.add(content);
+            }
+        }
+        for(Content content : Series.retrieveSeries()){
+            if(content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)){
+                preferredContent.add(content);
+            }
+        }
+        return preferredContent;
+    }
 
-        // Collect genres and cast from watched content
-        ArrayList<String> favoriteGenres = new ArrayList<>();
-        ArrayList<String> favoriteCast = new ArrayList<>();
-
-        // Loop through records to collect preferences
-        for (UserWatchRecord record : records) {
-            if (userId.equals(record.WatchedContent().getUserId())) {
-                for (String genre : record.getWatchableContent().getGenres()) {
-                    if (!favoriteGenres.contains(genre)) {
-                        favoriteGenres.add(genre);
-                    }
-                }
-                for (String castMember : record.getWatchableContent().getCast()) {
-                    if (!favoriteCast.contains(castMember)) {
-                        favoriteCast.add(castMember);
-                    }
+    private static Crew getPreferredCrew(ArrayList<Content> preferredContent) {
+        HashMap<Crew, Integer> crewAppearances = new HashMap<>();
+        int maxAppearances = 0;
+        Crew preferredCrew = null;
+        // Count the appearances of each crew
+        for (Content content : preferredContent) {
+            for (Crew crew : content.getCrews()) {
+                crewAppearances.put(crew, crewAppearances.getOrDefault(crew, 0) + 1);
+                if (crewAppearances.get(crew) > maxAppearances) {
+                    preferredCrew = crew;
+                    maxAppearances = crewAppearances.get(crew);
                 }
             }
         }
+        return preferredCrew;
+    }
 
-        // Recommend content based on preferences
-        ArrayList<WatchableContent> recommendations = new ArrayList<>();
-        for (WatchableContent content : allWatchableContents) {
-            // Skip already watched content
-            boolean alreadyWatched = false;
-            for (WatchedWatchableContent record : records) {
-                if (record.getWatchableContent().equals(content)) {
-                    alreadyWatched = true;
-                    break;
-                }
-            }
-            if (alreadyWatched) {
-                continue;
-            }
-
-            // Check if the content matches user's favorite genres or cast
-            boolean matchesGenres = false;
-            boolean matchesCast = false;
-
+    private static String getPreferredGenre(ArrayList<Content> preferredContent) {
+        HashMap<String, Integer> genreAppearances = new HashMap<>();
+        int maxAppearances = 0;
+        String preferredGenre = null;
+        // Count the appearances of each crew
+        for (Content content : preferredContent) {
             for (String genre : content.getGenres()) {
-                if (favoriteGenres.contains(genre)) {
-                    matchesGenres = true;
-                    break;
+                genreAppearances.put(genre, genreAppearances.getOrDefault(genre, 0) + 1);
+                if (genreAppearances.get(genre) > maxAppearances) {
+                    preferredGenre = genre;
+                    maxAppearances = genreAppearances.get(genre);
                 }
-            }
-
-            for (String castMember : content.getCast()) {
-                if (favoriteCast.contains(castMember)) {
-                    matchesCast = true;
-                    break;
-                }
-            }
-
-            // Add content to recommendations if it matches preferences
-            if (matchesGenres || matchesCast) {
-                recommendations.add(content);
             }
         }
 
-        return recommendations;
+
+        return preferredGenre;
     }
 
 }

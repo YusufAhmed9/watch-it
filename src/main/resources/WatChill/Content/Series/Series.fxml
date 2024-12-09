@@ -131,18 +131,78 @@
                                           <Insets bottom="10.0" />
                                       </VBox.margin>
                                   </Text>
-                        <HBox>
+                        <HBox fx:id="genresBox" alignment="CENTER_LEFT" spacing="5.0">
                            <children>
                               <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
                                  <font>
                                     <Font name="Manrope SemiBold" size="14.0" />
                                  </font>
                               </Text>
+                              <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Manrope SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="seasonDescription111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Horror" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Manrope SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="seasonDescription12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Manrope SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="seasonDescription13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Action" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Manrope SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="ratingBox" alignment="BOTTOM_LEFT">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="seriesTitle1" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" stylesheets="@Series.css" text="5/5" textFill="WHITE">
+                                 <font>
+                                    <Font name="Manrope Bold" size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </HBox>
                                 <HBox alignment="CENTER_LEFT">
                                     <children>
-                                        <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-background-radius: 15px; -fx-cursor: hand;" styleClass="seasons-button" text="Seasons" textAlignment="CENTER">
+                                        <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" onAction="#displayEpisodes" style="-fx-background-color: #fff; -fx-background-radius: 15px; -fx-cursor: hand;" styleClass="seasons-button" text="Seasons" textAlignment="CENTER">
                                             <font>
                                                 <Font name="Manrope Bold" size="18.0" />
                                             </font>
@@ -294,7 +354,7 @@
                       </VBox>
                   <HBox style="-fx-background-color: #1F1F1F;">
                      <children>
-                        <Label fx:id="episodesButton1" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Cast" textFill="WHITE">
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Cast" textFill="WHITE">
                            <font>
                               <Font name="Manrope Bold" size="26.0" />
                            </font>
@@ -315,9 +375,9 @@
                   </HBox>
                   <VBox>
                      <children>
-                        <VBox fx:id="episodesContainer1" alignment="CENTER_LEFT" fillWidth="false" style="-fx-background-color: #1F1F1F;">
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" style="-fx-background-color: #1F1F1F;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <HBox fx:id="castsBox" alignment="CENTER_LEFT" spacing="20.0">
                                  <children>
                                     <VBox alignment="CENTER">
                                        <children>
@@ -326,9 +386,9 @@
                                                 <Image url="@media/Attack%20On%20Titan/Cast1.jpg" />
                                              </image>
                                           </ImageView>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="LIGHTGRAY">
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud Mahmoud" textFill="LIGHTGRAY">
                                              <font>
-                                                <Font name="Manrope SemiBold" size="27.0" />
+                                                <Font name="Manrope SemiBold" size="16.0" />
                                              </font>
                                              <padding>
                                                 <Insets top="5.0" />
@@ -387,7 +447,7 @@
                   </VBox>
                   <HBox style="-fx-background-color: #1F1F1F;">
                      <children>
-                        <Label fx:id="episodesButton11" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Creator(s): " textFill="WHITE">
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Director(s): " textFill="WHITE">
                            <font>
                               <Font name="Manrope Bold" size="26.0" />
                            </font>
@@ -395,16 +455,47 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <padding>
-                              <Insets top="5.0" />
+                              <Insets left="40.0" top="10.0" />
                            </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" />
-                           </HBox.margin>
                         </Label>
+                        <HBox fx:id="directorsBox" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
+                                 <font>
+                                    <Font name="Manrope Bold" size="26.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="," textFill="WHITE">
+                                 <font>
+                                    <Font name="Manrope Bold" size="26.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
+                                 <font>
+                                    <Font name="Manrope Bold" size="26.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" top="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
-                     <padding>
-                        <Insets left="40.0" top="10.0" />
-                     </padding>
                   </HBox>
                </children>
             </VBox>

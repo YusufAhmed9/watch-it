@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 // Specify the attributes for jackson and ignore getter methods
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
@@ -17,14 +18,16 @@ public class Episode implements WatchableContent {
     private int viewsCount;
     private String poster;
     private String description;
+    private String seriesId;
 
-    public Episode(String id, String title, int duration, LocalDate releaseDate, String poster, String description) {//This constructor is made for when an episode is created for first time
-        this.id = id;
+    public Episode(String title, int duration, LocalDate releaseDate, String poster, String description, String seriesId) {//This constructor is made for when an episode is created for first time
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.duration = duration;
         this.releaseDate = releaseDate;
         this.poster = poster;
         this.viewsCount = 0;
+        this.seriesId = seriesId;
     }
 
     // Specify the constructor and parameters for jackson to serialize rhe class
@@ -36,7 +39,8 @@ public class Episode implements WatchableContent {
             @JsonProperty("releaseDate") LocalDate releaseDate,
             @JsonProperty("viewsCount") int viewsCount,
             @JsonProperty("poster") String poster,
-            @JsonProperty("description") String description
+            @JsonProperty("description") String description,
+            @JsonProperty("seriesId") String seriesId
     ) {//This constructor is made for when an episode is retrieved from file
         this.id = id;
         this.title = title;
@@ -45,6 +49,15 @@ public class Episode implements WatchableContent {
         this.viewsCount = viewsCount;
         this.poster = poster;
         this.description = description;
+        this.seriesId = seriesId;
+    }
+
+    public String getSeriesId() {
+        return seriesId;
+    }
+
+    public void setSeriesId(String seriesId) {
+        this.seriesId = seriesId;
     }
 
     public String getDescription() {
