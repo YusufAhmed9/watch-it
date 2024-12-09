@@ -5,7 +5,7 @@ import WatChill.Content.Content;
 import WatChill.Director.Director;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.WatchableContent;
+import WatChill.Content.WatchableContent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

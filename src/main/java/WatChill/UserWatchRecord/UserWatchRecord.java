@@ -1,8 +1,10 @@
 package WatChill.UserWatchRecord;
 
-import WatChill.Movie.Movie;
-import WatChill.Series.Episode;
-
+import WatChill.Cast.Cast;
+import WatChill.Review.Review;
+import WatChill.Content.WatchableContent;
+import WatChill.Content.Movie.Movie;
+import WatChill.Content.Series.Episode;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -10,195 +12,138 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-
 public class UserWatchRecord {
 
     // Attributes
     private String userId;
-    private ArrayList<WatchRecord<Movie>> movieRecords;
-    private ArrayList<WatchRecord<Episode>> episodeRecords;
     private static final String FILE_PATH = "./src/main/data/UserWatchRecords.json";
+    private WatchableContent watchedContent;
+    private Review review;
+    private static ArrayList<UserWatchRecord> records;
 
     // Constructor
     @JsonCreator
     public UserWatchRecord(
             @JsonProperty("userId") String userId,
-            @JsonProperty("movieRecords") ArrayList<WatchRecord<Movie>> movieRecords,
-            @JsonProperty("episodeRecords") ArrayList<WatchRecord<Episode>> episodeRecords
+            @JsonProperty("review") Review review,
+            @JsonProperty("watchedContent") WatchableContent watchedContent
     ) {
         this.userId = userId;
-        this.movieRecords = movieRecords == null ? new ArrayList<>() : movieRecords;
-        this.episodeRecords = episodeRecords == null ? new ArrayList<>() : episodeRecords;
-    }
-
-    public UserWatchRecord(String userId) {
-        this(userId, new ArrayList<>(), new ArrayList<>());
+        this.review = review;
+        this.watchedContent = watchedContent;
     }
 
     // Getters and Setters
     public String getUserId() {
         return userId;
     }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public ArrayList<WatchRecord<Movie>> getMovieRecords() {
-        return movieRecords;
-    }
-    public void setMovieRecords(ArrayList<WatchRecord<Movie>> movieRecords) {
-        this.movieRecords = movieRecords;
+    public WatchableContent getWatchedContent() {
+        return watchedContent;
     }
 
-    public ArrayList<WatchRecord<Episode>> getEpisodeRecords() {
-        return episodeRecords;
-    }
-    public void setEpisodeRecords(ArrayList<WatchRecord<Episode>> episodeRecords) {
-        this.episodeRecords = episodeRecords;
-    }
-    
-    // Nested class to represent a generic watch record
-    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-    private static class WatchRecord<T> {
-        // Attributes
-        private T content;
-        private LocalDate watchDate;
-        private Integer rating;
-
-        // Constructor
-        @JsonCreator
-        public WatchRecord(
-                @JsonProperty("content") T content,
-                @JsonProperty("watchDate") LocalDate watchDate,
-                @JsonProperty("rating") Integer rating
-        ) {
-            this.content = content;
-            this.watchDate = watchDate;
-            this.rating = rating;
-        }
-
-        // Getters and Setters
-        public T getContent() {
-            return content;
-        }
-        public void setContent(T content) {
-            this.content = content;
-        }
-
-        public LocalDate getWatchDate() {
-            return watchDate;
-        }
-        public void setWatchDate(LocalDate watchDate) {
-            this.watchDate = watchDate;
-        }
-
-        public Integer getRating() {
-            return rating;
-        }
-        public void setRating(Integer rating) {
-            this.rating = rating;
-        }
+    public void setWatchedContent(WatchableContent watchedContent) {
+        this.watchedContent = watchedContent;
     }
 
-    // Methods to handle movies
-    public void addMovieRecord(Movie movie, LocalDate watchDate, Integer rating) {
-        movieRecords.add(new WatchRecord<>(movie, watchDate, rating));
-        saveToFile();
+    public Review getReview() {
+        return review;
     }
 
-    public void displayWatchedMovies() {
-        if (movieRecords.isEmpty()) {
-            System.out.println("No movies watched yet.");
-            return;
-        }
-        System.out.println("Movies watched by user " + userId + ":");
-        for (WatchRecord<Movie> record : movieRecords) {
-            Movie movie = record.content;
-            System.out.println("Title: " + movie.getTitle());
-            System.out.println("Date Watched: " + record.watchDate);
-            System.out.println("Rating: " + (record.rating != null ? record.rating : "Not Rated"));
-        }
+    public void setReview(Review review) {
+        this.review = review;
     }
 
-    public void updateMovieRating(Movie movie, Integer newRating) {
-        for (WatchRecord<Movie> record : movieRecords) {
-            if (record.content.getId().equals(movie.getId())) {
-                record.rating = newRating;
-                saveToFile();
-                System.out.println("Rating updated for movie: " + movie.getTitle());
-                return;
+    //Methods
+
+    // Method to display watched content
+    public static ArrayList<UserWatchRecord>getUserWatchRecord(String userId) {
+        // Filter and display only records associated with the specified userId
+        ArrayList<UserWatchRecord> userWatchHistory = new ArrayList<>();
+        System.out.println("WatchableContent watched by user " + userId + ":");
+        for (UserWatchRecord record : records) {
+            if (userId.equals(record.getUserId())) {
+                userWatchHistory.add(record);
             }
         }
-        System.out.println("Movie not found in watch records.");
+        return userWatchHistory;
     }
 
-    // Methods to handle episodes
-    public void addEpisodeRecord(Episode episode, LocalDate watchDate, Integer rating) {
-        episodeRecords.add(new WatchRecord<>(episode, watchDate, rating));
-        saveToFile();
+    // Method to add content with a review
+    public void addWatchableContentRating(WatchableContent content,String userID, Review review) {
+        records.add(new UserWatchRecord(userID,review,content));
     }
 
-    public void displayWatchedEpisodes() {
-        if (episodeRecords.isEmpty()) {
-            System.out.println("No episodes watched yet.");
-            return;
-        }
-        System.out.println("Episodes watched by user " + userId + ":");
-        for (WatchRecord<Episode> record : episodeRecords) {
-            Episode episode = record.content;
-            System.out.println("Title: " + episode.getTitle());
-            System.out.println("Date Watched: " + record.watchDate);
-            System.out.println("Rating: " + (record.rating != null ? record.rating : "Not Rated"));
-        }
-    }
+    // Method to recommends content to user
+    public static ArrayList<WatchableContent> recommendWatchableContent(String userId, ArrayList<WatchableContent> allWatchableContents) {
 
-    public void updateEpisodeRating(Episode episode, Integer newRating) {
-        for (WatchRecord<Episode> record : episodeRecords) {
-            if (record.content.getId().equals(episode.getId())) {
-                record.rating = newRating;
-                saveToFile();
-                System.out.println("Rating updated for episode: " + episode.getTitle());
-                return;
+        // Collect genres and cast from watched content
+        ArrayList<String> favoriteGenres = new ArrayList<>();
+        ArrayList<String> favoriteCast = new ArrayList<>();
+
+        // Loop through records to collect preferences
+        for (UserWatchRecord record : records) {
+            if (userId.equals(record.WatchedContent().getUserId())) {
+                for (String genre : record.getWatchableContent().getGenres()) {
+                    if (!favoriteGenres.contains(genre)) {
+                        favoriteGenres.add(genre);
+                    }
+                }
+                for (String castMember : record.getWatchableContent().getCast()) {
+                    if (!favoriteCast.contains(castMember)) {
+                        favoriteCast.add(castMember);
+                    }
+                }
             }
         }
-        System.out.println("Episode not found in watch records.");
-    }
 
-    // JSON File Handling
+        // Recommend content based on preferences
+        ArrayList<WatchableContent> recommendations = new ArrayList<>();
+        for (WatchableContent content : allWatchableContents) {
+            // Skip already watched content
+            boolean alreadyWatched = false;
+            for (WatchedWatchableContent record : records) {
+                if (record.getWatchableContent().equals(content)) {
+                    alreadyWatched = true;
+                    break;
+                }
+            }
+            if (alreadyWatched) {
+                continue;
+            }
 
-    // Save all user watch records to a JSON file
-    private void saveToFile() {
-        ArrayList<UserWatchRecord> allRecords = retrieveAllRecords();
-        // Update current user record or add a new one
-        boolean updated = false;
-        for (int i = 0; i < allRecords.size(); i++) {
-            if (allRecords.get(i).userId.equals(this.userId)) {
-                allRecords.set(i, this);
-                updated = true;
-                break;
+            // Check if the content matches user's favorite genres or cast
+            boolean matchesGenres = false;
+            boolean matchesCast = false;
+
+            for (String genre : content.getGenres()) {
+                if (favoriteGenres.contains(genre)) {
+                    matchesGenres = true;
+                    break;
+                }
+            }
+
+            for (String castMember : content.getCast()) {
+                if (favoriteCast.contains(castMember)) {
+                    matchesCast = true;
+                    break;
+                }
+            }
+
+            // Add content to recommendations if it matches preferences
+            if (matchesGenres || matchesCast) {
+                recommendations.add(content);
             }
         }
-        if (!updated) {
-            allRecords.add(this);
-        }
-        JsonWriter.writeJsonToFile(FILE_PATH, allRecords);
+
+        return recommendations;
     }
 
-    // Retrieve all user watch records from the JSON file
-    public static ArrayList<UserWatchRecord> retrieveAllRecords() {
-        return JsonReader.readJsonFile(FILE_PATH, UserWatchRecord.class);
-    }
-
-    // Retrieve a specific user's watch record
-    public static UserWatchRecord getUserRecord(String userId) {
-        for (UserWatchRecord record : retrieveAllRecords()) {
-            if (record.userId.equals(userId)) {
-                return record;
-            }
-        }
-        return new UserWatchRecord(userId); // Return a new record if none found
-    }
 }
