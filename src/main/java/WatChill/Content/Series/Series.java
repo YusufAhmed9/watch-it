@@ -1,11 +1,9 @@
 package WatChill.Content.Series;
 
-import WatChill.Cast.Cast;
 import WatChill.Content.Content;
-import WatChill.Director.Director;
+import WatChill.Crew.Crew;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.Content.Series.Season;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,7 +17,7 @@ import java.util.*;
 public class Series extends Content {
 
     private ArrayList<Season> seasons;
-    private static ArrayList<Series> fileSeries;
+    private static ArrayList<Series> seriesFile;
 
     // Specify the constructor and parameters for jackson to serialize rhe class
     @JsonCreator
@@ -32,13 +30,13 @@ public class Series extends Content {
             @JsonProperty("languages") ArrayList<String> languages,
             @JsonProperty("country") String country,
             @JsonProperty("genres") ArrayList<String> genres,
-            @JsonProperty("director") ArrayList<Director> directors,
-            @JsonProperty("casts") ArrayList<Cast> casts,
+            @JsonProperty("director") ArrayList<Crew> crews,
             @JsonProperty("poster") String poster,
-            @JsonProperty("budget") double budget,
-            @JsonProperty("revenue") double revenue
+            @JsonProperty("budget")double budget,
+            @JsonProperty("revenue")double revenue,
+            @JsonProperty("rating")double rating
     ) {
-        super(id, title, releaseDate, description, languages, country, genres, directors, casts, poster, budget, revenue);
+        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue, rating);
         this.seasons = seasons;
     }
 
@@ -66,18 +64,18 @@ public class Series extends Content {
     }
 
     public static ArrayList<Series> retrieveSeries() {
-        if (fileSeries == null) {//If series is not read yet
-            return fileSeries = JsonReader.readJsonFile("./src/main/data/Series.json", Series.class);
+        if (seriesFile == null) {//If series is not read yet
+            return seriesFile = JsonReader.readJsonFile("./src/main/data/Series.json", Series.class);
         }
-        return fileSeries;
+        return seriesFile;
     }
 
     @Override
     protected int findIndex() {
         retrieveSeries();
-        for (int seriesIndex = 0; seriesIndex < fileSeries.size(); seriesIndex++) {
+        for (int seriesIndex = 0; seriesIndex < seriesFile.size(); seriesIndex++) {
             //Comparing every series id in the database to current id
-            if (fileSeries.get(seriesIndex).getId().equals(getId())) {//If true then it is already stored
+            if (seriesFile.get(seriesIndex).getId().equals(getId())) {//If true then it is already stored
                 return seriesIndex;
             }
         }
@@ -85,31 +83,30 @@ public class Series extends Content {
         return -1;
     }
 
-    public void addSeries() {
+    @Override
+    public void save() {
         int index = findIndex();
         if (index == -1) {//If it wasn't found in database
-            fileSeries.add(this);
+            seriesFile.add(this);
         }//add to database
         else { //Was found "There's a chance it's not updated"
-            fileSeries.set(index, this);//Update it's value in database
+            update();//Update it's value in database
         }
+    }
+
+    @Override
+    public void update() {
+        seriesFile.set(findIndex(), this);//Update it's value in database
+
+    }
+
+    @Override
+    public void delete() {
+        seriesFile.remove(this);
     }
 
     public static void storeAllSeries() {//Function that write all series to a json file
-        JsonWriter.writeJsonToFile("./src/main/data/Series.json", fileSeries);
-    }
-
-    public static ArrayList<Series> findByGenre(String genre) {
-        //ArrayList to store series with wanted genre
-        ArrayList<Series> desiredSeries = new ArrayList<>();
-        for (Series series : retrieveSeries()) {
-            if (!series.getGenres().contains(genre)) {//If the genre is not found inside this series then it won't make it to list
-                continue;
-            }
-            //Adds series with the desired genre
-            desiredSeries.add(series);
-        }
-        return desiredSeries;
+        JsonWriter.writeJsonToFile("./src/main/data/Series.json", seriesFile);
     }
 
     private double getSeriesAverageViews() {
@@ -124,17 +121,11 @@ public class Series extends Content {
         return totalViews / totalEpisodes;
     }
 
-    static class SeriesComparator implements Comparator<Series> {
-        @Override
-        public int compare(Series s1, Series s2) {//Comparator that sorts series by views in descending order
-            return Double.compare(s2.getSeriesAverageViews(), s1.getSeriesAverageViews());
-        }
-    }
 
     public static ArrayList<Series> getTopTen() {
         ArrayList<Series> sortedSeriesByViews = retrieveSeries();
         //Using a comparator to sort ArrayList by views in descending order
-        sortedSeriesByViews.sort(new SeriesComparator());
+        sortedSeriesByViews.sort(Comparator.comparing(Series::getSeriesAverageViews));
         //Takes top ten series after sorting
         List<Series> topTenSeries = sortedSeriesByViews.subList(0, Math.min(10, sortedSeriesByViews.size()));
         // Convert the list to an ArrayList of Series
@@ -143,14 +134,14 @@ public class Series extends Content {
     }
 
     // Search for series by title
-    public static ArrayList<Series> searchSeriesByTitle(String title) {
+    public static ArrayList<Series> searchByTitle(String title) {
         ArrayList<Series> filteredSeries = new ArrayList<>(retrieveSeries());
         // Filter series whose titles do not contain the search query
         filteredSeries.removeIf(series -> !series.getTitle().toLowerCase().contains(title.strip().toLowerCase()));
         return filteredSeries;
     }
 
-    public static Series getSeriesById(String id) {
+    public static Series findById(String id) {
         for (Series series : retrieveSeries()) {
             if (series.getId().equals(id)) {//A series with the given id is found
                 return series;
