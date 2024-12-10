@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="244.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="167.0" style="-fx-background-color: #141414; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" />
+<!--      <ImageView fitHeight="191.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 10;">-->
+<!--         <image>-->
+<!--            <Image url="@../Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+      <ImageView fitHeight="253.0" fitWidth="168.0">
+         <!-- Set the image source -->
+         <image>
+            <Image url="@../Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+         </image>
+         <!-- Apply clipping using a Rectangle -->
+         <clip>
+            <Rectangle arcHeight="30" arcWidth="30" height="250" width="165" />
+         </clip>
+      </ImageView>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="173.0" text="Breaking Bad" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Manrope Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" prefHeight="17.0" prefWidth="166.0" text="4 Seasons" textFill="#868686">
+         <font>
+            <Font name="Manrope Bold" size="12.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <StackPane>
+               <HBox.margin>
+                  <Insets right="4.0" />
+               </HBox.margin>
+               <children>
+                  <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../play.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane>
+               <HBox.margin>
+                  <Insets right="4.0" />
+               </HBox.margin>
+               <children>
+                  <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Vector.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Star%205.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+         <VBox.margin>
+            <Insets top="2.0" />
+         </VBox.margin>
+      </HBox>
    </children>
+   <padding>
+      <Insets bottom="5.0" />
+   </padding>
 </VBox>
