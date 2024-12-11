@@ -28,7 +28,7 @@
               3
             ],
             "viewsCount": 0,
-            "poster": "/WatChill/Series/media/Attack On Titan/Episode1.jpg",
+            "poster": "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
             "description": "Nice one",
             "seriesId": "1"
           },
@@ -42,7 +42,7 @@
               3
             ],
             "viewsCount": 0,
-            "poster": "/WatChill/Series/media/Attack On Titan/Episode2.jpg",
+            "poster": "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
             "description": "Nice one",
             "seriesId": "1"
           }
@@ -68,7 +68,7 @@
               3
             ],
             "viewsCount": 0,
-            "poster": "/WatChill/Series/media/Attack On Titan/Episode1.jpg",
+            "poster": "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
             "description": "Nice one",
             "seriesId": "1"
           }
@@ -100,7 +100,7 @@
         "contentCreated": [
           "1"
         ],
-        "picture": "/WatChill/Series/media/Attack On Titan/Cast1.jpg",
+        "picture": "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
         "type": "Cast"
       },
       {
@@ -119,11 +119,11 @@
         "contentCreated": [
           "1"
         ],
-        "picture": "/WatChill/Series/media/Attack On Titan/Cast1.jpg",
+        "picture": "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
         "type": "Director"
       }
     ],
-    "poster": "/WatChill/Series/media/Attack On Titan/AOTPoster.jpg",
+    "poster": "/WatChill/Content/Series/media/Attack On Titan/AOTPoster.jpg",
     "budget": 1000000.0,
     "revenue": 1000000.0
   }

@@ -42,7 +42,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </ImageView>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="1137.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
                                        <children>
                                           <AnchorPane>
                                              <HBox.margin>
@@ -51,12 +51,11 @@
                                              <children>
                                                 <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="MenuButton">
+                                                      <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Movies">
                                                         <items>
                                                           <MenuItem mnemonicParsing="false" text="Movies" />
                                                           <MenuItem mnemonicParsing="false" text="Series" />
-                                                            <MenuItem mnemonicParsing="false" text="Cast" />
-                                                            <MenuItem mnemonicParsing="false" text="Director" />
+                                                            <MenuItem mnemonicParsing="false" text="Crew" />
                                                         </items>
                                                          <padding>
                                                             <Insets bottom="4.0" top="4.0" />
@@ -93,11 +92,14 @@
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" onAction="#redirectToSubscriptionPage" text="Subscription">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Button>
+                                          <ImageView fitHeight="42.0" fitWidth="42.0" onMouseClicked="#redirectToProfile" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@user-circle.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
                                        </children>
                                     </HBox>
                                  </children>

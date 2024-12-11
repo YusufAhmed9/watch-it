@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class JsonReader {
     // type: The class type of objects in the Json file.
@@ -24,7 +25,7 @@ public class JsonReader {
             }
             objects = objectMapper.readValue(
                 jsonFile,
-                objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type) // An ArrayList of the given type
+                objectMapper.getTypeFactory().constructCollectionType(List.class, type) // An ArrayList of the given type
             );
             return objects;
         }
