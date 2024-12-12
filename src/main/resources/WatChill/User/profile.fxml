@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -269,6 +270,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
+                                    <FlowPane fx:id="watchlaterFlowPane" alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" />
                                  </children>
                               </VBox>
                               <VBox fx:id="historyContainer" prefHeight="200.0" prefWidth="100.0" visible="false">

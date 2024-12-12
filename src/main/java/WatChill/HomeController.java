@@ -6,9 +6,12 @@ import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Crew;
-import WatChill.Crew.Director.Director;
 import WatChill.Search.SearchController;
 import WatChill.Search.SearchResultController;
+import WatChill.Subscription.*;
+import WatChill.UserManagement.Customer;
+import WatChill.UserManagement.User;
+import WatChill.UserWatchRecord.UserWatchRecord;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -24,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -31,10 +35,28 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class HomeController {
+    @FXML
+    HBox trendingMoviesHBox;
+    @FXML
+    AnchorPane trendingMoviesAnchor;
+    @FXML
+    HBox trendingSeriesHBox;
+    @FXML
+    AnchorPane trendingSeriesAnchor;
+    @FXML
+    Text recommendationTitle;
+    @FXML
+    HBox recommendationHBox;
+    @FXML
+    AnchorPane recommendationAnchor;
+    @FXML
+    HBox bgParent;
     @FXML
     VBox container;
     @FXML
@@ -44,35 +66,60 @@ public class HomeController {
     @FXML
     VBox searchResultsContainer;
     @FXML
-    Button searchButton;
-    @FXML
     Button signInButton;
     @FXML
     Button signUpButton;
-    @FXML
-    Button subscriptionButton;
     @FXML
     HBox trendingMoviesContainer;
     @FXML
     ScrollPane trendingSeriesScrollPane;
     @FXML
     HBox trendingSeriesContainer;
+    @FXML
+    ImageView bgImage;
+    @FXML
+    ImageView profileIcon;
+    @FXML
+    VBox plansContainer;
 
     Parent root;
     Stage stage;
     Scene scene;
 
     public void initialize() {
-//        if () {
-//            signInButton.setVisible(false);
-//            signUpButton.setVisible(false);
-//            subscriptionButton.setVisible(true);
-//        }
-//        else {
-//            signInButton.setVisible(true);
-//            signUpButton.setVisible(true);
-//            subscriptionButton.setVisible(false);
-//        }
+        User currentUser = User.getCurrentUser();
+        if (currentUser != null) {
+            signInButton.setVisible(false);
+            signUpButton.setVisible(false);
+            profileIcon.setVisible(true);
+            if (currentUser instanceof Customer) {
+                Subscription subscription = Subscription.getUserSubscription(currentUser.getId());
+                ArrayList<Content> contents = UserWatchRecord.recommendWatchableContent(currentUser.getId());
+                // TODO
+                if (subscription != null) {
+                    plansContainer.setVisible(false);
+                    plansContainer.setManaged(false);
+                }
+            }
+            else {
+                plansContainer.setVisible(false);
+                plansContainer.setManaged(false);
+                recommendationHBox.setVisible(false);
+                recommendationHBox.setManaged(false);
+                recommendationTitle.setVisible(false);
+                recommendationTitle.setManaged(false);
+            }
+        }
+        else {
+            signInButton.setVisible(true);
+            signUpButton.setVisible(true);
+            profileIcon.setVisible(false);
+            recommendationHBox.setVisible(false);
+            recommendationHBox.setManaged(false);
+            recommendationTitle.setVisible(false);
+            recommendationTitle.setManaged(false);
+        }
+        bgImage.fitHeightProperty().bind((bgImage.fitWidthProperty()));
         for (MenuItem menuItem : searchMenu.getItems()) {
             menuItem.setOnAction(_ -> searchMenu.setText(menuItem.getText()));
         }
@@ -102,7 +149,7 @@ public class HomeController {
             VBox textContainer = new VBox(seriesTitle, seriesSeasonsCount, seriesDescription, releaseDate); // Text container
             textContainer.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7); -fx-padding: 10; -fx-spacing: 3;"); // Semi-transparent background
             textContainer.setMaxHeight(140);
-            textContainer.setAlignment(Pos.TOP_CENTER); // Center text inside the container
+            textContainer.setAlignment(Pos.TOP_CENTER);
             textContainer.setOpacity(0); // Initially hidden
             StackPane.setAlignment(textContainer, Pos.BOTTOM_CENTER);
             seriesCard.setCursor(Cursor.HAND);
@@ -147,6 +194,9 @@ public class HomeController {
             textContainer.getStyleClass().add("text-container");
             trendingSeriesContainer.getChildren().add(seriesCard);
         }
+        trendingMoviesAnchor.prefWidthProperty().bind(trendingMoviesHBox.widthProperty());
+        trendingSeriesAnchor.prefWidthProperty().bind(trendingSeriesHBox.widthProperty());
+        recommendationAnchor.prefWidthProperty().bind(recommendationHBox.widthProperty());
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -221,34 +271,14 @@ public class HomeController {
         }
     }
 
-    private void redirectToCastPage(String castId) {
+    private void redirectToCrewPage(String castId) {
         try {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Cast/cast.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/crew.fxml"));
             root = loader.load();
 
             SeriesController seriesController = loader.getController();
             seriesController.build(castId);
-
-            stage = (Stage) trendingSeriesContainer.getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void redirectToDirectorPage(String directorId) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Director/director.fxml"));
-            root = loader.load();
-
-            SeriesController seriesController = loader.getController();
-            seriesController.build(directorId);
 
             stage = (Stage) trendingSeriesContainer.getScene().getWindow();
             scene = new Scene(root);
@@ -374,7 +404,7 @@ public class HomeController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                     HBox searchResult = loader.load();
 
-                    searchResult.setOnMouseClicked(_ -> redirectToCastPage(crew.getId()));
+                    searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
@@ -387,5 +417,48 @@ public class HomeController {
                 }
             }
         }
+    }
+
+    public void chooseBasicPlan(ActionEvent actionEvent) {
+        User user = User.getCurrentUser();
+        if (user == null) {
+            redirectToLogin(actionEvent);
+            return;
+        }
+        Plan plan = new BasicPlan();
+        Subscription subscription = new Subscription(UUID.randomUUID().toString(), user.getId(), LocalDate.now(), plan, plan.getMaxMoviesCount());
+        subscription.saveSubscription();
+        renderSubscriptionSuccess();
+    }
+
+    public void chooseStandardPlan(ActionEvent actionEvent) {
+        User user = User.getCurrentUser();
+        if (user == null) {
+            redirectToLogin(actionEvent);
+            return;
+        }
+        Plan plan = new StandardPlan();
+        Subscription subscription = new Subscription(UUID.randomUUID().toString(), user.getId(), LocalDate.now(), plan, plan.getMaxMoviesCount());
+        subscription.saveSubscription();
+        renderSubscriptionSuccess();
+    }
+
+    public void choosePremiumPlan(ActionEvent actionEvent) {
+        User user = User.getCurrentUser();
+        if (user == null) {
+            redirectToLogin(actionEvent);
+            return;
+        }
+        Plan plan = new PremiumPlan();
+        Subscription subscription = new Subscription(UUID.randomUUID().toString(), user.getId(), LocalDate.now(), plan, plan.getMaxMoviesCount());
+        subscription.saveSubscription();
+        renderSubscriptionSuccess();
+    }
+
+    private void renderSubscriptionSuccess() {
+        Text successMessage = new Text("Subscription Successful.");
+        successMessage.getStyleClass().add("home-title");
+        plansContainer.getChildren().clear();
+        plansContainer.getChildren().add(successMessage);
     }
 }

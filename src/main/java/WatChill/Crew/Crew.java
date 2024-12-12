@@ -189,6 +189,10 @@ public abstract class Crew {
         }
     }
 
+    public void delete() {
+        retrieveCrews().remove(this);
+    }
+
     private int findCrewIndex() {
         for (int i = 0; i < retrieveCrews().size(); i++) {
             if (retrieveCrews().get(i).getId().equals(getId())) {

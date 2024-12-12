@@ -1,24 +1,6 @@
 .root, * {
-    /* -fx-font-family: "Helvetica", sans-ser; */
-    /* -fx-font-family: "Helvetica", sans-serif; */
-    /* -fx-font-family: 'Courier New', Courier, monospace; */
-    /*-fx-font-family: Arial, Helvetica, sans-serif; */
-    /* -fx-text-fill: #d3d3d3d; */
-    /*-fx-font-family: "Manrope";*/
+    -fx-font-family: "Manrope";
 }
-
-/* .button {
-    -fx-padding: 8px 16px;
-    -fx-margin: 0 10px;
-    -fx-background-radius: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-background-color: linear-gradient(to right, #FE0008, #C900A8);
-    -fx-transition-duration: 200ms;
-    -fx-font-family: Helvetica, sans-serif;
-    -fx-margin-left: 5px;
-    -fx-margin-right: 5px;
-} */
 
 .button {
     -fx-background-color: #fff;
@@ -65,7 +47,7 @@
 }
 
 .login-body {
-    -fx-background-image: url("../../login.jpeg");
+    -fx-background-image: url("../../bg-image.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-size: cover;
@@ -82,6 +64,7 @@
 .link-button {
     -fx-padding: 0;
     -fx-background-color: transparent;
+    -fx-text-fill: #fff;
 }
 
 .link-button:hover {
@@ -133,6 +116,7 @@
 
 .home-title {
     -fx-font-size: 34;
+    -fx-font-weight: Bold;
 }
 
 .home-title-sub {
@@ -141,6 +125,7 @@
 
 .home-trending {
     -fx-font-size: 26;
+    -fx-font-weight: Bold;
 }
 
 .series-card {
@@ -179,6 +164,11 @@
     -fx-border-color: #ffffff;
     -fx-border-width: 0 0 1 0;
     -fx-cursor: Hand;
+}
+
+.box-container {
+    -fx-background-radius: 12;
+    -fx-effect : dropShadow( three-pass-box , rgba(0,0,0,0.3) ,10.0 ,0.0, 0.0, 10.0);
 }
 
 .search-result-card ImageView {
@@ -259,4 +249,13 @@
     -fx-font-size: 22;
     -fx-padding: 10;
     -fx-font-family: Manrope;
+}
+
+.form-label {
+    -fx-font-size: 14;
+}
+
+.plan-title {
+    -fx-font-size: 22;
+    -fx-font-weight: Bold;
 }
