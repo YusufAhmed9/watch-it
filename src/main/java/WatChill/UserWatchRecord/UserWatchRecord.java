@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,17 +26,20 @@ public class UserWatchRecord {
     private WatchedContent watchedContent;
     private Review review;
     private static ArrayList<UserWatchRecord> records;
+    private LocalDate watchDate;
 
     // Constructor
     @JsonCreator
     public UserWatchRecord(
             @JsonProperty("userId") String userId,
             @JsonProperty("review") Review review,
-            @JsonProperty("watchedContent") WatchedContent watchedContent
+            @JsonProperty("watchedContent") WatchedContent watchedContent,
+            @JsonProperty("watchDate") LocalDate watchDate
     ) {
         this.userId = userId;
         this.review = review;
         this.watchedContent = watchedContent;
+        this.watchDate = watchDate;
     }
 
     // Getters and Setters
@@ -63,6 +67,14 @@ public class UserWatchRecord {
         this.review = review;
     }
 
+    public LocalDate getWatchDate() {
+        return watchDate;
+    }
+
+    public void setWatchDate(LocalDate watchDate) {
+        this.watchDate = watchDate;
+    }
+
     //Methods
 
     // Method to display watched content
@@ -80,8 +92,9 @@ public class UserWatchRecord {
 
     // Method to add content with a review
     public static void addRecord(WatchedContent watchedContent, String userID, Review review) {
-        records.add(new UserWatchRecord(userID, review, watchedContent));
+        records.add(new UserWatchRecord(userID, review, watchedContent, LocalDate.now()));
     }
+
     // Method to recommends content to user
     public static ArrayList<Content> recommendWatchableContent(String userId) {
         ArrayList<Content> userWatchedContent = new ArrayList<>();
