@@ -19,11 +19,8 @@ public class JsonWriter {
         objectMapper.activateDefaultTyping(objectMapper.getPolymorphicTypeValidator(),
                 ObjectMapper.DefaultTyping.OBJECT_AND_NON_CONCRETE,
                 JsonTypeInfo.As.PROPERTY);
-//        objectMapper.disableDefaultTyping();
-//        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         try {
             File file = new File(filePath);// // A File object for the json file
-//            objectMapper.writerFor(new TypeReference<ArrayList<T>>() {}).writeValue(file, objects);
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, objects); // Write Json to file
         } catch (IOException e) {
             e.printStackTrace();
