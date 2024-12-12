@@ -78,7 +78,7 @@ public class Subscription {
     }
 
     // Get all subscriptions from JsonFile
-    public static ArrayList<Subscription> getSubscriptions() {
+    public static ArrayList<Subscription> retrieveSubscriptions() {
         if (subscriptions == null) {
             subscriptions = JsonReader.readJsonFile("./src/main/data/subscriptions.json", Subscription.class);
         }
@@ -94,16 +94,16 @@ public class Subscription {
     // Remove subscription from ArrayList
     public void cancelSubscription(String subscriptionId) {
         int index = findSubscriptionIndex();
-        getSubscriptions().remove(index);
+        retrieveSubscriptions().remove(index);
     }
 
     public void saveSubscription() {
         int index = findSubscriptionIndex(); // Get subscription index
         if (index == -1) {
-            getSubscriptions().add(this); // Add subscription to ArrayList if not in ArrayList
+            retrieveSubscriptions().add(this); // Add subscription to ArrayList if not in ArrayList
         }
         else {
-            getSubscriptions().set(index, this); // Update subscription if in ArrayList
+            retrieveSubscriptions().set(index, this); // Update subscription if in ArrayList
         }
     }
 
@@ -113,7 +113,7 @@ public class Subscription {
         int standardPlanSubscriptionCount = 0;
         int premiumPlanSubscriptionCount = 0;
         Map<String, Integer> plansMap = new HashMap<>();
-        for (Subscription subscription : getSubscriptions()) {
+        for (Subscription subscription : retrieveSubscriptions()) {
             // Check type of plan
             if (subscription.plan instanceof BasicPlan) {
                 basicPlanSubscriptionCount++;
@@ -135,7 +135,7 @@ public class Subscription {
     public static String getHighestMonthRevenue() {
         double[] monthsRevenues = new double[13]; // Array to store all 12 months revenues
         int maxRevenueIndex = 0;
-        for (Subscription subscription : getSubscriptions()) {
+        for (Subscription subscription : retrieveSubscriptions()) {
             int monthIndex = subscription.getStartDate().getMonth().getValue(); // Get month index (not 0-based) from subscription start date
             double subscriptionPrice = subscription.plan.getPrice();
             monthsRevenues[monthIndex] += subscriptionPrice; // Increment month revenue by plan price
@@ -151,8 +151,8 @@ public class Subscription {
 
     // Get current subscription index from ArrayList
     private int findSubscriptionIndex() {
-        for (int i = 0; i < getSubscriptions().size(); i++) {
-            if (getSubscriptions().get(i).getId().equals(getId())) {
+        for (int i = 0; i < retrieveSubscriptions().size(); i++) {
+            if (retrieveSubscriptions().get(i).getId().equals(getId())) {
                 return i;
             }
         }
@@ -161,7 +161,7 @@ public class Subscription {
 
     // Get active subscription by userId
     public static Subscription getUserSubscription(String userId) {
-        for (Subscription subscription : getSubscriptions()) {
+        for (Subscription subscription : retrieveSubscriptions()) {
             if (subscription.getUserId().equals(userId) && subscription.isSubscriptionActive()) {
                 return subscription;
             }
@@ -171,7 +171,7 @@ public class Subscription {
 
     // Save subscriptions in Json file
     public static void storeSubscriptions() {
-        JsonWriter.writeJsonToFile("./src/main/data/subscriptions.json", getSubscriptions());
+        JsonWriter.writeJsonToFile("./src/main/data/subscriptions.json", retrieveSubscriptions());
     }
 
 }

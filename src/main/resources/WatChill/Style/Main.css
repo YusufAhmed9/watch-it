@@ -5,7 +5,6 @@
     /*-fx-font-family: Arial, Helvetica, sans-serif; */
     /* -fx-text-fill: #d3d3d3d; */
     /*-fx-font-family: "Manrope";*/
-    -fx-font-family: "Manrope";
 }
 
 /* .button {
@@ -66,7 +65,7 @@
 }
 
 .login-body {
-    -fx-background-image: url("../../bg-image.png");
+    -fx-background-image: url("../../login.jpeg");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-size: cover;
@@ -83,7 +82,6 @@
 .link-button {
     -fx-padding: 0;
     -fx-background-color: transparent;
-    -fx-text-fill: #fff;
 }
 
 .link-button:hover {
@@ -183,11 +181,6 @@
     -fx-cursor: Hand;
 }
 
-.box-container {
-    -fx-background-radius: 12;
-    -fx-effect : dropShadow( three-pass-box , rgba(0,0,0,0.3) ,10.0 ,0.0, 0.0, 10.0);
-}
-
 .search-result-card ImageView {
     /* -fx-border-radius: 5px;
     -fx-background-radius: 5px;
@@ -266,8 +259,4 @@
     -fx-font-size: 22;
     -fx-padding: 10;
     -fx-font-family: Manrope;
-}
-
-.form-label {
-    -fx-font-size: 14;
 }

@@ -1,13 +1,11 @@
 package WatChill.Content.Movie;
 
-import WatChill.Content.Series.Series;
-import WatChill.Crew.Cast.Cast;
 import WatChill.Content.Content;
+import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
-import WatChill.Crew.Director.Director;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
-import WatChill.Content.WatchableContent;
+import WatChill.UserWatchRecord.UserWatchRecord;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +15,7 @@ import java.util.*;
 
 // Specifying Jackson properties: make fields visible and hide getters
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-public class Movie extends Content implements WatchableContent {
+public class Movie extends Content implements WatchedContent {
 
     private float duration;
     private static ArrayList<Movie> moviesFile = new ArrayList<>();
@@ -37,10 +35,9 @@ public class Movie extends Content implements WatchableContent {
             @JsonProperty("revenue") double revenue,
             @JsonProperty("poster") String poster,
             @JsonProperty("viewsCount") int viewsCount,
-            @JsonProperty("description") String description,
-            @JsonProperty("rating")double rating
+            @JsonProperty("description") String description
     ) {
-        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue, rating);
+        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue);
         this.duration = duration;
         this.viewsCount = viewsCount;
     }
@@ -49,6 +46,14 @@ public class Movie extends Content implements WatchableContent {
         super(title, releaseDate, description, languages, country, genres, poster, budget, revenue);
         this.duration = duration;
         this.viewsCount = viewsCount;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public float getDuration() {
@@ -119,7 +124,8 @@ public class Movie extends Content implements WatchableContent {
         sortedMovies.sort(Comparator.comparing(Movie::getViewsCount)); // Sort movies by views
         return new ArrayList<>(sortedMovies.subList(0, Math.min(10, sortedMovies.size()))); // Return the top 10 movies
     }
-    public static Movie findById(String id){
+
+    public static Movie findById(String id) {
         for (Movie movie : retrieveMovies()) {
             if (movie.getId().equals(id)) {//A series with the given id is found
                 return movie;
@@ -127,10 +133,6 @@ public class Movie extends Content implements WatchableContent {
         }
         //No series with given id is found
         return null;
-    }
-    @Override
-    public void updateRating() {
-
     }
 
     public static ArrayList<Movie> searchByTitle(String title) {
