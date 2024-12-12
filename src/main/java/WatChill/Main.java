@@ -1,15 +1,10 @@
 package WatChill;
 
-import WatChill.Content.Series.Episode;
-import WatChill.Content.Series.EpisodeController;
-import WatChill.Content.Series.SeriesController;
-import WatChill.Subscription.Subscription;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
