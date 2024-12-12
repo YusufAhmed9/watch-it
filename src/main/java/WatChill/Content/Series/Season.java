@@ -13,6 +13,7 @@ import java.util.UUID;
 
 public class Season {
     private String id;
+    private String seriesId;
     private String title;
     private LocalDate releaseDate;
     private String description;
@@ -25,21 +26,41 @@ public class Season {
             @JsonProperty("title") String title,
             @JsonProperty("description") String description,
             @JsonProperty("releaseDate") LocalDate releaseDate,
-            @JsonProperty("episodes") ArrayList<Episode> episodes
+            @JsonProperty("episodes") ArrayList<Episode> episodes,
+            @JsonProperty("seasonId") String seriesId
+
     ) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.releaseDate = releaseDate;
         this.episodes = episodes;
+        this.seriesId = seriesId;
     }
 
-    public Season(String title, String description, LocalDate releaseDate, ArrayList<Episode> episodes, String poster) {
+    public Season(String title, String description, LocalDate releaseDate, ArrayList<Episode> episodes, String seriesId) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.releaseDate = releaseDate;
         this.episodes = episodes;
+        this.seriesId = seriesId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSeriesId() {
+        return seriesId;
+    }
+
+    public void setSeriesId(String seriesId) {
+        this.seriesId = seriesId;
     }
 
     public LocalDate getReleaseDate() {
@@ -97,4 +118,12 @@ public class Season {
 
         return !getEpisodes().isEmpty() ? totalRating / getEpisodes().size() : 0.0;
     }
+    public static Season findById(String id) {
+        return Series.retrieveSeries().stream()
+                .flatMap(series -> series.getSeasons().stream())
+                .filter(season -> season.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
 }

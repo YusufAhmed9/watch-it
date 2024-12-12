@@ -185,8 +185,12 @@ public abstract class Crew {
         if (directorIndex == -1) {
             retrieveCrews().add(this);
         } else {
-            retrieveCrews().set(directorIndex, this);
+            update();
         }
+    }
+
+    public void update() {
+        retrieveCrews().set(findCrewIndex(), this);//Update it's value in database
     }
 
     public void delete() {
@@ -206,9 +210,9 @@ public abstract class Crew {
         JsonWriter.writeJsonToFile("./src/main/data/Crews.json", retrieveCrews());
     }
 
-    public static Crew findById(String id){
-        for(Crew crew : retrieveCrews()){
-            if(crew.getId().equals(id)){
+    public static Crew findById(String id) {
+        for (Crew crew : retrieveCrews()) {
+            if (crew.getId().equals(id)) {
                 return crew;
             }
         }
