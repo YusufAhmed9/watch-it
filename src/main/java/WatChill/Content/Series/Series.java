@@ -32,11 +32,10 @@ public class Series extends Content {
             @JsonProperty("genres") ArrayList<String> genres,
             @JsonProperty("director") ArrayList<Crew> crews,
             @JsonProperty("poster") String poster,
-            @JsonProperty("budget")double budget,
-            @JsonProperty("revenue")double revenue,
-            @JsonProperty("rating")double rating
+            @JsonProperty("budget") double budget,
+            @JsonProperty("revenue") double revenue
     ) {
-        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue, rating);
+        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue);
         this.seasons = seasons;
     }
 
@@ -149,5 +148,16 @@ public class Series extends Content {
         }
         //No series with given id is found
         return null;
+    }
+
+    public double getRating() {
+        double totalSeasonRating = 0.0;
+
+        for (Season season : getSeasons()) {
+            totalSeasonRating += season.getRating();
+        }
+
+        return !getSeasons().isEmpty() ? totalSeasonRating / getSeasons().size() : 0.0;
+
     }
 }

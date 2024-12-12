@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #141414; -fx-fit-to-width: true; -fx-fit-to-height: true;" stylesheets="@Series.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.Series.SeriesController">
+<ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #141414; -fx-fit-to-width: true; -fx-fit-to-height: true;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.Series.SeriesController">
     <content>
         <VBox style="-fx-background-color: #141414;">
             <children>
@@ -28,7 +28,7 @@
                <children>
                   <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Logo.png" />
+                        <Image url="@../../../Logo.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -63,7 +63,7 @@
                                        <graphic>
                                           <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../loupe.png" />
+                                                <Image url="@../../../loupe.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -115,7 +115,7 @@
                               </DropShadow>
                                     </effect>
                                 </ImageView>
-                                <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" stylesheets="@Series.css" text="Series Title" textFill="WHITE">
+                                <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" text="Series Title" textFill="WHITE">
                                     <font>
                                         <Font name="Manrope Bold" size="34.0" />
                                     </font>
@@ -164,30 +164,30 @@
                            <children>
                               <ImageView>
                                  <image>
-                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                    <Image url="@../Star%205%20(Stroke).png" />
                                  </image>
                               </ImageView>
                               <ImageView>
                                  <image>
-                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                    <Image url="@../Star%205%20(Stroke).png" />
                                  </image>
                               </ImageView>
                               <ImageView>
                                  <image>
-                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                    <Image url="@../Star%205%20(Stroke).png" />
                                  </image>
                               </ImageView>
                               <ImageView>
                                  <image>
-                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                    <Image url="@../Star%205%20(Stroke).png" />
                                  </image>
                               </ImageView>
                               <ImageView>
                                  <image>
-                                    <Image url="@../Content/Star%205%20(Stroke).png" />
+                                    <Image url="@../Star%205%20(Stroke).png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="seriesTitle1" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" stylesheets="@Series.css" text="5/5" textFill="WHITE">
+                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" stylesheets="@../../Style/Series.css" text="5/5" textFill="WHITE">
                                  <font>
                                     <Font name="Manrope Bold" size="15.0" />
                                  </font>
@@ -240,7 +240,7 @@
                <children>
                   <HBox style="-fx-background-color: #1F1F1F;">
                      <children>
-                              <Label fx:id="episodesButton" alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Episodes" textFill="WHITE">
+                              <Label fx:id="episodesButton" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Episodes" textFill="WHITE">
                                   <font>
                                       <Font name="Manrope Bold" size="26.0" />
                                   </font>
@@ -447,7 +447,7 @@
                   </VBox>
                   <HBox style="-fx-background-color: #1F1F1F;">
                      <children>
-                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Director(s): " textFill="WHITE">
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" style="-fx-text-fill: #fff;" text="Director(s): " textFill="WHITE">
                            <font>
                               <Font name="Manrope Bold" size="26.0" />
                            </font>
@@ -460,7 +460,7 @@
                         </Label>
                         <HBox fx:id="directorsBox" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
+                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
                                  <font>
                                     <Font name="Manrope Bold" size="26.0" />
                                  </font>
@@ -479,7 +479,7 @@
                                     <Insets top="5.0" />
                                  </padding>
                               </Label>
-                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" onMouseClicked="#displayEpisodes" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" style="-fx-text-fill: #fff;" text="Mahmoud" textFill="WHITE">
                                  <font>
                                     <Font name="Manrope Bold" size="26.0" />
                                  </font>

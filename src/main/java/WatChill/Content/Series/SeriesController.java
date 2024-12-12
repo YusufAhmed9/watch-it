@@ -55,6 +55,7 @@ public class SeriesController {
         displayEpisodes();
         addCast();
         addDirectors();
+        addRating();
     }
 
     public void addGenres() {
@@ -70,10 +71,22 @@ public class SeriesController {
         genresBox.getChildren().removeLast();
         genresBox.getStyleClass().add("genres-box");
     }
-//
-//    public void addRating() {
-//        for(int star = 1; star <= currentSeries.getRating())
-//    }
+
+    public void addRating() {
+        ratingBox.getChildren().clear();
+        int star = 1;
+        for (; star <= Math.floor(currentSeries.getRating()); star++) {
+            ImageView starImage = new ImageView(getClass().getResource("/WatChill/Content/Star 5 (Stroke).png").toExternalForm());
+            ratingBox.getChildren().add(starImage);
+        }
+        for (; star <= 5; star++) {
+            ImageView starImage = new ImageView(getClass().getResource("/WatChill/Content/Star 5.png").toExternalForm());
+            ratingBox.getChildren().add(starImage);
+        }
+        Label rating = new Label(((Double) currentSeries.getRating()).toString() + "/5");
+        rating.getStyleClass().add("rating-text");
+        ratingBox.getChildren().add(rating);
+    }
 
     public void displayEpisodes() {
         clearEpisodes();
@@ -149,7 +162,9 @@ public class SeriesController {
                 directorsBox.getChildren().add(comma);
             }
         }
-        directorsBox.getChildren().removeLast();
+        if (!directorsBox.getChildren().isEmpty()) {
+            directorsBox.getChildren().removeLast();
+        }
     }
 
     public void clearDirectors() {

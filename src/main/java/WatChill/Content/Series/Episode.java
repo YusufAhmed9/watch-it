@@ -1,6 +1,7 @@
 package WatChill.Content.Series;
 
-import WatChill.Content.WatchableContent;
+import WatChill.Content.WatchedContent;
+import WatChill.UserWatchRecord.UserWatchRecord;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +11,7 @@ import java.util.UUID;
 
 // Specify the attributes for jackson and ignore getter methods
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
-public class Episode implements WatchableContent {
+public class Episode implements WatchedContent {
     private String id;
     private String title;
     private int duration;
@@ -84,10 +85,12 @@ public class Episode implements WatchableContent {
         this.viewsCount = viewsCount;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -116,7 +119,12 @@ public class Episode implements WatchableContent {
         this.releaseDate = releaseDate;
     }
 
-    @Override
-    public void updateRating() {
+    public static Episode findById(String id) {
+        return Series.retrieveSeries().stream()
+                .flatMap(series -> series.getSeasons().stream())
+                .flatMap(season -> season.getEpisodes().stream())
+                .filter(episode -> episode.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 }
