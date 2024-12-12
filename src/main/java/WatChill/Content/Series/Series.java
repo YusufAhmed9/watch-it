@@ -1,6 +1,8 @@
 package WatChill.Content.Series;
 
 import WatChill.Content.Content;
+import WatChill.Content.Movie.Movie;
+import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
@@ -96,7 +98,6 @@ public class Series extends Content {
     @Override
     public void update() {
         seriesFile.set(findIndex(), this);//Update it's value in database
-
     }
 
     @Override
@@ -121,7 +122,7 @@ public class Series extends Content {
     }
 
 
-    public static ArrayList<Series> getTopTen() {
+    public static ArrayList<Series> getTopWatchedSeries() {
         ArrayList<Series> sortedSeriesByViews = retrieveSeries();
         //Using a comparator to sort ArrayList by views in descending order
         sortedSeriesByViews.sort(Comparator.comparing(Series::getSeriesAverageViews));
@@ -158,6 +159,21 @@ public class Series extends Content {
         }
 
         return !getSeasons().isEmpty() ? totalSeasonRating / getSeasons().size() : 0.0;
+    }
 
+    public static ArrayList<Series> getTopRatedSeries() {
+        ArrayList<Series> topRatedMovies = new ArrayList<>(retrieveSeries());
+        topRatedMovies.sort(Comparator.comparing(Series::getRating));
+        return topRatedMovies;
+    }
+
+    public static ArrayList<Series> findByLanguage(String language) {
+        ArrayList<Series> filteredSeries = new ArrayList<>();
+        for (Series series : retrieveSeries()) {
+            if (series.getLanguages().contains(language)) {
+                filteredSeries.add(series);
+            }
+        }
+        return filteredSeries;
     }
 }

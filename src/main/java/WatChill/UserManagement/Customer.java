@@ -351,7 +351,7 @@ public class Customer extends User {
     }
 
     private void displayTrendingSeries() {
-        printContent(new ArrayList<>(Series.getTopTen()));
+        printContent(new ArrayList<>(Series.getTopWatchedSeries()));
     }
 
     private void displayTopRatedSeries() {

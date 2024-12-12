@@ -1,6 +1,7 @@
 package WatChill.Content.Movie;
 
 import WatChill.Content.Content;
+import WatChill.Content.Series.Series;
 import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
 import WatChill.FileHandling.JsonReader;
@@ -139,6 +140,22 @@ public class Movie extends Content implements WatchedContent {
         ArrayList<Movie> filteredMovies = new ArrayList<>(retrieveMovies());
         // Filter series whose titles do not contain the search query
         filteredMovies.removeIf(movie -> !movie.getTitle().toLowerCase().contains(title.strip().toLowerCase()));
+        return filteredMovies;
+    }
+
+    public static ArrayList<Movie> getTopRatedMovies() {
+        ArrayList<Movie> topRatedMovies = new ArrayList<>(retrieveMovies());
+        topRatedMovies.sort(Comparator.comparing(WatchedContent::getRating));
+        return topRatedMovies;
+    }
+
+    public static ArrayList<Movie> findByLanguage(String language) {
+        ArrayList<Movie> filteredMovies = new ArrayList<>();
+        for (Movie movie : retrieveMovies()) {
+            if (movie.getLanguages().contains(language)) {
+                filteredMovies.add(movie);
+            }
+        }
         return filteredMovies;
     }
 }

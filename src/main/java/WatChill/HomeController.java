@@ -134,7 +134,7 @@ public class HomeController {
             trendingMoviesContainer.getChildren().add(movieCard);
         }
 
-        for (Series series : Series.getTopTen()) {
+        for (Series series : Series.getTopWatchedSeries()) {
             VBox seriesCard = new VBox(); // The main container
             StackPane stackPane = new StackPane(); // StackPane to stack the image and textContainer
             Image image = new Image(String.valueOf(getClass().getResource(series.getPoster())));
