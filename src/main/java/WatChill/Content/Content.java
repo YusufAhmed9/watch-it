@@ -5,6 +5,8 @@ import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Crew.Crew;
 import WatChill.Crew.Director.Director;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +16,14 @@ import java.util.UUID;
 
 import static WatChill.Content.Movie.Movie.retrieveMovies;
 import static WatChill.Content.Series.Series.retrieveSeries;
-
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS, // class name as type information
+        property = "@class" // "@class" as the property name
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Series.class, name = "WatChill.Content.Series.Series"),
+        @JsonSubTypes.Type(value = Movie.class, name = "WatChill.Content.Movie.Movie")
+})
 public abstract class Content {
     protected String id;
     protected String title;
@@ -27,11 +36,10 @@ public abstract class Content {
     protected String poster;
     protected double budget;
     protected double revenue;
-    protected double rating;
     public static HashSet<String> allContentLanguages = new HashSet<>();
     public static HashSet<String> allContentGenres = new HashSet<>();
 
-    protected Content(String id, String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, ArrayList<Crew> crews, String poster, double budget, double revenue, double rating) {
+    protected Content(String id, String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, ArrayList<Crew> crews, String poster, double budget, double revenue) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -45,7 +53,6 @@ public abstract class Content {
         this.revenue = revenue;
         allContentLanguages.addAll(languages);
         allContentGenres.addAll(genres);
-        this.rating = rating;
     }
 
     protected Content(String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, String poster, double budget, double revenue) {
@@ -62,7 +69,6 @@ public abstract class Content {
         this.revenue = revenue;
         allContentLanguages.addAll(languages);
         allContentGenres.addAll(genres);
-        rating = 0;
     }
 
     public String getId() {
