@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 public class EpisodeController {
     private Episode episode;
     private Series series;
+    private Season season;
     @FXML
     private MenuButton seasonsMenu;
     @FXML
@@ -34,7 +35,8 @@ public class EpisodeController {
     private Label ratingLabel;
     public void initializePage(String episodeId) {
         episode = Episode.findById(episodeId);
-        series = Series.findById(episode.getSeriesId());
+        season = Season.findById(episode.getSeasonId());
+        series = Series.findById(season.getSeriesId());
         seriesTitle.setText(series.getTitle());
         initializeSeasonMenu();
         initializeEpisodePane();

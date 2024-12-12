@@ -19,16 +19,17 @@ public class Episode implements WatchedContent {
     private int viewsCount;
     private String poster;
     private String description;
-    private String seriesId;
+    private String seasonId;
 
-    public Episode(String title, int duration, LocalDate releaseDate, String poster, String description, String seriesId) {//This constructor is made for when an episode is created for first time
+    public Episode(String title, int duration, LocalDate releaseDate, String poster, String description, String seasonId) {//This constructor is made for when an episode is created for first time
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.duration = duration;
         this.releaseDate = releaseDate;
         this.poster = poster;
         this.viewsCount = 0;
-        this.seriesId = seriesId;
+        this.seasonId = seasonId;
+        this.description = description;
     }
 
     // Specify the constructor and parameters for jackson to serialize rhe class
@@ -41,7 +42,7 @@ public class Episode implements WatchedContent {
             @JsonProperty("viewsCount") int viewsCount,
             @JsonProperty("poster") String poster,
             @JsonProperty("description") String description,
-            @JsonProperty("seriesId") String seriesId
+            @JsonProperty("seasonId") String seasonId
     ) {//This constructor is made for when an episode is retrieved from file
         this.id = id;
         this.title = title;
@@ -50,15 +51,15 @@ public class Episode implements WatchedContent {
         this.viewsCount = viewsCount;
         this.poster = poster;
         this.description = description;
-        this.seriesId = seriesId;
+        this.seasonId = seasonId;
     }
 
-    public String getSeriesId() {
-        return seriesId;
+    public String getSeasonId() {
+        return seasonId;
     }
 
-    public void setSeriesId(String seriesId) {
-        this.seriesId = seriesId;
+    public void setSeasonId(String seasonId) {
+        this.seasonId = seasonId;
     }
 
     public String getDescription() {
@@ -127,4 +128,5 @@ public class Episode implements WatchedContent {
                 .findFirst()
                 .orElse(null);
     }
+
 }
