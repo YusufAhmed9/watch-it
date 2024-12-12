@@ -1,0 +1,99 @@
+.episodes-container {
+    -fx-padding: 0 40;
+    -fx-spacing: 20;
+    -fx-background-color: #1F1F1F;
+}
+
+.episode-container {
+    -fx-alignment: center left;
+    -fx-cursor: hand;
+    -fx-background-color: #0F0F0F;
+    -fx-border-color: #FFF;
+    -fx-border-width: 0 0 1;
+}
+
+.episode-poster {
+    -fx-padding: 10 0 10 40;
+    -fx-fit-width: 200;
+    -fx-fit-height: 112;
+}
+
+.episode-title {
+    -fx-font-family: "Manrope SemiBold";
+    -fx-font-size: 27px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 10;
+}
+
+.episode-release-date {
+    -fx-font-family: "Manrope Medium";
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+}
+
+.episode-description {
+    -fx-font-family: "Manrope Medium";
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+    -fx-opacity: 0.5;
+}
+
+.episode-labels {
+    -fx-padding: 10 0 10 10;
+    -fx-pref-width: 788;
+    -fx-pref-height: 677;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: #0d0d0d;
+}
+
+.button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-alignment: center;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 5;
+}
+
+.genres-box {
+    -fx-spacing: 5;
+}
+
+.genre {
+    -fx-font-family: "Manrope SemiBold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #fff;
+    -fx-padding: 0 0 5 0;
+}
+
+.cast-box {
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.cast-label {
+    -fx-font-family: "Manrope SemiBold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+}
+.director-name{
+    -fx-font-family: "Manrope";
+    -fx-font-size: 26px;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}

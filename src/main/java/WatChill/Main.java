@@ -1,16 +1,47 @@
 package WatChill;
 
-import WatChill.Review.Review;
-import WatChill.Series.Season;
-import WatChill.Series.Series;
+import WatChill.Content.Series.Episode;
+import WatChill.Content.Series.EpisodeController;
+import WatChill.Content.Series.SeriesController;
+import WatChill.Subscription.Subscription;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
 
-public class Main {
+
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) {
+        try {
+            Image appIcon = new Image("AppLogo.png");
+
+            stage.getIcons().add(appIcon);
+            stage.setTitle("WatChill");
+            Scene scene = redirectToHome();
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private Scene redirectToHome() throws IOException {
+        String css = getClass().getResource("/WatChill/Style/Main.css").toExternalForm();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
+        System.out.println(loader.getLocation());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(css);
+        return scene;
+    }
+
     public static void main(String[] args) {
-        Series s = new Series("1", "AOT", new Date(), new ArrayList<Season>(), new ArrayList<Review>(), "Great", new ArrayList<String>(), "Japan", new ArrayList<String>());
-        s.addCurrentSeriesToList();
-        s.storeSeries();
+        launch(args);
     }
 }

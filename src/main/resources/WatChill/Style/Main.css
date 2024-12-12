@@ -1,0 +1,261 @@
+.root, * {
+    -fx-font-family: "Manrope";
+}
+
+.button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-alignment: center;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: rgba(20, 20, 20, 0.508);
+
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 5;
+}
+
+#header {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-input {
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px 10px;
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border: none;
+}
+
+
+.login-container {
+    -fx-padding: 30px;
+    -fx-background-color: rgba(0, 0, 0, 0.75);
+    -fx-background-radius: 30px;
+}
+
+.login-body {
+    -fx-background-image: url("../../bg-image.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+    -fx-position: relative;
+}
+
+.login-body .login-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-position: absolute;
+    -fx-width: 100%;
+    -fx-height: 100%;
+}
+
+.link-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+}
+
+.link-button:hover {
+    -fx-cursor: pointer;
+    -fx-text-decoration: underline;
+}
+
+.movie-card,
+.series-card {
+    -fx-background-radius: 15px;
+    -fx-padding: 10px 16px;
+}
+
+.movie-card > .text,
+.series-card > .text {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#basicPlanContainer {
+    -fx-background-radius-top-left: 15px;
+    -fx-background-radius-bottom-left: 15px;
+}
+
+#premiumPlanContainer {
+    -fx-background-radius-top-right: 15px;
+    -fx-background-radius-bottom-right: 15px;
+}
+
+#basicPlanContainer, 
+#standardPlanContainer,
+#premiumPlanContainer {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.subscription-text {
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-alignment: center;
+    -fx-margin: 20 0 0 0;
+}
+
+.login-title {
+    -fx-font-size: 36;
+    -fx-font-weight: Bold;
+}
+
+.home-title {
+    -fx-font-size: 34;
+    -fx-font-weight: Bold;
+}
+
+.home-title-sub {
+    -fx-font-size: 12;
+}
+
+.home-trending {
+    -fx-font-size: 26;
+    -fx-font-weight: Bold;
+}
+
+.series-card {
+    -fx-cursor: hand;
+}
+
+.series-title {
+    -fx-fill: white;
+    -fx-alignment: center;
+    -fx-font-size: 18;
+    -fx-font-weight: Bold;
+}
+
+.series-seasons-count {
+    -fx-fill: white;
+    -fx-alignment: center;
+    -fx-text-overrun: ellipsis;
+    -fx-max-height: 50px;
+}
+
+.series-card .image-view {
+    /*-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0, 0, 0);*/
+    -fx-effect: innershadow(three-pass-box, #0d0d0d, 15, 0.5, 0, 0);
+    -fx-preserve-ratio: true;
+}
+
+.text-container {
+    -fx-background-color: rgba(0, 0, 0, 0.7); -fx-padding: 10;
+}
+
+/* styles.css */
+
+/* Root card container */
+.search-result-card {
+    /* -fx-background-color: #333; */
+    -fx-border-color: #ffffff;
+    -fx-border-width: 0 0 1 0;
+    -fx-cursor: Hand;
+}
+
+.box-container {
+    -fx-background-radius: 12;
+    -fx-effect : dropShadow( three-pass-box , rgba(0,0,0,0.3) ,10.0 ,0.0, 0.0, 10.0);
+}
+
+.search-result-card ImageView {
+    /* -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 1); */
+    -fx-padding: 10 0 10 40;
+    -fx-fit-width: 217;
+    -fx-fit-height: 130;
+}
+
+.text-container {
+    -fx-spacing: 5;
+}
+
+.title-text {
+    /* -fx-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold; */
+    -fx-font-family: Manrope SemiBold;
+    -fx-font-size: 27px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 10;
+}
+
+/* Season text */
+.season-text {
+    /* -fx-fill: lightgray;
+    -fx-font-size: 16px; */
+    -fx-font-family: Manrope Medium;
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+}
+
+.episode-poster {
+    -fx-padding: 10 0 10 40;
+    -fx-fit-width: 217;
+    -fx-fit-height: 130;
+}
+
+.episode-title {
+    -fx-font-family: Manrope SemiBold;
+    -fx-font-size: 27px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 10;
+}
+
+.episode-release-date {
+    -fx-font-family: Manrope Medium;
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+}
+
+.episode-description {
+    -fx-font-family: Manrope Medium;
+    -fx-font-size: 18px;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 5 0 0 15;
+    -fx-opacity: 0.5;
+}
+
+.episode-labels {
+    -fx-padding: 10 0 10 10;
+    -fx-pref-width: 788;
+    -fx-pref-height: 677;
+}
+
+.radio-button {
+    -fx-text-fill: #fff;
+    -fx-font-size: 14;
+    -fx-padding: 4;
+}
+
+.no-results {
+    -fx-font-weight: Bold;
+    -fx-font-size: 22;
+    -fx-padding: 10;
+    -fx-font-family: Manrope;
+}
+
+.form-label {
+    -fx-font-size: 14;
+}
+
+.plan-title {
+    -fx-font-size: 22;
+    -fx-font-weight: Bold;
+}
