@@ -18,7 +18,7 @@ import java.util.*;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Movie extends Content implements WatchedContent {
 
-    private float duration;
+    private int duration;
     private static ArrayList<Movie> moviesFile = new ArrayList<>();
     private int viewsCount = 0;
 
@@ -27,7 +27,7 @@ public class Movie extends Content implements WatchedContent {
             @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("releaseDate") LocalDate releaseDate,
-            @JsonProperty("duration") float duration,
+            @JsonProperty("duration") int duration,
             @JsonProperty("languages") ArrayList<String> languages,
             @JsonProperty("genres") ArrayList<String> genres,
             @JsonProperty("casts") ArrayList<Crew> crews,
@@ -43,7 +43,7 @@ public class Movie extends Content implements WatchedContent {
         this.viewsCount = viewsCount;
     }
 
-    public Movie(String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, String poster, double budget, double revenue, float duration, int viewsCount) {
+    public Movie(String title, LocalDate releaseDate, String description, ArrayList<String> languages, String country, ArrayList<String> genres, String poster, double budget, double revenue, int duration, int viewsCount) {
         super(title, releaseDate, description, languages, country, genres, poster, budget, revenue);
         this.duration = duration;
         this.viewsCount = viewsCount;
@@ -57,11 +57,11 @@ public class Movie extends Content implements WatchedContent {
         this.id = id;
     }
 
-    public float getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(Float duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
