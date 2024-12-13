@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.ProfileController">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.ProfileController">
    <content>
       <StackPane id="body" alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: #141414;">
          <children>
@@ -267,10 +267,16 @@
                                              <font>
                                                 <Font name="Manrope Bold" size="30.0" />
                                              </font>
+                                             <HBox.margin>
+                                                <Insets bottom="15.0" />
+                                             </HBox.margin>
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <FlowPane fx:id="watchlaterFlowPane" alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" />
+                                    <FlowPane fx:id="watchlaterFlowPane" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
+                                       <padding>
+                                          <Insets left="50.0" right="50.0" />
+                                       </padding></FlowPane>
                                  </children>
                               </VBox>
                               <VBox fx:id="historyContainer" prefHeight="200.0" prefWidth="100.0" visible="false">
@@ -284,6 +290,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
+                                    <VBox fx:id="historyBox" prefHeight="200.0" prefWidth="100.0" />
                                  </children>
                               </VBox>
                            </children>

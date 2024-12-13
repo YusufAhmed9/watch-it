@@ -3,6 +3,7 @@ package WatChill.UserWatchRecord;
 import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
+import WatChill.Content.Series.Season;
 import WatChill.Content.Series.Series;
 import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
@@ -102,7 +103,8 @@ public class UserWatchRecord {
             if (userRecord.getWatchedContent() instanceof Movie) {
                 userWatchedContent.add((Movie) userRecord.getWatchedContent());
             } else {
-                userWatchedContent.add(Series.findById(((Episode) userRecord.getWatchedContent()).getSeriesId()));
+                Season season = Season.findById(((Episode) userRecord.getWatchedContent()).getSeasonId());
+                userWatchedContent.add(Series.findById((season.getSeriesId())));
             }
         }
         String preferredGenre = getPreferredGenre(userWatchedContent);

@@ -16,7 +16,7 @@
       "viewsCount" : 0,
       "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
       "description" : "Nice one",
-      "seriesId" : "1"
+      "seasonId" : "1"
     }, {
       "id" : "2",
       "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 2",
@@ -25,8 +25,9 @@
       "viewsCount" : 0,
       "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
       "description" : "Nice one",
-      "seriesId" : "1"
-    } ]
+      "seasonId" : "1"
+    } ],
+    "seriesId" : "1"
   }, {
     "id" : "2",
     "title" : "Season 2",
@@ -40,8 +41,9 @@
       "viewsCount" : 0,
       "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
       "description" : "Nice one",
-      "seriesId" : "1"
-    } ]
+      "seasonId" : "2"
+    } ],
+    "seriesId" : "2"
   } ],
   "description" : "Greatest series ever",
   "languages" : [ ],
