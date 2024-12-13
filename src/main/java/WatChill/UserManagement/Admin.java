@@ -1,9 +1,11 @@
 package WatChill.UserManagement;
 
+import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
 import WatChill.Content.Series.Season;
 import WatChill.Content.Series.Series;
 import WatChill.Crew.Cast.Cast;
+import WatChill.Crew.Crew;
 import WatChill.Crew.Director.Director;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -75,6 +77,111 @@ public class Admin extends User {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
+
+    private void addMovie() {
+        Scanner scanner = new Scanner(System.in);
+        String title = null;
+        String poster;
+        String description = null;
+        String country;
+        int duration = 0;
+        double budget;
+        double revenue;
+
+        LocalDate releaseDate;
+        ArrayList<String> languages;
+        ArrayList<String> genres;
+        ArrayList<Crew> crews;
+
+        while (title == null || title.isEmpty()) {
+            System.out.print("Enter movie's title: ");
+            title = scanner.nextLine().trim();
+            if (title.isEmpty()) {
+                System.out.println("Error: provide a valid title");
+            }
+        }
+
+        while (duration <= 0) {
+            System.out.print("Enter movie's duration: ");
+            try {
+                duration = scanner.nextInt();
+                if (duration <= 0) {
+                    System.out.println("Error: provide a valid duration");
+                }
+            } catch (InputMismatchException exception) {
+                System.out.println("Error: provide a valid duration");
+                scanner.next();
+            }
+            scanner.nextLine();
+        }
+
+        while (description == null || description.isEmpty()) {
+            System.out.print("Enter movie's description: ");
+            description = scanner.nextLine().trim();
+            if (description.isEmpty()) {
+                System.out.println("Error: provide a valid description");
+            }
+        }
+
+        releaseDate = getValidDate(scanner, "Enter movie's release date (yyyy-MM-dd): ");
+        poster = getValidInput(scanner, "Enter picture URL: ", "^\\/WatChill\\/Content\\/Movie\\/media\\/[A-Za-z\\s]+\\/[A-Za-z0-9]+\\.(jpg|jpeg|png)$\n");
+        languages = getValidLanguages();
+        genres = getValidGenres();
+        country = getValidInput(scanner, "Enter country name: ", "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$");
+        budget = getValidDouble(scanner, "Enter movie's budget");
+        revenue = getValidDouble(scanner, "Enter movie's revenue");
+        crews = getValidCrews();
+
+        Movie movie = new Movie(UUID.randomUUID().toString(), title, releaseDate, duration, languages, genres, crews, country, budget, revenue, poster, 0, description);
+        movie.save();
+        System.out.println("Movie added successfully!");
+    }
+
+    private void addSeries() {
+        Scanner scanner = new Scanner(System.in);
+        String title = null;
+        String poster;
+        String description = null;
+        String country;
+        int duration = 0;
+        double budget;
+        double revenue;
+
+        LocalDate releaseDate;
+        ArrayList<String> languages;
+        ArrayList<String> genres;
+        ArrayList<Crew> crews;
+
+        while (title == null || title.isEmpty()) {
+            System.out.print("Enter series's title: ");
+            title = scanner.nextLine().trim();
+            if (title.isEmpty()) {
+                System.out.println("Error: provide a valid title");
+            }
+        }
+
+        while (description == null || description.isEmpty()) {
+            System.out.print("Enter series's description: ");
+            description = scanner.nextLine().trim();
+            if (description.isEmpty()) {
+                System.out.println("Error: provide a valid description");
+            }
+        }
+
+        releaseDate = getValidDate(scanner, "Enter movie's release date (yyyy-MM-dd): ");
+        poster = getValidInput(scanner, "Enter picture URL: ", "^\\/WatChill\\/Content\\/Series\\/media\\/[A-Za-z\\s]+\\/[A-Za-z0-9]+\\.(jpg|jpeg|png)$\n");
+        languages = getValidLanguages();
+        genres = getValidGenres();
+        country = getValidInput(scanner, "Enter country name: ", "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$");
+        budget = getValidDouble(scanner, "Enter series's budget");
+        revenue = getValidDouble(scanner, "Enter series's revenue");
+        crews = getValidCrews();
+
+        Series series = new Series(UUID.randomUUID().toString(), title, releaseDate, new ArrayList<>(), description, languages, country, genres, crews, poster, budget, revenue);
+        series.save();
+        System.out.println("Series added successfully!");
+    }
+
 
     private void addEpisode() {
         Scanner scanner = new Scanner(System.in);
@@ -160,11 +267,11 @@ public class Admin extends User {
             scanner.nextLine();
         }
 
-        LocalDate releaseDate = getValidDate(scanner, "Enter episode's release date (yyyy-MM-dd): ");
+        LocalDate releaseDate = getValidDate(scanner, "Enter season's release date (yyyy-MM-dd): ");
 
         String description = null;
         while (description == null || description.isEmpty()) {
-            System.out.print("Enter episode's description: ");
+            System.out.print("Enter season's description: ");
             description = scanner.nextLine().trim();
             if (description.isEmpty()) {
                 System.out.println("Error: provide a valid description");
@@ -201,7 +308,7 @@ public class Admin extends User {
 
         // Create a new Director object with the validated inputs
         Director director = new Director(firstName, lastName, dateOfBirth, gender, nationality, instagramLink, twitterLink, picture);
-
+        director.saveCrew();
         System.out.println("Director created successfully!");
     }
 
@@ -219,7 +326,7 @@ public class Admin extends User {
 
         // Create a new Cast object with the validated inputs
         Cast cast = new Cast(firstName, lastName, dateOfBirth, gender, nationality, instagramLink, twitterLink, picture);
-
+        cast.saveCrew();
         System.out.println("Cast created successfully!");
     }
 
@@ -248,5 +355,101 @@ public class Admin extends User {
         }
     }
 
+    private ArrayList<String> getValidLanguages() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> languages = new ArrayList<>();
+        while (true) {
+            String language;
+            String choice;
+            System.out.print("Enter language: ");
+            language = getValidInput(scanner, "Invalid language", "^[a-zA-Z]+$");
+            languages.add(language);
+            System.out.print("Add another language ? (y / n): ");
+            choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("n")) {
+                break;
+            }
+        }
+        return languages;
+    }
 
+    private ArrayList<String> getValidGenres() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> genres = new ArrayList<>();
+        while (true) {
+            String genre;
+            String choice;
+            System.out.print("Enter genre: ");
+            genre = getValidInput(scanner, "Invalid genre", "^[a-zA-Z]+$");
+            genres.add(genre);
+            System.out.print("Add another genre ? (y / n): ");
+            choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("n")) {
+                break;
+            }
+        }
+        return genres;
+    }
+
+    private double getValidDouble(Scanner scanner, String prompt) {
+        double value = 0;
+        while (value <= 0) {
+            System.out.print(prompt);
+            try {
+                value = scanner.nextDouble();
+                if (value > 0) {
+                    break;
+                }
+                System.out.println("Error: provide a valid input");
+            } catch (InputMismatchException exception) {
+                System.out.println("Error: provide a valid input");
+            }
+            scanner.nextLine();
+        }
+        return value;
+    }
+
+    private ArrayList<Crew> getValidCrews() {
+        ArrayList<Crew> crews = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String crewId = null;
+        Crew crew = null;
+        String choice;
+        printCrews(Crew.retrieveCrews());
+        while (crewId == null || crewId.isEmpty() || crew == null) {
+            System.out.print("Enter crew id: ");
+            crewId = scanner.nextLine();
+            if (crewId.isEmpty()) {
+                System.out.println("Crew ID can't be empty.");
+                continue;
+            }
+            crew = Crew.findById(crewId);
+            if (crew == null) {
+                System.out.println("Invalid crew id.");
+                continue;
+            }
+            if (crews.contains(crew)) {
+                System.out.println("You have already chosen this crew member.");
+                continue;
+            }
+            crews.add(crew);
+            System.out.print("Add another crew member ? ( y / n ): ");
+            choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("n")) {
+                break;
+            }
+        }
+        return crews;
+    }
+
+    private void printCrews(ArrayList<Crew> crews) {
+        System.out.printf("%20s", "Name");
+        System.out.printf("%20s", "Date Of Birth |");
+        System.out.printf("%20s", "Type|\n");
+        for (Crew crew : crews) {
+            System.out.printf("%20s", crew.getFirstName() + " " + crew.getLastName() + " |");
+            System.out.printf("%20s", crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM d, yyyy")) + " |");
+            System.out.printf("%20s", crew instanceof Director ? "Director" : "Actor" + " |\n");
+        }
+    }
 }
