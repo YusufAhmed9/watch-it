@@ -1,6 +1,8 @@
 package WatChill.UserManagement;
 
 import WatChill.Content.Series.Episode;
+import WatChill.Content.Series.Season;
+import WatChill.Content.Series.Series;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Director.Director;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -59,14 +61,14 @@ public class Admin extends User {
 //        Series.findByGenre(Genre);
 //    }
 
-    // use getHighestMonthRevenue from Subscribtion
+    // use getHighestMonthRevenue from Subscription
     public void UseGetHighestMonthRevenue() {
         String month = WatChill.Subscription.Subscription.getHighestMonthRevenue();
         System.out.println("Highest revenue month: " + month);
     }
 
-    // use getPlansSubscribtions from Subscribtion
-    public static void UseGetPlansSubscribtions() {
+    // use getPlansSubscriptions from Subscription
+    public static void UseGetPlansSubscriptions() {
         Map<String, Integer> plans = WatChill.Subscription.Subscription.getPlansSubscriptions();
 
         for (Map.Entry<String, Integer> entry : plans.entrySet()) {
@@ -78,7 +80,7 @@ public class Admin extends User {
         Scanner scanner = new Scanner(System.in);
 
         String title = null;
-        while (title == null) {
+        while (title == null || title.isEmpty()) {
             System.out.print("Enter episode's title: ");
             title = scanner.nextLine().trim();
             if (title.isEmpty()) {
@@ -98,13 +100,14 @@ public class Admin extends User {
                 System.out.println("Error: provide a valid duration");
                 scanner.next();
             }
+            scanner.nextLine();
         }
 
-        LocalDate releaseDate = getValidDate(scanner, "Enter date of birth (yyyy-MM-dd): ");
+        LocalDate releaseDate = getValidDate(scanner, "Enter episode's release date (yyyy-MM-dd): ");
         String poster = getValidInput(scanner, "Enter picture URL: ", "^\\/WatChill\\/Content\\/Series\\/media\\/[A-Za-z\\s]+\\/[A-Za-z0-9]+\\.(jpg|jpeg|png)$\n");
 
         String description = null;
-        while (description == null) {
+        while (description == null || description.isEmpty()) {
             System.out.print("Enter episode's description: ");
             description = scanner.nextLine().trim();
             if (description.isEmpty()) {
@@ -114,14 +117,74 @@ public class Admin extends User {
 
         String seasonId = null;
         while (seasonId == null) {
-            System.out.print("Enter series id: ");
-            title = scanner.nextLine().trim();
-            if (title.isEmpty()) {
-                System.out.println("Error: provide a valid series id");
+            System.out.print("Enter season id: ");
+            seasonId = scanner.nextLine().trim();
+            if (seasonId.isEmpty() || Season.findById(seasonId) == null) {
+                System.out.println("Error: provide a valid season id");
             }
         }
 
         Episode episode = new Episode(title, duration, releaseDate, poster, description, seasonId);
+        Season season = Season.findById(seasonId);
+        season.addEpisode(episode);
+        Series series = Series.findById(season.getSeriesId());
+        series.updateSeason(seasonId);
+        series.save();
+    }
+
+    private void addSeason() {
+        //ArrayList<Episode> episodes
+        Scanner scanner = new Scanner(System.in);
+
+        String title = null;
+        while (title == null || title.isEmpty()) {
+            System.out.print("Enter episode's title: ");
+            title = scanner.nextLine().trim();
+            if (title.isEmpty()) {
+                System.out.println("Error: provide a valid title");
+            }
+        }
+
+        int duration = 0;
+        while (duration <= 0) {
+            System.out.print("Enter episode's duration: ");
+            try {
+                duration = scanner.nextInt();
+                if (duration <= 0) {
+                    System.out.println("Error: provide a valid duration");
+                }
+            } catch (InputMismatchException exception) {
+                System.out.println("Error: provide a valid duration");
+                scanner.next();
+            }
+            scanner.nextLine();
+        }
+
+        LocalDate releaseDate = getValidDate(scanner, "Enter episode's release date (yyyy-MM-dd): ");
+
+        String description = null;
+        while (description == null || description.isEmpty()) {
+            System.out.print("Enter episode's description: ");
+            description = scanner.nextLine().trim();
+            if (description.isEmpty()) {
+                System.out.println("Error: provide a valid description");
+            }
+        }
+
+
+        String seriesId = null;
+        while (seriesId == null) {
+            System.out.print("Enter series id: ");
+            seriesId = scanner.nextLine().trim();
+            if (seriesId.isEmpty() || Series.findById(seriesId) == null) {
+                System.out.println("Error: provide a valid series id");
+            }
+        }
+
+        Season season = new Season(title, description, releaseDate, new ArrayList<>() , seriesId);
+        Series series = Series.findById(seriesId);
+        series.addSeason(season);
+        series.save();
     }
 
     private void addDirector() {
