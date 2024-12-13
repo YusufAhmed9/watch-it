@@ -4,6 +4,7 @@ import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Crew.Crew;
 import WatChill.Subscription.Subscription;
+import WatChill.UserManagement.User;
 import WatChill.UserWatchRecord.UserWatchRecord;
 
 public class WriteAllFiles {
@@ -13,5 +14,6 @@ public class WriteAllFiles {
         Crew.storeCrews();
         Subscription.storeSubscriptions();
         UserWatchRecord.storeRecords();
+        User.storeUsers();
     }
 }

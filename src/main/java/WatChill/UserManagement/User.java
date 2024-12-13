@@ -259,6 +259,7 @@ abstract public class User {
     }
 
     public static void storeUsers() {
+        System.out.println(getUsers());
         JsonWriter.writeJsonToFile("./src/main/data/Users.json", getUsers());
     }
 

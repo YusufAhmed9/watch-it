@@ -161,7 +161,7 @@ public class Customer extends User {
             searchMoviesByGenre();
         }
         else {
-//            searchMoviesByLanguage();
+            searchMoviesByLanguage();
         }
     }
 
@@ -197,7 +197,7 @@ public class Customer extends User {
             searchSeriesByGenre();
         }
         else {
-//            searchSeriesByLanguage();
+            searchSeriesByLanguage();
         }
     }
 
@@ -267,7 +267,7 @@ public class Customer extends User {
         printWatchRecords(userWatchRecords);
     }
 
-    private void watchContent(WatchedContent watchedContent, Review review) {
+    public void watchContent(WatchedContent watchedContent, Review review) {
         Subscription subscription = Subscription.getUserSubscription(getId());
         subscription.setMoviesLeftCount(subscription.getMoviesLeftCount() - 1);
         subscription.saveSubscription();
@@ -283,7 +283,7 @@ public class Customer extends User {
         printContent(watchLater);
     }
 
-    private void addToWatchLater(Content content) {
+    public void addToWatchLater(Content content) {
         int watchLaterIndex = findMovieWatchLaterIndex(content.getId());
         if (watchLaterIndex == -1) {
             watchLater.add(content);
@@ -304,7 +304,7 @@ public class Customer extends User {
     }
 
     private void displayTopRatedMovies() {
-//        printContent(new ArrayList<>());
+        printContent(new ArrayList<>(Movie.getTopRatedMovies()));
     }
 
     private void searchMoviesByName() {
@@ -355,7 +355,7 @@ public class Customer extends User {
     }
 
     private void displayTopRatedSeries() {
-//        printContent(new ArrayList<>());
+        printContent(new ArrayList<>(Series.getTopRatedSeries()));
     }
 
     private void searchSeriesByName() {
@@ -483,4 +483,49 @@ public class Customer extends User {
         }
     }
 
+    private void searchSeriesByLanguage() {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        ArrayList<Content> contents;
+        Map<Integer, String> languagesMap = displayLanguages();
+        while (true) {
+            try {
+                System.out.print("Enter Choice: ");
+                choice = scanner.nextInt();
+                contents = new ArrayList<>(Series.findByLanguage(languagesMap.get(choice)));
+                if (contents.isEmpty()) {
+                    System.out.println("No Results Found.");
+                    return;
+                }
+                break;
+            }
+            catch (Exception e) {
+                System.out.println("Invalid Choice.");
+            }
+        }
+        printContent(contents);
+    }
+
+    private void searchMoviesByLanguage() {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        ArrayList<Content> contents;
+        Map<Integer, String> languagesMap = displayLanguages();
+        while (true) {
+            try {
+                System.out.print("Enter Choice: ");
+                choice = scanner.nextInt();
+                contents = new ArrayList<>(Movie.findByLanguage(languagesMap.get(choice)));
+                if (contents.isEmpty()) {
+                    System.out.println("No Results Found.");
+                    return;
+                }
+                break;
+            }
+            catch (Exception e) {
+                System.out.println("Invalid Choice.");
+            }
+        }
+        printContent(contents);
+    }
 }
