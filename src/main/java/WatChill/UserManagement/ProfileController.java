@@ -40,7 +40,7 @@ public class ProfileController {
     @FXML
     VBox historyContainer;
     @FXML
-    FlowPane historyFlowPane;
+    VBox historyBox;
 
     public void initialize() {
         displayWatchLater();
@@ -74,10 +74,25 @@ public class ProfileController {
     }
 
     public void displayMyInfo(ActionEvent actionEvent) {
-
+        watchLaterContainer.setVisible(false);
+        watchLaterContainer.setManaged(false);
+        infoContainer.setVisible(true);
+        infoContainer.setManaged(true);
+        historyContainer.setVisible(false);
+        historyContainer.setManaged(false);
+        subscriptionContainer.setVisible(false);
+        subscriptionContainer.setManaged(false);
     }
 
     public void displayHistory(ActionEvent actionEvent) {
+        watchLaterContainer.setVisible(false);
+        watchLaterContainer.setManaged(false);
+        infoContainer.setVisible(false);
+        infoContainer.setManaged(false);
+        historyContainer.setVisible(true);
+        historyContainer.setManaged(true);
+        subscriptionContainer.setVisible(false);
+        subscriptionContainer.setManaged(false);
         ArrayList<UserWatchRecord> userWatchRecords = UserWatchRecord.getUserWatchRecord(User.getCurrentUser().getId());
         for (UserWatchRecord userWatchRecord : userWatchRecords) {
             WatchedContent watchableContent = userWatchRecord.getWatchedContent();
@@ -88,7 +103,7 @@ public class ProfileController {
                     HBox card = loader.load();
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
-                    historyFlowPane.getChildren().add(card);
+                    historyBox.getChildren().add(card);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -100,7 +115,7 @@ public class ProfileController {
                     HBox card = loader.load();
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(episode.getPoster(), episode.getTitle(), episode.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), episode.getDescription());
-                    historyFlowPane.getChildren().add(card);
+                    historyBox.getChildren().add(card);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -109,6 +124,14 @@ public class ProfileController {
     }
 
     public void displayMySubscription() {
+        watchLaterContainer.setVisible(false);
+        watchLaterContainer.setManaged(false);
+        infoContainer.setVisible(false);
+        infoContainer.setManaged(false);
+        historyContainer.setVisible(false);
+        historyContainer.setManaged(false);
+        subscriptionContainer.setVisible(true);
+        subscriptionContainer.setManaged(true);
 
     }
 }

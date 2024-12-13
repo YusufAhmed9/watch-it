@@ -6,4 +6,92 @@
   "password" : "vLvFnUruFoV9y3wGm5BmiQ==:8/tlnz/8NV2IWDwhdZ38LbBCDX2D0NSmyplJunsoC0o=",
   "firstName" : "1",
   "lastName" : "1"
+}, {
+  "@class" : "WatChill.UserManagement.Customer",
+  "id" : "8b9f70df-f886-4b5c-b5b8-e94172454358",
+  "username" : "2",
+  "email" : "2@g.com",
+  "password" : "XHREEcO1cmm59mvFthBUSw==:TsYDI7Xv08ZgMwRxbZDT44E0PMHb7mcv4PhTgpRQxRQ=",
+  "firstName" : "12",
+  "lastName" : "2",
+  "watchLater" : [ {
+    "@class" : "WatChill.Content.Series.Series",
+    "id" : "1",
+    "title" : "Attack On Titan",
+    "releaseDate" : [ 2024, 12, 3 ],
+    "seasons" : [ {
+      "id" : "1",
+      "title" : "Season 1",
+      "description" : "Greatest season ever",
+      "releaseDate" : [ 2024, 12, 3 ],
+      "episodes" : [ {
+        "id" : "1",
+        "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+        "duration" : 25,
+        "releaseDate" : [ 2024, 12, 3 ],
+        "viewsCount" : 0,
+        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
+        "description" : "Nice one",
+        "seasonId" : "1"
+      }, {
+        "id" : "2",
+        "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 2",
+        "duration" : 25,
+        "releaseDate" : [ 2024, 12, 3 ],
+        "viewsCount" : 0,
+        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
+        "description" : "Nice one",
+        "seasonId" : "1"
+      } ],
+      "seriesId" : "1"
+    }, {
+      "id" : "2",
+      "title" : "Season 2",
+      "description" : "Greatest season ever",
+      "releaseDate" : [ 2024, 12, 3 ],
+      "episodes" : [ {
+        "id" : "1",
+        "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+        "duration" : 25,
+        "releaseDate" : [ 2024, 12, 3 ],
+        "viewsCount" : 0,
+        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
+        "description" : "Nice one",
+        "seasonId" : "2"
+      } ],
+      "seriesId" : "2"
+    } ],
+    "description" : "Greatest series ever",
+    "languages" : [ ],
+    "country" : "Japan",
+    "genres" : [ "Anime", "Horror", "Adventure" ],
+    "poster" : "/WatChill/Content/Series/media/Attack On Titan/AOTPoster.jpg",
+    "budget" : 1000000.0,
+    "revenue" : 1000000.0,
+    "crews" : [ {
+      "@class" : "WatChill.Crew.Cast.Cast",
+      "id" : "1",
+      "firstName" : "Mahmoud",
+      "lastName" : "Mahmoud",
+      "dateOfBirth" : [ 2024, 12, 3 ],
+      "gender" : "Helicopter attack",
+      "nationality" : "Among us imposter",
+      "instagramLink" : "hello",
+      "twitterLink" : "byebye",
+      "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
+      "contentCreated" : [ "1" ]
+    }, {
+      "@class" : "WatChill.Crew.Director.Director",
+      "id" : "2",
+      "firstName" : "Mahmoud",
+      "lastName" : "Mahmoud",
+      "dateOfBirth" : [ 2024, 12, 3 ],
+      "gender" : "Helicopter attack",
+      "nationality" : "Among us imposter",
+      "instagramLink" : "hello",
+      "twitterLink" : "byebye",
+      "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
+      "contentCreated" : [ "1" ]
+    } ]
+  } ]
 } ]
