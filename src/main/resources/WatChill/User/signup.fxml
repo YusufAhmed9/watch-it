@@ -33,7 +33,7 @@
                            </cursor>
                         </ImageView>
                         <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#redirectToLogin" text="Sign In">
+                        <Button mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -134,7 +134,7 @@
                                  </VBox.margin>
                               </PasswordField>
                               <Text fx:id="passwordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="form-label" wrappingWidth="398.9830722808838" />
-                              <Button mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="313.0" text="Sign Up" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Sign Up" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
@@ -147,7 +147,10 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In" />
+                              <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                            </children>
                         </VBox>
                      </children>

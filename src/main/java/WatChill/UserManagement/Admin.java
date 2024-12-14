@@ -128,8 +128,8 @@ public class Admin extends User {
         languages = getValidLanguages();
         genres = getValidGenres();
         country = getValidInput(scanner, "Enter country name: ", "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$");
-        budget = getValidDouble(scanner, "Enter movie's budget");
-        revenue = getValidDouble(scanner, "Enter movie's revenue");
+        budget = getValidDouble(scanner, "Enter movie's budget: ");
+        revenue = getValidDouble(scanner, "Enter movie's revenue: ");
         crews = getValidCrews();
 
         Movie movie = new Movie(UUID.randomUUID().toString(), title, releaseDate, duration, languages, genres, crews, country, budget, revenue, poster, 0, description);
@@ -355,14 +355,13 @@ public class Admin extends User {
         }
     }
 
-    private ArrayList<String> getValidLanguages() {
+    public static ArrayList<String> getValidLanguages() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> languages = new ArrayList<>();
         while (true) {
             String language;
             String choice;
-            System.out.print("Enter language: ");
-            language = getValidInput(scanner, "Invalid language", "^[a-zA-Z]+$");
+            language = getValidInput(scanner, "Enter language: ", "^[a-zA-Z]+$");
             languages.add(language);
             System.out.print("Add another language ? (y / n): ");
             choice = scanner.nextLine().toLowerCase();
@@ -373,14 +372,13 @@ public class Admin extends User {
         return languages;
     }
 
-    private ArrayList<String> getValidGenres() {
+    public static ArrayList<String> getValidGenres() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> genres = new ArrayList<>();
         while (true) {
             String genre;
             String choice;
-            System.out.print("Enter genre: ");
-            genre = getValidInput(scanner, "Invalid genre", "^[a-zA-Z]+$");
+            genre = getValidInput(scanner, "Enter genre: ", "^[a-zA-Z]+$");
             genres.add(genre);
             System.out.print("Add another genre ? (y / n): ");
             choice = scanner.nextLine().toLowerCase();

@@ -12,20 +12,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="167.0" style="-fx-background-color: #141414; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="167.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #555; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="167.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
       <children>
-         <!--      <ImageView fitHeight="191.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 10;">-->
-         <!--         <image>-->
-         <!--            <Image url="@../Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />-->
-         <!--         </image>-->
-         <!--      </ImageView>-->
-         <ImageView fx:id="posterImage" fitHeight="253.0" fitWidth="168.0">
-            <!-- Set the image source -->
-<!--            <image>-->
-<!--               <Image url="@../Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />-->
-<!--            </image>-->
-            <!-- Apply clipping using a Rectangle -->
+         <ImageView fx:id="posterImage" fitHeight="253.0" fitWidth="163.0" styleClass="card-title">
             <clip>
                <Rectangle arcHeight="30" arcWidth="30" height="250" width="165" />
             </clip>
@@ -33,19 +23,19 @@
                <Image url="@Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
             </image>
          </ImageView>
-         <Label fx:id="titleText" alignment="CENTER" prefHeight="22.0" prefWidth="173.0" text="Breaking Bad" textAlignment="CENTER" textFill="WHITE">
+         <Label fx:id="titleText" alignment="CENTER" prefHeight="22.0" prefWidth="173.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font name="Manrope Bold" size="16.0" />
             </font>
          </Label>
-         <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="166.0" text="4 Seasons" textFill="#868686">
+         <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="166.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
             <font>
                <Font name="Manrope Bold" size="12.0" />
             </font>
          </Label>
          <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
             <children>
-               <StackPane>
+               <StackPane fx:id="redirectToContentButton">
                   <children>
                      <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -61,10 +51,10 @@
                      <Insets right="4.0" />
                   </HBox.margin>
                </StackPane>
-               <StackPane>
+               <StackPane fx:id="addToWatchLaterButton">
                   <children>
                      <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../Vector.png" />
                         </image>

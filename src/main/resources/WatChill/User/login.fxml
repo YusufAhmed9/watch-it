@@ -30,7 +30,7 @@
                      </cursor>
                   </ImageView>
                   <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#redirectToSignup" text="Sign Up">
+                  <Button mnemonicParsing="false" onAction="#redirectToSignup" styleClass="main-button" text="Sign Up">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -86,7 +86,7 @@
                            </VBox.margin>
                         </PasswordField>
                         <Text fx:id="passwordError" fill="#ee0000" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="399.9830722808838" />
-                        <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="313.0" text="Sign In" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Sign In" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
