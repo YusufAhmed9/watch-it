@@ -286,11 +286,16 @@ public class Customer extends User {
     public void addToWatchLater(Content content) {
         int watchLaterIndex = findMovieWatchLaterIndex(content.getId());
         if (watchLaterIndex == -1) {
-            watchLater.add(content);
+            getWatchLater().add(content);
         }
     }
 
-    private int findMovieWatchLaterIndex(String contentId) {
+    public void removeFromWatchLater(String contentId) {
+        int index = findMovieWatchLaterIndex(contentId);
+        getWatchLater().remove(index);
+    }
+
+    public int findMovieWatchLaterIndex(String contentId) {
         for (int i = 0; i < watchLater.size(); i++) {
             if (watchLater.get(i).getId().equals(contentId)) {
                 return i;

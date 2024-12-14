@@ -17,31 +17,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.ProfileController">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.ProfileController">
    <content>
-      <StackPane id="body" alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: #141414;">
+      <StackPane id="body" alignment="TOP_CENTER" style="-fx-background-color: #141414;">
          <children>
-            <BorderPane StackPane.alignment="TOP_CENTER">
+            <BorderPane style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="53.0" fitWidth="200.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Logo.png" />
                            </image>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </HBox>
                </top>
                <center>
-                  <VBox fx:id="container" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent; -fx-background: transparent;" BorderPane.alignment="CENTER">
+                  <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="42.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#displayWatchLater" text="Watch Later">
+                              <Button mnemonicParsing="false" onAction="#displayWatchLater" styleClass="main-button" text="Watch Later">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -52,7 +55,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#displayMyInfo" text="My Info">
+                              <Button mnemonicParsing="false" onAction="#displayMyInfo" styleClass="main-button" text="My Info">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -63,7 +66,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#displayHistory" text="History">
+                              <Button mnemonicParsing="false" onAction="#displayHistory" styleClass="main-button" text="History">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -74,7 +77,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#displayMySubscription" text="My Subscription">
+                              <Button mnemonicParsing="false" onAction="#displayMySubscription" styleClass="main-button" text="My Subscription">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -87,9 +90,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <VBox>
+                        <VBox style="-fx-background-color: #141414;">
                            <children>
-                              <VBox fx:id="infoContainer" visible="false">
+                              <VBox fx:id="infoContainer">
                                  <children>
                                     <HBox alignment="CENTER">
                                        <VBox.margin>
@@ -139,7 +142,7 @@
                                              <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <VBox prefHeight="200.0" prefWidth="100.0">
+                                                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                                                          <children>
                                                             <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="First Name:" textFill="WHITE">
                                                                <font>
@@ -149,10 +152,10 @@
                                                                   <Insets bottom="10.0" />
                                                                </VBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="firstNameInput" disable="true" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                            <TextField fx:id="firstNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
                                                             <Text fx:id="firstNameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                                <VBox.margin>
-                                                                  <Insets top="10.0" />
+                                                                  <Insets bottom="10.0" top="10.0" />
                                                                </VBox.margin>
                                                                <font>
                                                                   <Font name="Helvetica‭ ‬עבה" size="12.0" />
@@ -166,7 +169,7 @@
                                                                   <Insets bottom="10.0" />
                                                                </VBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="lastNameInput" disable="true" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
+                                                            <TextField fx:id="lastNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
                                                                <VBox.margin>
                                                                   <Insets bottom="10.0" />
                                                                </VBox.margin>
@@ -184,11 +187,27 @@
                                                                   <Insets bottom="10.0" />
                                                                </VBox.margin>
                                                             </Label>
-                                                            <PasswordField fx:id="oldPasswordInput" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="402.0" styleClass="form-input">
+                                                            <HBox alignment="CENTER_LEFT">
                                                                <VBox.margin>
-                                                                  <Insets bottom="27.0" />
+                                                                  <Insets />
                                                                </VBox.margin>
-                                                            </PasswordField>
+                                                               <children>
+                                                                  <PasswordField fx:id="oldPasswordInput" maxWidth="-Infinity" prefHeight="25.0" prefWidth="294.0" styleClass="form-input" HBox.hgrow="SOMETIMES" />
+                                                                  <Button mnemonicParsing="false" onAction="#checkPassword" styleClass="main-button" text="Check">
+                                                                     <HBox.margin>
+                                                                        <Insets left="10.0" />
+                                                                     </HBox.margin>
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="HAND" />
+                                                                     </cursor>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Text fx:id="oldPasswordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" top="10.0" />
+                                                               </VBox.margin>
+                                                            </Text>
                                                             <Label prefHeight="20.0" prefWidth="405.0" styleClass="form-label" text="Password:" textFill="WHITE">
                                                                <font>
                                                                   <Font size="14.0" />
@@ -197,12 +216,12 @@
                                                                   <Insets bottom="10.0" />
                                                                </VBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="passwordInput" disable="true" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
+                                                            <TextField fx:id="newPasswordInput" disable="true" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
                                                                <VBox.margin>
-                                                                  <Insets />
+                                                                  <Insets bottom="10.0" />
                                                                </VBox.margin>
                                                             </TextField>
-                                                            <Text fx:id="passwordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
+                                                            <Text fx:id="newPasswordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
                                                          </children>
                                                          <HBox.margin>
                                                             <Insets left="30.0" />
@@ -213,7 +232,7 @@
                                                       <Insets top="40.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="313.0" text="Save" textFill="WHITE">
+                                                <Button mnemonicParsing="false" onAction="#editInfo" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Save" textFill="WHITE">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
@@ -227,7 +246,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox fx:id="subscriptionContainer" prefHeight="200.0" prefWidth="100.0" visible="false">
+                              <VBox fx:id="subscriptionContainer" prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <HBox alignment="CENTER">
                                        <children>
@@ -242,24 +261,27 @@
                                        <children>
                                           <HBox fx:id="planContainer" alignment="CENTER" prefHeight="56.0" prefWidth="1115.0">
                                              <children>
-                                                <Label text="Your Plane Is :">
+                                                <Label styleClass="subscription-text" text="Your Plan Is :" textFill="WHITE">
                                                    <font>
                                                       <Font name="Manrope Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="planName" text="Plan">
+                                                <Label fx:id="planName" styleClass="subscription-text" text="Plan" textFill="WHITE">
                                                    <font>
                                                       <Font name="Manrope Bold" size="14.0" />
                                                    </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <HBox fx:id="remainingContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                                          <VBox fx:id="remainingContainer" alignment="CENTER" />
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
-                              <VBox fx:id="watchLaterContainer" prefHeight="200.0" prefWidth="100.0">
+                              <VBox fx:id="watchLaterContainer" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1115.0">
                                        <children>
@@ -276,10 +298,11 @@
                                     <FlowPane fx:id="watchlaterFlowPane" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
                                        <padding>
                                           <Insets left="50.0" right="50.0" />
-                                       </padding></FlowPane>
+                                       </padding>
+                                    </FlowPane>
                                  </children>
                               </VBox>
-                              <VBox fx:id="historyContainer" prefHeight="200.0" prefWidth="100.0" visible="false">
+                              <VBox fx:id="historyContainer" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1115.0">
                                        <children>
@@ -290,7 +313,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <VBox fx:id="historyBox" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="historyBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
                                  </children>
                               </VBox>
                            </children>

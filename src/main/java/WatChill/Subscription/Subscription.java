@@ -4,6 +4,7 @@ import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.*;
 
 // Specify the attributes for jackson and ignore getter methods
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonIgnoreProperties({"@class"})
 public class Subscription {
     private static ArrayList<Subscription> subscriptions;
     private String id;
@@ -88,7 +90,7 @@ public class Subscription {
     // Check if subscription is active by comparing current (date + 30) and start date of subscription
     public boolean isSubscriptionActive() {
         LocalDate currentDate = LocalDate.now();
-        return startDate.plusDays(30).compareTo(currentDate) > -1;
+        return getStartDate().plusDays(30).compareTo(currentDate) > -1 && getMoviesLeftCount() > 0;
     }
 
     // Remove subscription from ArrayList

@@ -7,22 +7,33 @@ import WatChill.Content.Series.Episode;
 import WatChill.Content.WatchableContent;
 import WatChill.Content.WatchedContent;
 import WatChill.Search.SearchResultController;
+import WatChill.Subscription.BasicPlan;
+import WatChill.Subscription.StandardPlan;
+import WatChill.Subscription.Subscription;
 import WatChill.UserWatchRecord.UserWatchRecord;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.concurrent.Flow;
 
 public class ProfileController {
-    @FXML
-    HBox profileContainer;
     @FXML
     VBox infoContainer;
     @FXML
@@ -36,11 +47,35 @@ public class ProfileController {
     @FXML
     HBox planContainer;
     @FXML
-    HBox remainingContainer;
+    VBox remainingContainer;
     @FXML
     VBox historyContainer;
     @FXML
     VBox historyBox;
+    @FXML
+    Label username;
+    @FXML
+    Label email;
+    @FXML
+    TextField firstNameInput;
+    @FXML
+    Text firstNameError;
+    @FXML
+    TextField lastNameInput;
+    @FXML
+    Text lastNameError;
+    @FXML
+    PasswordField oldPasswordInput;
+    @FXML
+    Text oldPasswordError;
+    @FXML
+    TextField newPasswordInput;
+    @FXML
+    Text newPasswordError;
+
+    Parent root;
+    Stage stage;
+    Scene scene;
 
     public void initialize() {
         displayWatchLater();
@@ -59,13 +94,27 @@ public class ProfileController {
         historyContainer.setManaged(false);
         subscriptionContainer.setVisible(false);
         subscriptionContainer.setManaged(false);
+        watchlaterFlowPane.getChildren().clear();
         Customer customer = (Customer) User.getCurrentUser();
+        if (customer.getWatchLater().isEmpty()) {
+            Text noWatchLaterText = new Text("No content in your watch later.");
+            noWatchLaterText.setFill(Color.WHITE);
+            noWatchLaterText.getStyleClass().add("subscription-text");
+            watchLaterContainer.getChildren().add(noWatchLaterText);
+            return;
+        }
         for (Content content : customer.getWatchLater()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/content-card.fxml"));
             try {
                 VBox card = loader.load();
                 ContentCardController contentCardController = loader.getController();
-                contentCardController.setData(content.getPoster(), content.getTitle(), content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+                contentCardController.setData(
+                    content.getPoster(),
+                    content.getTitle(),
+                    content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
+                    content,
+                    () -> displayWatchLater()
+                );
                 watchlaterFlowPane.getChildren().add(card);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -82,6 +131,11 @@ public class ProfileController {
         historyContainer.setManaged(false);
         subscriptionContainer.setVisible(false);
         subscriptionContainer.setManaged(false);
+        User user = User.getCurrentUser();
+        username.setText(user.getUsername());
+        email.setText(user.getEmail());
+        firstNameInput.setText(user.getFirstName());
+        lastNameInput.setText(user.getLastName());
     }
 
     public void displayHistory(ActionEvent actionEvent) {
@@ -93,7 +147,14 @@ public class ProfileController {
         historyContainer.setManaged(true);
         subscriptionContainer.setVisible(false);
         subscriptionContainer.setManaged(false);
+        historyBox.getChildren().clear();
         ArrayList<UserWatchRecord> userWatchRecords = UserWatchRecord.getUserWatchRecord(User.getCurrentUser().getId());
+        if (userWatchRecords.isEmpty()) {
+            Text noHistoryText = new Text("You have no watch records yet.");
+            noHistoryText.getStyleClass().add("subscription-text");
+            historyBox.getChildren().add(noHistoryText);
+            return;
+        }
         for (UserWatchRecord userWatchRecord : userWatchRecords) {
             WatchedContent watchableContent = userWatchRecord.getWatchedContent();
             if (watchableContent instanceof Movie) {
@@ -132,6 +193,91 @@ public class ProfileController {
         historyContainer.setManaged(false);
         subscriptionContainer.setVisible(true);
         subscriptionContainer.setManaged(true);
+        User user = User.getCurrentUser();
+        Subscription subscription = Subscription.getUserSubscription(user.getId());
+        remainingContainer.getChildren().clear();
+        if (subscription == null) {
+            planContainer.getChildren().clear();
+            Text noSubscriptionText = new Text("You don't have an active subscription");
+            noSubscriptionText.getStyleClass().add("subscription-text");
+            planContainer.getChildren().add(noSubscriptionText);
+            return;
+        }
+        if (subscription.getPlan() instanceof BasicPlan) {
+            planName.setText("Basic");
+        }
+        else if (subscription.getPlan() instanceof StandardPlan) {
+            planName.setText("Standard");
+        }
+        else {
+            planName.setText("Premium");
+        }
+        Text remainingText = new Text("You have " + subscription.getMoviesLeftCount() + " contents left to watch");
+        remainingText.getStyleClass().add("subscription-text");
+        Text endDate = new Text("Your Subscription ends on " + subscription.getStartDate().plusDays(30).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+        endDate.getStyleClass().add("subscription-text");
+        remainingContainer.getChildren().add(remainingText);
+        remainingContainer.getChildren().add(endDate);
+    }
 
+    public void redirectToHome(Event event) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
+            root = loader.load();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editInfo(ActionEvent actionEvent) {
+        firstNameError.setText("");
+        lastNameError.setText("");
+        oldPasswordError.setText("");
+        newPasswordError.setText("");
+        User user = User.getCurrentUser();
+        if (firstNameInput.getText().isEmpty()) {
+            firstNameError.setText("First name can't be empty.");
+            return;
+        }
+        if (lastNameInput.getText().isEmpty()) {
+            lastNameError.setText("Last name can't be empty.");
+            return;
+        }
+        if (!newPasswordInput.isDisable() && newPasswordInput.getText().length() < 8) {
+            newPasswordError.setText("Password must have at least 8 characters.");
+            return;
+        }
+        user.setFirstName(firstNameInput.getText());
+        user.setLastName(lastNameInput.getText());
+        if (!newPasswordInput.getText().isEmpty()) {
+            String newPassword = newPasswordInput.getText();
+            byte[] salt = User.generateSalt();
+            String hashedPassword = User.hashPassword(newPassword, salt);
+            user.setPassword(Base64.getEncoder().encodeToString(salt) + ":" + hashedPassword);
+        }
+        oldPasswordInput.setText("");
+        newPasswordInput.setText("");
+        newPasswordInput.setDisable(true);
+    }
+
+    public void checkPassword(ActionEvent actionEvent) {
+        User user = User.getCurrentUser();
+        oldPasswordError.setText("");
+        if (!User.loginWithUsername(user.getUsername(), oldPasswordInput.getText())) {
+            oldPasswordError.setText("Wrong password.");
+            newPasswordInput.setText("");
+            newPasswordInput.setDisable(true);
+            return;
+        }
+        newPasswordInput.setDisable(false);
+        newPasswordInput.setText(oldPasswordInput.getText());
     }
 }
