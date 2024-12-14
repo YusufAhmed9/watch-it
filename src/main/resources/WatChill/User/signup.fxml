@@ -16,79 +16,83 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="726.0" styleClass="login-body" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
-    <top>
-        <VBox id="header" alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="74.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Logo.png" />
-                            </image>
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
+   <content>
+      <BorderPane id="body" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="login-body">
+         <top>
+            <VBox alignment="CENTER_LEFT" prefHeight="69.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="92.0" prefWidth="405.0">
+                     <children>
+                        <ImageView fitHeight="74.0" fitWidth="174.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Logo.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
-                  <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#redirectToLogin" text="Sign In">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </top>
-    <center>
-        <StackPane prefHeight="401.0" prefWidth="726.0" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="login-overlay" vbarPolicy="ALWAYS" StackPane.alignment="TOP_CENTER">
-              <content>
-                  <HBox alignment="CENTER" prefHeight="382.0" prefWidth="726.0">
-                      <children>
-                          <VBox alignment="TOP_CENTER" maxHeight="446.0" prefHeight="446.0" prefWidth="447.0" styleClass="login-container">
-                              <children>
-                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Sign Up" wrappingWidth="137.2669219970703">
-                                      <font>
-                                          <Font name="System Bold" size="36.0" />
-                                      </font>
-                                      <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                      </VBox.margin>
-                                  </Text>
-                                  <Label prefHeight="20.0" prefWidth="404.0" text="First Name:" textFill="WHITE">
-                                      <font>
-                                          <Font size="14.0" />
-                                      </font>
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </Label>
-                                  <TextField fx:id="firstNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                  <Text fx:id="firstNameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <StackPane BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="382.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" maxHeight="446.0" prefHeight="446.0" styleClass="login-container">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Sign Up" wrappingWidth="137.2669219970703">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="First Name:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="firstNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                              <Text fx:id="firstNameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                 </font></Text>
-                                  <Label prefHeight="20.0" prefWidth="404.0" text="Last Name:" textFill="WHITE">
-                                      <font>
-                                          <Font size="14.0" />
-                                      </font>
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </Label>
-                                  <TextField fx:id="lastNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </TextField>
+                                 </font>
+                              </Text>
+                              <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Last Name:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="lastNameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
                               <Text fx:id="lastNameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
-                              <Label prefHeight="20.0" prefWidth="404.0" text="Username:" textFill="WHITE">
+                              <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Username:" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -97,59 +101,66 @@
                                  </VBox.margin>
                               </Label>
                               <TextField fx:id="usernameInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                  <Text fx:id="usernameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                              <Text fx:id="usernameError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                  <VBox.margin>
                                     <Insets top="10.0" />
-                                 </VBox.margin></Text>
-                                  <Label prefHeight="20.0" prefWidth="404.0" text="Email:" textFill="WHITE">
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                      <font>
-                                          <Font size="14.0" />
-                                      </font>
-                                  </Label>
-                                  <TextField fx:id="emailInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </TextField>
-                                  <Text fx:id="emailError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
-                                  <Label prefHeight="20.0" prefWidth="405.0" text="Password:" textFill="WHITE">
-                                      <font>
-                                          <Font size="14.0" />
-                                      </font>
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </Label>
-                                  <PasswordField fx:id="passwordInput" maxWidth="400.0" prefHeight="26.0" prefWidth="410.0" styleClass="form-input">
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                  </PasswordField>
-                                  <Text fx:id="passwordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
-                                  <Button mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="313.0" text="Sign Up" textFill="WHITE">
-                                      <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                      </VBox.margin>
+                                 </VBox.margin>
+                              </Text>
+                              <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Email:" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="emailInput" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Text fx:id="emailError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838" />
+                              <Label prefHeight="20.0" prefWidth="405.0" styleClass="form-label" text="Password:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <PasswordField fx:id="passwordInput" maxWidth="400.0" prefHeight="26.0" prefWidth="410.0" styleClass="form-input">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Text fx:id="passwordError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="form-label" wrappingWidth="398.9830722808838" />
+                              <Button mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Sign Up" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                                  </Button>
-                                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="148.9830722808838">
-                                      <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                      </VBox.margin>
-                                  </Text>
-                                  <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In" />
-                              </children>
-                          </VBox>
-                      </children>
+                              </Button>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="148.9830722808838">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
                   </HBox>
-              </content>
-            </ScrollPane>
-         </children>
-        </StackPane>
-    </center>
-</BorderPane>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>

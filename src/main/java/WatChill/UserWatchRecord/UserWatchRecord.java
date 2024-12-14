@@ -3,16 +3,19 @@ package WatChill.UserWatchRecord;
 import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
+import WatChill.Content.Series.Season;
 import WatChill.Content.Series.Series;
+import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
+import WatChill.FileHandling.JsonReader;
+import WatChill.FileHandling.JsonWriter;
 import WatChill.Review.Review;
-import WatChill.Content.WatchableContent;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
@@ -21,20 +24,23 @@ public class UserWatchRecord {
     // Attributes
     private String userId;
     private static final String FILE_PATH = "./src/main/data/UserWatchRecords.json";
-    private WatchableContent watchedContent;
+    private WatchedContent watchedContent;
     private Review review;
     private static ArrayList<UserWatchRecord> records;
+    private LocalDate watchDate;
 
     // Constructor
     @JsonCreator
     public UserWatchRecord(
             @JsonProperty("userId") String userId,
             @JsonProperty("review") Review review,
-            @JsonProperty("watchedContent") WatchableContent watchedContent
+            @JsonProperty("watchedContent") WatchedContent watchedContent,
+            @JsonProperty("watchDate") LocalDate watchDate
     ) {
         this.userId = userId;
         this.review = review;
         this.watchedContent = watchedContent;
+        this.watchDate = watchDate;
     }
 
     // Getters and Setters
@@ -46,11 +52,11 @@ public class UserWatchRecord {
         this.userId = userId;
     }
 
-    public WatchableContent getWatchedContent() {
+    public WatchedContent getWatchedContent() {
         return watchedContent;
     }
 
-    public void setWatchedContent(WatchableContent watchedContent) {
+    public void setWatchedContent(WatchedContent watchedContent) {
         this.watchedContent = watchedContent;
     }
 
@@ -60,6 +66,14 @@ public class UserWatchRecord {
 
     public void setReview(Review review) {
         this.review = review;
+    }
+
+    public LocalDate getWatchDate() {
+        return watchDate;
+    }
+
+    public void setWatchDate(LocalDate watchDate) {
+        this.watchDate = watchDate;
     }
 
     //Methods
@@ -78,30 +92,31 @@ public class UserWatchRecord {
     }
 
     // Method to add content with a review
-    public void addWatchableContentRating(WatchableContent content, String userID, Review review) {
-        records.add(new UserWatchRecord(userID, review, content));
+    public static void addRecord(WatchedContent watchedContent, String userID, Review review) {
+        records.add(new UserWatchRecord(userID, review, watchedContent, LocalDate.now()));
     }
 
     // Method to recommends content to user
     public static ArrayList<Content> recommendWatchableContent(String userId) {
         ArrayList<Content> userWatchedContent = new ArrayList<>();
         for (UserWatchRecord userRecord : getUserWatchRecord(userId)) {
-            if (userRecord.watchedContent instanceof Movie) {
-                userWatchedContent.add((Movie) userRecord.watchedContent);
+            if (userRecord.getWatchedContent() instanceof Movie) {
+                userWatchedContent.add((Movie) userRecord.getWatchedContent());
             } else {
-                userWatchedContent.add(Series.findById(((Episode) userRecord.watchedContent).getSeriesId()));
+                Season season = Season.findById(((Episode) userRecord.getWatchedContent()).getSeasonId());
+                userWatchedContent.add(Series.findById((season.getSeriesId())));
             }
         }
         String preferredGenre = getPreferredGenre(userWatchedContent);
         Crew preferredCrew = getPreferredCrew(userWatchedContent);
-        ArrayList<Content>preferredContent = new ArrayList<>();
-        for(Content content : Movie.retrieveMovies()){
-            if(content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)){
+        ArrayList<Content> preferredContent = new ArrayList<>();
+        for (Content content : Movie.retrieveMovies()) {
+            if (content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)) {
                 preferredContent.add(content);
             }
         }
-        for(Content content : Series.retrieveSeries()){
-            if(content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)){
+        for (Content content : Series.retrieveSeries()) {
+            if (content.getGenres().contains(preferredGenre) || content.getCrews().contains(preferredCrew)) {
                 preferredContent.add(content);
             }
         }
@@ -139,9 +154,17 @@ public class UserWatchRecord {
                 }
             }
         }
-
-
         return preferredGenre;
     }
 
+    public static ArrayList<UserWatchRecord> retrieveRecords() {
+        if (records == null) {
+            return records = JsonReader.readJsonFile("./src/main/data/Records.json", UserWatchRecord.class);
+        }
+        return records;
+    }
+
+    public static void storeRecords() {
+        JsonWriter.writeJsonToFile("./src/main/data/Records.json", retrieveRecords());
+    }
 }

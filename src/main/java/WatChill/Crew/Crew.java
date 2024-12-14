@@ -16,13 +16,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        property = "type" // A "type" field in JSON will determine the subclass
+        use = JsonTypeInfo.Id.CLASS, // class name as type information
+        property = "@class" // "@class" as the property name
 )
-// Specify subclasses of Plan abstract class for Jackson to serialize
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Director.class, name = "Director"),
-        @JsonSubTypes.Type(value = Cast.class, name = "Cast"),
+        @JsonSubTypes.Type(value = Cast.class, name = "WatChill.Crew.Cast.Cast"),
+        @JsonSubTypes.Type(value = Director.class, name = "WatChill.Crew.Director.Director")
 })
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public abstract class Crew {
@@ -167,7 +166,7 @@ public abstract class Crew {
         }
     }
 
-    public static ArrayList<Crew> getCrews() {
+    public static ArrayList<Crew> retrieveCrews() {
         if (crews == null) {
             crews = JsonReader.readJsonFile("./src/main/data/Crews.json", Crew.class);
         }
@@ -175,7 +174,7 @@ public abstract class Crew {
     }
 
     public static ArrayList<Crew> searchByName(String name) {
-        ArrayList<Crew> filteredCrews = new ArrayList<>(getCrews());
+        ArrayList<Crew> filteredCrews = new ArrayList<>(retrieveCrews());
         // Filter actors whose names do not contain the search query
         filteredCrews.removeIf(crew -> !crew.getFirstName().concat(" " + crew.getLastName()).toLowerCase().contains(name.strip().toLowerCase()));
         return filteredCrews;
@@ -184,15 +183,23 @@ public abstract class Crew {
     public void saveCrew() {
         int directorIndex = findCrewIndex();
         if (directorIndex == -1) {
-            getCrews().add(this);
+            retrieveCrews().add(this);
         } else {
-            getCrews().set(directorIndex, this);
+            update();
         }
     }
 
+    public void update() {
+        retrieveCrews().set(findCrewIndex(), this);//Update it's value in database
+    }
+
+    public void delete() {
+        retrieveCrews().remove(this);
+    }
+
     private int findCrewIndex() {
-        for (int i = 0; i < getCrews().size(); i++) {
-            if (getCrews().get(i).getId().equals(getId())) {
+        for (int i = 0; i < retrieveCrews().size(); i++) {
+            if (retrieveCrews().get(i).getId().equals(getId())) {
                 return i;
             }
         }
@@ -200,6 +207,15 @@ public abstract class Crew {
     }
 
     public static void storeCrews() {
-        JsonWriter.writeJsonToFile("./src/main/data/Crews.json", getCrews());
+        JsonWriter.writeJsonToFile("./src/main/data/Crews.json", retrieveCrews());
+    }
+
+    public static Crew findById(String id) {
+        for (Crew crew : retrieveCrews()) {
+            if (crew.getId().equals(id)) {
+                return crew;
+            }
+        }
+        return null;
     }
 }

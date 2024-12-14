@@ -1,6 +1,8 @@
 package WatChill.Content.Series;
 
 import WatChill.Content.Content;
+import WatChill.Content.Movie.Movie;
+import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
@@ -32,11 +34,10 @@ public class Series extends Content {
             @JsonProperty("genres") ArrayList<String> genres,
             @JsonProperty("director") ArrayList<Crew> crews,
             @JsonProperty("poster") String poster,
-            @JsonProperty("budget")double budget,
-            @JsonProperty("revenue")double revenue,
-            @JsonProperty("rating")double rating
+            @JsonProperty("budget") double budget,
+            @JsonProperty("revenue") double revenue
     ) {
-        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue, rating);
+        super(id, title, releaseDate, description, languages, country, genres, crews, poster, budget, revenue);
         this.seasons = seasons;
     }
 
@@ -50,6 +51,15 @@ public class Series extends Content {
 
     public void addSeason(Season season) {
         seasons.add(season);
+    }
+    public void updateSeason(String seasonId){
+        for (int i = 0; i < getSeasons().size(); i++) {
+            Season season = getSeasons().get(i);
+            if (season.getId().equals(seasonId)) {
+                getSeasons().set(i, Season.findById(seasonId));  // Replace the old season with the updated one
+                break;  // Stop once the season is found and updated
+            }
+        }
     }
 
     @Override
@@ -97,7 +107,6 @@ public class Series extends Content {
     @Override
     public void update() {
         seriesFile.set(findIndex(), this);//Update it's value in database
-
     }
 
     @Override
@@ -122,7 +131,7 @@ public class Series extends Content {
     }
 
 
-    public static ArrayList<Series> getTopTen() {
+    public static ArrayList<Series> getTopWatchedSeries() {
         ArrayList<Series> sortedSeriesByViews = retrieveSeries();
         //Using a comparator to sort ArrayList by views in descending order
         sortedSeriesByViews.sort(Comparator.comparing(Series::getSeriesAverageViews));
@@ -149,5 +158,31 @@ public class Series extends Content {
         }
         //No series with given id is found
         return null;
+    }
+
+    public double getRating() {
+        double totalSeasonRating = 0.0;
+
+        for (Season season : getSeasons()) {
+            totalSeasonRating += season.getRating();
+        }
+
+        return !getSeasons().isEmpty() ? totalSeasonRating / getSeasons().size() : 0.0;
+    }
+
+    public static ArrayList<Series> getTopRatedSeries() {
+        ArrayList<Series> topRatedMovies = new ArrayList<>(retrieveSeries());
+        topRatedMovies.sort(Comparator.comparing(Series::getRating));
+        return topRatedMovies;
+    }
+
+    public static ArrayList<Series> findByLanguage(String language) {
+        ArrayList<Series> filteredSeries = new ArrayList<>();
+        for (Series series : retrieveSeries()) {
+            if (series.getLanguages().contains(language)) {
+                filteredSeries.add(series);
+            }
+        }
+        return filteredSeries;
     }
 }
