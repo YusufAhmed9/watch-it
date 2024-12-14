@@ -1,6 +1,6 @@
 .episodes-container {
     -fx-padding: 0 40;
-    -fx-spacing: 20;
+    -fx-spacing: 10;
     -fx-background-color: #1F1F1F;
 }
 
@@ -8,14 +8,13 @@
     -fx-alignment: center left;
     -fx-cursor: hand;
     -fx-background-color: #0F0F0F;
-    -fx-border-color: #FFF;
-    -fx-border-width: 0 0 1;
+    -fx-pref-height: 172;
 }
 
 .episode-poster {
-    -fx-padding: 10 0 10 40;
+    /*-fx-padding: 10 0 10 40;*/
     -fx-fit-width: 200;
-    -fx-fit-height: 112;
+    -fx-fit-height: 120;
 }
 
 .episode-title {
@@ -90,10 +89,20 @@
     -fx-text-fill: #fff;
     -fx-alignment: center;
 }
-.director-name{
+
+.director-name {
     -fx-font-family: "Manrope";
     -fx-font-size: 26px;
     -fx-text-fill: #fff;
     -fx-alignment: center;
     -fx-cursor: hand;
+}
+
+.rating-text {
+    -fx-font-family: Manrope;
+    -fx-font-weight: Bold;
+    -fx-font-size: 15px;
+    -fx-alignment: center;
+    -fx-text-fill: #fff;
+    -fx-padding: 0 0 0 5;
 }

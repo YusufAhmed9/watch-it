@@ -26,6 +26,8 @@ public class EpisodeController {
     @FXML
     private HBox genresBox;
     @FXML
+    private HBox languagesBox;
+    @FXML
     private Label releaseDate;
     @FXML
     private Label country;
@@ -33,6 +35,7 @@ public class EpisodeController {
     private Label budgetLabel;
     @FXML
     private Label ratingLabel;
+
     public void initializePage(String episodeId) {
         episode = Episode.findById(episodeId);
         season = Season.findById(episode.getSeasonId());
@@ -41,12 +44,13 @@ public class EpisodeController {
         initializeSeasonMenu();
         initializeEpisodePane();
         addGenres();
+        addLanguages();
         releaseDate.setText(((Integer) series.getReleaseDate().getYear()).toString());
         country.setText(series.getCountry());
         Image seriesImage = new Image(getClass().getResource(series.getPoster()).toExternalForm());
         seriesPoster.setImage(seriesImage);
-        budgetLabel.setText(((Double)series.getBudget()).toString());
-        ratingLabel.setText(((Double)series.getRating()).toString());
+        budgetLabel.setText(((Double) series.getBudget()).toString());
+        ratingLabel.setText(((Double) series.getRating()).toString());
     }
 
     public void initializeSeasonMenu() {
@@ -90,6 +94,22 @@ public class EpisodeController {
         }
         genresBox.getChildren().removeLast();
         genresBox.getStyleClass().add("genres-box");
+    }
+
+    public void addLanguages() {
+        languagesBox.getChildren().clear();
+        for (String language : series.getLanguages()) {
+            Label languageLabel = new Label(language);
+            languageLabel.getStyleClass().add("language");
+            languagesBox.getChildren().add(languageLabel);
+            Label bullet = new Label("•");
+            bullet.getStyleClass().add("language");
+            languagesBox.getChildren().add(bullet);
+        }
+        if (!languagesBox.getChildren().isEmpty()) {
+            languagesBox.getChildren().removeLast();
+        }
+        languagesBox.getStyleClass().add("genres-box");
     }
 
     public void build(String episodeId) {
