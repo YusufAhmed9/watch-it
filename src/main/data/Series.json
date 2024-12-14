@@ -10,7 +10,7 @@
     "releaseDate" : [ 2024, 12, 3 ],
     "episodes" : [ {
       "id" : "1",
-      "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
       "duration" : 25,
       "releaseDate" : [ 2024, 12, 3 ],
       "viewsCount" : 0,
@@ -19,7 +19,7 @@
       "seasonId" : "1"
     }, {
       "id" : "2",
-      "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 2",
+      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 2",
       "duration" : 25,
       "releaseDate" : [ 2024, 12, 3 ],
       "viewsCount" : 0,
@@ -35,7 +35,7 @@
     "releaseDate" : [ 2024, 12, 3 ],
     "episodes" : [ {
       "id" : "1",
-      "title" : "S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
       "duration" : 25,
       "releaseDate" : [ 2024, 12, 3 ],
       "viewsCount" : 0,
@@ -46,7 +46,7 @@
     "seriesId" : "2"
   } ],
   "description" : "Greatest series ever",
-  "languages" : [ ],
+  "languages" : [ "English", "Japanese" ],
   "country" : "Japan",
   "genres" : [ "Anime", "Horror", "Adventure" ],
   "poster" : "/WatChill/Content/Series/media/Attack On Titan/AOTPoster.jpg",
