@@ -259,7 +259,6 @@ abstract public class User {
     }
 
     public static void storeUsers() {
-        System.out.println(getUsers());
         JsonWriter.writeJsonToFile("./src/main/data/Users.json", getUsers());
     }
 
@@ -306,7 +305,7 @@ abstract public class User {
         return user == null;
     }
 
-    private static String hashPassword(String password, byte[] salt) {
+    public static String hashPassword(String password, byte[] salt) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(salt);
@@ -319,7 +318,7 @@ abstract public class User {
         return null;
     }
 
-    private static byte[] generateSalt() {
+    public static byte[] generateSalt() {
         try {
             SecureRandom sr = SecureRandom.getInstanceStrong();
             byte[] salt = new byte[16];

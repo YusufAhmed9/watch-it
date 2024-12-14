@@ -26,9 +26,9 @@
                <children>
                   <StackPane id="body" maxHeight="-Infinity" minHeight="-Infinity" style="-fx-background-color: #141414;">
                      <children>
-                        <HBox fx:id="bgParent">
+                        <HBox fx:id="bgParent" alignment="TOP_CENTER">
                            <children>
-                              <ImageView fitHeight="600.0" fitWidth="1358.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: true;">
+                              <ImageView fitHeight="600.0" fitWidth="1358.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: true;" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../../bg-image.png" />
                                  </image>
@@ -58,6 +58,9 @@
                                              <padding>
                                                 <Insets bottom="4.0" top="4.0" />
                                              </padding>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </MenuButton>
                                           <TextField fx:id="searchInput" onKeyTyped="#handleSearch" prefHeight="33.0" prefWidth="435.0" promptText="Search WatChill..." style="-fx-background-radius: 5 0 0 5; -fx-background-color: #111; -fx-text-fill: #fff;">
                                              <padding>
@@ -80,15 +83,21 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="NEVER">
                                        <children>
-                                          <Button fx:id="signUpButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToSignUp" text="Sign Up">
+                                          <Button fx:id="signUpButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToSignUp" styleClass="main-button" text="Sign Up">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Button>
-                                          <Button fx:id="signInButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToLogin" text="Sign In">
+                                          <Button fx:id="signInButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Button>
                                           <ImageView fx:id="profileIcon" fitHeight="42.0" fitWidth="42.0" onMouseClicked="#redirectToProfile" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -125,7 +134,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0">
                                        <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="25.0" text="Sign In">
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="25.0" styleClass="main-button" text="Sign In">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
                                              </HBox.margin>
@@ -133,27 +142,34 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </Button>
-                                          <Button mnemonicParsing="false" onAction="#redirectToSignUp" prefHeight="25.0" text="Sign Up">
+                                          <Button mnemonicParsing="false" onAction="#redirectToSignUp" prefHeight="25.0" styleClass="main-button" text="Sign Up">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></Button>
                                        </children>
                                     </HBox>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Trending Movies" wrappingWidth="1294.6259765625">
-                                       <font>
-                                          <Font name="Manrope Bold" size="26.0" />
-                                       </font>
+                                    <HBox>
                                        <VBox.margin>
                                           <Insets bottom="15.0" />
                                        </VBox.margin>
-                                    </Text>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Trending Movies">
+                                             <font>
+                                                <Font name="Manrope Bold" size="26.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </HBox>
                                     <HBox fx:id="trendingMoviesHBox">
                                        <children>
                                           <AnchorPane fx:id="trendingMoviesAnchor" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <ScrollPane fx:id="trendingMoviesScrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <content>
-                                                      <HBox fx:id="trendingMoviesContainer" prefWidth="200.0" style="-fx-fill-height: true;" />
+                                                      <HBox fx:id="trendingMoviesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;" />
                                                    </content>
                                                 </ScrollPane>
                                                 <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -172,7 +188,7 @@
                                                       </StackPane>
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane layoutX="142.0" prefHeight="200.0" prefWidth="58.0" AnchorPane.rightAnchor="0.0">
+                                                <AnchorPane layoutX="142.0" prefHeight="200.0" prefWidth="58.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <StackPane onMouseClicked="#scrollRight" prefHeight="105.0" prefWidth="22.0" style="-fx-background-color: rgba(128, 128, 128, 0.5); -fx-background-radius: 5;" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
                                                          <children>
@@ -192,21 +208,28 @@
                                           </AnchorPane>
                                        </children>
                                     </HBox>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Trending Series" wrappingWidth="1294.6259765625">
-                                       <font>
-                                          <Font name="Manrope Bold" size="26.0" />
-                                       </font>
+                                    <HBox>
                                        <VBox.margin>
                                           <Insets bottom="15.0" top="20.0" />
                                        </VBox.margin>
-                                    </Text>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Trending Series">
+                                             <font>
+                                                <Font name="Manrope Bold" size="26.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </HBox>
                                     <HBox fx:id="trendingSeriesHBox">
                                        <children>
                                           <AnchorPane fx:id="trendingSeriesAnchor" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <ScrollPane fx:id="trendingSeriesScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background-radius: 20;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <content>
-                                                      <HBox fx:id="trendingSeriesContainer" prefWidth="200.0" style="-fx-fill-height: true;" />
+                                                      <HBox fx:id="trendingSeriesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;" />
                                                    </content>
                                                 </ScrollPane>
                                                 <AnchorPane maxHeight="-Infinity" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -225,9 +248,9 @@
                                                       </StackPane>
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane layoutX="142.0" maxHeight="-Infinity" prefHeight="200.0" prefWidth="58.0" AnchorPane.rightAnchor="0.0">
+                                                <AnchorPane layoutX="142.0" maxHeight="-Infinity" prefHeight="200.0" prefWidth="58.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <StackPane maxHeight="-Infinity" onMouseClicked="#scrollRight" prefHeight="105.0" prefWidth="22.0" style="-fx-background-color: rgba(128, 128, 128, 0.5); -fx-background-radius: 5;" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
+                                                      <StackPane maxHeight="10.0" onMouseClicked="#scrollRight" prefWidth="22.0" style="-fx-background-color: rgba(128, 128, 128, 0.5); -fx-background-radius: 5;" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
                                                          <children>
                                                             <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -245,18 +268,28 @@
                                           </AnchorPane>
                                        </children>
                                     </HBox>
-                                    <Text fx:id="recommendationTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="For You" wrappingWidth="1284.6259765625">
-                                       <font>
-                                          <Font name="Manrope Bold" size="26.0" />
-                                       </font>
-                                    </Text>
+                                    <HBox>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Text fx:id="recommendationTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="For You">
+                                             <font>
+                                                <Font name="Manrope Bold" size="26.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </HBox>
                                     <HBox fx:id="recommendationHBox">
                                        <children>
                                           <AnchorPane fx:id="recommendationAnchor" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <ScrollPane fx:id="trendingSeriesScrollPane1" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <content>
-                                                      <HBox fx:id="trendingSeriesContainer1" prefWidth="200.0" style="-fx-fill-height: true;" />
+                                                      <HBox fx:id="trendingSeriesContainer1" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;" />
                                                    </content>
                                                 </ScrollPane>
                                                 <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -275,7 +308,7 @@
                                                       </StackPane>
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane layoutX="142.0" prefHeight="200.0" prefWidth="49.0" AnchorPane.rightAnchor="0.0">
+                                                <AnchorPane layoutX="142.0" prefHeight="200.0" prefWidth="49.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <StackPane onMouseClicked="#scrollRight" prefHeight="105.0" prefWidth="22.0" style="-fx-background-color: rgba(128, 128, 128, 0.5); -fx-background-radius: 5;" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
                                                          <children>
@@ -297,14 +330,21 @@
                                     </HBox>
                                     <VBox fx:id="plansContainer" alignment="TOP_CENTER">
                                        <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Choose the plan that's right for you" wrappingWidth="1284.6259765625">
-                                             <font>
-                                                <Font name="Manrope Bold" size="26.0" />
-                                             </font>
+                                          <HBox>
                                              <VBox.margin>
                                                 <Insets bottom="15.0" top="20.0" />
                                              </VBox.margin>
-                                          </Text>
+                                             <children>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Choose the plan that's right for you">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="26.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </HBox>
                                           <FlowPane alignment="CENTER" hgap="20.0" vgap="20.0">
                                              <children>
                                                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="339.0" style="-fx-background-color: #1A1A1A; -fx-border-radius: 20; -fx-border-color: #262626; -fx-background-radius: 20;">
@@ -359,7 +399,7 @@
                                                             <Insets bottom="5.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <Button mnemonicParsing="false" onAction="#chooseBasicPlan" styleClass="main-btn" text="Choose Plan">
+                                                      <Button mnemonicParsing="false" onAction="#chooseBasicPlan" styleClass="main-button" text="Choose Plan">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
@@ -418,7 +458,7 @@
                                                             <Insets bottom="5.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <Button mnemonicParsing="false" onAction="#chooseStandardPlan" styleClass="main-btn" text="Choose Plan">
+                                                      <Button mnemonicParsing="false" onAction="#chooseStandardPlan" styleClass="main-button" text="Choose Plan">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
@@ -477,7 +517,7 @@
                                                             <Insets bottom="5.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <Button mnemonicParsing="false" onAction="#choosePremiumPlan" styleClass="main-btn" text="Choose Plan">
+                                                      <Button mnemonicParsing="false" onAction="#choosePremiumPlan" styleClass="main-button" text="Choose Plan">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
