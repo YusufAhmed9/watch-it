@@ -108,13 +108,7 @@ public class ProfileController {
             try {
                 VBox card = loader.load();
                 ContentCardController contentCardController = loader.getController();
-                contentCardController.setData(
-                    content.getPoster(),
-                    content.getTitle(),
-                    content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
-                    content,
-                    () -> displayWatchLater()
-                );
+                contentCardController.setData(content, () -> displayWatchLater());
                 watchlaterFlowPane.getChildren().add(card);
             } catch (Exception e) {
                 e.printStackTrace();
