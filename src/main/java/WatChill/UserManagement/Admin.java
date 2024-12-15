@@ -1,5 +1,6 @@
 package WatChill.UserManagement;
 
+import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
 import WatChill.Content.Series.Season;
@@ -7,6 +8,7 @@ import WatChill.Content.Series.Series;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
 import WatChill.Crew.Director.Director;
+import WatChill.Subscription.Subscription;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,50 +32,286 @@ public class Admin extends User {
         super(id, username, email, password, firstName, lastName);
     }
 
+    public void adminInterface() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome Back, " + getUsername());
+        System.out.println("[ 1 ]: Movies");
+        System.out.println("[ 2 ]: Series");
+        System.out.println("[ 3 ]: Crews");
+        System.out.println("[ 4 ]: Subscriptions");
+        System.out.println("[ 5 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    movieInterface();
+                }
+                else if (choice == 2) {
+                    seriesInterface();
+                }
+                else if (choice == 3) {
+                    crewsInterface();
+                }
+                else if (choice == 4) {
+                    subscriptionsInterface();
+                }
+                else if (choice == 5) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+                scanner.nextLine();
+            }
+        }
+    }
 
-    //Displays Recent Movie Releases
-//    public void DisplayRecentMovieReleases()
-//    {
-//        ArrayList<Movie> shows = Movie.getMostRecent();
-//
-//        for (Movie movie : shows)
-//        {
-//            System.out.println("Movie called: " + movie.getTitle() + " (" + movie.getReleaseDate() + ") - " + movie.getGenres());
-//        }
-//    }
+    private void seriesInterface() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        printContent(new ArrayList<>(Series.retrieveSeries()));
+        System.out.println("[ 1 ]: Add Series");
+        System.out.println("[ 2 ]: Update Series");
+        System.out.println("[ 3 ]: Delete Series");
+        System.out.println("[ 4 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    addSeries();
+                }
+                else if (choice == 2) {
+                    updateSeries();
+                }
+                else if (choice == 3) {
+                    deleteSeries();
+                }
+                else if (choice == 4) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
 
-    //Displays Recent Series Releases
-//    public void DisplayRecentSeriesReleases()
-//    {
-//        ArrayList<Series> shows = Series.getMostRecent();
-//        for (Series series : shows)
-//        {
-//            System.out.println("Series called: " + series.getTitle() + " (" + series.getReleaseDate() + ") - " + series.getGenres());
-//        }
-//    }
-//
-//    //Display Movies By Genres
-//    public void GetMoviesByGenres(String Genre)
-//    {
-//        Movie.findByGenre(Genre);
-//    }
-//
-//    public void GetSeriesByGenres(String Genre)
-//    {
-//        Series.findByGenre(Genre);
-//    }
+    private void movieInterface() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        printContent(new ArrayList<>(Movie.retrieveMovies()));
+        System.out.println("[ 1 ]: Add Movie");
+        System.out.println("[ 2 ]: Update Movie");
+        System.out.println("[ 3 ]: Delete Movie");
+        System.out.println("[ 4 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    addMovie();
+                }
+                else if (choice == 2) {
+                    updateMovie();
+                }
+                else if (choice == 3) {
+                    deleteMovie();
+                }
+                else if (choice == 4) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
+
+    private void crewsInterface() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        printCrews(new ArrayList<>(Crew.retrieveCrews()));
+        System.out.println("[ 1 ]: Add Cast");
+        System.out.println("[ 2 ]: Add Director");
+        System.out.println("[ 3 ]: Update Crew");
+        System.out.println("[ 4 ]: Delete Crew");
+        System.out.println("[ 5 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    addCast();
+                }
+                else if (choice == 2) {
+                    addDirector();
+                }
+                else if (choice == 3) {
+                    updateCrew();
+                }
+                else if (choice == 4) {
+                    deleteCrew();
+                }
+                else if (choice == 5) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
+
+    private void updateCrew() {
+        // TODO
+    }
+
+    private void deleteCrew() {
+        Crew crew = getValidCrew();
+        crew.delete();
+    }
+
+    private void updateSeries() {
+        Series series = getValidSeries();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        System.out.println("What do you want to update ?");
+        System.out.println("[ 1 ]: Title");
+        System.out.println("[ 2 ]: Release Date");
+        System.out.println("[ 3 ]: Description");
+        System.out.println("[ 4 ]: Country");
+        System.out.println("[ 5 ]: Poster");
+        System.out.println("[ 6 ]: Budget");
+        System.out.println("[ 7 ]: Revenue");
+        System.out.println("[ 8 ]: Crew");
+        System.out.println("[ 9 ]: Languages");
+        System.out.println("[ 10 ]: Genres");
+        System.out.println("[ 11 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    String title = getValidInput(scanner, "Enter Title: ", "^.+$");
+                    series.setTitle(title);
+                }
+                else if (choice == 2) {
+                    LocalDate releaseDate = getValidDate(scanner, "Enter Release Date: ");
+                    series.setReleaseDate(releaseDate);
+                }
+                else if (choice == 3) {
+
+                }
+                else if (choice == 11) {
+                    series.save();
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
+
+    private void updateMovie() {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        Movie movie = getValidMovie();
+        System.out.println("What do you want to update ?");
+        System.out.println("[ 1 ]: Title");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    addMovie();
+                }
+                else if (choice == 2) {
+
+                }
+                else if (choice == 3) {
+
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+                scanner.nextLine();
+            }
+        }
+    }
+
+    private void deleteSeries() {
+        Series series = getValidSeries();
+        series.delete();
+    }
+
+    private void deleteMovie() {
+        Movie movie = getValidMovie();
+        movie.delete();
+    }
+
+    private void subscriptionsInterface() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("[ 1 ]: Plans Subscriptions");
+        System.out.println("[ 2 ]: Highest Revenue Month");
+        System.out.println("[ 3 ]: Exit");
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    displayPlansSubscriptions();
+                }
+                else if (choice == 2) {
+                    displayHighestRevenueMonth();
+                }
+                else if (choice == 3) {
+                    break;
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+                scanner.nextLine();
+            }
+        }
+    }
 
     // use getHighestMonthRevenue from Subscription
-    public void UseGetHighestMonthRevenue() {
-        String month = WatChill.Subscription.Subscription.getHighestMonthRevenue();
+    private void displayHighestRevenueMonth() {
+        String month = Subscription.getHighestMonthRevenue();
         System.out.println("Highest revenue month: " + month);
     }
 
     // use getPlansSubscriptions from Subscription
-    public static void UseGetPlansSubscriptions() {
-        Map<String, Integer> plans = WatChill.Subscription.Subscription.getPlansSubscriptions();
+    private void displayPlansSubscriptions() {
+        Map<String, Integer> plansSubscriptions = Subscription.getPlansSubscriptions();
 
-        for (Map.Entry<String, Integer> entry : plans.entrySet()) {
+        for (Map.Entry<String, Integer> entry : plansSubscriptions.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
@@ -143,7 +381,6 @@ public class Admin extends User {
         String poster;
         String description = null;
         String country;
-        int duration = 0;
         double budget;
         double revenue;
 
@@ -443,13 +680,61 @@ public class Admin extends User {
     }
 
     private void printCrews(ArrayList<Crew> crews) {
-        System.out.printf("%20s", "Name");
+        System.out.printf("%50s", "ID |");
+        System.out.printf("%50s", "Name |");
         System.out.printf("%20s", "Date Of Birth |");
-        System.out.printf("%20s", "Type|\n");
+        System.out.printf("%20s", "Type |\n");
         for (Crew crew : crews) {
-            System.out.printf("%20s", crew.getFirstName() + " " + crew.getLastName() + " |");
+            System.out.printf("%50s", crew.getId() + " |");
+            System.out.printf("%50s", crew.getFirstName() + " " + crew.getLastName() + " |");
             System.out.printf("%20s", crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM d, yyyy")) + " |");
-            System.out.printf("%20s", crew instanceof Director ? "Director" : "Actor" + " |\n");
+            System.out.printf("%20s", crew instanceof Director ? "Director" + " |\n" : "Actor" + " |\n");
         }
+    }
+
+    private void printContent(ArrayList<Content> contents) {
+        System.out.printf("%50s", "ID |");
+        System.out.printf("%30s", "Title |");
+        System.out.printf("%20s", "Release Year |");
+        System.out.printf("%50s", "Description |\n");
+        for (Content content : contents) {
+            System.out.printf("%50s", content.getId() + " |");
+            System.out.printf("%30s", content.getTitle() + " |");
+            System.out.printf("%20s", content.getReleaseDate() + " |");
+            System.out.printf("%50s", content.getDescription() + " |\n");
+        }
+    }
+
+    private Series getValidSeries() {
+        Scanner scanner = new Scanner(System.in);
+        Series series = null;
+        while (series == null) {
+            System.out.print("Enter Series ID: ");
+            String seriesId = scanner.nextLine();
+            series = Series.findById(seriesId);
+        }
+        return series;
+    }
+
+    private Movie getValidMovie() {
+        Scanner scanner = new Scanner(System.in);
+        Movie movie = null;
+        while (movie == null) {
+            System.out.print("Enter Movie ID: ");
+            String movieId = scanner.nextLine();
+            movie = Movie.findById(movieId);
+        }
+        return movie;
+    }
+
+    private Crew getValidCrew() {
+        Scanner scanner = new Scanner(System.in);
+        Crew crew = null;
+        while (crew == null) {
+            System.out.print("Enter Crew ID: ");
+            String crewId = scanner.nextLine();
+            crew = Crew.findById(crewId);
+        }
+        return crew;
     }
 }

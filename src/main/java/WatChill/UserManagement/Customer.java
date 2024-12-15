@@ -409,7 +409,7 @@ public class Customer extends User {
     private void printContent(ArrayList<Content> contents) {
         System.out.printf("%20s", "Title |");
         System.out.printf("%20s", "Release Year |");
-        System.out.printf("%20s", "Description|\n");
+        System.out.printf("%20s", "Description |\n");
         for (Content content : contents) {
             System.out.printf("%20s", content.getTitle() + " |");
             System.out.printf("%20s", content.getReleaseDate() + " |");
@@ -418,9 +418,9 @@ public class Customer extends User {
     }
 
     private void printWatchRecords(ArrayList<UserWatchRecord> userWatchRecords) {
-        System.out.printf("%20s", "Watch Date");
+        System.out.printf("%20s", "Watch Date |");
         System.out.printf("%20s", "Title |");
-        System.out.printf("%20s", "Description|\n");
+        System.out.printf("%20s", "Description |\n");
         for (UserWatchRecord userWatchRecord : userWatchRecords) {
             WatchedContent watchedContent = userWatchRecord.getWatchedContent();
             if (watchedContent instanceof Episode) {
@@ -478,9 +478,9 @@ public class Customer extends User {
     }
 
     private void printCrews(ArrayList<Crew> crews) {
-        System.out.printf("%20s", "Name");
+        System.out.printf("%20s", "Name |");
         System.out.printf("%20s", "Date Of Birth |");
-        System.out.printf("%20s", "Type|\n");
+        System.out.printf("%20s", "Type |\n");
         for (Crew crew : crews) {
             System.out.printf("%20s", crew.getFirstName() + " " + crew.getLastName() + " |");
             System.out.printf("%20s", crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM d, yyyy")) + " |");
