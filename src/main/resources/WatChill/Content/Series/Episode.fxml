@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -26,7 +27,7 @@
     <content>
       <VBox alignment="CENTER">
          <children>
-              <BorderPane>
+              <BorderPane style="-fx-background-color: #1A1A1A;">
                   <center>
                       <VBox style="-fx-background-color: #141414;" BorderPane.alignment="CENTER">
                           <children>
@@ -192,175 +193,297 @@
                       </HBox>
                   </top>
                <bottom>
-                  <HBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
+                  <VBox alignment="CENTER" style="-fx-background-color: #1A1A1A;">
+                     <BorderPane.margin>
+                        <Insets top="20.0" />
+                     </BorderPane.margin>
                      <children>
-                        <ImageView fx:id="seriesPoster" fitHeight="179.0" fitWidth="133.0" preserveRatio="true">
-                           <image>
-                              <Image url="@media/Attack%20On%20Titan/AOTPoster.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" spread="1.0" width="10.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                        <VBox>
+                        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="568.0" style="-fx-background-color: #0F0F0F; -fx-background-radius: 30;" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                            <children>
-                              <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" text="Series Title" textFill="WHITE">
+                              <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="363.0" style="-fx-text-fill: #fff;" text="Leave a rating">
                                  <font>
-                                    <Font name="Manrope Bold" size="34.0" />
+                                    <Font name="Manrope Bold" size="24.0" />
                                  </font>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                                 <padding>
+                                    <Insets bottom="100.0" right="200.0" />
+                                 </padding>
                               </Label>
-                              <HBox>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="45.0" StackPane.alignment="TOP_RIGHT">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="55.0" StackPane.alignment="BOTTOM_LEFT">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="90.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7" StackPane.alignment="BOTTOM_RIGHT">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="268.0" style="-fx-background-color: #000; -fx-background-radius: 30;">
                                  <children>
-                                    <Text fx:id="seasonDescription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Type: TV Show" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="18.0" />
-                                       </font>
-                                    </Text>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@../star.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@../star.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@../star.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@../star.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@../star.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Genres: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox fx:id="genresBox" alignment="CENTER_LEFT" spacing="5.0">
-                                       <children>
-                                          <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fx:id="seasonDescription111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Horror" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fx:id="seasonDescription12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fx:id="seasonDescription13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Action" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Release date: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="releaseDate" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Country: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="country" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="188.0" prefWidth="227.0">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" fillHeight="false">
-                                 <children>
-                                    <Label alignment="TOP_LEFT" style="-fx-text-fill: #fff;" text="Languages: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox fx:id="languagesBox" alignment="CENTER_LEFT" spacing="5.0">
-                                       <children>
-                                          <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="English" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Japanese" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Budget: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="budgetLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Rating: ">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="ratingLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                       <font>
-                                          <Font name="Manrope SemiBold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="470.0" top="40.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-153.4">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="350.0" top="70.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <ImageView fitHeight="70.0" fitWidth="70.0">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets bottom="70.0" right="450.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="35.5">
+                                 <image>
+                                    <Image url="@../star.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets bottom="90.0" left="300.0" />
+                                 </StackPane.margin>
+                              </ImageView>
                            </children>
                            <padding>
-                              <Insets top="5.0" />
+                              <Insets top="10.0" />
                            </padding>
-                        </VBox>
+                        </StackPane>
+                        <HBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
+                           <children>
+                              <ImageView fx:id="seriesPoster" fitHeight="179.0" fitWidth="133.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@media/Attack%20On%20Titan/AOTPoster.jpg" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" spread="1.0" width="10.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </ImageView>
+                              <VBox>
+                                 <children>
+                                    <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" text="Series Title" textFill="WHITE">
+                                       <font>
+                                          <Font name="Manrope Bold" size="34.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <Text fx:id="seasonDescription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Type: TV Show" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Genres: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="genresBox" alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="seasonDescription111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Horror" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="seasonDescription12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="seasonDescription13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Action" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Release date: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="releaseDate" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Country: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="country" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="188.0" prefWidth="227.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" fillHeight="false">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" style="-fx-text-fill: #fff;" text="Languages: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="languagesBox" alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="English" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Japanese" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Budget: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="budgetLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Rating: ">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="ratingLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                             <font>
+                                                <Font name="Manrope SemiBold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                           </padding>
+                        </HBox>
                      </children>
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                     <padding>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                     </padding>
-                  </HBox>
+                  </VBox>
                </bottom>
               </BorderPane>
          </children>

@@ -1,5 +1,6 @@
 package WatChill;
 
+import WatChill.Content.Series.EpisodeController;
 import WatChill.Content.Series.SeriesController;
 import WatChill.FileHandling.ReadAllFiles;
 import WatChill.FileHandling.WriteAllFiles;
@@ -30,9 +31,11 @@ public class Main extends Application {
         }
     }
     private Scene redirectToHome() throws IOException {
-        String css = getClass().getResource("/WatChill/Style/Main.css").toExternalForm();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
+        String css = getClass().getResource("/WatChill/Style/Episode.css").toExternalForm();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Episode.fxml"));
         Parent root = loader.load();
+        EpisodeController episodeController = loader.getController();
+        episodeController.build("1");
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);
         return scene;

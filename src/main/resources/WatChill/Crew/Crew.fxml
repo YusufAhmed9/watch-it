@@ -11,14 +11,15 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Crew.CrewController">
    <content>
@@ -46,7 +47,7 @@
                                           <Font name="Manrope Bold" size="26.0" />
                                        </font>
                                        <cursor>
-                                          <Cursor fx:constant="HAND" />
+                                          <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                        <padding>
                                           <Insets bottom="5.0" top="5.0" />
@@ -66,7 +67,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" top="5.0" />
@@ -77,7 +78,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" />
@@ -88,7 +89,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" />
@@ -99,7 +100,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" />
@@ -115,7 +116,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" top="5.0" />
@@ -126,7 +127,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" />
@@ -137,7 +138,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" />
@@ -148,7 +149,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" />
@@ -165,7 +166,7 @@
                                           <Font name="Manrope Bold" size="26.0" />
                                        </font>
                                        <cursor>
-                                          <Cursor fx:constant="HAND" />
+                                          <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                        <padding>
                                           <Insets bottom="5.0" top="5.0" />
@@ -185,7 +186,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" top="5.0" />
@@ -196,7 +197,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" left="40.0" />
@@ -212,7 +213,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" top="5.0" />
@@ -223,7 +224,7 @@
                                                 <Font name="Manrope Bold" size="20.0" />
                                              </font>
                                              <cursor>
-                                                <Cursor fx:constant="HAND" />
+                                                <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                              <padding>
                                                 <Insets bottom="5.0" right="40.0" />
@@ -306,120 +307,166 @@
                   </HBox>
                </top>
                <bottom>
-                  <VBox>
+                  <VBox style="-fx-background-color: transparent;">
                      <children>
-                        <VBox alignment="CENTER" style="-fx-background-color: #0F0F0F;">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="776.0" style="-fx-background-color: #0F0F0F;">
                            <children>
-                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Content Made" textFill="WHITE">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="Content Made" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Manrope Bold" size="26.0" />
                                  </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <HBox prefHeight="45.0" prefWidth="436.0" HBox.hgrow="ALWAYS" />
+                              <HBox alignment="CENTER" prefHeight="100.0">
+                                 <children>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                       <image>
+                                          <Image url="@../Home/arrow.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Home/arrow.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
                                  <padding>
-                                    <Insets bottom="5.0" top="5.0" />
+                                    <Insets right="20.0" />
                                  </padding>
-                              </Label>
+                              </HBox>
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
-                        </VBox>
-                        <FlowPane fx:id="episodesPane" hgap="15.0" style="-fx-background-color: #141414;" vgap="15.0">
+                        </HBox>
+                        <HBox fx:id="trendingMoviesHBox" style="-fx-background-color: transparent;">
                            <children>
-                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="167.0" style="-fx-background-color: #141414; -fx-background-radius: 15;">
+                              <AnchorPane fx:id="trendingMoviesAnchor" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="167.0">
-                                       <children>
-                                          <ImageView fx:id="posterImage" fitHeight="253.0" fitWidth="168.0">
-                                             <clip>
-                                                <Rectangle arcHeight="30" arcWidth="30" height="250" width="165" />
-                                             </clip>
-                                             <image>
-                                                <Image url="@../Content/Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <Label fx:id="titleText" alignment="CENTER" prefHeight="22.0" prefWidth="173.0" text="Breaking Bad" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="Manrope Bold" size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="166.0" text="4 Seasons" textFill="#868686">
-                                             <font>
-                                                <Font name="Manrope Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
+                                    <ScrollPane fx:id="trendingMoviesScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <HBox fx:id="trendingMoviesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10; -fx-background-color: #141414;">
                                              <children>
-                                                <StackPane>
+                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
                                                    <children>
-                                                      <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                                                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../play.png" />
-                                                         </image>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </ImageView>
+                                                      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="201.0">
+                                                         <children>
+                                                            <ImageView fx:id="posterImage" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                               <clip>
+                                                                  <Rectangle arcHeight="30" arcWidth="30" height="328" width="254" />
+                                                               </clip>
+                                                               <image>
+                                                                  <Image url="@../Content/Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="216.0">
+                                                               <children>
+                                                                  <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" wrappingWidth="186.126953125">
+                                                                     <font>
+                                                                        <Font name="Manrope Bold" size="16.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets top="10.0" />
+                                                                     </HBox.margin>
+                                                                  </Text>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="207.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
+                                                               <font>
+                                                                  <Font name="Manrope Bold" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
+                                                               <children>
+                                                                  <StackPane fx:id="redirectToContentButton">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../../play.png" />
+                                                                           </image>
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                        </ImageView>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets right="4.0" />
+                                                                     </HBox.margin>
+                                                                  </StackPane>
+                                                                  <StackPane fx:id="addToWatchLaterButton">
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../../Vector.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets right="4.0" />
+                                                                     </HBox.margin>
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="HAND" />
+                                                                     </cursor>
+                                                                  </StackPane>
+                                                                  <StackPane>
+                                                                     <children>
+                                                                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../../Star%205.png" />
+                                                                           </image>
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                        </ImageView>
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                               <VBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </VBox.margin>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding>
+                                                      </VBox>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" />
-                                                   </HBox.margin>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                                                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Vector.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" />
-                                                   </HBox.margin>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                                                      <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Star%205.png" />
-                                                         </image>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </ImageView>
-                                                   </children>
-                                                </StackPane>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                                   </effect>
+                                                </VBox>
                                              </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" top="10.0" />
+                                             </padding>
                                           </HBox>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" />
-                                       </padding>
-                                    </VBox>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
-                                 <effect>
-                                    <DropShadow height="10.0" radius="4.5" spread="0.4" width="10.0" />
-                                 </effect>
-                              </VBox>
+                              </AnchorPane>
                            </children>
                            <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                           <VBox.margin>
                               <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
+                           </padding>
+                        </HBox>
                      </children>
                   </VBox>
                </bottom>
