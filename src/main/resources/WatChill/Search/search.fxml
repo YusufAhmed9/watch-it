@@ -23,13 +23,16 @@
                               <top>
                                   <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
                                       <children>
-                                          <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="53.0" fitWidth="200.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
                                               <image>
                                                   <Image url="@../../Logo.png" />
                                               </image>
                                               <HBox.margin>
                                                   <Insets />
                                               </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                           </ImageView>
                                       </children>
                                   </HBox>
@@ -44,8 +47,8 @@
                                         <MenuItem mnemonicParsing="false" text="Rating" />
                                         <MenuItem mnemonicParsing="false" text="Views" />
                                           <MenuItem mnemonicParsing="false" text="Release Date" />
-                                          <MenuItem mnemonicParsing="false" text="Duration" />
                                           <MenuItem mnemonicParsing="false" text="Name A-Z" />
+                                          <MenuItem mnemonicParsing="false" text="Duration" />
                                       </items>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
@@ -61,7 +64,7 @@
                                           <Insets left="10.0" />
                                        </HBox.margin>
                                     </MenuButton>
-                                    <Button fx:id="clearFiltersButton" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Clear Filters">
+                                    <Button fx:id="clearFiltersButton" mnemonicParsing="false" style="-fx-background-color: #fff;" styleClass="main-button" text="Clear Filters">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>

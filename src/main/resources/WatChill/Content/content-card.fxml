@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -11,83 +12,99 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="167.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #555; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
-   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="167.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-      <children>
-         <ImageView fx:id="posterImage" fitHeight="253.0" fitWidth="163.0" styleClass="card-title">
-            <clip>
-               <Rectangle arcHeight="30" arcWidth="30" height="250" width="165" />
-            </clip>
-            <image>
-               <Image url="@Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
-            </image>
-         </ImageView>
-         <Label fx:id="titleText" alignment="CENTER" prefHeight="22.0" prefWidth="173.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" textFill="WHITE">
-            <font>
-               <Font name="Manrope Bold" size="16.0" />
-            </font>
-         </Label>
-         <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="166.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
-            <font>
-               <Font name="Manrope Bold" size="12.0" />
-            </font>
-         </Label>
-         <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
-            <children>
-               <StackPane fx:id="redirectToContentButton">
-                  <children>
-                     <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../play.png" />
-                        </image>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </ImageView>
-                  </children>
-                  <HBox.margin>
-                     <Insets right="4.0" />
-                  </HBox.margin>
-               </StackPane>
-               <StackPane fx:id="addToWatchLaterButton">
-                  <children>
-                     <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                     <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../Vector.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-                  <HBox.margin>
-                     <Insets right="4.0" />
-                  </HBox.margin>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </StackPane>
-               <StackPane>
-                  <children>
-                     <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                     <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../Star%205.png" />
-                        </image>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </ImageView>
-                  </children>
-               </StackPane>
-            </children>
-            <VBox.margin>
-               <Insets top="10.0" />
-            </VBox.margin>
-         </HBox>
-      </children>
-      <padding>
-         <Insets bottom="5.0" />
-      </padding>
-   </VBox>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.ContentCardController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+         <children>
+            <ImageView fx:id="posterImage" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+               <clip>
+                  <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+               </clip>
+               <image>
+                  <Image url="@Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="216.0">
+               <children>
+                  <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" wrappingWidth="195.126953125">
+                     <font>
+                        <Font name="Manrope Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="217.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
+               <font>
+                  <Font name="Manrope Bold" size="12.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
+               <children>
+                  <StackPane fx:id="redirectToContentButton">
+                     <children>
+                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../play.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="4.0" />
+                     </HBox.margin>
+                  </StackPane>
+                  <StackPane fx:id="addToWatchLaterButton">
+                     <children>
+                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Vector.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="4.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </StackPane>
+                  <StackPane>
+                     <children>
+                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Star%205.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+      </VBox>
+   </children>
+   <effect>
+      <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+   </effect>
 </VBox>
