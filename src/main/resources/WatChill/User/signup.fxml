@@ -16,9 +16,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background-image: url(&quot;../../bg-image.png&quot;);" styleClass="login-body" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
    <content>
-      <BorderPane id="body" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;">
+      <BorderPane id="body" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" styleClass="login-body">
          <top>
             <HBox fx:id="header" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="92.0" prefWidth="405.0">
                <children>
@@ -146,7 +147,8 @@
                               <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></Button>
+                                 </cursor>
+                              </Button>
                            </children>
                            <HBox.margin>
                               <Insets bottom="30.0" />
