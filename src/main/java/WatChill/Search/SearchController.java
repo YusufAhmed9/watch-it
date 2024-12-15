@@ -11,6 +11,7 @@ import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -187,7 +188,6 @@ public class SearchController {
                     e.printStackTrace();
                 }
             }
-            System.out.println(searchResultsContainer.getChildren());
         }
         else if (searchType.equals("Movies")) {
             if (getContents().isEmpty()) {
@@ -241,11 +241,11 @@ public class SearchController {
             MovieController movieController = loader.getController();
             movieController.build(movieId);
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -262,11 +262,11 @@ public class SearchController {
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -282,11 +282,11 @@ public class SearchController {
             CrewController crewController = loader.getController();
             crewController.build(castId);
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -318,11 +318,11 @@ public class SearchController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
             root = loader.load();
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

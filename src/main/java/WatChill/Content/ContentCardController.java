@@ -105,11 +105,11 @@ public class ContentCardController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/login.fxml"));
             root = loader.load();
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -122,11 +122,11 @@ public class ContentCardController {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/movie.fxml"));
             root = loader.load();
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -141,11 +141,11 @@ public class ContentCardController {
             root = loader.load();
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
