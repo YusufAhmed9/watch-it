@@ -25,10 +25,4 @@ public class SearchResultController {
         releaseDateText.setText(releaseDate);
         descriptionText.setText(description);
     }
-
-    public void setData(String imagePath, String title, String releaseDate) {
-        posterImage.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
-        titleText.setText(title);
-        releaseDateText.setText(releaseDate);
-    }
 }

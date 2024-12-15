@@ -30,8 +30,8 @@ public class Main extends Application {
         }
     }
     private Scene redirectToHome() throws IOException {
-        String css = getClass().getResource("/WatChill/Style/Movie.css").toExternalForm();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
+        String css = getClass().getResource("/WatChill/Style/Main.css").toExternalForm();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);

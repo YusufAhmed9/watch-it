@@ -7,6 +7,7 @@ import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Crew;
+import WatChill.Crew.CrewController;
 import WatChill.Search.SearchController;
 import WatChill.Search.SearchResultController;
 import WatChill.Subscription.*;
@@ -58,6 +59,8 @@ public class HomeController {
     @FXML
     AnchorPane recommendationAnchor;
     @FXML
+    HBox recommendationContainer;
+    @FXML
     HBox bgParent;
     @FXML
     VBox container;
@@ -91,14 +94,24 @@ public class HomeController {
     public void initialize() {
         User currentUser = User.getCurrentUser();
         trendingSeriesContainer.getChildren().clear();
+        trendingMoviesContainer.getChildren().clear();
+        recommendationContainer.getChildren().clear();
         if (currentUser != null) {
             signInButton.setVisible(false);
             signUpButton.setVisible(false);
             profileIcon.setVisible(true);
             if (currentUser instanceof Customer) {
                 Subscription subscription = Subscription.getUserSubscription(currentUser.getId());
-                ArrayList<Content> contents = UserWatchRecord.recommendWatchableContent(currentUser.getId());
-
+                ArrayList<Content> contents = UserWatchRecord.recommendWatchableContent(User.getCurrentUser().getId());
+                if (!contents.isEmpty()) {
+                    initializeRecommendations(contents);
+                }
+                else {
+                    recommendationHBox.setVisible(false);
+                    recommendationHBox.setManaged(false);
+                    recommendationTitle.setVisible(false);
+                    recommendationTitle.setManaged(false);
+                }
                 if (subscription != null) {
                     plansContainer.setVisible(false);
                     plansContainer.setManaged(false);
@@ -129,83 +142,24 @@ public class HomeController {
         searchMenu.setText(searchMenu.getItems().get(0).getText());
 
         for (Movie movie : Movie.getTopTen()) {
-            VBox movieCard = new VBox();
-            Text titleText = new Text(movie.getTitle());
-            movieCard.getStyleClass().add("movie-card");
-            movieCard.getChildren().add(titleText);
-            movieCard.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
-            trendingMoviesContainer.getChildren().add(movieCard);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/content-card.fxml"));
+                VBox movieCard = loader.load();
+                ContentCardController contentCardController = loader.getController();
+                contentCardController.setData(movie, () -> initialize());
+                trendingMoviesContainer.getChildren().add(movieCard);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         for (Series series : Series.getTopWatchedSeries()) {
-//            VBox seriesCard = new VBox(); // The main container
-//            StackPane stackPane = new StackPane(); // StackPane to stack the image and textContainer
-//            Image image = new Image(String.valueOf(getClass().getResource(series.getPoster())));
-//            ImageView imageView = new ImageView(image);
-//            Text seriesTitle = new Text(series.getTitle());
-//            Text releaseDate = new Text(series.getReleaseDate().toString());
-//            Text seriesDescription = new Text(series.getDescription());
-//            int seasonsCount = series.getSeasons().size();
-//            String seasonsText = seasonsCount == 1 ? "Season" : "Seasons";
-//            Text seriesSeasonsCount = new Text(seasonsCount + " " + seasonsText);
-//
-//            VBox textContainer = new VBox(seriesTitle, seriesSeasonsCount, seriesDescription, releaseDate); // Text container
-//            textContainer.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7); -fx-padding: 10; -fx-spacing: 3;"); // Semi-transparent background
-//            textContainer.setMaxHeight(140);
-//            textContainer.setAlignment(Pos.TOP_CENTER);
-//            textContainer.setOpacity(0); // Initially hidden
-//            StackPane.setAlignment(textContainer, Pos.BOTTOM_CENTER);
-//            seriesCard.setCursor(Cursor.HAND);
-//
-//            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), textContainer);
-//            fadeIn.setFromValue(0);
-//            fadeIn.setToValue(1);
-//
-//            FadeTransition fadeOut = new FadeTransition(Duration.millis(300), textContainer);
-//            fadeOut.setFromValue(1);
-//            fadeOut.setToValue(0);
-//
-//            ScaleTransition scaleUp = new ScaleTransition(Duration.millis(300), imageView);
-//            scaleUp.setFromX(1.0);
-//            scaleUp.setFromY(1.0);
-//            scaleUp.setToX(1.1);
-//            scaleUp.setToY(1.1);
-//
-//            ScaleTransition scaleDown = new ScaleTransition(Duration.millis(300), imageView);
-//            scaleDown.setFromX(1.1);
-//            scaleDown.setFromY(1.1);
-//            scaleDown.setToX(1.0);
-//            scaleDown.setToY(1.0);
-//
-//            imageView.setFitWidth(200);
-//            imageView.setPreserveRatio(true);
-//            seriesCard.setOnMouseEntered(e -> {
-//                fadeIn.play();
-//                scaleUp.play();
-//            });
-//            seriesCard.setOnMouseExited(e -> {
-//                fadeOut.play();
-//                scaleDown.play();
-//            });
-//            stackPane.getChildren().addAll(imageView, textContainer);
-//            seriesCard.getChildren().add(stackPane);
-//            seriesCard.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
-//            seriesTitle.getStyleClass().add("series-title");
-//            seriesSeasonsCount.getStyleClass().add("series-seasons-count");
-//            seriesDescription.getStyleClass().add("series-seasons-count");
-//            releaseDate.getStyleClass().add("series-seasons-count");
-//            textContainer.getStyleClass().add("text-container");
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/content-card.fxml"));
                     VBox seriesCard = loader.load();
                     ContentCardController contentCardController = loader.getController();
-                    contentCardController.setData(
-                        series.getPoster(),
-                        series.getTitle(),
-                        series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
-                        series,
-                        () -> initialize()
-                    );
+                    contentCardController.setData(series, () -> initialize());
                     trendingSeriesContainer.getChildren().add(seriesCard);
                 }
                 catch (Exception e) {
@@ -254,7 +208,7 @@ public class HomeController {
     private void redirectToMoviePage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Movie/movie.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
             root = loader.load();
 
             stage = (Stage) trendingMoviesContainer.getScene().getWindow();
@@ -291,12 +245,12 @@ public class HomeController {
 
     private void redirectToCrewPage(String castId) {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/crew.fxml"));
+            String css = getClass().getResource("/WatChill/style/Crew.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/Crew.fxml"));
             root = loader.load();
 
-            SeriesController seriesController = loader.getController();
-            seriesController.build(castId);
+            CrewController crewController = loader.getController();
+            crewController.build(castId);
 
             stage = (Stage) trendingSeriesContainer.getScene().getWindow();
             scene = new Scene(root);
@@ -404,7 +358,7 @@ public class HomeController {
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
                     SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+                    searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -425,7 +379,7 @@ public class HomeController {
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
                     SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+                    searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
                     searchResultsContainer.getChildren().add(searchResult);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -479,5 +433,20 @@ public class HomeController {
         successMessage.setFill(Color.WHITE);
         plansContainer.getChildren().clear();
         plansContainer.getChildren().add(successMessage);
+    }
+
+    private void initializeRecommendations(ArrayList<Content> contents) {
+        for (Content content : contents) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/content-card.fxml"));
+                VBox contentCard = loader.load();
+                ContentCardController contentCardController = loader.getController();
+                contentCardController.setData(content, () -> initialize());
+                recommendationContainer.getChildren().add(contentCard);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
