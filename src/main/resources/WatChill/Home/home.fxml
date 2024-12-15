@@ -170,7 +170,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                           <HBox alignment="CENTER" prefHeight="100.0">
                                              <children>
-                                                <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                <ImageView fx:id="trendingSeriesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -181,7 +181,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </ImageView>
-                                                <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="trendingSeriesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -196,7 +196,7 @@
                                           </HBox>
                                        </children>
                                        <padding>
-                                          <Insets left="25.0" />
+                                          <Insets left="40.0" />
                                        </padding>
                                     </HBox>
                                     <HBox fx:id="trendingMoviesHBox">
@@ -303,7 +303,7 @@
                                                             </VBox>
                                                          </children>
                                                          <padding>
-                                                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                          </padding></HBox>
                                                    </content>
                                                 </ScrollPane>
@@ -311,21 +311,8 @@
                                           </AnchorPane>
                                        </children>
                                        <padding>
-                                          <Insets left="20.0" right="20.0" />
+                                          <Insets left="30.0" right="30.0" />
                                        </padding>
-                                    </HBox>
-                                    <HBox fx:id="trendingSeriesHBox">
-                                       <children>
-                                          <AnchorPane fx:id="trendingSeriesAnchor" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <ScrollPane fx:id="trendingSeriesScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background-radius: 20;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <HBox fx:id="trendingSeriesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;" />
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
@@ -337,7 +324,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                           <HBox alignment="CENTER" prefHeight="100.0">
                                              <children>
-                                                <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                <ImageView fx:id="trendingMoviesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -348,7 +335,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </ImageView>
-                                                <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="trendingMoviesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -363,32 +350,82 @@
                                           </HBox>
                                        </children>
                                        <padding>
-                                          <Insets left="25.0" />
+                                          <Insets left="40.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
+                                    <HBox fx:id="trendingSeriesHBox">
                                        <children>
-                                          <Text fx:id="recommendationTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="For You">
+                                          <AnchorPane fx:id="trendingSeriesAnchor" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <ScrollPane fx:id="trendingSeriesScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background-radius: 20;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <HBox fx:id="trendingSeriesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;">
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                       <padding>
+                                          <Insets left="30.0" right="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox fx:id="recommendationTitle" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-trending" text="For You" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="Manrope Bold" size="26.0" />
                                              </font>
                                           </Text>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <HBox alignment="CENTER" prefHeight="100.0">
+                                             <children>
+                                                <ImageView fx:id="recommendationLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                   <image>
+                                                      <Image url="@arrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </ImageView>
+                                                <ImageView fx:id="recommendationRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@arrow.png" />
+                                                   </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </ImageView>
+                                             </children>
+                                             <padding>
+                                                <Insets right="20.0" />
+                                             </padding>
+                                          </HBox>
                                        </children>
                                        <padding>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </padding>
                                     </HBox>
                                     <HBox fx:id="recommendationHBox">
                                        <children>
                                           <AnchorPane fx:id="recommendationAnchor" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <ScrollPane fx:id="trendingSeriesScrollPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <ScrollPane fx:id="recommendationScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <content>
-                                                      <HBox fx:id="recommendationContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;" />
+                                                      <HBox fx:id="recommendationContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10;">
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </padding></HBox>
                                                    </content>
+                                                   <padding>
+                                                      <Insets left="30.0" right="30.0" />
+                                                   </padding>
                                                 </ScrollPane>
                                              </children>
                                           </AnchorPane>
@@ -408,7 +445,7 @@
                                                 </Text>
                                              </children>
                                              <padding>
-                                                <Insets left="20.0" />
+                                                <Insets left="40.0" />
                                              </padding>
                                           </HBox>
                                           <FlowPane alignment="CENTER" hgap="20.0" vgap="20.0">

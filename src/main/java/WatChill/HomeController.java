@@ -2,6 +2,7 @@ package WatChill;
 
 import WatChill.Content.Content;
 import WatChill.Content.ContentCardController;
+import WatChill.Content.Movie.MovieController;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
@@ -49,17 +50,33 @@ public class HomeController {
     @FXML
     AnchorPane trendingMoviesAnchor;
     @FXML
+    ImageView trendingMoviesRight;
+    @FXML
+    ImageView trendingMoviesLeft;
+    @FXML
+    ScrollPane trendingMoviesScrollPane;
+    @FXML
     HBox trendingSeriesHBox;
     @FXML
     AnchorPane trendingSeriesAnchor;
     @FXML
-    Text recommendationTitle;
+    ImageView trendingSeriesLeft;
+    @FXML
+    ImageView trendingSeriesRight;
+    @FXML
+    HBox recommendationTitle;
     @FXML
     HBox recommendationHBox;
     @FXML
     AnchorPane recommendationAnchor;
     @FXML
     HBox recommendationContainer;
+    @FXML
+    ImageView recommendationRight;
+    @FXML
+    ImageView recommendationLeft;
+    @FXML
+    ScrollPane recommendationScrollPane;
     @FXML
     HBox bgParent;
     @FXML
@@ -169,6 +186,16 @@ public class HomeController {
         trendingMoviesAnchor.prefWidthProperty().bind(trendingMoviesHBox.widthProperty());
         trendingSeriesAnchor.prefWidthProperty().bind(trendingSeriesHBox.widthProperty());
         recommendationAnchor.prefWidthProperty().bind(recommendationHBox.widthProperty());
+        initializeScroll();
+    }
+
+    private void initializeScroll() {
+        trendingSeriesLeft.setOnMouseClicked(_ -> scrollLeft(trendingSeriesScrollPane));
+        trendingMoviesRight.setOnMouseClicked(_ -> scrollRight(trendingSeriesScrollPane));
+        trendingMoviesLeft.setOnMouseClicked(_ -> scrollLeft(trendingMoviesScrollPane));
+        trendingMoviesRight.setOnMouseClicked(_ -> scrollRight(trendingMoviesScrollPane));
+        recommendationLeft.setOnMouseClicked(_ -> scrollLeft(recommendationScrollPane));
+        recommendationRight.setOnMouseClicked(_ -> scrollRight(recommendationScrollPane));
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -176,11 +203,11 @@ public class HomeController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/signup.fxml"));
             root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = ((Node) actionEvent.getSource()).getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -193,11 +220,11 @@ public class HomeController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/login.fxml"));
             root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = ((Node) actionEvent.getSource()).getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -211,10 +238,13 @@ public class HomeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
             root = loader.load();
 
-            stage = (Stage) trendingMoviesContainer.getScene().getWindow();
-            scene = new Scene(root);
+            MovieController movieController = loader.getController();
+            movieController.build(movieId);
+
+            scene = trendingMoviesContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
-            stage.setFullScreen(true);
             stage.setScene(scene);
             stage.show();
         }
@@ -232,11 +262,11 @@ public class HomeController {
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
 
-            stage = (Stage) trendingSeriesContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = trendingSeriesContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -252,11 +282,11 @@ public class HomeController {
             CrewController crewController = loader.getController();
             crewController.build(castId);
 
-            stage = (Stage) trendingSeriesContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = trendingSeriesContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -268,11 +298,11 @@ public class HomeController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/profile.fxml"));
             root = loader.load();
-            stage = (Stage) trendingSeriesContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = trendingSeriesContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -280,14 +310,14 @@ public class HomeController {
         }
     }
 
-    public void scrollRight(MouseEvent event) {
-        double newHValue = Math.min(trendingSeriesScrollPane.getHvalue() + 0.4, 1); // Scroll right
-        trendingSeriesScrollPane.setHvalue(newHValue);
+    private void scrollRight(ScrollPane scrollPane) {
+        double newHValue = Math.min(scrollPane.getHvalue() + 0.4, 1); // Scroll right
+        scrollPane.setHvalue(newHValue);
     }
 
-    public void scrollLeft(MouseEvent event) {
-        double newHValue = Math.min(trendingSeriesScrollPane.getHvalue() - 0.4, 1); // Scroll right
-        trendingSeriesScrollPane.setHvalue(newHValue);
+    private void scrollLeft(ScrollPane scrollPane) {
+        double newHValue = Math.min(scrollPane.getHvalue() - 0.4, 1); // Scroll right
+        scrollPane.setHvalue(newHValue);
     }
 
     public void redirectToSearch(ActionEvent actionEvent) {
@@ -303,11 +333,11 @@ public class HomeController {
             SearchController searchController = loader.getController();
             searchController.build(query, searchMenu.getText());
 
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = trendingSeriesContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
