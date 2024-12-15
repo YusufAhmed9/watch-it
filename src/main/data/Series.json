@@ -2,7 +2,7 @@
   "@class" : "WatChill.Content.Series.Series",
   "id" : "1",
   "title" : "Attack On Titan",
-  "releaseDate" : [ 2024, 12, 3 ],
+  "releaseDate" : [ 2013, 8, 1 ],
   "seasons" : [ {
     "id" : "1",
     "title" : "Season 1",
