@@ -16,42 +16,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.UserManagement.SignupController">
    <content>
-      <BorderPane id="body" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="login-body">
+      <BorderPane id="body" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" styleClass="login-body">
          <top>
-            <VBox alignment="CENTER_LEFT" prefHeight="69.0" BorderPane.alignment="CENTER">
+            <HBox fx:id="header" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="92.0" prefWidth="405.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="92.0" prefWidth="405.0">
-                     <children>
-                        <ImageView fitHeight="74.0" fitWidth="174.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Logo.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="74.0" fitWidth="174.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Logo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
-            </VBox>
+            </HBox>
          </top>
          <center>
-            <StackPane BorderPane.alignment="CENTER">
+            <StackPane style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="382.0">
+                  <HBox alignment="CENTER" styleClass="login-overlay">
                      <children>
-                        <VBox alignment="TOP_CENTER" maxHeight="446.0" prefHeight="446.0" styleClass="login-container">
+                        <VBox alignment="TOP_CENTER" styleClass="login-container">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Sign Up" wrappingWidth="137.2669219970703">
                                  <font>
@@ -150,8 +147,12 @@
                               <Button mnemonicParsing="false" onAction="#redirectToLogin" prefHeight="30.0" prefWidth="92.0" styleClass="link-button" text="Sign In">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></Button>
+                                 </cursor>
+                              </Button>
                            </children>
+                           <HBox.margin>
+                              <Insets bottom="30.0" />
+                           </HBox.margin>
                         </VBox>
                      </children>
                      <padding>

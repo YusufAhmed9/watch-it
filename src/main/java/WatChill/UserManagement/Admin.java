@@ -78,10 +78,10 @@ public class Admin extends User {
         }
     }
 
-    private void addMovie() {
+    public void addMovie() {
         Scanner scanner = new Scanner(System.in);
         String title = null;
-        String poster;
+        String poster = null;
         String description = null;
         String country;
         int duration = 0;
@@ -115,16 +115,16 @@ public class Admin extends User {
             scanner.nextLine();
         }
 
-        while (description == null || description.isEmpty()) {
-            System.out.print("Enter movie's description: ");
-            description = scanner.nextLine().trim();
-            if (description.isEmpty()) {
-                System.out.println("Error: provide a valid description");
-            }
-        }
-
         releaseDate = getValidDate(scanner, "Enter movie's release date (yyyy-MM-dd): ");
-        poster = getValidInput(scanner, "Enter picture URL: ", "^\\/WatChill\\/Content\\/Movie\\/media\\/[A-Za-z\\s]+\\/[A-Za-z0-9]+\\.(jpg|jpeg|png)$\n");
+        while (poster == null || poster.isEmpty()) {
+            System.out.print("Enter movie's poster: ");
+            poster = scanner.nextLine().trim();
+            if (poster.isEmpty()) {
+                System.out.println("Error: provide a valid poster");
+                scanner.next();
+            }
+            scanner.nextLine();
+        }
         languages = getValidLanguages();
         genres = getValidGenres();
         country = getValidInput(scanner, "Enter country name: ", "^[A-Z][a-z]*(?: [A-Z][a-z]*)*$");
@@ -275,7 +275,9 @@ public class Admin extends User {
             description = scanner.nextLine().trim();
             if (description.isEmpty()) {
                 System.out.println("Error: provide a valid description");
+                scanner.next();
             }
+            scanner.nextLine();
         }
 
 

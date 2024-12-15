@@ -2,16 +2,24 @@ package WatChill.Content.Series;
 
 import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
+import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class SeriesController {
     private Series currentSeries;
@@ -35,6 +43,11 @@ public class SeriesController {
     private HBox castsBox;
     @FXML
     private HBox directorsBox;
+
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
+
 
     private void initializeSeries(String seriesId) {
         this.currentSeries = Series.findById(seriesId);
@@ -89,7 +102,7 @@ public class SeriesController {
     }
 
     public void displayEpisodes() {
-        clearEpisodes();
+        episodesContainer.getChildren().clear();
         for (Season season : currentSeries.getSeasons()) {
             if (seasonsMenu.getText().equals(season.getTitle())) {
                 for (Episode episode : season.getEpisodes()) {
@@ -101,7 +114,7 @@ public class SeriesController {
                     // VBox to hold the title, release date, and seasonDescription
                     VBox episodeLabels = new VBox();
 
-                    Label episodeTitle = new Label(episode.getTitle());
+                    Label episodeTitle = new Label("S" + (currentSeries.getSeasons().indexOf(season) + 1) + " E" + (season.getEpisodes().indexOf(episode) + 1) + " - " + episode.getTitle());
                     episodeTitle.getStyleClass().add("episode-title");
 
                     Label episodeReleaseDate = new Label(episode.getReleaseDate().toString());
@@ -109,29 +122,25 @@ public class SeriesController {
 
                     Label episodeDescription = new Label(episode.getDescription());
                     episodeDescription.getStyleClass().add("episode-description");
-
+                    episodeDescription.setWrapText(true);
                     // Add labels to the VBox
                     episodeLabels.getChildren().addAll(episodeTitle, episodeReleaseDate, episodeDescription);
                     episodeLabels.getStyleClass().add("episode-labels");
                     // Add the image and the labels to the episodeContainer
                     episodeContainer.getChildren().addAll(episodeImageView, episodeLabels);
-
                     // Add episode container to the episodes VBox
+                    episodeContainer.setOnMouseClicked(_ -> redirectToEpisodePage(episode.getId()));
                     episodeContainer.getStyleClass().add("episode-container");
                     episodesContainer.getChildren().add(episodeContainer);
-                    episodeContainer.getStyleClass().add("episodes-container");
                 }
             }
         }
+        episodesContainer.getStyleClass().add("episodes-container");
 
-    }
-
-    public void clearEpisodes() {
-        episodesContainer.getChildren().clear();
     }
 
     public void addCast() {
-        clearCast();
+        castsBox.getChildren().clear();
         for (Crew crew : currentSeries.getCrews()) {
             if (crew instanceof Cast) {
                 VBox castBox = new VBox();
@@ -141,25 +150,23 @@ public class SeriesController {
                 castName.getStyleClass().add("cast-label");
                 castBox.getChildren().add(castName);
                 castBox.getStyleClass().add("cast-box");
+                castBox.setOnMouseClicked(_->redirectToCrewPage(crew.getId()));
                 castsBox.getChildren().add(castBox);
             }
         }
     }
 
-    public void clearCast() {
-        castsBox.getChildren().clear();
-    }
-
     public void addDirectors() {
-        clearDirectors();
+        directorsBox.getChildren().clear();
         for (Crew crew : currentSeries.getCrews()) {
             if (crew instanceof Director) {
                 Label directorName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
                 directorName.getStyleClass().add("director-name");
+                directorName.setOnMouseClicked(_->redirectToCrewPage(crew.getId()));
                 directorsBox.getChildren().add(directorName);
-                Label comma = new Label(", ");
-                comma.getStyleClass().add("director-name");
-                directorsBox.getChildren().add(comma);
+                Label bullet = new Label("•");
+                bullet.getStyleClass().add("director-name");
+                directorsBox.getChildren().add(bullet);
             }
         }
         if (!directorsBox.getChildren().isEmpty()) {
@@ -167,8 +174,44 @@ public class SeriesController {
         }
     }
 
-    public void clearDirectors() {
-        directorsBox.getChildren().clear();
+    public void redirectToEpisodePage(String episodeId) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Episode.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Episode.fxml"));
+            root = loader.load();
+            EpisodeController episodeController = loader.getController();
+            episodeController.build(episodeId);
+            stage = (Stage) episodesContainer.getScene().getWindow();
+            scene = new Scene(root);
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void redirectToCrewPage(String crewId) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Crew.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/Crew.fxml"));
+            root = loader.load();
+            CrewController crewController = loader.getController();
+            crewController.build(crewId);
+            if(Crew.findById(crewId) instanceof Cast) {
+                stage = (Stage) castsBox.getScene().getWindow();
+            }
+            else {
+                stage = (Stage) directorsBox.getScene().getWindow();
+            }
+            scene = new Scene(root);
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void build(String seriesId) {

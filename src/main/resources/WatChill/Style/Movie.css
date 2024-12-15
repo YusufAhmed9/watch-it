@@ -1,4 +1,4 @@
-.scroll-pane {
+scroll-pane {
     -fx-background-color: transparent;
 }
 
@@ -31,10 +31,33 @@
     -fx-padding: 0 0 5 0;
 }
 
-.episode-button {
-    -fx-background-color: #1A1A1A;
+.cast-box {
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.cast-label {
+    -fx-font-family: "Manrope SemiBold";
+    -fx-font-size: 16px;
     -fx-text-fill: #fff;
-    -fx-background-radius: 12;
+    -fx-alignment: center;
+}
+
+.director-name {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 26px;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.rating-text {
+    -fx-font-family: Manrope;
+    -fx-font-weight: Bold;
+    -fx-font-size: 15px;
+    -fx-alignment: center;
+    -fx-text-fill: #fff;
+    -fx-padding: 0 0 0 5;
 }
 
 .language {

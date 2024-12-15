@@ -1,8 +1,8 @@
 package WatChill;
 
+import WatChill.Content.Series.SeriesController;
 import WatChill.FileHandling.ReadAllFiles;
 import WatChill.FileHandling.WriteAllFiles;
-import WatChill.UserManagement.Admin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 public class Main extends Application {
     @Override
@@ -31,7 +32,6 @@ public class Main extends Application {
     private Scene redirectToHome() throws IOException {
         String css = getClass().getResource("/WatChill/Style/Main.css").toExternalForm();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
-        System.out.println(loader.getLocation());
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);

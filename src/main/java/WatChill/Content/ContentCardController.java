@@ -20,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -29,7 +30,7 @@ public class ContentCardController {
     private ImageView posterImage;
 
     @FXML
-    private Label titleText;
+    private Text titleText;
 
     @FXML
     private Label releaseDateText;
@@ -60,10 +61,10 @@ public class ContentCardController {
         }
     }
 
-    public void setData(String imagePath, String title, String releaseDate, Content content, Runnable rerender) {
-        posterImage.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
-        titleText.setText(title);
-        releaseDateText.setText(releaseDate);
+    public void setData(Content content, Runnable rerender) {
+        posterImage.setImage(new Image(getClass().getResource(content.getPoster()).toExternalForm()));
+        titleText.setText(content.getTitle());
+        releaseDateText.setText(content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
         User currentUser = User.getCurrentUser();
         if (currentUser instanceof Customer) {
             Customer customer = (Customer) currentUser;
@@ -104,11 +105,11 @@ public class ContentCardController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/login.fxml"));
             root = loader.load();
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -119,13 +120,13 @@ public class ContentCardController {
     public void redirectToMoviePage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Movie/movie.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/movie.fxml"));
             root = loader.load();
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {
@@ -140,11 +141,11 @@ public class ContentCardController {
             root = loader.load();
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
-            stage = (Stage) posterImage.getScene().getWindow();
-            scene = new Scene(root);
+            scene = posterImage.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {

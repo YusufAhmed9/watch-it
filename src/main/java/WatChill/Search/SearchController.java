@@ -1,17 +1,21 @@
 package WatChill.Search;
 
+import WatChill.Content.Movie.MovieController;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Crew;
+import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,6 +23,8 @@ import javafx.stage.Stage;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 public class SearchController {
 
@@ -79,6 +85,9 @@ public class SearchController {
     public void build(String searchQuery, String searchType) {
         setSearchQuery(searchQuery);
         setSearchType(searchType);
+        if (getSearchType().equals("Series")) {
+            sortMenu.getItems().removeLast();
+        }
         clearFiltersButton.setOnAction(_ -> {
             sortMenu.setText("Sort By");
             genreMenu.setText("Genre");
@@ -118,6 +127,7 @@ public class SearchController {
         String sortType = sortMenu.getText();
         if (sortType.equals("Rating")) {
             // TODO
+//            contents.sort(Comparator.comparing(Content::).reversed());
         }
         else if (sortType.equals("Views")) {
             contents.sort(Comparator.comparingInt(Content::getViewsCount).reversed());
@@ -126,7 +136,9 @@ public class SearchController {
             contents.sort(Comparator.comparing(Content::getReleaseDate).reversed());
         }
         else if (sortType.equals("Duration")) {
-//            contents.sort(Comparator.comparing(Content::getReleaseDate).reversed());
+            List<Movie> movies = new ArrayList<>(contents.stream().filter(Movie.class::isInstance).map(Movie.class::cast).toList());
+            movies.sort(Comparator.comparing(Movie::getDuration).reversed());
+            contents = new ArrayList<>(movies);
         }
         else if (sortType.equals("Name A-Z")) {
             contents.sort(Comparator.comparing(Content::getTitle));
@@ -147,7 +159,7 @@ public class SearchController {
         if (!filterGenre.equals("Genre")) {
             filteredContents.removeIf(content -> !content.getGenres().contains(filterGenre));
         }
-        if (!filterGenre.equals("Language")) {
+        if (!filterLanguage.equals("Language")) {
             filteredContents.removeIf(content -> !content.getLanguages().contains(filterLanguage));
         }
         setContents(filteredContents);
@@ -176,7 +188,6 @@ public class SearchController {
                     e.printStackTrace();
                 }
             }
-            System.out.println(searchResultsContainer.getChildren());
         }
         else if (searchType.equals("Movies")) {
             if (getContents().isEmpty()) {
@@ -192,7 +203,7 @@ public class SearchController {
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
                     SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+                    searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -212,7 +223,7 @@ public class SearchController {
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
                     SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+                    searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
                     searchResultsContainer.getChildren().add(searchResult);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -227,10 +238,13 @@ public class SearchController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Movie/movie.fxml"));
             root = loader.load();
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            MovieController movieController = loader.getController();
+            movieController.build(movieId);
+
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
-            stage.setFullScreen(true);
             stage.setScene(scene);
             stage.show();
         }
@@ -248,11 +262,11 @@ public class SearchController {
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -261,18 +275,18 @@ public class SearchController {
 
     private void redirectToCrewPage(String castId) {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
+            String css = getClass().getResource("/WatChill/style/Crew.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/crew.fxml"));
             root = loader.load();
 
-            SeriesController seriesController = loader.getController();
-            seriesController.build(castId);
+            CrewController crewController = loader.getController();
+            crewController.build(castId);
 
-            stage = (Stage) searchResultsContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -287,7 +301,7 @@ public class SearchController {
             setContents(new ArrayList<>(Movie.searchByTitle(getSearchQuery())));
         }
         else if (getSearchType().equals("Crew")) {
-            ((HBox)filtersContainer.getParent()).getChildren().remove(filtersContainer);
+            ((VBox)filtersContainer.getParent()).getChildren().remove(filtersContainer);
             setCrews(new ArrayList<>(Cast.searchByName(getSearchQuery())));
         }
     }
@@ -297,5 +311,21 @@ public class SearchController {
         label.setText("No Results Found");
         label.getStyleClass().add("no-results");
         searchResultsContainer.getChildren().add(label);
+    }
+
+    public void redirectToHome(MouseEvent mouseEvent) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
+            root = loader.load();
+            scene = searchResultsContainer.getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

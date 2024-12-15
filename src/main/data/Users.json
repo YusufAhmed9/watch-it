@@ -94,4 +94,13 @@
       "contentCreated" : [ "1" ]
     } ]
   } ]
+}, {
+  "@class" : "WatChill.UserManagement.Customer",
+  "id" : "82dec567-aafb-4585-a67a-b2e36296576e",
+  "username" : "yusufahmed19",
+  "email" : "3@g.com",
+  "password" : "ZQKUAokhmWBmXyaOer3jiA==:2a9/DqFIhDvTD7s67RhdoYAMhyzwBqa8iOhoal80xM4=",
+  "firstName" : "yusuf",
+  "lastName" : "ahmed",
+  "watchLater" : [ ]
 } ]

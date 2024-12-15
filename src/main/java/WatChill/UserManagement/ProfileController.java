@@ -108,13 +108,7 @@ public class ProfileController {
             try {
                 VBox card = loader.load();
                 ContentCardController contentCardController = loader.getController();
-                contentCardController.setData(
-                    content.getPoster(),
-                    content.getTitle(),
-                    content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
-                    content,
-                    () -> displayWatchLater()
-                );
+                contentCardController.setData(content, () -> displayWatchLater());
                 watchlaterFlowPane.getChildren().add(card);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -225,11 +219,11 @@ public class ProfileController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
             root = loader.load();
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = ((Node) event.getSource()).getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
-            stage.setFullScreen(true);
             stage.show();
         }
         catch (Exception e) {

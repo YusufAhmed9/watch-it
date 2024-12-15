@@ -26,11 +26,12 @@ public class CrewController {
     private Label twitterLink;
     @FXML
     private Label instagramLink;
+    @FXML
+    private ScrollPane contentMadeScrollPane;
 
-    public void initializePage(String crewId){
+    public void initializePage(String crewId) {
         crew = Crew.findById(crewId);
         Image crewImage = new Image(getClass().getResource(crew.getPicture()).toExternalForm());
-        System.out.println(getClass().getResource(crew.getPicture()).toExternalForm());
         crewPicture.setImage(crewImage);
         name.setText(crew.getFirstName() + ' ' + crew.getLastName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
@@ -41,7 +42,17 @@ public class CrewController {
         instagramLink.setText(crew.getInstagramLink());
     }
 
-    public void build(String crewId){
+    public void scrollRight(MouseEvent event) {
+        double newHValue = Math.min(contentMadeScrollPane.getHvalue() + 0.4, 1); // Scroll right
+        contentMadeScrollPane.setHvalue(newHValue);
+    }
+
+    public void scrollLeft(MouseEvent event) {
+        double newHValue = Math.min(contentMadeScrollPane.getHvalue() - 0.4, 1); // Scroll right
+        contentMadeScrollPane.setHvalue(newHValue);
+    }
+
+    public void build(String crewId) {
         initializePage(crewId);
     }
 }
