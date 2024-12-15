@@ -15,9 +15,11 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -31,8 +33,6 @@ public class SeriesController {
     private Text seasonDescription;
     @FXML
     private ImageView seriesPoster;
-    @FXML
-    private Label episodesButton;
     @FXML
     private VBox episodesContainer;
     @FXML
@@ -66,8 +66,7 @@ public class SeriesController {
         seriesPoster.setImage(seriesImage);
         addGenres();
         displayEpisodes();
-        addCast();
-        addDirectors();
+        addCrew();
         addRating();
     }
 
@@ -108,8 +107,20 @@ public class SeriesController {
                 for (Episode episode : season.getEpisodes()) {
                     HBox episodeContainer = new HBox(); // HBox to hold image and labels
                     ImageView episodeImageView = new ImageView(getClass().getResource(episode.getPoster()).toExternalForm());
+                    // Set dimensions for the image
+                    double imageWidth = 270;  // Set the width of the image
+                    double imageHeight = 172; // Set the height of the image
+                    episodeImageView.setFitWidth(imageWidth);
+                    episodeImageView.setFitHeight(imageHeight);
+
+                    // Create a rectangle with rounded top-left and bottom-left corners
+                    Rectangle clip = new Rectangle(imageWidth, imageHeight);
+                    clip.setArcWidth(50);  // The arc width for the left corners
+                    clip.setArcHeight(50); // The arc height for the left corners
+                    episodeImageView.setClip(clip);  // Apply the clipping to the image
 
                     episodeImageView.getStyleClass().add("episode-poster");
+
 
                     // VBox to hold the title, release date, and seasonDescription
                     VBox episodeLabels = new VBox();
@@ -129,50 +140,81 @@ public class SeriesController {
                     // Add the image and the labels to the episodeContainer
                     episodeContainer.getChildren().addAll(episodeImageView, episodeLabels);
                     // Add episode container to the episodes VBox
-                    episodeContainer.setOnMouseClicked(_ -> redirectToEpisodePage(episode.getId()));
                     episodeContainer.getStyleClass().add("episode-container");
+
+                    HBox indentation = new HBox();
+                    HBox.setHgrow(indentation, Priority.ALWAYS);
+                    episodeContainer.getChildren().add(indentation);
+                    ImageView playButton = new ImageView(getClass().getResource("/WatChill/Content/Series/media/play-circle.png").toExternalForm());
+                    playButton.setOnMouseClicked(_ -> redirectToEpisodePage(episode.getId()));
+                    playButton.setStyle("-fx-cursor: hand; -fx-padding: 0 10 0 0");
+                    episodeContainer.getChildren().add(playButton);
+
                     episodesContainer.getChildren().add(episodeContainer);
                 }
             }
         }
-        episodesContainer.getStyleClass().add("episodes-container");
 
     }
 
-    public void addCast() {
+    public void addCrew() {
         castsBox.getChildren().clear();
-        for (Crew crew : currentSeries.getCrews()) {
-            if (crew instanceof Cast) {
-                VBox castBox = new VBox();
-                ImageView castImage = new ImageView(crew.getPicture());
-                castBox.getChildren().add(castImage);
-                Label castName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
-                castName.getStyleClass().add("cast-label");
-                castBox.getChildren().add(castName);
-                castBox.getStyleClass().add("cast-box");
-                castBox.setOnMouseClicked(_->redirectToCrewPage(crew.getId()));
-                castsBox.getChildren().add(castBox);
-            }
-        }
-    }
-
-    public void addDirectors() {
         directorsBox.getChildren().clear();
         for (Crew crew : currentSeries.getCrews()) {
-            if (crew instanceof Director) {
-                Label directorName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
-                directorName.getStyleClass().add("director-name");
-                directorName.setOnMouseClicked(_->redirectToCrewPage(crew.getId()));
-                directorsBox.getChildren().add(directorName);
-                Label bullet = new Label("•");
-                bullet.getStyleClass().add("director-name");
-                directorsBox.getChildren().add(bullet);
+            VBox castBox = new VBox();
+            ImageView castImage = new ImageView(crew.getPicture());
+            double size = 100; // Set desired image size
+            castImage.setFitWidth(size);
+            castImage.setFitHeight(size);
+
+            // Create a circular clip using a rectangle with rounded corners
+            Rectangle clip = new Rectangle(size, size);
+            clip.setArcWidth(size);
+            clip.setArcHeight(size);
+            castImage.setClip(clip); // Apply the clip to the ImageView
+
+            castBox.getChildren().add(castImage);
+            Label castName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
+            castName.getStyleClass().add("cast-label");
+            castBox.getChildren().add(castName);
+            castBox.getStyleClass().add("cast-box");
+            castBox.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
+            if (crew instanceof Cast) {
+                castsBox.getChildren().add(castBox);
+            } else {
+                directorsBox.getChildren().add(castBox);
+
             }
         }
-        if (!directorsBox.getChildren().isEmpty()) {
-            directorsBox.getChildren().removeLast();
-        }
     }
+//
+//    public void addDirectors() {
+//        directorsBox.getChildren().clear();
+//        for (Crew crew : currentSeries.getCrews()) {
+//            if (crew instanceof Director) {
+//                ImageView castImage = new ImageView(crew.getPicture());
+//                double size = 100; // Set desired image size
+//                castImage.setFitWidth(size);
+//                castImage.setFitHeight(size);
+//
+//                // Create a circular clip using a rectangle with rounded corners
+//                Rectangle clip = new Rectangle(size, size);
+//                clip.setArcWidth(size);
+//                clip.setArcHeight(size);
+//                castImage.setClip(clip);
+//                Label directorName = new Label(crew.getFirstName() + ' ' + crew.getLastName());
+//                directorName.getStyleClass().add("cast-label");
+//                directorName.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
+//                directorsBox.getChildren().add(directorName);
+//                Label bullet = new Label("•");
+//                bullet.getStyleClass().add("director-name");
+//                directorsBox.getChildren().add(bullet);
+//            }
+//        }
+//        if (!directorsBox.getChildren().isEmpty()) {
+//            directorsBox.getChildren().removeLast();
+//        }
+//    }
 
     public void redirectToEpisodePage(String episodeId) {
         try {
@@ -191,6 +233,7 @@ public class SeriesController {
             e.printStackTrace();
         }
     }
+
     public void redirectToCrewPage(String crewId) {
         try {
             String css = getClass().getResource("/WatChill/style/Crew.css").toExternalForm();
@@ -198,10 +241,9 @@ public class SeriesController {
             root = loader.load();
             CrewController crewController = loader.getController();
             crewController.build(crewId);
-            if(Crew.findById(crewId) instanceof Cast) {
+            if (Crew.findById(crewId) instanceof Cast) {
                 stage = (Stage) castsBox.getScene().getWindow();
-            }
-            else {
+            } else {
                 stage = (Stage) directorsBox.getScene().getWindow();
             }
             scene = new Scene(root);
@@ -212,6 +254,16 @@ public class SeriesController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void scrollRight(MouseEvent event) {
+//        double newHValue = Math.min(trendingSeriesScrollPane.getHvalue() + 0.4, 1); // Scroll right
+//        trendingSeriesScrollPane.setHvalue(newHValue);
+    }
+
+    public void scrollLeft(MouseEvent event) {
+//        double newHValue = Math.min(trendingSeriesScrollPane.getHvalue() - 0.4, 1); // Scroll right
+//        trendingSeriesScrollPane.setHvalue(newHValue);
     }
 
     public void build(String seriesId) {
