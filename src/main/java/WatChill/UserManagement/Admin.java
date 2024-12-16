@@ -179,8 +179,193 @@ public class Admin extends User {
 
     private void updateCrew() {
         // TODO
+        System.out.println("[ 1 ]: Director\n [ 2 ]: Cast");
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        while (true) {
+            try {
+                System.out.print("Enter choice: ");
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    updateDirector();
+                }
+                else if (choice == 2) {
+                    updateCast();
+                }
+                else {
+                    System.out.println("Invalid choice.");
+                }
+                break;
+            }
+            catch (Exception e) {
+                System.out.println("Invalid choice.");
+            }
+        }
     }
 
+    private void updateDirector() 
+    {
+        ArrayList<Crew> crews = new ArrayList<>(Crew.retrieveCrews());
+        while (true)
+        {
+            for (Crew crew : crews)
+            {
+                if (crew instanceof Director)
+                {
+                    crew.printCrewInfo();
+                }
+            }
+            Scanner scanner = new Scanner(System.in);
+            String id = getValidInput(scanner, "Enter id to update: ", "^[0-9]+$");
+
+            
+            String choice = getValidInput(scanner, "[ 1 ]: Update id\n" + //
+                                " [ 2 ]: Update firstName\n" + //
+                                " [ 3 ]: Update lastName [ 4 ]: Update Date Of Birth\\n" + //
+                                " [ 5 ]: Nationality\n" + //
+                                " [ 6 ]: gender\n" + //
+                                " [ 7 ]: Content Created\n" + //
+                                " [ 8 ]: Instagram profile\n" + //
+                                " [ 9 ]: Profile Picture\n" + //
+                                " [ 10 ]: Twitter profile\n" + //
+                                " [ 11 ]: Exit\n", "^[1-9]|1[01]$");
+
+            Crew c = Crew.findById(id);
+            if (choice.equals("1"))
+            {
+                String newID = getValidInput(scanner, "Enter the updated ID: ", "^[0-9]+$");
+                c.setId(id);
+            }
+            else if (choice.equals("2"))
+            {
+                String updatedFirstName = getValidInput(scanner, "Enter the updated first name: ", "^[a-zA-Z]+$");
+                c.setFirstName(updatedFirstName);
+            }
+            else if (choice.equals("3"))
+            {
+                String updatedLastName = getValidInput(scanner, "Enter the updated last name: ", "^[a-zA-Z]+$");
+                c.setLastName(updatedLastName);
+            }
+            else if (choice.equals("4"))
+            {
+                c.setDateOfBirth(LocalDate.parse(getValidInput(scanner, "Enter the updated date of birth: ", "^[0-9]{4}-[0-9]{2}-[0-9]{2}$")));
+            }
+            else if (choice.equals("5"))
+            {
+                c.setNationality(getValidInput(scanner, "Enter the updated nationality: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("6"))
+            {
+                c.setGender(getValidInput(scanner, "Enter the updated gender: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("7"))
+            {
+                System.out.println("Movies he created: \n");
+                for (int i = 0; i < c.getContentCreated().size(); i++) 
+                {
+                    System.out.println(c.getContentCreated().get(i));
+                }
+                String movieToBeReplaced = getValidInput(scanner, "Enter the movie to be replaced: ", "^[a-zA-Z]+$");
+                String newMovie = getValidInput(scanner, "Enter the new movie: ", "^[a-zA-Z]+$");
+                for (int i = 0; i < c.getContentCreated().size(); i++) 
+                {
+                    if (c.getContentCreated().get(i).equals(movieToBeReplaced))
+                    {
+                        c.getContentCreated().set(i, newMovie);
+                    }
+                }
+            }
+            else if (choice.equals("8"))
+            {
+                c.setInstagramLink(getValidInput(scanner, "Enter the updated instagram link: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("9"))
+            {
+                c.setPicture(getValidInput(scanner, "Enter the updated picture: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("10"))
+            {
+                c.setTwitterLink(getValidInput(scanner, "Enter the updated twitter link: ", "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"));
+            }
+            else if (choice.equals("11"))
+            {
+                break;
+            }
+        }
+    }
+
+    private void updateCast() 
+    {
+        ArrayList<Crew> crews = new ArrayList<>(Crew.retrieveCrews());
+        while (true)
+        {
+            for (Crew crew : crews)
+            {
+                if (crew instanceof Cast)
+                {
+                    crew.printCrewInfo();
+                }
+            }
+            Scanner scanner = new Scanner(System.in);
+            String id = getValidInput(scanner, "Enter id to update: ", "^[0-9]+$");
+            
+            
+            String choice = getValidInput(scanner, "[ 1 ]: Update id\n" + //
+                                " [ 2 ]: Update firstName\n" + //
+                                " [ 3 ]: Update lastName [ 4 ]: Update Date Of Birth\\n" + //
+                                " [ 5 ]: Nationality\n" + //
+                                " [ 6 ]: gender\n" + //
+                                " [ 7 ]: Instagram profile\n" + //
+                                " [ 8 ]: Profile Picture\n" + //
+                                " [ 9 ]: Twitter profile\n" + //
+                                " [ 10 ]: Exit\n", "^[1-9]|1[01]$");
+
+            Crew c = Crew.findById(id);
+            if (choice.equals("1"))
+            {
+                c.setId(getValidInput(scanner, "Enter the updated ID: ", "^[0-9]+$"));
+            }
+            else if (choice.equals("2"))
+            {
+                String updatedFirstName = getValidInput(scanner, "Enter the updated first name: ", "^[a-zA-Z]+$");
+                c.setFirstName(updatedFirstName);
+            }
+            else if (choice.equals("3"))
+            {
+                String updatedLastName = getValidInput(scanner, "Enter the updated last name: ", "^[a-zA-Z]+$");
+                c.setLastName(updatedLastName);
+            }
+            else if (choice.equals("4"))
+            {
+                c.setDateOfBirth(LocalDate.parse(getValidInput(scanner, "Enter the updated date of birth: ", "^[0-9]{4}-[0-9]{2}-[0-9]{2}$")));
+            }
+            else if (choice.equals("5"))
+            {
+                c.setNationality(getValidInput(scanner, "Enter the updated nationality: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("6"))
+            {
+                c.setGender(getValidInput(scanner, "Enter the updated gender: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("7"))
+            {
+                c.setInstagramLink(getValidInput(scanner, "Enter the updated instagram link: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("8"))
+            {
+                c.setPicture(getValidInput(scanner, "Enter the updated picture: ", "^[a-zA-Z]+$"));
+            }
+            else if (choice.equals("9"))
+            {
+                c.setTwitterLink(getValidInput(scanner, "Enter the updated twitter link: ", "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"));
+            }
+            else if (choice.equals("10"))
+            {
+                break;
+            }
+        }
+    }
+    
     private void deleteCrew() {
         Crew crew = getValidCrew();
         crew.delete();
