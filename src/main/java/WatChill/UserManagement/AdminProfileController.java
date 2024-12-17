@@ -13,9 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -61,11 +59,16 @@ public class AdminProfileController {
     TextField newPasswordInput;
     @FXML
     Text newPasswordError;
+    @FXML
+    BorderPane profileBorderPane;
 
     Stage stage;
     Parent root;
     Scene scene;
 
+    public void initialize() {
+        initializeHeader();
+    }
 
     public void displayMyInfo(ActionEvent actionEvent) {
         watchLaterContainer.setVisible(false);
@@ -81,23 +84,6 @@ public class AdminProfileController {
         email.setText(user.getEmail());
         firstNameInput.setText(user.getFirstName());
         lastNameInput.setText(user.getLastName());
-    }
-
-    public void redirectToHome(Event event) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
-            root = loader.load();
-            scene = ((Node) event.getSource()).getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void editInfo(ActionEvent actionEvent) {
@@ -142,5 +128,15 @@ public class AdminProfileController {
         }
         newPasswordInput.setDisable(false);
         newPasswordInput.setText(oldPasswordInput.getText());
+    }
+
+    private void initializeHeader() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));
+            Pane header = loader.load();
+            profileBorderPane.setTop(header);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

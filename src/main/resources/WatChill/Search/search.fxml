@@ -6,8 +6,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -19,24 +17,7 @@
               <children>
                   <StackPane id="body" alignment="TOP_CENTER" style="-fx-background-color: #141414;">
                       <children>
-                          <BorderPane maxHeight="1.7976931348623157E308" prefWidth="639.0" StackPane.alignment="TOP_CENTER">
-                              <top>
-                                  <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
-                                      <children>
-                                          <ImageView fitHeight="53.0" fitWidth="200.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
-                                              <image>
-                                                  <Image url="@../../Logo.png" />
-                                              </image>
-                                              <HBox.margin>
-                                                  <Insets />
-                                              </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                          </ImageView>
-                                      </children>
-                                  </HBox>
-                              </top>
+                          <BorderPane fx:id="searchBorderPane" maxHeight="1.7976931348623157E308" prefWidth="639.0" StackPane.alignment="TOP_CENTER">
                      <center>
                         <VBox prefHeight="399.0" prefWidth="501.0" BorderPane.alignment="CENTER">
                            <children>

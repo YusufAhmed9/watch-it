@@ -21,9 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -72,12 +70,15 @@ public class ProfileController {
     TextField newPasswordInput;
     @FXML
     Text newPasswordError;
+    @FXML
+    BorderPane profileBorderPane;
 
     Parent root;
     Stage stage;
     Scene scene;
 
     public void initialize() {
+        initializeHeader();
         displayWatchLater();
     }
 
@@ -214,23 +215,6 @@ public class ProfileController {
         remainingContainer.getChildren().add(endDate);
     }
 
-    public void redirectToHome(Event event) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
-            root = loader.load();
-            scene = ((Node) event.getSource()).getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void editInfo(ActionEvent actionEvent) {
         firstNameError.setText("");
         lastNameError.setText("");
@@ -273,5 +257,15 @@ public class ProfileController {
         }
         newPasswordInput.setDisable(false);
         newPasswordInput.setText(oldPasswordInput.getText());
+    }
+
+    private void initializeHeader() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));
+            Pane header = loader.load();
+            profileBorderPane.setTop(header);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
