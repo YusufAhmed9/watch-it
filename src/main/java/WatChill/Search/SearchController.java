@@ -16,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -40,6 +42,9 @@ public class SearchController {
     Button clearFiltersButton;
     @FXML
     HBox filtersContainer;
+    @FXML
+    BorderPane searchBorderPane;
+
 
     private ArrayList<Content> contents = new ArrayList<>();
     private ArrayList<Crew> crews = new ArrayList<>();
@@ -83,6 +88,7 @@ public class SearchController {
     }
 
     public void build(String searchQuery, String searchType) {
+        initializeHeader();
         setSearchQuery(searchQuery);
         setSearchType(searchType);
         if (getSearchType().equals("Series")) {
@@ -313,17 +319,11 @@ public class SearchController {
         searchResultsContainer.getChildren().add(label);
     }
 
-    public void redirectToHome(MouseEvent mouseEvent) {
+    private void initializeHeader() {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
-            root = loader.load();
-            scene = searchResultsContainer.getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));
+            Pane header = loader.load();
+            searchBorderPane.setTop(header);
         } catch (Exception e) {
             e.printStackTrace();
         }

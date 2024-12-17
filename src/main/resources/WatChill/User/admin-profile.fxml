@@ -20,24 +20,7 @@
     <content>
         <StackPane id="body" alignment="TOP_CENTER" style="-fx-background-color: #141414;">
             <children>
-                <BorderPane style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
-                    <top>
-                        <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
-                            <children>
-                                <ImageView fitHeight="53.0" fitWidth="200.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../Logo.png" />
-                                    </image>
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </ImageView>
-                            </children>
-                        </HBox>
-                    </top>
+                <BorderPane fx:id="profileBorderPane" style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
                     <center>
                         <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;">
                             <children>
@@ -54,7 +37,7 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </Button>
-                              <Button mnemonicParsing="false" styleClass="main-button" text="Movie">
+                              <Button mnemonicParsing="false" styleClass="main-button" text="Movies">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -270,6 +253,36 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
+                              <VBox fx:id="moviesAdmin1">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Series" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Manrope Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="moviesContainer1" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="moviesForm1" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="moviesAdmin">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Movies" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Manrope Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="moviesContainer" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="moviesForm" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
                                     </children>
                                 </VBox>
                             </children>
