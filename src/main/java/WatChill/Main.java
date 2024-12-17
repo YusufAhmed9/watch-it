@@ -31,11 +31,11 @@ public class Main extends Application {
         }
     }
     private Scene redirectToHome() throws IOException {
-        String css = getClass().getResource("/WatChill/Style/Episode.css").toExternalForm();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Episode.fxml"));
+        String css = getClass().getResource("/WatChill/Style/Main.css").toExternalForm();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
         Parent root = loader.load();
-        EpisodeController episodeController = loader.getController();
-        episodeController.build("1");
+//        EpisodeController episodeController = loader.getController();
+//        episodeController.build("1");
         Scene scene = new Scene(root);
         scene.getStylesheets().add(css);
         return scene;

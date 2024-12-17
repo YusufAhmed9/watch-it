@@ -148,6 +148,7 @@ public abstract class Crew {
     }
 
     public void printCrewInfo() {
+        System.out.println("Id: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Date of Birth: " + getDateOfBirth());
         System.out.println("Gender: " + getGender());
