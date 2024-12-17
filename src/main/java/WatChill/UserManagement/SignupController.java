@@ -1,6 +1,7 @@
 package WatChill.UserManagement;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -62,18 +63,24 @@ public class SignupController {
             usernameError.setText("Username is required");
             return;
         }
-        if (!isUsernameValid(username)) {
+        if (!User.isUsernameUnique(username)) {
             usernameError.setText("A user with that username already exists.");
             return;
         }
-        if (!isEmailValid(email)) {
+        if (!User.isEmailValid(email)) {
             emailError.setText("Invalid Email.");
+            return;
+        }
+        if (!User.isEmailUnique(email)) {
+            emailError.setText("A user with that email already exists.");
             return;
         }
         if (password.isEmpty()) {
             passwordError.setText("Password is required.");
             return;
         }
+        User.createUser(username, email, password, firstName, lastName);
+        redirectToHome(actionEvent);
     }
 
     public void redirectToLogin(ActionEvent actionEvent) {
@@ -81,8 +88,9 @@ public class SignupController {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/login.fxml"));
             root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = ((Node) actionEvent.getSource()).getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -92,13 +100,20 @@ public class SignupController {
         }
     }
 
-    private boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
-    }
-
-    private boolean isUsernameValid(String username) {
-        return true;
-    }
+    public void redirectToHome(Event event) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
+            root = loader.load();
+            scene = ((Node) event.getSource()).getScene();
+            stage = (Stage) scene.getWindow();
+            scene.setRoot(root);
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    };
 }
