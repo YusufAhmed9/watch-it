@@ -255,7 +255,7 @@ public class HomeController {
 
     private void redirectToSeriesPage(String seriesId) {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
+            String css = getClass().getResource("/WatChill/style/Series.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Series.fxml"));
             root = loader.load();
 
