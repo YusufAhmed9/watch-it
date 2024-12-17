@@ -25,468 +25,437 @@
 
 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.Series.EpisodeController">
     <content>
-      <VBox alignment="CENTER">
-         <children>
-              <BorderPane style="-fx-background-color: #1A1A1A;">
-                  <center>
-                      <VBox style="-fx-background-color: #141414;" BorderPane.alignment="CENTER">
-                          <children>
-                              <VBox>
+        <VBox alignment="CENTER">
+            <children>
+            <StackPane>
+               <children>
+                      <BorderPane style="-fx-background-color: #1A1A1A;">
+                          <center>
+                              <VBox style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
                                   <children>
-                              <AnchorPane>
-                                 <children>
-                                    <Pane layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                                      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #141414;">
+                                      <VBox>
                                           <children>
-                                              <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-background-radius: 15px; -fx-cursor: hand;" styleClass="seasons-button" text="Seasons" textAlignment="CENTER">
-                                                  <font>
-                                                      <Font name="Manrope Bold" size="18.0" />
-                                                  </font>
-                                                  <effect>
-                                                      <ColorAdjust />
-                                                  </effect>
-                                                  <HBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                  </HBox.margin>
-                                              </MenuButton>
-                                          </children>
-                                          <padding>
-                                              <Insets left="40.0" top="10.0" />
-                                          </padding>
-                                      </HBox>
-                                      <VBox spacing="15.0">
-                                          <children>
-                                              <HBox style="-fx-background-color: #0F0F0F;">
+                                              <AnchorPane>
                                                   <children>
-                                                      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Episodes" textFill="WHITE">
-                                                          <font>
-                                                              <Font name="Manrope Bold" size="26.0" />
-                                                          </font>
-                                                          <cursor>
-                                                              <Cursor fx:constant="HAND" />
-                                                          </cursor>
-                                                          <padding>
-                                                              <Insets bottom="5.0" left="40.0" top="5.0" />
-                                                          </padding>
-                                                      </Label>
+                                                      <Pane layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="222.0" AnchorPane.topAnchor="0.0" />
                                                   </children>
-                                              </HBox>
-                                              <FlowPane fx:id="episodesPane" hgap="15.0" style="-fx-background-color: #0F0F0F;" vgap="15.0" VBox.vgrow="ALWAYS">
+                                              </AnchorPane>
+                                              <HBox alignment="CENTER_LEFT" style="-fx-background-color: transparent;">
                                                   <children>
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                      <MenuButton fx:id="seasonsMenu" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-background-radius: 15px; -fx-cursor: hand;" styleClass="seasons-button" stylesheets="@../../Style/Series.css" text="Seasons" textAlignment="CENTER">
+                                                          <font>
+                                                              <Font name="Manrope Bold" size="18.0" />
+                                                          </font>
+                                                          <effect>
+                                                              <ColorAdjust />
+                                                          </effect>
+                                                          <HBox.margin>
+                                                              <Insets bottom="10.0" />
+                                                          </HBox.margin>
+                                                      </MenuButton>
                                                   </children>
                                                   <padding>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                      <Insets left="40.0" top="10.0" />
                                                   </padding>
-                                              </FlowPane>
+                                              </HBox>
+                                              <VBox spacing="15.0">
+                                                  <children>
+                                                      <HBox style="-fx-background-color: #0F0F0F;">
+                                                          <children>
+                                                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="48.0" style="-fx-text-fill: #fff;" text="Episodes" textFill="WHITE">
+                                                                  <font>
+                                                                      <Font name="Manrope Bold" size="26.0" />
+                                                                  </font>
+                                                                  <cursor>
+                                                                      <Cursor fx:constant="HAND" />
+                                                                  </cursor>
+                                                                  <padding>
+                                                                      <Insets bottom="5.0" left="40.0" top="5.0" />
+                                                                  </padding>
+                                                              </Label>
+                                                          </children>
+                                                      </HBox>
+                                                      <FlowPane fx:id="episodesPane" hgap="15.0" style="-fx-background-color: #0F0F0F;" vgap="15.0" VBox.vgrow="ALWAYS">
+                                                          <children>
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #1A1A1A; -fx-text-fill: #fff; -fx-background-radius: 12;" text="1" />
+                                                          </children>
+                                                          <padding>
+                                                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                          </padding>
+                                                      </FlowPane>
+                                                  </children>
+                                                  <VBox.margin>
+                                                      <Insets left="20.0" right="20.0" />
+                                                  </VBox.margin>
+                                              </VBox>
                                           </children>
-                                 <VBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </VBox.margin>
                                       </VBox>
                                   </children>
                               </VBox>
-                          </children>
-                      </VBox>
-                  </center>
-                  <top>
-                      <HBox alignment="CENTER_LEFT" prefHeight="86.0" style="-fx-background-color: #141414;" BorderPane.alignment="CENTER">
-                          <children>
-                              <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                  <image>
-                                      <Image url="@../../../Logo.png" />
-                                  </image>
-                                  <HBox.margin>
-                                      <Insets left="20.0" />
-                                  </HBox.margin>
-                              </ImageView>
-                              <HBox alignment="CENTER" prefHeight="100.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
+                          </center>
+                          <bottom>
+                              <VBox alignment="CENTER" style="-fx-background-color: transparent;">
+                                  <BorderPane.margin>
+                                      <Insets top="20.0" />
+                                  </BorderPane.margin>
                                   <children>
-                                      <AnchorPane>
-                                          <HBox.margin>
-                                              <Insets right="100.0" />
-                                          </HBox.margin>
+                                      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="568.0" style="-fx-background-color: #0F0F0F; -fx-background-radius: 30;" VBox.vgrow="NEVER">
+                                          <VBox.margin>
+                                              <Insets />
+                                          </VBox.margin>
                                           <children>
-                                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <children>
-                                                      <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="MenuButton">
-                                                          <items>
-                                                              <MenuItem mnemonicParsing="false" text="Movies" />
-                                                              <MenuItem mnemonicParsing="false" text="Series" />
-                                                              <MenuItem mnemonicParsing="false" text="Cast" />
-                                                              <MenuItem mnemonicParsing="false" text="Director" />
-                                                          </items>
-                                                          <padding>
-                                                              <Insets bottom="4.0" top="4.0" />
-                                                          </padding>
-                                                      </MenuButton>
-                                                      <TextField fx:id="searchInput" prefHeight="25.0" prefWidth="474.0" promptText="Search WatChill..." style="-fx-background-radius: 5 0 0 5; -fx-background-color: #111; -fx-text-fill: #fff;">
-                                                          <padding>
-                                                              <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
-                                                          </padding>
-                                                      </TextField>
-                                                      <Button mnemonicParsing="false" style="-fx-background-color: #333;" styleClass="search-button" stylesheets="@../../Style/Episode.css">
-                                                          <graphic>
-                                                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                                                  <image>
-                                                                      <Image url="@../../../loupe.png" />
-                                                                  </image>
-                                                              </ImageView>
-                                                          </graphic>
-                                                          <cursor>
-                                                              <Cursor fx:constant="HAND" />
-                                                          </cursor>
-                                                      </Button>
-                                                  </children>
-                                              </HBox>
+                                              <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="363.0" style="-fx-text-fill: #fff;" text="Leave a rating">
+                                                  <font>
+                                                      <Font name="Manrope Bold" size="24.0" />
+                                                  </font>
+                                                  <StackPane.margin>
+                                                      <Insets />
+                                                  </StackPane.margin>
+                                                  <padding>
+                                                      <Insets bottom="100.0" right="200.0" />
+                                                  </padding>
+                                              </Label>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="45.0" StackPane.alignment="TOP_RIGHT">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets />
+                                                  </StackPane.margin>
+                                              </ImageView>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="55.0" StackPane.alignment="BOTTOM_LEFT">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets left="90.0" />
+                                                  </StackPane.margin>
+                                              </ImageView>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7" StackPane.alignment="BOTTOM_RIGHT">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                              </ImageView>
+                                              <HBox fx:id="starsBox" alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="268.0" style="-fx-background-color: #000; -fx-background-radius: 30;" />
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets right="470.0" top="40.0" />
+                                                  </StackPane.margin>
+                                              </ImageView>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-153.4">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets left="350.0" top="70.0" />
+                                                  </StackPane.margin>
+                                              </ImageView>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets bottom="70.0" right="450.0" />
+                                                  </StackPane.margin>
+                                              </ImageView>
+                                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="35.5">
+                                                  <image>
+                                                      <Image url="@../star.png" />
+                                                  </image>
+                                                  <StackPane.margin>
+                                                      <Insets bottom="90.0" left="300.0" />
+                                                  </StackPane.margin>
+                                              </ImageView>
                                           </children>
-                                      </AnchorPane>
-                                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Sign In">
+                                          <padding>
+                                              <Insets top="10.0" />
+                                          </padding>
+                                      </StackPane>
+                                      <HBox spacing="20.0" style="-fx-background-color: transparent;">
+                                          <children>
+                                              <ImageView fx:id="seriesPoster" fitHeight="179.0" fitWidth="133.0" preserveRatio="true">
+                                                  <image>
+                                                      <Image url="@media/Attack%20On%20Titan/AOTPoster.jpg" />
+                                                  </image>
+                                                  <effect>
+                                                      <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" spread="1.0" width="10.0">
+                                                          <color>
+                                                              <Color red="1.0" green="1.0" blue="1.0" />
+                                                          </color>
+                                                      </DropShadow>
+                                                  </effect>
+                                              </ImageView>
+                                              <VBox>
+                                                  <children>
+                                                      <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" text="Series Title" textFill="WHITE">
+                                                          <font>
+                                                              <Font name="Manrope Bold" size="34.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <HBox>
+                                                          <children>
+                                                              <Text fx:id="seasonDescription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Type: TV Show" textAlignment="CENTER">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="18.0" />
+                                                                  </font>
+                                                              </Text>
+                                                          </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                          <children>
+                                                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Genres: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <HBox fx:id="genresBox" alignment="CENTER_LEFT" spacing="5.0">
+                                                                  <children>
+                                                                      <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fx:id="seasonDescription111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Horror" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fx:id="seasonDescription12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fx:id="seasonDescription13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Action" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                  </children>
+                                                              </HBox>
+                                                          </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                          <children>
+                                                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Release date: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <Label fx:id="releaseDate" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                          </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                          <children>
+                                                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Country: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <Label fx:id="country" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                          </children>
+                                                      </HBox>
+                                                  </children>
+                                              </VBox>
+                                              <VBox alignment="CENTER" prefHeight="188.0" prefWidth="227.0">
+                                                  <children>
+                                                      <HBox alignment="CENTER_LEFT" fillHeight="false">
+                                                          <children>
+                                                              <Label alignment="TOP_LEFT" style="-fx-text-fill: #fff;" text="Languages: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <HBox fx:id="languagesBox" alignment="CENTER_LEFT" spacing="5.0">
+                                                                  <children>
+                                                                      <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="English" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Japanese" textAlignment="CENTER">
+                                                                          <font>
+                                                                              <Font name="Manrope SemiBold" size="14.0" />
+                                                                          </font>
+                                                                      </Text>
+                                                                  </children>
+                                                              </HBox>
+                                                          </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                          <children>
+                                                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Budget: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <Label fx:id="budgetLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                          </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                          <children>
+                                                              <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Rating: ">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                              <Label fx:id="ratingLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
+                                                                  <font>
+                                                                      <Font name="Manrope SemiBold" size="14.0" />
+                                                                  </font>
+                                                              </Label>
+                                                          </children>
+                                                      </HBox>
+                                                  </children>
+                                                  <padding>
+                                                      <Insets top="5.0" />
+                                                  </padding>
+                                              </VBox>
+                                          </children>
+                                          <padding>
+                                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                                          </padding>
+                                      </HBox>
+                                  </children>
+                              </VBox>
+                          </bottom>
+                          <top>
+                              <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../../../Logo.png" />
+                                          </image>
                                           <HBox.margin>
-                                              <Insets right="10.0" />
+                                              <Insets />
                                           </HBox.margin>
-                                          <font>
-                                              <Font name="Manrope Bold" size="12.0" />
-                                          </font>
-                                      </Button>
-                                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Sign Up">
-                                          <HBox.margin>
-                                              <Insets right="10.0" />
-                                          </HBox.margin>
-                                          <font>
-                                              <Font name="Manrope Bold" size="12.0" />
-                                          </font>
-                                      </Button>
+                                      </ImageView>
+                                      <HBox alignment="CENTER" HBox.hgrow="SOMETIMES">
+                                          <children>
+                                              <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Movies">
+                                                  <items>
+                                                      <MenuItem mnemonicParsing="false" text="Movies" />
+                                                      <MenuItem mnemonicParsing="false" text="Series" />
+                                                      <MenuItem mnemonicParsing="false" text="Crew" />
+                                                  </items>
+                                                  <padding>
+                                                      <Insets bottom="4.0" top="4.0" />
+                                                  </padding>
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </MenuButton>
+                                              <TextField fx:id="searchInput" onKeyTyped="#handleSearch" prefHeight="33.0" prefWidth="435.0" promptText="Search WatChill..." style="-fx-background-radius: 5 0 0 5; -fx-background-color: #111; -fx-text-fill: #fff;">
+                                                  <padding>
+                                                      <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                                                  </padding>
+                                              </TextField>
+                                              <Button mnemonicParsing="false" onAction="#redirectToSearch" style="-fx-background-color: #333;">
+                                                  <graphic>
+                                                      <ImageView fx:id="bgImage" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                          <image>
+                                                              <Image url="@../../Home/loupe.png" />
+                                                          </image>
+                                                      </ImageView>
+                                                  </graphic>
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </Button>
+                                          </children>
+                                      </HBox>
+                                      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="NEVER">
+                                          <children>
+                                              <Button fx:id="signUpButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToSignUp" styleClass="main-button" text="Sign Up">
+                                                  <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                  </HBox.margin>
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </Button>
+                                              <Button fx:id="signInButton" minWidth="100.0" mnemonicParsing="false" onAction="#redirectToLogin" styleClass="main-button" text="Sign In">
+                                                  <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                  </HBox.margin>
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </Button>
+                                              <ImageView fx:id="profileIcon" fitHeight="42.0" fitWidth="42.0" onMouseClicked="#redirectToProfile" pickOnBounds="true" preserveRatio="true">
+                                                  <image>
+                                                      <Image url="@../../Home/user-circle.png" />
+                                                  </image>
+                                                  <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                  </cursor>
+                                              </ImageView>
+                                          </children>
+                                      </HBox>
                                   </children>
                               </HBox>
-                          </children>
-                      </HBox>
-                  </top>
-               <bottom>
-                  <VBox alignment="CENTER" style="-fx-background-color: #1A1A1A;">
-                     <BorderPane.margin>
-                        <Insets top="20.0" />
-                     </BorderPane.margin>
-                     <children>
-                        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="568.0" style="-fx-background-color: #0F0F0F; -fx-background-radius: 30;" VBox.vgrow="NEVER">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <children>
-                              <Label alignment="TOP_LEFT" prefHeight="149.0" prefWidth="363.0" style="-fx-text-fill: #fff;" text="Leave a rating">
-                                 <font>
-                                    <Font name="Manrope Bold" size="24.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
-                                 <padding>
-                                    <Insets bottom="100.0" right="200.0" />
-                                 </padding>
-                              </Label>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="45.0" StackPane.alignment="TOP_RIGHT">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="55.0" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets left="90.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7" StackPane.alignment="BOTTOM_RIGHT">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="268.0" style="-fx-background-color: #000; -fx-background-radius: 30;">
-                                 <children>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0">
-                                       <image>
-                                          <Image url="@../star.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0">
-                                       <image>
-                                          <Image url="@../star.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0">
-                                       <image>
-                                          <Image url="@../star.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0">
-                                       <image>
-                                          <Image url="@../star.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0">
-                                       <image>
-                                          <Image url="@../star.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-59.7">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets right="470.0" top="40.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="-153.4">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets left="350.0" top="70.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <ImageView fitHeight="70.0" fitWidth="70.0">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets bottom="70.0" right="450.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" rotate="35.5">
-                                 <image>
-                                    <Image url="@../star.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets bottom="90.0" left="300.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </StackPane>
-                        <HBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
-                           <children>
-                              <ImageView fx:id="seriesPoster" fitHeight="179.0" fitWidth="133.0" preserveRatio="true">
-                                 <image>
-                                    <Image url="@media/Attack%20On%20Titan/AOTPoster.jpg" />
-                                 </image>
-                                 <effect>
-                                    <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" spread="1.0" width="10.0">
-                                       <color>
-                                          <Color red="1.0" green="1.0" blue="1.0" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </ImageView>
-                              <VBox>
-                                 <children>
-                                    <Label fx:id="seriesTitle" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="series-title" text="Series Title" textFill="WHITE">
-                                       <font>
-                                          <Font name="Manrope Bold" size="34.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox>
-                                       <children>
-                                          <Text fx:id="seasonDescription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Type: TV Show" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="18.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Genres: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox fx:id="genresBox" alignment="CENTER_LEFT" spacing="5.0">
-                                             <children>
-                                                <Text fx:id="seasonDescription1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Anime" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fx:id="seasonDescription111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Horror" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fx:id="seasonDescription12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fx:id="seasonDescription13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Action" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Release date: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="releaseDate" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Country: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="country" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="188.0" prefWidth="227.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" fillHeight="false">
-                                       <children>
-                                          <Label alignment="TOP_LEFT" style="-fx-text-fill: #fff;" text="Languages: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox fx:id="languagesBox" alignment="CENTER_LEFT" spacing="5.0">
-                                             <children>
-                                                <Text fx:id="seasonDescription11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="English" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="•" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #fff;" text="Japanese" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font name="Manrope SemiBold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Budget: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="budgetLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label alignment="CENTER" style="-fx-text-fill: #fff;" text="Rating: ">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="ratingLabel" alignment="CENTER" style="-fx-text-fill: #fff;">
-                                             <font>
-                                                <Font name="Manrope SemiBold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                           </padding>
-                        </HBox>
-                     </children>
+                          </top>
+                      </BorderPane>
+                  <VBox fx:id="searchResultsContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1269.0" style="-fx-max-width: 610; -fx-background-radius: 0 0 20 20;" visible="false">
+                     <StackPane.margin>
+                        <Insets right="55.0" top="70.0" />
+                     </StackPane.margin>
                   </VBox>
-               </bottom>
-              </BorderPane>
-         </children>
-      </VBox>
+               </children>
+            </StackPane>
+            </children>
+        </VBox>
     </content>
 </ScrollPane>

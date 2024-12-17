@@ -35,6 +35,7 @@
     -fx-background-color: #1A1A1A;
     -fx-text-fill: #fff;
     -fx-background-radius: 12;
+    -fx-cursor: hand;
 }
 
 .language {
