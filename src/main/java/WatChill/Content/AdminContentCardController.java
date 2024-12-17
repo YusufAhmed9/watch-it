@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class ContentCardController {
+public class AdminContentCardController {
 
     @FXML
     private ImageView posterImage;
@@ -83,9 +83,9 @@ public class ContentCardController {
                 addToWatchLaterButton.setOnMouseClicked(_ -> {
                     customer.removeFromWatchLater(content.getId());
                     addToWatchLater.setImage(new Image("Vector.png"));
-                   if (rerender != null) {
-                       rerender.run();
-                   }
+                    if (rerender != null) {
+                        rerender.run();
+                    }
                 });
             }
         }
@@ -109,7 +109,6 @@ public class ContentCardController {
             scene = posterImage.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
-            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -122,16 +121,15 @@ public class ContentCardController {
     public void redirectToMoviePage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
-            root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/movie.fxml"));
 
             MovieController movieController = loader.getController();
             movieController.build(movieId);
 
+            root = loader.load();
             scene = posterImage.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
-            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -144,21 +142,29 @@ public class ContentCardController {
     public void redirectToSeriesPage(String seriesId) {
         try {
             String css = getClass().getResource("/WatChill/style/Series.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Series.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/series.fxml"));
             root = loader.load();
-
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
-
             scene = posterImage.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
-            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void deleteMovie(String movieId) {
+        Movie movie = Movie.findById(movieId);
+        movie.delete();
+    }
+
+    private void deleteSeries(String seriesId) {
+        Series series = Series.findById(seriesId);
+        series.delete();
     }
 }

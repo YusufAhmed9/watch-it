@@ -21,24 +21,7 @@
    <content>
       <StackPane id="body" alignment="TOP_CENTER" style="-fx-background-color: #141414;">
          <children>
-            <BorderPane style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
-               <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="86.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <ImageView fitHeight="53.0" fitWidth="200.0" onMouseClicked="#redirectToHome" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Logo.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </top>
+            <BorderPane fx:id="profileBorderPane" style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
                <center>
                   <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #141414;">
                      <children>
