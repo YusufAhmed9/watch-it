@@ -1,3 +1,23 @@
+.series-title{
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 34px;
+}
+.series-description{
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+.seasons-button{
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+.labels{
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
+    -fx-font-size: 26px;
+}
 .episode-container {
     -fx-alignment: "center_left";
     -fx-background-color: #0F0F0F;
@@ -12,7 +32,8 @@
 }
 
 .episode-title {
-    -fx-font-family: "Manrope SemiBold";
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
     -fx-font-size: 27px;
     -fx-text-fill: #D3D3D3;
     -fx-padding: 5 0 0 10;
@@ -66,7 +87,8 @@
 }
 
 .genre {
-    -fx-font-family: "Manrope SemiBold";
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-text-fill: #fff;
     -fx-padding: 0 0 5 0;
@@ -78,7 +100,8 @@
 }
 
 .cast-label {
-    -fx-font-family: "Manrope SemiBold";
+    -fx-font-family: "Manrope";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-text-fill: #fff;
     -fx-alignment: center;
@@ -86,7 +109,7 @@
 }
 
 .rating-text {
-    -fx-font-family: Manrope;
+    -fx-font-family: "Manrope";
     -fx-font-weight: Bold;
     -fx-font-size: 15px;
     -fx-alignment: center;

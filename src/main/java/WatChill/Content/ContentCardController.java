@@ -1,6 +1,7 @@
 package WatChill.Content;
 
 import WatChill.Content.Movie.Movie;
+import WatChill.Content.Movie.MovieController;
 import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.UserManagement.Admin;
@@ -120,8 +121,12 @@ public class ContentCardController {
     public void redirectToMoviePage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/movie.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
             root = loader.load();
+
+            MovieController movieController = loader.getController();
+            movieController.build(movieId);
+
             scene = posterImage.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
@@ -137,18 +142,19 @@ public class ContentCardController {
     public void redirectToSeriesPage(String seriesId) {
         try {
             String css = getClass().getResource("/WatChill/style/Series.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/series.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Series.fxml"));
             root = loader.load();
+
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
+
             scene = posterImage.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

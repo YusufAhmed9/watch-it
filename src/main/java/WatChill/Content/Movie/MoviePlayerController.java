@@ -3,7 +3,12 @@ package WatChill.Content.Movie;
 import WatChill.Content.Series.Episode;
 import WatChill.Content.Series.Season;
 import WatChill.Content.Series.Series;
+import WatChill.Review.Review;
+import WatChill.UserManagement.Customer;
+import WatChill.UserManagement.User;
+import WatChill.UserWatchRecord.UserWatchRecord;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -24,6 +29,8 @@ public class MoviePlayerController {
     @FXML
     private HBox languagesBox;
     @FXML
+    private HBox starsBox;
+    @FXML
     private Label releaseDate;
     @FXML
     private Label country;
@@ -43,6 +50,7 @@ public class MoviePlayerController {
         moviePoster.setImage(seriesImage);
         budgetLabel.setText(((Double) movie.getBudget()).toString());
         ratingLabel.setText(((Double) movie.getRating()).toString());
+        initializeRating();
     }
 
 
@@ -72,6 +80,69 @@ public class MoviePlayerController {
         }
         languagesBox.getChildren().removeLast();
         languagesBox.getStyleClass().add("genres-box");
+    }
+
+    public void initializeRating() {
+        int previousRating = -1;
+        if (User.getCurrentUser() instanceof Customer) {
+            for (UserWatchRecord userWatchRecord : UserWatchRecord.getUserWatchRecord(User.getCurrentUser().getId())) {
+                if (userWatchRecord.getWatchedContent().getId().equals(movie.getId())) {
+                    previousRating = userWatchRecord.getReview().getRating();
+                }
+            }
+        }
+        final int starCount = 5;
+        ImageView[] stars = new ImageView[starCount];
+        if (previousRating != -1) {
+            fillStars(stars, previousRating);
+        } else {
+            // Create the stars and set their hover effects
+            for (int i = 0; i < starCount; i++) {
+                ImageView star = new ImageView(new Image(getClass().getResource("/WatChill/Content/Empty star.png").toExternalForm()));
+                star.setFitHeight(48); // Adjust size as needed
+                star.setFitWidth(48);
+
+                int currentStarIndex = i;
+
+                // Set hover event (on mouse enter)
+                star.setOnMouseEntered(event -> {
+                    fillStars(stars, currentStarIndex);
+                });
+                star.setOnMouseClicked(event -> {
+                    fillStars(stars, currentStarIndex);
+                    if (User.getCurrentUser() instanceof Customer) {
+                        ((Customer) User.getCurrentUser()).watchContent(movie, new Review("", currentStarIndex));
+                    }
+                });
+
+                // Set event to reset when the mouse exits any star
+                star.setOnMouseExited(event -> {
+                    resetStars(stars);
+                });
+
+                star.setCursor(Cursor.HAND);
+                // Add star to the array and the HBox
+                stars[i] = star;
+                starsBox.getChildren().add(star);
+            }
+        }
+    }
+
+    private void fillStars(ImageView[] stars, int index) {
+        for (int i = 0; i <= index; i++) {
+            if (!stars[i].getImage().toString().equals(getClass().getResource("/WatChill/Content/star.png").toExternalForm())) {
+                stars[i].setImage(new Image(getClass().getResource("/WatChill/Content/star.png").toExternalForm()));
+            }
+        }
+    }
+
+    // Reset all stars to empty
+    private void resetStars(ImageView[] stars) {
+        for (ImageView star : stars) {
+            if (!star.getImage().toString().equals(getClass().getResource("/WatChill/Content/Empty star.png").toExternalForm())) {
+                star.setImage(new Image(getClass().getResource("/WatChill/Content/Empty star.png").toExternalForm()));
+            }
+        }
     }
 
     public void build(String movieId) {
