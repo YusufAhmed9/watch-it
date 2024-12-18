@@ -1,10 +1,16 @@
 package WatChill.Review;
 
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Review {
     private String content;
     private int rating;
-
-    public Review(String content, int rating) {
+    @JsonCreator
+    public Review(
+            @JsonProperty("content") String content,
+            @JsonProperty("rating") int rating) {
         this.content = content;
         this.rating = rating;
     }

@@ -9,7 +9,7 @@
   "instagramLink" : "hello",
   "twitterLink" : "byebye",
   "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-  "contentCreated" : [ "1" ]
+  "contentCreated" : [ "1", "038a8fe1-2698-4aad-9eb2-df598f9448da" ]
 }, {
   "@class" : "WatChill.Crew.Director.Director",
   "id" : "2",

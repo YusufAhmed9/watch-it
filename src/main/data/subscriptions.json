@@ -1,12 +1,12 @@
 [ {
   "@class" : "WatChill.Subscription.Subscription",
   "id" : "254915e2-4d9d-4217-88fe-572d823ae857",
-  "userId" : "8b9f70df-f886-4b5c-b5b8-e94172454358",
+  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
   "startDate" : [ 2024, 12, 17 ],
   "plan" : {
     "@class" : "WatChill.Subscription.BasicPlan",
     "maxMoviesCount" : 5,
     "price" : 10.0
   },
-  "moviesLeftCount" : 5
+  "moviesLeftCount" : 0
 } ]
