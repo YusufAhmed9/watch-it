@@ -1,16 +1,4 @@
 [ {
-  "@class" : "WatChill.Crew.Cast.Cast",
-  "id" : "1",
-  "firstName" : "Mahmoud",
-  "lastName" : "Mahmoud",
-  "dateOfBirth" : [ 2024, 12, 3 ],
-  "gender" : "Helicopter attack",
-  "nationality" : "Among us imposter",
-  "instagramLink" : "hello",
-  "twitterLink" : "byebye",
-  "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-  "contentCreated" : [ "1" ]
-}, {
   "@class" : "WatChill.Crew.Director.Director",
   "id" : "2",
   "firstName" : "Mahmoud",

@@ -1,80 +1,247 @@
-[ {
-  "@class" : "WatChill.Content.Series.Series",
-  "id" : "1",
-  "title" : "Attack On Titan",
-  "releaseDate" : [ 2013, 8, 1 ],
-  "seasons" : [ {
-    "id" : "1",
-    "title" : "Season 1",
-    "description" : "Greatest season ever",
-    "releaseDate" : [ 2024, 12, 3 ],
-    "episodes" : [ {
-      "id" : "1",
-      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-      "duration" : 25,
-      "releaseDate" : [ 2024, 12, 3 ],
-      "viewsCount" : 0,
-      "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-      "description" : "Nice one",
-      "seasonId" : "1"
-    }, {
-      "id" : "2",
-      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 2",
-      "duration" : 25,
-      "releaseDate" : [ 2024, 12, 3 ],
-      "viewsCount" : 0,
-      "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
-      "description" : "Nice one",
-      "seasonId" : "1"
-    } ],
-    "seriesId" : "1"
-  }, {
-    "id" : "2",
-    "title" : "Season 2",
-    "description" : "Greatest season ever",
-    "releaseDate" : [ 2024, 12, 3 ],
-    "episodes" : [ {
-      "id" : "1",
-      "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-      "duration" : 25,
-      "releaseDate" : [ 2024, 12, 3 ],
-      "viewsCount" : 0,
-      "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-      "description" : "Nice one",
-      "seasonId" : "2"
-    } ],
-    "seriesId" : "2"
-  } ],
-  "description" : "Greatest series ever",
-  "languages" : [ "English", "Japanese" ],
-  "country" : "Japan",
-  "genres" : [ "Anime", "Horror", "Adventure" ],
-  "poster" : "/WatChill/Content/Series/media/Attack On Titan/AOTPoster.jpg",
-  "budget" : 1000000.0,
-  "revenue" : 1000000.0,
-  "crews" : [ {
-    "@class" : "WatChill.Crew.Cast.Cast",
-    "id" : "1",
-    "firstName" : "Mahmoud",
-    "lastName" : "Mahmoud",
-    "dateOfBirth" : [ 2024, 12, 3 ],
-    "gender" : "Helicopter attack",
-    "nationality" : "Among us imposter",
-    "instagramLink" : "hello",
-    "twitterLink" : "byebye",
-    "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-    "contentCreated" : [ "1" ]
-  }, {
-    "@class" : "WatChill.Crew.Director.Director",
-    "id" : "2",
-    "firstName" : "Mahmoud",
-    "lastName" : "Mahmoud",
-    "dateOfBirth" : [ 2024, 12, 3 ],
-    "gender" : "Helicopter attack",
-    "nationality" : "Among us imposter",
-    "instagramLink" : "hello",
-    "twitterLink" : "byebye",
-    "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-    "contentCreated" : [ "1" ]
-  } ]
-} ]
+[
+  {
+    "@class": "WatChill.Content.Series.Series",
+    "id": "1",
+    "title": "Breaking Bad",
+    "releaseDate": [2008, 1, 20],
+    "seasons": [
+      {
+        "id": "1",
+        "title": "Season 1",
+        "description": "The beginning of Walter White's journey.",
+        "releaseDate": [2008, 1, 20],
+        "episodes": [
+          {
+            "id": "1",
+            "title": "Pilot",
+            "duration": 58,
+            "releaseDate": [2008, 1, 20],
+            "viewsCount": 1000000,
+            "poster": "/WatChill/Content/Series/media/BreakingBad/Episode1.jpg",
+            "description": "Walter White turns to a life of crime.",
+            "seasonId": "1"
+          }
+        ],
+        "seriesId": "1"
+      }
+    ],
+    "description": "A high school chemistry teacher turned methamphetamine kingpin.",
+    "languages": ["English"],
+    "country": "USA",
+    "genres": ["Crime", "Drama", "Thriller"],
+    "poster": "/WatChill/Content/Series/media/Breaking Bad/breaking_bad.jpg",
+    "budget": 3000000.0,
+    "revenue": 150000000.0,
+    "crews": [
+      {
+        "@class": "WatChill.Crew.Cast.Cast",
+        "id": "1",
+        "firstName": "Bryan",
+        "lastName": "Cranston",
+        "dateOfBirth": [1956, 3, 7],
+        "gender": "Male",
+        "nationality": "American",
+        "instagramLink": "https://instagram.com/bryancranston",
+        "twitterLink": "https://twitter.com/bryancranston",
+        "picture": "/WatChill/Crew/bryan_cranston.jpg",
+        "contentCreated": ["1"]
+      }
+    ]
+  },
+  {
+    "@class": "WatChill.Content.Series.Series",
+    "id": "2",
+    "title": "Game of Thrones",
+    "releaseDate": [2011, 4, 17],
+    "seasons": [
+      {
+        "id": "2",
+        "title": "Season 1",
+        "description": "The battle for the Iron Throne begins.",
+        "releaseDate": [2011, 4, 17],
+        "episodes": [
+          {
+            "id": "2",
+            "title": "Winter Is Coming",
+            "duration": 62,
+            "releaseDate": [2011, 4, 17],
+            "viewsCount": 2000000,
+            "poster": "/WatChill/Content/Series/media/GameOfThrones/Episode1.jpg",
+            "description": "The Starks of Winterfell receive a visit from King Robert.",
+            "seasonId": "2"
+          }
+        ],
+        "seriesId": "2"
+      }
+    ],
+    "description": "Nine noble families wage war against each other to gain control of the Iron Throne.",
+    "languages": ["English"],
+    "country": "USA",
+    "genres": ["Fantasy", "Drama", "Adventure"],
+    "poster": "/WatChill/Content/Series/media/GameOfThrones/GoTPoster.jpg",
+    "budget": 6000000.0,
+    "revenue": 300000000.0,
+    "crews": [
+      {
+        "@class": "WatChill.Crew.Cast.Cast",
+        "id": "2",
+        "firstName": "Emilia",
+        "lastName": "Clarke",
+        "dateOfBirth": [1986, 10, 23],
+        "gender": "Female",
+        "nationality": "British",
+        "instagramLink": "https://instagram.com/emiliaclarke",
+        "twitterLink": "https://twitter.com/emiliaclarke",
+        "picture": "/WatChill/Content/Series/media/GameOfThrones/Cast1.jpg",
+        "contentCreated": ["2"]
+      }
+    ]
+  },
+  {
+    "@class": "WatChill.Content.Series.Series",
+    "id": "3",
+    "title": "The Office",
+    "releaseDate": [2005, 3, 24],
+    "seasons": [
+      {
+        "id": "3",
+        "title": "Season 1",
+        "description": "The daily lives of office employees.",
+        "releaseDate": [2005, 3, 24],
+        "episodes": [
+          {
+            "id": "3",
+            "title": "Pilot",
+            "duration": 23,
+            "releaseDate": [2005, 3, 24],
+            "viewsCount": 1500000,
+            "poster": "/WatChill/Content/Series/media/TheOffice/Episode1.jpg",
+            "description": "An introduction to the Scranton branch.",
+            "seasonId": "3"
+          }
+        ],
+        "seriesId": "3"
+      }
+    ],
+    "description": "A mockumentary on a group of typical office workers.",
+    "languages": ["English"],
+    "country": "USA",
+    "genres": ["Comedy"],
+    "poster": "/WatChill/Content/Series/media/TheOffice/OfficePoster.jpg",
+    "budget": 1000000.0,
+    "revenue": 200000000.0,
+    "crews": [
+      {
+        "@class": "WatChill.Crew.Cast.Cast",
+        "id": "3",
+        "firstName": "Steve",
+        "lastName": "Carell",
+        "dateOfBirth": [1962, 8, 16],
+        "gender": "Male",
+        "nationality": "American",
+        "instagramLink": "https://instagram.com/stevecarell",
+        "twitterLink": "https://twitter.com/stevecarell",
+        "picture": "/WatChill/Content/Series/media/TheOffice/Cast1.jpg",
+        "contentCreated": ["3"]
+      }
+    ]
+  },
+  {
+    "@class": "WatChill.Content.Series.Series",
+    "id": "4",
+    "title": "Stranger Things",
+    "releaseDate": [2016, 7, 15],
+    "seasons": [
+      {
+        "id": "4",
+        "title": "Season 1",
+        "description": "A group of kids uncover a supernatural mystery.",
+        "releaseDate": [2016, 7, 15],
+        "episodes": [
+          {
+            "id": "4",
+            "title": "The Vanishing of Will Byers",
+            "duration": 50,
+            "releaseDate": [2016, 7, 15],
+            "viewsCount": 1700000,
+            "poster": "/WatChill/Content/Series/media/StrangerThings/Episode1.jpg",
+            "description": "Will Byers disappears, and strange events unfold.",
+            "seasonId": "4"
+          }
+        ],
+        "seriesId": "4"
+      }
+    ],
+    "description": "A thrilling sci-fi series blending 80s nostalgia with supernatural elements.",
+    "languages": ["English"],
+    "country": "USA",
+    "genres": ["Sci-Fi", "Drama", "Thriller"],
+    "poster": "/WatChill/Content/Series/media/StrangerThings/STPoster.jpg",
+    "budget": 8000000.0,
+    "revenue": 500000000.0,
+    "crews": [
+      {
+        "@class": "WatChill.Crew.Cast.Cast",
+        "id": "5",
+        "firstName": "Millie",
+        "lastName": "Bobby Brown",
+        "dateOfBirth": [2004, 2, 19],
+        "gender": "Female",
+        "nationality": "British",
+        "instagramLink": "https://instagram.com/milliebobbybrown",
+        "twitterLink": "https://twitter.com/milliebbrown",
+        "picture": "/WatChill/Content/Series/media/StrangerThings/Cast1.jpg",
+        "contentCreated": ["5"]
+      }
+    ]
+  },
+  {
+    "@class": "WatChill.Content.Series.Series",
+    "id": "6",
+    "title": "Friends",
+    "releaseDate": [1994, 9, 22],
+    "seasons": [
+      {
+        "id": "5",
+        "title": "Season 1",
+        "description": "The beginning of the iconic friendships in New York City.",
+        "releaseDate": [1994, 9, 22],
+        "episodes": [
+          {
+            "id": "5",
+            "title": "The One Where Monica Gets a Roommate",
+            "duration": 22,
+            "releaseDate": [1994, 9, 22],
+            "viewsCount": 2500000,
+            "poster": "/WatChill/Content/Series/media/Friends/Episode1.jpg",
+            "description": "Rachel leaves her fiancé at the altar and moves in with Monica.",
+            "seasonId": "5"
+          }
+        ],
+        "seriesId": "5"
+      }
+    ],
+    "description": "Six friends navigate life, love, and work in New York City.",
+    "languages": ["English"],
+    "country": "USA",
+    "genres": ["Comedy", "Romance"],
+    "poster": "/WatChill/Content/Series/media/Friends/friends.jpg",
+    "budget": 1000000.0,
+    "revenue": 1200000000.0,
+    "crews": [
+      {
+        "@class": "WatChill.Crew.Cast.Cast",
+        "id": "6",
+        "firstName": "Matt",
+        "lastName": "Aniston",
+        "dateOfBirth": [1969, 2, 11],
+        "gender": "Male",
+        "nationality": "American",
+        "instagramLink": "https://instagram.com/mattleblanc",
+        "twitterLink": "https://twitter.com/mattleblanc",
+        "picture": "/WatChill/Crew/matt_leblanc.png",
+        "contentCreated": ["6"]
+      }
+    ]
+  }
+]
