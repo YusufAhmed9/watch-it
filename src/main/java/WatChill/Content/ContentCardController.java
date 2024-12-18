@@ -7,11 +7,9 @@ import WatChill.Content.Series.SeriesController;
 import WatChill.UserManagement.Admin;
 import WatChill.UserManagement.Customer;
 import WatChill.UserManagement.User;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,8 +20,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-import java.util.function.Function;
 
 public class ContentCardController {
 

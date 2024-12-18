@@ -129,7 +129,7 @@
                                                                               <Rectangle arcHeight="30" arcWidth="30" height="328" width="254" />
                                                                            </clip>
                                                                            <image>
-                                                                              <Image url="@../Content/Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+                                                                              <Image url="@../Content/Series/media/Breaking Bad/breaking_bad.jpg" />
                                                                            </image>
                                                                         </ImageView>
                                                                         <HBox alignment="CENTER" prefHeight="32.0" prefWidth="216.0">
