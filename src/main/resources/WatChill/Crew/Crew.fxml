@@ -2,12 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,7 +21,7 @@
    <content>
       <VBox style="-fx-background-color: #141414;">
          <children>
-            <BorderPane>
+            <BorderPane fx:id="crewBorderPane">
                <center>
                   <VBox alignment="CENTER" style="-fx-background-color: #141414;" BorderPane.alignment="CENTER">
                      <children>
@@ -239,73 +235,6 @@
                      </children>
                   </VBox>
                </center>
-               <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="86.0">
-                     <children>
-                        <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Logo.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                        <HBox alignment="CENTER" HBox.hgrow="SOMETIMES">
-                           <children>
-                              <MenuButton fx:id="searchMenu" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Movies">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Movies" />
-                                    <MenuItem mnemonicParsing="false" text="Series" />
-                                    <MenuItem mnemonicParsing="false" text="Crew" />
-                                 </items>
-                                 <padding>
-                                    <Insets bottom="4.0" top="4.0" />
-                                 </padding>
-                              </MenuButton>
-                              <TextField fx:id="searchInput" prefHeight="33.0" prefWidth="435.0" promptText="Search WatChill..." style="-fx-background-radius: 5 0 0 5; -fx-background-color: #111; -fx-text-fill: #fff;">
-                                 <padding>
-                                    <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
-                                 </padding>
-                              </TextField>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #333;">
-                                 <graphic>
-                                    <ImageView fx:id="bgImage" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Home/loupe.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="NEVER">
-                           <children>
-                              <Button fx:id="signUpButton" minWidth="100.0" mnemonicParsing="false" text="Sign Up">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="signInButton" minWidth="100.0" mnemonicParsing="false" text="Sign In">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <ImageView fx:id="profileIcon" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Home/user-circle.png" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-               </top>
                <bottom>
                   <VBox style="-fx-background-color: transparent;">
                      <children>
@@ -322,7 +251,7 @@
                               <HBox prefHeight="45.0" prefWidth="436.0" HBox.hgrow="ALWAYS" />
                               <HBox alignment="CENTER" prefHeight="100.0">
                                  <children>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                    <ImageView fx:id="contentMadeLeft" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                        <image>
                                           <Image url="@../Home/arrow.png" />
                                        </image>
@@ -333,7 +262,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ImageView>
-                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="contentMadeRight" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Home/arrow.png" />
                                        </image>
@@ -351,19 +280,19 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="trendingMoviesHBox" style="-fx-background-color: transparent;">
+                        <HBox fx:id="contentMadeHBox" style="-fx-background-color: transparent;">
                            <children>
-                              <AnchorPane fx:id="trendingMoviesAnchor" HBox.hgrow="ALWAYS">
+                              <AnchorPane fx:id="contentMadeAnchorPane" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ScrollPane fx:id="trendingMoviesScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <ScrollPane fx:id="contentMadeScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
-                                          <HBox fx:id="trendingMoviesContainer" prefWidth="200.0" style="-fx-fill-height: true; -fx-spacing: 10; -fx-background-color: #141414;">
+                                          <HBox fx:id="contentMadeContainer" prefWidth="200.0" spacing="50.0" style="-fx-fill-height: true; -fx-spacing: 10; -fx-background-color: #141414;">
                                              <children>
                                                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
                                                    <children>
                                                       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="201.0">
                                                          <children>
-                                                            <ImageView fx:id="posterImage" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                            <ImageView fx:id="posterImage11" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
                                                                <clip>
                                                                   <Rectangle arcHeight="30" arcWidth="30" height="328" width="254" />
                                                                </clip>
@@ -373,7 +302,7 @@
                                                             </ImageView>
                                                             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="216.0">
                                                                <children>
-                                                                  <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" wrappingWidth="186.126953125">
+                                                                  <Text fx:id="titleText11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Breaking Bad" textAlignment="CENTER" wrappingWidth="186.126953125">
                                                                      <font>
                                                                         <Font name="Manrope Bold" size="16.0" />
                                                                      </font>
@@ -383,14 +312,14 @@
                                                                   </Text>
                                                                </children>
                                                             </HBox>
-                                                            <Label fx:id="releaseDateText" alignment="CENTER" prefHeight="17.0" prefWidth="207.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
+                                                            <Label fx:id="releaseDateText11" alignment="CENTER" prefHeight="17.0" prefWidth="207.0" styleClass="card-text" text="4 Seasons" textFill="#868686">
                                                                <font>
                                                                   <Font name="Manrope Bold" size="12.0" />
                                                                </font>
                                                             </Label>
                                                             <HBox alignment="CENTER" fillHeight="false" prefHeight="34.0" prefWidth="30.0">
                                                                <children>
-                                                                  <StackPane fx:id="redirectToContentButton">
+                                                                  <StackPane fx:id="redirectToContentButton11">
                                                                      <children>
                                                                         <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
                                                                         <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -406,10 +335,10 @@
                                                                         <Insets right="4.0" />
                                                                      </HBox.margin>
                                                                   </StackPane>
-                                                                  <StackPane fx:id="addToWatchLaterButton">
+                                                                  <StackPane fx:id="addToWatchLaterButton11">
                                                                      <children>
                                                                         <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
-                                                                        <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                                        <ImageView fx:id="addToWatchLater11" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
                                                                               <Image url="@../../Vector.png" />
                                                                            </image>

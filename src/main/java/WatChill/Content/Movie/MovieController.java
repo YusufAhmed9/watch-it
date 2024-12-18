@@ -15,7 +15,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -43,9 +45,20 @@ public class MovieController {
     @FXML
     private ImageView playButton;
     @FXML
+    private ImageView castsLeft;
+    @FXML
+    private ImageView castsRight;
+    @FXML
+    private ImageView directorsLeft;
+    @FXML
+    private ImageView directorsRight;
+    @FXML
     private ScrollPane castsScrollPane;
     @FXML
     private ScrollPane directorScrollPane;
+    @FXML
+    private BorderPane movieBorderPane;
+
     private Parent root;
     private Scene scene;
     private Stage stage;
@@ -58,9 +71,21 @@ public class MovieController {
         addCrew();
         addGenres();
         addRating();
+        if(User.getCurrentUser() == null){
+            playButton.setVisible(false);
+            watchLaterButton.setVisible(false);
+        }
         playButton.setOnMouseClicked(_->redirectToMoviePlayerPage(movieId));
+        initializeHeader();
+        initializeScroll();
     }
 
+    private void initializeScroll(){
+        castsRight.setOnMouseClicked(_->scrollRight(castsScrollPane));
+        castsLeft.setOnMouseClicked(_->scrollLeft(castsScrollPane));
+        directorsRight.setOnMouseClicked(_->scrollRight(directorScrollPane));
+        directorsLeft.setOnMouseClicked(_->scrollLeft(directorScrollPane));
+    }
     public void addGenres() {
         genresBox.getChildren().clear();
         for (String genre : movie.getGenres()) {
@@ -134,7 +159,9 @@ public class MovieController {
             } else {
                 stage = (Stage) directorsBox.getScene().getWindow();
             }
-            scene = new Scene(root);
+            scene = directorsBox.getScene();
+            scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.setFullScreen(true);
@@ -144,14 +171,14 @@ public class MovieController {
         }
     }
 
-    public void scrollRight(MouseEvent event) {
-        double newHValue = Math.min(castsScrollPane.getHvalue() + 0.4, 1); // Scroll right
-        castsScrollPane.setHvalue(newHValue);
+    public void scrollRight(ScrollPane scrollPane) {
+        double newHValue = Math.min(scrollPane.getHvalue() + 0.4, 1); // Scroll right
+        scrollPane.setHvalue(newHValue);
     }
 
-    public void scrollLeft(MouseEvent event) {
-        double newHValue = Math.min(castsScrollPane.getHvalue() - 0.4, 1); // Scroll right
-        castsScrollPane.setHvalue(newHValue);
+    public void scrollLeft(ScrollPane scrollPane) {
+        double newHValue = Math.min(scrollPane.getHvalue() - 0.4, 1); // Scroll right
+        scrollPane.setHvalue(newHValue);
     }
 
     public void addToWatchLater(MouseEvent event) {
@@ -175,13 +202,23 @@ public class MovieController {
 
             MoviePlayerController moviePlayerController = loader.getController();
             moviePlayerController.build(movieId);
-
             scene = watchLaterButton.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initializeHeader() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));
+            Pane header = loader.load();
+            movieBorderPane.setTop(header);
         } catch (Exception e) {
             e.printStackTrace();
         }

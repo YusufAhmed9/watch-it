@@ -10,14 +10,16 @@ import WatChill.Crew.Crew;
 import WatChill.FileHandling.JsonReader;
 import WatChill.FileHandling.JsonWriter;
 import WatChill.Review.Review;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS, // class name as type information
+        property = "@class" // "@class" as the property name
+)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class UserWatchRecord {
 
@@ -82,7 +84,6 @@ public class UserWatchRecord {
     public static ArrayList<UserWatchRecord> getUserWatchRecord(String userId) {
         // Filter and display only records associated with the specified userId
         ArrayList<UserWatchRecord> userWatchHistory = new ArrayList<>();
-        System.out.println("WatchableContent watched by user " + userId + ":");
         for (UserWatchRecord record : records) {
             if (userId.equals(record.getUserId())) {
                 userWatchHistory.add(record);
@@ -93,6 +94,15 @@ public class UserWatchRecord {
 
     // Method to add content with a review
     public static void addRecord(WatchedContent watchedContent, String userID, Review review) {
+        for (UserWatchRecord userWatchRecord : retrieveRecords()) {
+            if (watchedContent.getId().equals(userWatchRecord.getWatchedContent().getId()) &&
+                    userID.equals(userWatchRecord.getUserId()) &&
+                    userWatchRecord.getReview().getRating() == 0
+            ) {//User watched this content before
+                userWatchRecord.setReview(review);
+                return;
+            }
+        }
         records.add(new UserWatchRecord(userID, review, watchedContent, LocalDate.now()));
     }
 

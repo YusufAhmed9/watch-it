@@ -1,1 +1,37 @@
-[ ]
+[ {
+  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
+  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "review" : {
+    "content" : "",
+    "rating" : 4
+  },
+  "watchedContent" : {
+    "@class" : "WatChill.Content.Movie.Movie",
+    "id" : "038a8fe1-2698-4aad-9eb2-df598f9448da",
+    "title" : "Deadpool and Wolverine",
+    "releaseDate" : [ 2024, 6, 5 ],
+    "duration" : 150,
+    "languages" : [ "English", "Arabic" ],
+    "genres" : [ "Action", "Adventure" ],
+    "country" : "Usa",
+    "budget" : 100.0,
+    "revenue" : 99.0,
+    "poster" : "/WatChill/Content/Movie/media/DeadpoolAndWolverine.jpg",
+    "viewsCount" : 0,
+    "description" : "Great Movie",
+    "crews" : [ {
+      "@class" : "WatChill.Crew.Cast.Cast",
+      "id" : "2",
+      "firstName" : "Mahmoud",
+      "lastName" : "Mahmoud",
+      "dateOfBirth" : [ 2024, 12, 3 ],
+      "gender" : "Helicopter attack",
+      "nationality" : "Among us imposter",
+      "instagramLink" : "hello",
+      "twitterLink" : "byebye",
+      "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
+      "contentCreated" : [ "1" ]
+    } ]
+  },
+  "watchDate" : [ 2024, 12, 18 ]
+} ]
