@@ -1,106 +1,18 @@
 [ {
   "@class" : "WatChill.UserManagement.Admin",
-  "id" : "be843321-a84d-46c1-a1e8-a5f57b537fbd",
-  "username" : "1",
+  "id" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "username" : "YusufA19",
   "email" : "1@g.com",
-  "password" : "vLvFnUruFoV9y3wGm5BmiQ==:8/tlnz/8NV2IWDwhdZ38LbBCDX2D0NSmyplJunsoC0o=",
-  "firstName" : "1",
-  "lastName" : "1"
+  "password" : "DI5oYXIS9JfoENtPyBj2OQ==:t+m6mXBFUvTCiKYpFKJnObweR6T9wuFNlva3WqC9xXo=",
+  "firstName" : "Yusuf",
+  "lastName" : "A"
 }, {
   "@class" : "WatChill.UserManagement.Customer",
-  "id" : "8b9f70df-f886-4b5c-b5b8-e94172454358",
-  "username" : "2",
+  "id" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "username" : "YusufAdelElQot",
   "email" : "2@g.com",
-  "password" : "NBeedgXaQ/Jfr2VXgR7elQ==:vmEl52YqsBWfBa+Pp5hXDwPpuCpqrWC1P8pYyCvbDe4=",
-  "firstName" : "123",
-  "lastName" : "123",
-  "watchLater" : [ {
-    "@class" : "WatChill.Content.Series.Series",
-    "id" : "1",
-    "title" : "Attack On Titan",
-    "releaseDate" : [ 2013, 8, 1 ],
-    "seasons" : [ {
-      "id" : "1",
-      "title" : "Season 1",
-      "description" : "Greatest season ever",
-      "releaseDate" : [ 2024, 12, 3 ],
-      "episodes" : [ {
-        "id" : "1",
-        "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-        "duration" : 25,
-        "releaseDate" : [ 2024, 12, 3 ],
-        "viewsCount" : 0,
-        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-        "description" : "Nice one",
-        "seasonId" : "1"
-      }, {
-        "id" : "2",
-        "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 2",
-        "duration" : 25,
-        "releaseDate" : [ 2024, 12, 3 ],
-        "viewsCount" : 0,
-        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
-        "description" : "Nice one",
-        "seasonId" : "1"
-      } ],
-      "seriesId" : "1"
-    }, {
-      "id" : "2",
-      "title" : "Season 2",
-      "description" : "Greatest season ever",
-      "releaseDate" : [ 2024, 12, 3 ],
-      "episodes" : [ {
-        "id" : "1",
-        "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-        "duration" : 25,
-        "releaseDate" : [ 2024, 12, 3 ],
-        "viewsCount" : 0,
-        "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-        "description" : "Nice one",
-        "seasonId" : "2"
-      } ],
-      "seriesId" : "2"
-    } ],
-    "description" : "Greatest series ever",
-    "languages" : [ "English", "Japanese" ],
-    "country" : "Japan",
-    "genres" : [ "Anime", "Horror", "Adventure" ],
-    "poster" : "/WatChill/Content/Series/media/Attack On Titan/AOTPoster.jpg",
-    "budget" : 1000000.0,
-    "revenue" : 1000000.0,
-    "crews" : [ {
-      "@class" : "WatChill.Crew.Cast.Cast",
-      "id" : "1",
-      "firstName" : "Mahmoud",
-      "lastName" : "Mahmoud",
-      "dateOfBirth" : [ 2024, 12, 3 ],
-      "gender" : "Helicopter attack",
-      "nationality" : "Among us imposter",
-      "instagramLink" : "hello",
-      "twitterLink" : "byebye",
-      "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-      "contentCreated" : [ "1" ]
-    }, {
-      "@class" : "WatChill.Crew.Director.Director",
-      "id" : "2",
-      "firstName" : "Mahmoud",
-      "lastName" : "Mahmoud",
-      "dateOfBirth" : [ 2024, 12, 3 ],
-      "gender" : "Helicopter attack",
-      "nationality" : "Among us imposter",
-      "instagramLink" : "hello",
-      "twitterLink" : "byebye",
-      "picture" : "/WatChill/Content/Series/media/Attack On Titan/Cast1.jpg",
-      "contentCreated" : [ "1" ]
-    } ]
-  } ]
-}, {
-  "@class" : "WatChill.UserManagement.Customer",
-  "id" : "82dec567-aafb-4585-a67a-b2e36296576e",
-  "username" : "yusufahmed19",
-  "email" : "3@g.com",
-  "password" : "ZQKUAokhmWBmXyaOer3jiA==:2a9/DqFIhDvTD7s67RhdoYAMhyzwBqa8iOhoal80xM4=",
-  "firstName" : "yusuf",
-  "lastName" : "ahmed",
+  "password" : "DI5oYXIS9JfoENtPyBj2OQ==:t+m6mXBFUvTCiKYpFKJnObweR6T9wuFNlva3WqC9xXo=",
+  "firstName" : "Yusuf",
+  "lastName" : "Adul",
   "watchLater" : [ ]
 } ]

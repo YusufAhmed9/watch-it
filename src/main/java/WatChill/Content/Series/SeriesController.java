@@ -21,9 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,22 +32,6 @@ import java.util.ArrayList;
 public class SeriesController {
     @FXML
     private ScrollPane castsScrollPane;
-    @FXML
-    TextField searchInput;
-    @FXML
-    MenuButton searchMenu;
-    @FXML
-    VBox searchResultsContainer;
-    @FXML
-    Button signInButton;
-    @FXML
-    Button signUpButton;
-    @FXML
-    HBox trendingSeriesContainer;
-    @FXML
-    ImageView bgImage;
-    @FXML
-    ImageView profileIcon;
 
     private Series currentSeries;
     @FXML
@@ -72,23 +54,14 @@ public class SeriesController {
     private HBox directorsBox;
     @FXML
     private ImageView watchLaterButton;
-
+    @FXML
+    BorderPane seriesBorderPane;
     private Parent root;
     private Scene scene;
     private Stage stage;
 
 
     private void initializeSeries(String seriesId) {
-        if (User.getCurrentUser() != null) {
-            signInButton.setVisible(false);
-            signUpButton.setVisible(false);
-            profileIcon.setVisible(true);
-        } else {
-            signInButton.setVisible(true);
-            signUpButton.setVisible(true);
-            profileIcon.setVisible(false);
-
-        }
         this.currentSeries = Series.findById(seriesId);
         seriesTitle.setText(currentSeries.getTitle());
         for (Season season : currentSeries.getSeasons()) {
@@ -108,16 +81,16 @@ public class SeriesController {
         addRating();
         addGenres();
         displayEpisodes();
+        watchLaterButton.setVisible(false);
         if (User.getCurrentUser() instanceof Customer) {
+            watchLaterButton.setVisible(true);
             if (((Customer) User.getCurrentUser()).findMovieWatchLaterIndex(currentSeries.getId()) == -1) {
                 watchLaterButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/plus.png").toExternalForm()));
             } else {
                 watchLaterButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/minus-circle.png").toExternalForm()));
             }
         }
-        for (MenuItem menuItem : searchMenu.getItems()) {
-            menuItem.setOnAction(_ -> searchMenu.setText(menuItem.getText()));
-        }
+        initializeHeader();
     }
 
     public void addGenres() {
@@ -198,9 +171,9 @@ public class SeriesController {
                     ImageView playButton = new ImageView(getClass().getResource("/WatChill/Content/Series/media/play-circle.png").toExternalForm());
                     playButton.setOnMouseClicked(_ -> redirectToEpisodePage(episode.getId()));
                     playButton.setStyle("-fx-cursor: hand; -fx-padding: 0 10 0 0");
-//                    if(User.getCurrentUser() == null) {
-//                        playButton.setVisible(false);
-//                    }
+                    if (User.getCurrentUser() == null) {
+                        playButton.setVisible(false);
+                    }
                     episodeContainer.getChildren().add(playButton);
 
                     episodesContainer.getChildren().add(episodeContainer);
@@ -242,9 +215,6 @@ public class SeriesController {
     }
 
     public void redirectToEpisodePage(String episodeId) {
-//        if(User.getCurrentUser() == null){
-//            return;
-//        }
         try {
             String css = getClass().getResource("/WatChill/style/Episode.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Episode.fxml"));
@@ -252,7 +222,9 @@ public class SeriesController {
             EpisodeController episodeController = loader.getController();
             episodeController.build(episodeId);
             stage = (Stage) episodesContainer.getScene().getWindow();
-            scene = new Scene(root);
+            scene = episodesContainer.getScene();
+            scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.setFullScreen(true);
@@ -274,7 +246,9 @@ public class SeriesController {
             } else {
                 stage = (Stage) directorsBox.getScene().getWindow();
             }
-            scene = new Scene(root);
+            scene = directorsBox.getScene();
+            scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.setFullScreen(true);
@@ -308,187 +282,11 @@ public class SeriesController {
         }
     }
 
-    public void redirectToSearch(ActionEvent actionEvent) {
-        String query = searchInput.getText();
-        if (query.isEmpty()) {
-            return;
-        }
+    private void initializeHeader() {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/search.fxml"));
-            root = loader.load();
-
-            SearchController searchController = loader.getController();
-            searchController.build(query, searchMenu.getText());
-
-            scene = trendingSeriesContainer.getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void handleSearch(KeyEvent keyEvent) {
-        String searchType = searchMenu.getText();
-        String searchQuery = searchInput.getText();
-        searchResultsContainer.getChildren().clear();
-        if (searchQuery.isEmpty()) {
-            searchResultsContainer.setVisible(false);
-            return;
-        } else {
-            searchResultsContainer.setVisible(true);
-        }
-        if (searchType.equals("Series")) {
-            ArrayList<Series> searchResults = Series.searchByTitle(searchQuery);
-            for (int i = 0; i < searchResults.size(); i++) {
-                Series series = searchResults.get(i);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
-                    HBox searchResult = loader.load();
-
-                    searchResult.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
-
-                    SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(series.getPoster(), series.getTitle(), series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), series.getDescription());
-                    searchResultsContainer.getChildren().add(searchResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (i == 2) {
-                    break;
-                }
-            }
-        } else if (searchType.equals("Movies")) {
-            ArrayList<Movie> searchResults = Movie.searchByTitle(searchQuery);
-            for (int i = 0; i < searchResults.size(); i++) {
-                Movie movie = searchResults.get(i);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
-                    HBox searchResult = loader.load();
-
-                    searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
-
-                    SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
-                    searchResultsContainer.getChildren().add(searchResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (i == 2) {
-                    break;
-                }
-            }
-        } else if (searchType.equals("Crew")) {
-            ArrayList<Crew> searchResults = Crew.searchByName(searchQuery);
-            for (int i = 0; i < searchResults.size(); i++) {
-                Crew crew = searchResults.get(i);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
-                    HBox searchResult = loader.load();
-
-                    searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
-
-                    SearchResultController searchResultController = loader.getController();
-                    searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
-                    searchResultsContainer.getChildren().add(searchResult);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (i == 2) {
-                    break;
-                }
-            }
-        }
-    }
-
-    public void redirectToProfile(MouseEvent mouseEvent) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/profile.fxml"));
-            root = loader.load();
-            scene = trendingSeriesContainer.getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void redirectToSignUp(ActionEvent actionEvent) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/signup.fxml"));
-            root = loader.load();
-            scene = ((Node) actionEvent.getSource()).getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void redirectToLogin(ActionEvent actionEvent) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/login.fxml"));
-            root = loader.load();
-            scene = ((Node) actionEvent.getSource()).getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void redirectToSeriesPage(String seriesId) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Series.fxml"));
-            root = loader.load();
-
-            SeriesController seriesController = loader.getController();
-            seriesController.build(seriesId);
-
-            scene = trendingSeriesContainer.getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void redirectToMoviePage(String movieId) {
-        try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/Movie.fxml"));
-            root = loader.load();
-
-            MovieController movieController = loader.getController();
-            movieController.build(movieId);
-
-            scene = searchResultsContainer.getScene();
-            stage = (Stage) scene.getWindow();
-            scene.setRoot(root);
-            scene.getStylesheets().add(css);
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));
+            Pane header = loader.load();
+            seriesBorderPane.setTop(header);
         } catch (Exception e) {
             e.printStackTrace();
         }
