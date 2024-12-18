@@ -89,7 +89,15 @@
                   </HBox>
                </children>
             </HBox>
-            <VBox fx:id="searchResultsContainer" maxHeight="10.0" maxWidth="634.0" prefHeight="10.0" prefWidth="546.0" style="-fx-background-radius: 0 0 20 20;" visible="false" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox fx:id="searchResultsContainer" maxHeight="10.0" maxWidth="634.0" prefHeight="10.0" prefWidth="546.0" style="-fx-background-radius: 0 0 20 20;" visible="false">
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
