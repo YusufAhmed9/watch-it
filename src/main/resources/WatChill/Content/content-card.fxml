@@ -23,7 +23,7 @@
                   <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
                </clip>
                <image>
-                  <Image url="@Series/media/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+                  <Image url="@Series/media/Breaking Bad/breaking_bad.jpg" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="216.0">
@@ -47,7 +47,7 @@
                <children>
                   <StackPane fx:id="redirectToContentButton">
                      <children>
-                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
                         <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../play.png" />
@@ -63,7 +63,7 @@
                   </StackPane>
                   <StackPane fx:id="addToWatchLaterButton">
                      <children>
-                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
                         <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Vector.png" />
@@ -79,7 +79,7 @@
                   </StackPane>
                   <StackPane>
                      <children>
-                        <Circle fill="WHITE" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
                         <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Star%205.png" />

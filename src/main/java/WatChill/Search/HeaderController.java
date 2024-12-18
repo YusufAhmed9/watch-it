@@ -1,49 +1,30 @@
 package WatChill.Search;
 
-import WatChill.Content.Content;
-import WatChill.Content.ContentCardController;
 import WatChill.Content.Movie.MovieController;
-import WatChill.Crew.Cast.Cast;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Crew;
 import WatChill.Crew.CrewController;
-import WatChill.Search.SearchController;
-import WatChill.Search.SearchResultController;
-import WatChill.Subscription.*;
 import WatChill.UserManagement.Customer;
 import WatChill.UserManagement.User;
-import WatChill.UserWatchRecord.UserWatchRecord;
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class HeaderController {
     @FXML
@@ -86,7 +67,6 @@ public class HeaderController {
         }
         searchMenu.setText(searchMenu.getItems().get(0).getText());
         searchResultsContainer.setManaged(false);
-//        header.setManaged(false);
         searchResultsContainer.setTranslateX(330);
     }
 
@@ -191,9 +171,16 @@ public class HeaderController {
     }
 
     public void redirectToProfile(MouseEvent mouseEvent) {
+        String path;
+        if (User.getCurrentUser() instanceof Customer) {
+            path = "/WatChill/User/profile.fxml";
+        }
+        else {
+            path = "/WatChill/Admin/admin-profile.fxml";
+        }
         try {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/User/profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             root = loader.load();
             scene = searchInput.getScene();
             stage = (Stage) scene.getWindow();

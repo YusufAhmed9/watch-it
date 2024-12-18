@@ -28,6 +28,7 @@ public class Main extends Application {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
     private Scene redirectToHome() throws IOException {
