@@ -13,7 +13,7 @@
 
 <HBox prefHeight="100.0" prefWidth="623.0" style="-fx-background-color: rgba(20, 20, 20, 0.508);" styleClass="search-result-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.AdminCardController">
     <children>
-        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="main-image">
             <image>
                 <Image url="@Series/media/DareDevil.jpg" />
             </image>
@@ -44,12 +44,16 @@
                 <Insets left="10.0" top="10.0" />
             </padding>
         </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" style="-fx-background-color: rgba(0, 0, 0, 0.7);">
          <children>
             <StackPane fx:id="editButton">
                <children>
-                  <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
-                  <ImageView fx:id="addToWatchLater" fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE">
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Circle>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@pencil.png" />
                      </image>
@@ -77,7 +81,7 @@
             </StackPane>
          </children>
          <padding>
-            <Insets right="20.0" />
+            <Insets right="10.0" />
          </padding>
       </VBox>
     </children>

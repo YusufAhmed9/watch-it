@@ -17,7 +17,6 @@
 
 .scroll-pane .scroll-bar {
     -fx-background-color: rgba(20, 20, 20, 0.508);
-
 }
 
 .scroll-pane .scroll-bar .thumb {
@@ -154,14 +153,11 @@
     -fx-background-color: rgba(0, 0, 0, 0.7); -fx-padding: 10;
 }
 
-/* styles.css */
-
-/* Root card container */
 .search-result-card {
-    /* -fx-background-color: #333; */
     -fx-border-color: #ffffff;
     -fx-border-width: 0 0 1 0;
     -fx-cursor: Hand;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
 }
 
 .box-container {
@@ -169,10 +165,7 @@
     -fx-effect : dropShadow( three-pass-box , rgba(0,0,0,0.3) ,10.0 ,0.0, 0.0, 10.0);
 }
 
-.search-result-card ImageView {
-    /* -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 1); */
+.search-result-card .main-image {
     -fx-padding: 10 0 10 40;
     -fx-fit-width: 217;
     -fx-fit-height: 130;
@@ -183,19 +176,13 @@
 }
 
 .title-text {
-    /* -fx-fill: white;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold; */
     -fx-font-family: Manrope SemiBold;
     -fx-font-size: 27px;
     -fx-text-fill: #D3D3D3;
     -fx-padding: 5 0 0 10;
 }
 
-/* Season text */
 .season-text {
-    /* -fx-fill: lightgray;
-    -fx-font-size: 16px; */
     -fx-font-family: Manrope Medium;
     -fx-font-size: 18px;
     -fx-text-fill: #D3D3D3;
@@ -273,4 +260,32 @@
     -fx-text-fill: #fff;
     -fx-fill: #fff;
     -fx-padding: 10 0 0 0;
+}
+
+.admin-menu-button {
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-background-color: #fff;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 8 0 0 8;
+    -fx-padding: 6px 10px;
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border: none;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #fff;
+}
+
+.flowpane-label {
+    -fx-background-color:  #8a8a8a;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+    -fx-text-fill: #fff;
+    -fx-font-weight: Bold;
 }
