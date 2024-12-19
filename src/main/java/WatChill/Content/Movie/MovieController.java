@@ -121,7 +121,7 @@ public class MovieController {
         directorsBox.getChildren().clear();
         for (Crew crew : movie.getCrews()) {
             VBox castBox = new VBox();
-            ImageView castImage = new ImageView(crew.getPicture());
+            ImageView castImage = new ImageView(getClass().getResource(crew.getPicture()).toExternalForm());
             double size = 100; // Set desired image size
             castImage.setFitWidth(size);
             castImage.setFitHeight(size);

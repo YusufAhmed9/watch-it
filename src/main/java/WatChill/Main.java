@@ -1,7 +1,6 @@
 package WatChill;
 
-import WatChill.Content.Series.EpisodeController;
-import WatChill.Content.Series.SeriesController;
+import WatChill.Crew.AddCrewController;
 import WatChill.FileHandling.ReadAllFiles;
 import WatChill.FileHandling.WriteAllFiles;
 import javafx.application.Application;
@@ -12,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Main extends Application {
