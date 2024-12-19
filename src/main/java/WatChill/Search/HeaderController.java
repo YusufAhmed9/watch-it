@@ -67,7 +67,6 @@ public class HeaderController {
         }
         searchMenu.setText(searchMenu.getItems().get(0).getText());
         searchResultsContainer.setManaged(false);
-        searchResultsContainer.setTranslateX(330);
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -240,6 +239,7 @@ public class HeaderController {
     }
 
     public void handleSearch(KeyEvent keyEvent) {
+        searchResultsContainer.setLayoutX((searchInput.getScene().getWindow().getWidth() / 4));
         String searchType = searchMenu.getText();
         String searchQuery = searchInput.getText();
         searchResultsContainer.getChildren().clear();
