@@ -10,7 +10,7 @@
 
 <HBox prefHeight="100.0" prefWidth="623.0" style="-fx-background-color: rgba(20, 20, 20, 0.508);" styleClass="search-result-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Search.SearchResultController">
     <children>
-        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="main-image">
             <image>
                 <Image url="@../Series/media/AOTPoster.jpg" />
             </image>

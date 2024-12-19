@@ -92,6 +92,10 @@ public class UserWatchRecord {
         return userWatchHistory;
     }
 
+    public void delete() {
+        records.remove(this);
+    }
+
     // Method to add content with a review
     public static void addRecord(WatchedContent watchedContent, String userID, Review review) {
         for (UserWatchRecord userWatchRecord : retrieveRecords()) {

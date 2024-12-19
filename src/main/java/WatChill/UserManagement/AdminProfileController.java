@@ -1,12 +1,15 @@
 package WatChill.UserManagement;
 
 import WatChill.Content.AdminCardController;
+import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Movie.MovieController;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
+import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
+import WatChill.UserWatchRecord.UserWatchRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +22,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class AdminProfileController {
@@ -53,13 +61,59 @@ public class AdminProfileController {
     @FXML
     VBox moviesAdmin;
     @FXML
-    Text titleError;
+    TextField movieTitle;
     @FXML
-    TextField titleInput;
+    Text movieTitleError;
+    @FXML
+    TextField movieDescription;
+    @FXML
+    Text movieDescriptionError;
+    @FXML
+    DatePicker movieReleaseDate;
+    @FXML
+    Text movieReleaseDateError;
+    @FXML
+    TextField movieDuration;
+    @FXML
+    Text movieDurationError;
+    @FXML
+    TextField movieCountry;
+    @FXML
+    Text movieCountryError;
+    @FXML
+    TextField movieBudget;
+    @FXML
+    Text movieBudgetError;
+    @FXML
+    TextField movieRevenue;
+    @FXML
+    Text movieRevenueError;
+    @FXML
+    TextField movieGenre;
+    @FXML
+    Text movieGenreError;
+    @FXML
+    Button movieGenreButton;
+    @FXML
+    TextField movieLanguage;
+    @FXML
+    Text movieLanguageError;
+    @FXML
+    Button movieLanguageButton;
+    @FXML
+    TextField moviePoster;
+    @FXML
+    Text moviePosterError;
+    @FXML
+    Button moviePosterButton;
+    @FXML
+    VBox moviesContainer;
+    @FXML
+    Button movieCrewButton;
     @FXML
     Button movieButton;
     @FXML
-    VBox moviesContainer;
+    Text movieCrewsError;
 
     @FXML
     VBox seriesAdmin;
@@ -108,9 +162,18 @@ public class AdminProfileController {
     Text pictureError;
     @FXML
     Button crewButton;
+    @FXML
+    Button pictureButton;
+    @FXML
+    FlowPane movieLanguagesContainer;
+    @FXML
+    FlowPane movieGenresContainer;
 
     private Crew currentCrew = null;
     private Movie currentMovie = null;
+    private ArrayList<Crew> currentMovieCrews = new ArrayList<>();
+    private ArrayList<String> currentMovieLanguages = new ArrayList<>();
+    private ArrayList<String> currentMovieGenres = new ArrayList<>();
 
     Stage stage;
     Parent root;
@@ -132,6 +195,7 @@ public class AdminProfileController {
     public Movie getCurrentMovie() {
         return currentMovie;
     }
+
 
     public void initialize() {
         initializeHeader();
@@ -155,6 +219,9 @@ public class AdminProfileController {
     }
 
     public void displayMovies() {
+        currentMovieLanguages.clear();
+        currentMovieCrews.clear();
+        currentMovieGenres.clear();
         infoContainer.setVisible(false);
         infoContainer.setManaged(false);
         moviesAdmin.setVisible(true);
@@ -163,6 +230,11 @@ public class AdminProfileController {
         seriesAdmin.setManaged(false);
         crewAdmin.setVisible(false);
         crewAdmin.setManaged(false);
+        initializeMovies();
+        initializeMoviesInputs();
+        moviePosterButton.setOnAction(_ -> {
+            handleFileChoose(moviePoster, "/WatChill/Content/Movie/media");
+        });
     }
 
     public void displayCrew() {
@@ -182,6 +254,7 @@ public class AdminProfileController {
         for (MenuItem item : crewType.getItems()) {
             item.setOnAction(_ -> crewType.setText(item.getText()));
         }
+        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/media"));
     }
 
     public void editInfo(ActionEvent actionEvent) {
@@ -239,10 +312,116 @@ public class AdminProfileController {
     }
 
     public void saveMovie() {
+        initializeMovieErrors();
+        Movie movie;
+        String title = movieTitle.getText();
+        String description = movieDescription.getText();
+        LocalDate releaseDate = movieReleaseDate.getValue();
+        int duration;
+        String country = movieCountry.getText();
+        double budget;
+        double revenue;
+        ArrayList<String> languages = currentMovieLanguages;
+        ArrayList<String> genres = currentMovieGenres;
+        ArrayList<Crew> crews = currentMovieCrews;
+        String poster = moviePoster.getText();
+        if (title.isEmpty()) {
+            movieTitleError.setText("Title is required.");
+            return;
+        }
+        if (description.isEmpty()) {
+            movieDescriptionError.setText("Description is required.");
+            return;
+        }
+        if (releaseDate == null || releaseDate.compareTo(LocalDate.now()) > -1) {
+            movieReleaseDateError.setText("Invalid release date.");
+            return;
+        }
+        try {
+            duration = Integer.parseInt(movieDuration.getText());
+        } catch (NumberFormatException e) {
+            movieDurationError.setText("Invalid Duration");
+            return;
+        }
+        if (duration <= 0) {
+            movieDurationError.setText("Invalid duration.");
+            return;
+        }
+        if (country.isEmpty()) {
+            movieCountryError.setText("Country is required.");
+            return;
+        }
+        try {
+            budget = Double.parseDouble(movieBudget.getText());
+        } catch (Exception e) {
+            movieBudgetError.setText("Invalid budget.");
+            return;
+        }
+        if (budget <= 0) {
+            movieBudgetError.setText("Invalid budget.");
+            return;
+        }
+        try {
+            revenue = Double.parseDouble(movieRevenue.getText());
+        } catch (Exception e) {
+            movieRevenueError.setText("Invalid revenue.");
+            return;
+        }
+        if (revenue <= 0) {
+            movieRevenueError.setText("Invalid revenue.");
+            return;
+        }
+        if (languages.isEmpty()) {
+            movieLanguageError.setText("At least 1 language is required.");
+            return;
+        }
+        if (genres.isEmpty()) {
+            movieGenreError.setText("At least 1 genre is required.");
+            return;
+        }
+        if (poster.isEmpty()) {
+            moviePosterError.setText("Poster is required.");
+            return;
+        }
+        if (crews.isEmpty()) {
+            movieCrewsError.setText("At least 1 crew member is required.");
+            return;
+        }
+        if (currentMovie != null) {
+            movie = currentMovie;
+            movie.setTitle(title);
+            movie.setReleaseDate(releaseDate);
+            movie.setDuration(duration);
+            movie.setLanguages(languages);
+            movie.setGenres(genres);
+            movie.setCrews(crews);
+            movie.setCountry(country);
+            movie.setBudget(budget);
+            movie.setRevenue(revenue);
+            movie.setPoster(poster);
+            movie.setDescription(description);
+        }
+        else {
+            movie = new Movie(UUID.randomUUID().toString(), title, releaseDate, duration, languages, genres, crews, country, budget, revenue, poster, 0, description);
+        }
+        movie.save();
+        displayMovies();
+    }
+
+    public void addMovieCrew() {
 
     }
 
     public void saveCrew() {
+        crewFirstNameError.setText("");
+        crewLastNameError.setText("");
+        dateOfBirthError.setText("");
+        genderError.setText("");
+        nationalityError.setText("");
+        instagramLinkError.setText("");
+        twitterLinkError.setText("");
+        crewTypeError.setText("");
+        pictureError.setText("");
         String firstName = crewFirstName.getText();
         String lastName = crewLastName.getText();
         LocalDate date = dateOfBirth.getValue();
@@ -257,10 +436,10 @@ public class AdminProfileController {
             return;
         }
         if (lastName.isEmpty()) {
-            crewLastName.setText("Last name is required.");
+            crewLastNameError.setText("Last name is required.");
             return;
         }
-        if (date.compareTo(LocalDate.now()) > -1) {
+        if (date == null || date.compareTo(LocalDate.now()) > -1) {
             dateOfBirthError.setText("Invalid date of birth.");
             return;
         }
@@ -268,16 +447,16 @@ public class AdminProfileController {
             genderError.setText("Gender is required.");
             return;
         }
-        if (nationalityValue.isEmpty()) {
-            nationalityError.setText("Nationality is required.");
-            return;
-        }
-        if (isInputValid(instagram, "^https?://www\\.instagram\\.com/.+$")) {
+        if (!isInputValid(instagram, "^https?://www\\.instagram\\.com/.+$")) {
             instagramLinkError.setText("Invalid instagram link.");
             return;
         }
-        if (isInputValid(twitter, "^https?://twitter\\.com/.+$")) {
-            twitterLink.setText("Invalid twitter link.");
+        if (!isInputValid(twitter, "^https?://twitter\\.com/.+$")) {
+            twitterLinkError.setText("Invalid twitter link.");
+            return;
+        }
+        if (nationalityValue.isEmpty()) {
+            nationalityError.setText("Nationality is required.");
             return;
         }
         if (type.equals("Crew Type")) {
@@ -307,10 +486,11 @@ public class AdminProfileController {
             }
         }
         crew.saveCrew();
+        crewButton.setText("Create");
         displayCrew();
     }
 
-    public void handleFileChoose() {
+    public void handleFileChoose(TextField fileInput, String directoryPath) {
         // Create a FileChooser instance
         FileChooser fileChooser = new FileChooser();
 
@@ -326,9 +506,18 @@ public class AdminProfileController {
 
         // Check if a file was selected
         if (selectedFile != null) {
-            System.out.println("File Selected: " + selectedFile.getAbsolutePath());
+            File destinationDirectory = new File("src/main/resources" + directoryPath);
+            Path destinationPath = destinationDirectory.toPath().resolve(selectedFile.getName());
+
+            try {
+                // Copy the file to the destination directory
+                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            fileInput.setText(directoryPath + selectedFile.getName());
         } else {
-            System.out.println("File selection canceled.");
+            fileInput.setText("");
         }
     }
 
@@ -360,8 +549,9 @@ public class AdminProfileController {
 
     private void setEditedCrew(String crewId) {
         Crew crew = Crew.findById(crewId);
-        firstNameInput.setText(crew.getFirstName());
-        lastNameInput.setText(crew.getLastName());
+        setCurrentCrew(crew);
+        crewFirstName.setText(crew.getFirstName());
+        crewLastName.setText(crew.getLastName());
         dateOfBirth.setValue(crew.getDateOfBirth());
         genderMenu.setText(crew.getGender());
         instagramLink.setText(crew.getInstagramLink());
@@ -370,6 +560,24 @@ public class AdminProfileController {
         crewType.setText(crew instanceof Director ? "Director" : "Cast");
         pictureInput.setText(crew.getPicture());
         crewButton.setText("Save");
+    }
+
+    private void setEditedMovie(String movieId) {
+        Movie movie = Movie.findById(movieId);
+        setCurrentMovie(movie);
+        movieTitle.setText(movie.getTitle());
+        movieDescription.setText(movie.getDescription());
+        movieReleaseDate.setValue(movie.getReleaseDate());
+        movieDuration.setText(((Integer) movie.getDuration()).toString());
+        movieDescription.setText(movie.getDescription());
+        movieBudget.setText(((Double) movie.getBudget()).toString());
+        movieRevenue.setText(((Double) movie.getRevenue()).toString());
+
+        currentMovieCrews = movie.getCrews();
+        currentMovieLanguages = movie.getLanguages();
+        currentMovieGenres = movie.getGenres();
+        movieButton.setText("Save");
+        movieCrewButton.setText("Edit Crew");
     }
 
     private boolean isInputValid(String input, String regex) {
@@ -388,6 +596,90 @@ public class AdminProfileController {
         pictureInput.setText("");
     }
 
+    private void initializeMovies() {
+        moviesContainer.getChildren().clear();
+        for (Movie movie : Movie.retrieveMovies()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/admin-card.fxml"));
+                HBox card = loader.load();
+                AdminCardController adminCardController = loader.getController();
+                adminCardController.setData(
+                        movie.getPoster(),
+                        movie.getTitle(),
+                        movie.getDescription(),
+                        movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
+                        movie.getId(),
+                        () -> deleteMovie(movie.getId()),
+                        () -> setEditedMovie(movie.getId()),
+                        () -> redirectToMoviePage(movie.getId()),
+                        () -> initializeMovies()
+                );
+                crewContainer.getChildren().add(card);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void initializeMoviesInputs() {
+        movieButton.setText("Create");
+        movieCrewButton.setText("Add Crew");
+        movieTitle.setText("");
+        movieDescription.setText("");
+        movieReleaseDate.setValue(null);
+        movieDuration.setText("");
+        movieCountry.setText("");
+        movieBudget.setText("");
+        movieRevenue.setText("");
+        movieLanguage.setText("");
+        movieGenre.setText("");
+        moviePoster.setText("");
+        movieLanguagesContainer.getChildren().clear();
+        movieGenresContainer.getChildren().clear();
+    }
+
+    private void initializeMovieErrors() {
+        movieTitleError.setText("");
+        movieDescriptionError.setText("");
+        movieReleaseDateError.setText("");
+        movieDurationError.setText("");
+        movieCountryError.setText("");
+        movieBudgetError.setText("");
+        movieRevenueError.setText("");
+        movieLanguageError.setText("");
+        movieGenreError.setText("");
+        moviePosterError.setText("");
+        movieCrewsError.setText("");
+    }
+
+    private void deleteMovie(String movieId) {
+        Content content = Movie.findById(movieId);
+        for (Crew crew : Crew.retrieveCrews()) {
+            for (String contentCreatedId : crew.getContentCreated()) {
+                if (contentCreatedId.equals(content.getId())) {
+                    crew.getContentCreated().remove(contentCreatedId);
+                }
+            }
+        }
+        for (User user : User.getUsers()) {
+            if (user instanceof Customer) {
+                Customer customer = (Customer) user;
+                if (customer.findMovieWatchLaterIndex(content.getId()) != -1) {
+                    customer.removeFromWatchLater(content.getId());
+                }
+            }
+        }
+        for (UserWatchRecord userWatchRecord : UserWatchRecord.retrieveRecords()) {
+            if (userWatchRecord.getWatchedContent() instanceof Movie) {
+                Movie movie = (Movie) userWatchRecord.getWatchedContent();
+                if (movie.getId().equals(content.getId())) {
+                    userWatchRecord.delete();
+                }
+            }
+        }
+    }
+
     public void redirectToMoviePage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
@@ -400,6 +692,7 @@ public class AdminProfileController {
             scene = moviesAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -419,6 +712,7 @@ public class AdminProfileController {
             scene = moviesAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -433,11 +727,12 @@ public class AdminProfileController {
             String css = getClass().getResource("/WatChill/style/Crew.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/Crew.fxml"));
             root = loader.load();
-            SeriesController seriesController = loader.getController();
-            seriesController.build(crewId);
+            CrewController crewController = loader.getController();
+            crewController.build(crewId);
             scene = moviesAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -445,5 +740,37 @@ public class AdminProfileController {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void addMovieLanguage() {
+        if (movieLanguage.getText().isEmpty() || currentMovieLanguages.contains(movieLanguage.getText())) {
+            return;
+        }
+        Label label = new Label(movieLanguage.getText());
+        label.getStyleClass().add("flowpane-label");
+        movieLanguagesContainer.getChildren().add(label);
+        currentMovieLanguages.add(movieLanguage.getText());
+        movieLanguage.setText("");
+    }
+
+    public void addMovieGenre() {
+        if (movieGenre.getText().isEmpty() || currentMovieGenres.contains(movieGenre.getText())) {
+            return;
+        }
+        Label label = new Label(movieGenre.getText());
+        label.getStyleClass().add("flowpane-label");
+        movieGenresContainer.getChildren().add(label);
+        currentMovieGenres.add(movieGenre.getText());
+        movieGenre.setText("");
+    }
+
+    public void clearMovieLanguages() {
+        currentMovieLanguages.clear();
+        movieLanguagesContainer.getChildren().clear();
+    }
+
+    public void clearMovieGenres() {
+        currentMovieGenres.clear();
+        movieGenresContainer.getChildren().clear();
     }
 }

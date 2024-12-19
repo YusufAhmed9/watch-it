@@ -49,19 +49,24 @@ public class ContentCardController {
         User currentUser = User.getCurrentUser();
         if (currentUser != null) {
             if (currentUser instanceof Admin) {
-                addToWatchLater.setVisible(false);
-                addToWatchLater.setManaged(false);
+                addToWatchLaterButton.setVisible(false);
+                addToWatchLaterButton.setManaged(false);
             }
         }
         else {
-            addToWatchLater.setOnMouseClicked(e -> redirectToLogin(e));
+            addToWatchLaterButton.setOnMouseClicked(e -> redirectToLogin(e));
         }
     }
 
     public void setData(Content content, Runnable rerender) {
         posterImage.setImage(new Image(getClass().getResource(content.getPoster()).toExternalForm()));
         titleText.setText(content.getTitle());
-        releaseDateText.setText(content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+        if (content instanceof Movie) {
+            releaseDateText.setText(content.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
+        }
+        else {
+            releaseDateText.setText(((Series) content).getSeasons().size() + " Season(s)");
+        }
         User currentUser = User.getCurrentUser();
         if (currentUser instanceof Customer) {
             Customer customer = (Customer) currentUser;
