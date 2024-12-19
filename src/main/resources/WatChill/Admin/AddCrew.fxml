@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Crew.AddCrewController">
+   <content>
+      <StackPane alignment="TOP_CENTER" style="-fx-background-color: #141414;">
+         <children>
+            <BorderPane style="-fx-background-color: #141414;" StackPane.alignment="TOP_CENTER">
+               <center>
+                  <VBox maxWidth="1.7976931348623157E308" spacing="20.0" style="-fx-background-color: #141414;">
+                     <children>
+                        <Label style="-fx-text-fill: #fff;" text="Select Crew">
+                           <font>
+                              <Font name="Manrope Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <FlowPane fx:id="crewFlowPane" hgap="30.0" vgap="30.0">
+                           <children>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage1" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage19" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText19" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage110" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText110" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage116" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText116" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage117" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText117" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage118" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText118" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage119" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText119" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage120" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText120" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage121" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText121" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage122" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText122" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage123" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText123" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage124" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText124" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage125" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText125" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage126" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText126" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                       <children>
+                                          <ImageView fx:id="posterImage127" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                             <clip>
+                                                <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                             </clip>
+                                             <image>
+                                                <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Text fx:id="titleText127" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                   <font>
+                                                      <Font name="Manrope Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView>
+                                                   <image>
+                                                      <Image url="@../Content/Series/media/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                 </effect>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </FlowPane>
+                        <StackPane>
+                           <children>
+                              <VBox style="-fx-background-color: #141414; -fx-background-radius: 50;">
+                                 <children>
+                                    <Label style="-fx-text-fill: #fff;" text="Current Crew">
+                                       <font>
+                                          <Font name="Manrope Bold" size="28.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <StackPane.margin>
+                                    <Insets bottom="-20.0" left="-20.0" right="-20.0" top="-20.0" />
+                                 </StackPane.margin>
+                                 <padding>
+                                    <Insets left="30.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <FlowPane fx:id="currentCrewFlowPane" hgap="30.0" vgap="30.0">
+                                 <children>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage1" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage11" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage111" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage112" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText112" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage113" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText113" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage114" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText114" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage115" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText115" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage12" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage13" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText13" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage14" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText14" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage15" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText15" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage16" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText16" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage17" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText17" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;">
+                                       <children>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+                                             <children>
+                                                <ImageView fx:id="posterImage18" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+                                                   <clip>
+                                                      <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+                                                   </clip>
+                                                   <image>
+                                                      <Image url="@../Crew/Leonardo%20Di%20Caprio.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox alignment="CENTER">
+                                                   <children>
+                                                      <Text fx:id="titleText18" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                                                         <font>
+                                                            <Font name="Manrope Bold" size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Text>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../Content/Series/media/plus.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+                                       </effect>
+                                    </VBox>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets top="40.0" />
+                                 </StackPane.margin>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </FlowPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </StackPane>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <StackPane>
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Crew/Button%20(1).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" text="Cancel">
+                                       <font>
+                                          <Font name="Manrope Bold" size="35.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </StackPane>
+                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                              <StackPane>
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../Crew/Button%20(1).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" text="Add" StackPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Manrope Bold" size="35.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="40.0" right="40.0" />
+                     </padding>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </children>
+      </StackPane>
+   </content>
+</ScrollPane>

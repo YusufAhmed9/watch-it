@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="371.0" prefWidth="214.0" style="-fx-background-color: #141414; -fx-background-radius: 15; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Crew.AddCrewCardController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="215.0">
+         <children>
+            <ImageView fx:id="crewPicture" fitHeight="269.0" fitWidth="214.0" styleClass="card-title">
+               <clip>
+                  <Rectangle arcHeight="30" arcWidth="30" height="269" width="214" />
+               </clip>
+               <image>
+                  <Image url="@Leonardo%20Di%20Caprio.jpg" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER">
+               <children>
+                  <Text fx:id="crewName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card-title" text="Leonardo di Caprio" textAlignment="CENTER" wrappingWidth="195.126953125">
+                     <font>
+                        <Font name="Manrope Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ImageView fx:id="addButton">
+                     <image>
+                        <Image url="@../Content/Series/media/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+      </VBox>
+   </children>
+   <effect>
+      <DropShadow height="10.0" radius="4.5" spread="0.5" width="10.0" />
+   </effect>
+</VBox>
