@@ -168,6 +168,10 @@ public class AdminProfileController {
     FlowPane movieLanguagesContainer;
     @FXML
     FlowPane movieGenresContainer;
+    @FXML
+    VBox durationVbox;
+    @FXML
+    MenuButton contentType;
 
     private Crew currentCrew = null;
     private Movie currentMovie = null;
@@ -313,7 +317,6 @@ public class AdminProfileController {
 
     public void saveMovie() {
         initializeMovieErrors();
-        Movie movie;
         String title = movieTitle.getText();
         String description = movieDescription.getText();
         LocalDate releaseDate = movieReleaseDate.getValue();
@@ -325,6 +328,7 @@ public class AdminProfileController {
         ArrayList<String> genres = currentMovieGenres;
         ArrayList<Crew> crews = currentMovieCrews;
         String poster = moviePoster.getText();
+        contentType.setText(contentType.getItems().getFirst().getText());
         if (title.isEmpty()) {
             movieTitleError.setText("Title is required.");
             return;
@@ -337,15 +341,17 @@ public class AdminProfileController {
             movieReleaseDateError.setText("Invalid release date.");
             return;
         }
-        try {
-            duration = Integer.parseInt(movieDuration.getText());
-        } catch (NumberFormatException e) {
-            movieDurationError.setText("Invalid Duration");
-            return;
-        }
-        if (duration <= 0) {
-            movieDurationError.setText("Invalid duration.");
-            return;
+        if(contentType.getText().toLowerCase().equals("movie")) {
+            try {
+                duration = Integer.parseInt(movieDuration.getText());
+            } catch (NumberFormatException e) {
+                movieDurationError.setText("Invalid Duration");
+                return;
+            }
+            if (duration <= 0) {
+                movieDurationError.setText("Invalid duration.");
+                return;
+            }
         }
         if (country.isEmpty()) {
             movieCountryError.setText("Country is required.");

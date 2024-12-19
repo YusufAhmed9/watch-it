@@ -261,7 +261,7 @@
                                  <children>
                                     <HBox alignment="CENTER">
                                        <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Movies" textAlignment="CENTER">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Content" textAlignment="CENTER">
                                              <font>
                                                 <Font name="Manrope Bold" size="30.0" />
                                              </font>
@@ -326,6 +326,32 @@
                                              </VBox.margin>
                                           </Text>
                                           <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Type:" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <MenuButton fx:id="contentType" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Content Type">
+                                                   <items>
+                                                      <MenuItem mnemonicParsing="false" text="Movie" />
+                                                      <MenuItem mnemonicParsing="false" text="Series" />
+                                                   </items>
+                                                </MenuButton>
+                                                <Text fx:id="crewTypeError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox fx:id="durationVbox" alignment="CENTER">
                                              <children>
                                                 <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Duration:" textFill="WHITE">
                                                    <font>
@@ -819,260 +845,6 @@
                                        </children>
                                     </VBox>
                                     <VBox fx:id="crewContainer" prefHeight="200.0" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="moviesAdmin1">
-                                 <children>
-                                    <HBox alignment="CENTER">
-                                       <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Series" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="Manrope Bold" size="30.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <VBox fx:id="moviesForm2" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Title:" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField fx:id="titleInput1" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                          <Text fx:id="titleError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                             <font>
-                                                <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Text>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Description:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <TextField fx:id="descriptionInput1" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="descriptionError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Release Date:" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <DatePicker prefHeight="25.0" prefWidth="403.0" styleClass="form-input" />
-                                          <Text fx:id="releaseDateError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                             <font>
-                                                <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Text>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Country:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <TextField fx:id="countryInput1" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="durationError11" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Budget:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <TextField fx:id="budgetInput1" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="budgetError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Add a language:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <HBox alignment="CENTER">
-                                                   <children>
-                                                      <TextField fx:id="languageInput1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" styleClass="form-input" />
-                                                      <Button fx:id="languageButton1" mnemonicParsing="false" styleClass="main-button" text="Add">
-                                                         <HBox.margin>
-                                                            <Insets left="20.0" />
-                                                         </HBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                                <Text fx:id="languageError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Add a genre:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <HBox alignment="CENTER">
-                                                   <children>
-                                                      <TextField fx:id="genreInput1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" styleClass="form-input" />
-                                                      <Button fx:id="genreButton1" mnemonicParsing="false" styleClass="main-button" text="Add">
-                                                         <HBox.margin>
-                                                            <Insets left="20.0" />
-                                                         </HBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                                <Text fx:id="genreError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Add a Poster:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <HBox alignment="CENTER">
-                                                   <children>
-                                                      <TextField fx:id="posterPathInput1" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" styleClass="form-input" />
-                                                      <Button fx:id="posterButton1" mnemonicParsing="false" styleClass="main-button" text="Add">
-                                                         <HBox.margin>
-                                                            <Insets left="20.0" />
-                                                         </HBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="HAND" />
-                                                         </cursor>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                                <Text fx:id="posterError1" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
-                                                   <font>
-                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </Text>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Languages:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <FlowPane fx:id="languagesContainer1" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER">
-                                             <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Genres:" textFill="WHITE">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <FlowPane fx:id="genresConteiner1" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <Button fx:id="movieButton1" mnemonicParsing="false" onAction="#saveMovie" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Create" textFill="WHITE">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
-                                    <VBox fx:id="moviesContainer2" prefHeight="200.0" prefWidth="100.0" />
                                  </children>
                               </VBox>
                                     </children>
