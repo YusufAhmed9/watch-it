@@ -34,4 +34,23 @@
     } ]
   },
   "watchDate" : [ 2024, 12, 18 ]
+}, {
+  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
+  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "review" : {
+    "content" : "",
+    "rating" : 3
+  },
+  "watchedContent" : {
+    "@class" : "WatChill.Content.Series.Episode",
+    "id" : "1",
+    "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
+    "duration" : 25,
+    "releaseDate" : [ 2024, 12, 3 ],
+    "viewsCount" : 0,
+    "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
+    "description" : "Nice one",
+    "seasonId" : "1"
+  },
+  "watchDate" : [ 2024, 12, 18 ]
 } ]

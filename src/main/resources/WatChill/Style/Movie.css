@@ -6,7 +6,7 @@ scroll-pane {
     -fx-background-color: #0d0d0d;
 }
 
-.button {
+.main-button {
     -fx-background-color: #fff;
     -fx-text-fill: #333;
     -fx-font-size: 14px;
