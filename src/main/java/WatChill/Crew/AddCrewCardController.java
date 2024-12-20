@@ -6,8 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class AddCrewCardController {
-    @FXML
-    ImageView addButton;
+    public ImageView addButton;
     @FXML
     ImageView crewPicture;
     @FXML

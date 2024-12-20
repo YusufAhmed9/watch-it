@@ -41,18 +41,7 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </Button>
-                              <Button mnemonicParsing="false" onAction="#displayMovies" styleClass="main-button" text="Movies">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <font>
-                                    <Font name="Manrope Regular" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" styleClass="main-button" text="Series">
+                              <Button mnemonicParsing="false" onAction="#displayContent" styleClass="main-button" text="Content">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -101,7 +90,7 @@
                                         <Insets left="10.0" />
                                     </padding>
                                 </HBox>
-                                <VBox style="-fx-background-color: #141414;">
+                                <VBox fx:id="mainContainer" style="-fx-background-color: #141414;">
                                     <children>
                                         <VBox fx:id="infoContainer">
                                             <children>
@@ -257,7 +246,7 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                              <VBox fx:id="moviesAdmin">
+                              <VBox fx:id="contentsAdmin">
                                  <children>
                                     <HBox alignment="CENTER">
                                        <children>
@@ -268,7 +257,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <VBox fx:id="moviesForm" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label prefHeight="20.0" prefWidth="404.0" styleClass="form-label" text="Title:" textFill="WHITE">
                                              <font>
@@ -278,8 +267,8 @@
                                                 <Insets bottom="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <TextField fx:id="movieTitle" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                          <Text fx:id="movieTitleError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                          <TextField fx:id="contentTitle" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                          <Text fx:id="contentTitleError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                              <font>
                                                 <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                              </font>
@@ -297,8 +286,8 @@
                                                       <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TextField fx:id="movieDescription" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="movieDescriptionError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <TextField fx:id="contentDescription" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="contentDescriptionError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -316,8 +305,8 @@
                                                 <Insets bottom="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <DatePicker fx:id="movieReleaseDate" prefHeight="25.0" prefWidth="403.0" style="-fx-background-color: transparent;" />
-                                          <Text fx:id="movieReleaseDateError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                          <DatePicker fx:id="contentReleaseDate" prefHeight="25.0" prefWidth="403.0" style="-fx-background-color: transparent;" />
+                                          <Text fx:id="contentReleaseDateError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                              <font>
                                                 <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                              </font>
@@ -327,7 +316,7 @@
                                           </Text>
                                           <VBox alignment="CENTER">
                                              <children>
-                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Type:" textFill="WHITE">
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Content Type:" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -335,7 +324,7 @@
                                                       <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MenuButton fx:id="contentType" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Content Type">
+                                                <MenuButton fx:id="contentType" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Movie">
                                                    <items>
                                                       <MenuItem mnemonicParsing="false" text="Movie" />
                                                       <MenuItem mnemonicParsing="false" text="Series" />
@@ -351,7 +340,7 @@
                                                 </Text>
                                              </children>
                                           </VBox>
-                                          <VBox fx:id="durationVbox" alignment="CENTER">
+                                          <VBox fx:id="durationContainer" alignment="CENTER">
                                              <children>
                                                 <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Duration:" textFill="WHITE">
                                                    <font>
@@ -361,8 +350,8 @@
                                                       <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TextField fx:id="movieDuration" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="movieDurationError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <TextField fx:id="contentDuration" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="contentDurationError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -382,8 +371,8 @@
                                                       <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TextField fx:id="movieCountry" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="movieCountryError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <TextField fx:id="contentCountry" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="contentCountryError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -403,8 +392,8 @@
                                                       <Insets bottom="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TextField fx:id="movieBudget" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                <Text fx:id="movieBudgetError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <TextField fx:id="contentBudget" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="contentBudgetError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -426,8 +415,8 @@
                                                             <Insets bottom="5.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <TextField fx:id="movieRevenue" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
-                                                      <Text fx:id="movieRevenueError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                      <TextField fx:id="contentRevenue" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                      <Text fx:id="contentRevenueError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                          <font>
                                                             <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                          </font>
@@ -447,8 +436,8 @@
                                                 </Label>
                                                 <HBox alignment="CENTER">
                                                    <children>
-                                                      <TextField fx:id="movieLanguage" maxWidth="-Infinity" prefHeight="25.0" prefWidth="232.0" styleClass="form-input" />
-                                                      <Button fx:id="movieLanguageButton" mnemonicParsing="false" onAction="#addMovieLanguage" styleClass="main-button" text="Add">
+                                                      <TextField fx:id="contentLanguage" maxWidth="-Infinity" prefHeight="25.0" prefWidth="232.0" styleClass="form-input" />
+                                                      <Button fx:id="contentLanguageButton" mnemonicParsing="false" onAction="#addContentLanguage" styleClass="main-button" text="Add">
                                                          <HBox.margin>
                                                             <Insets left="20.0" />
                                                          </HBox.margin>
@@ -456,7 +445,7 @@
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
                                                       </Button>
-                                                      <Button mnemonicParsing="false" onAction="#clearMovieLanguages" styleClass="main-button" text="Clear">
+                                                      <Button mnemonicParsing="false" onAction="#clearContentLanguages" styleClass="main-button" text="Clear">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
@@ -466,7 +455,7 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
-                                                <Text fx:id="movieLanguageError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <Text fx:id="contentLanguageError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -488,8 +477,8 @@
                                                 </Label>
                                                 <HBox alignment="CENTER">
                                                    <children>
-                                                      <TextField fx:id="movieGenre" maxWidth="-Infinity" prefHeight="25.0" prefWidth="232.0" styleClass="form-input" />
-                                                      <Button fx:id="movieGenreButton" mnemonicParsing="false" onAction="#addMovieGenre" styleClass="main-button" text="Add">
+                                                      <TextField fx:id="contentGenre" maxWidth="-Infinity" prefHeight="25.0" prefWidth="232.0" styleClass="form-input" />
+                                                      <Button fx:id="contentGenreButton" mnemonicParsing="false" onAction="#addContentGenre" styleClass="main-button" text="Add">
                                                          <HBox.margin>
                                                             <Insets left="20.0" />
                                                          </HBox.margin>
@@ -497,7 +486,7 @@
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
                                                       </Button>
-                                                      <Button mnemonicParsing="false" onAction="#clearMovieGenres" styleClass="main-button" text="Clear">
+                                                      <Button mnemonicParsing="false" onAction="#clearContentGenres" styleClass="main-button" text="Clear">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
@@ -507,7 +496,7 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
-                                                <Text fx:id="movieGenreError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <Text fx:id="contentGenreError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -529,8 +518,8 @@
                                                 </Label>
                                                 <HBox alignment="CENTER">
                                                    <children>
-                                                      <TextField fx:id="moviePoster" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="328.0" styleClass="form-input" />
-                                                      <Button fx:id="moviePosterButton" mnemonicParsing="false" styleClass="main-button" text="Add">
+                                                      <TextField fx:id="contentPoster" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="328.0" styleClass="form-input" />
+                                                      <Button fx:id="contentPosterButton" mnemonicParsing="false" styleClass="main-button" text="Add">
                                                          <HBox.margin>
                                                             <Insets left="20.0" />
                                                          </HBox.margin>
@@ -540,7 +529,7 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
-                                                <Text fx:id="moviePosterError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                <Text fx:id="contentPosterError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
                                                    <font>
                                                       <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                                    </font>
@@ -560,7 +549,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <FlowPane fx:id="movieLanguagesContainer" hgap="15.0" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" vgap="15.0" />
+                                                <FlowPane fx:id="contentLanguagesContainer" hgap="15.0" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" vgap="15.0" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
@@ -576,13 +565,13 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <FlowPane fx:id="movieGenresContainer" hgap="15.0" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" vgap="15.0" />
+                                                <FlowPane fx:id="contentGenresContainer" hgap="15.0" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" vgap="15.0" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </VBox>
-                                          <Button fx:id="movieCrewButton" mnemonicParsing="false" onAction="#addMovieCrew" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Add Crew" textFill="WHITE">
+                                          <Button fx:id="contentCrewButton" mnemonicParsing="false" onAction="#addContentCrew" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Add Crew" textFill="WHITE">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -590,7 +579,7 @@
                                                 <Insets bottom="15.0" top="10.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Text fx:id="movieCrewsError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="398.9830722808838">
+                                          <Text fx:id="contentCrewsError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="398.9830722808838">
                                              <font>
                                                 <Font name="Helvetica‭ ‬עבה" size="12.0" />
                                              </font>
@@ -598,7 +587,7 @@
                                                 <Insets bottom="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Button fx:id="movieButton" mnemonicParsing="false" onAction="#saveMovie" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Create" textFill="WHITE">
+                                          <Button fx:id="contentButton" mnemonicParsing="false" onAction="#saveContent" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Create" textFill="WHITE">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -608,6 +597,7 @@
                                           <Insets bottom="30.0" />
                                        </padding></VBox>
                                     <VBox fx:id="moviesContainer" prefHeight="200.0" prefWidth="100.0" />
+                                    <VBox fx:id="seriesContainer" prefHeight="200.0" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <VBox fx:id="crewAdmin" prefHeight="200.0" prefWidth="100.0">
