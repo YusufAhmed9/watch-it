@@ -72,7 +72,9 @@ public class SeriesController {
             });
             seasonsMenu.getItems().add(currentSeriesSeason);
         }
-        seasonsMenu.setText(seasonsMenu.getItems().getFirst().getText());
+        if (!seasonsMenu.getItems().isEmpty()) {
+            seasonsMenu.setText(seasonsMenu.getItems().getFirst().getText());
+        }
         seasonDescription.setText(currentSeries.getDescription());
         seasonDescription.getStyleClass().add("series-description");
         Image seriesImage = new Image(getClass().getResource(currentSeries.getPoster()).toExternalForm());

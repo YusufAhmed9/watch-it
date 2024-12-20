@@ -2,7 +2,10 @@ package WatChill.Crew;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -13,6 +16,10 @@ public class AddCrewController {
     FlowPane crewFlowPane;
     @FXML
     FlowPane currentCrewFlowPane;
+    @FXML
+    StackPane cancelButton;
+    @FXML
+    StackPane confirmButton;
 
     private void initializePage(ArrayList<Crew> crews) throws IOException {
         crewFlowPane.getChildren().clear();
@@ -23,7 +30,13 @@ public class AddCrewController {
                 VBox crewCard = loader.load();
                 AddCrewCardController addCrewCardController = loader.getController();
                 addCrewCardController.build(crew.getId(), () -> addCrewToList(crews, crew, crewCard));
-                crewFlowPane.getChildren().add(crewCard);
+                if (crews.contains(crew)) {
+                    addCrewCardController.addButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/minus-circle.png").toExternalForm()));
+                    currentCrewFlowPane.getChildren().add(crewCard);
+                }
+                else {
+                    crewFlowPane.getChildren().add(crewCard);
+                }
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -31,11 +44,12 @@ public class AddCrewController {
     }
 
     private void addCrewToList(ArrayList<Crew> crews, Crew crew, VBox crewCard) {
-        crews.add(crew);
         if (currentCrewFlowPane.getChildren().contains(crewCard)) {
             crewFlowPane.getChildren().add(crewCard);
+            crews.remove(crew);
         } else {
             currentCrewFlowPane.getChildren().add(crewCard);
+            crews.add(crew);
         }
     }
 
@@ -44,7 +58,9 @@ public class AddCrewController {
         crewFlowPane.getChildren().add(crewCard);
     }
 
-    public void build(ArrayList<Crew> crews) throws IOException {
+    public void build(ArrayList<Crew> crews, Runnable confirm, Runnable cancel) throws IOException {
         initializePage(crews);
+        confirmButton.setOnMouseClicked(_ -> confirm.run());
+        cancelButton.setOnMouseClicked(_ -> cancel.run());
     }
 }
