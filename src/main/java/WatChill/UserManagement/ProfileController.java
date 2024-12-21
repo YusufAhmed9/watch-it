@@ -154,7 +154,7 @@ public class ProfileController {
             WatchedContent watchableContent = userWatchRecord.getWatchedContent();
             if (watchableContent instanceof Movie) {
                 Movie movie = (Movie) watchableContent;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/searchResult.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                 try {
                     HBox card = loader.load();
                     SearchResultController searchResultController = loader.getController();
@@ -166,7 +166,7 @@ public class ProfileController {
             }
             else {
                 Episode episode = (Episode) watchableContent;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/searchResult.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                 try {
                     HBox card = loader.load();
                     SearchResultController searchResultController = loader.getController();
