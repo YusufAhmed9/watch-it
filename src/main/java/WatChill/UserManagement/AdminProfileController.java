@@ -355,7 +355,6 @@ public class AdminProfileController {
         monthsChart.getYAxis().setLabel("Revenues");
         monthsChart.getXAxis().setLabel("Months");
         for (Map.Entry<String, Double> entry : Subscription.getMonthlyRevenues().entrySet()) {
-            System.out.println(entry);
             XYChart.Series<String, Double> series = new XYChart.Series<>();
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
             monthsChart.getData().add(series);
@@ -365,8 +364,8 @@ public class AdminProfileController {
     public void displayCrew() {
         infoContainer.setVisible(false);
         infoContainer.setManaged(false);
-        contentsAdmin.setVisible(true);
-        contentsAdmin.setManaged(true);
+        contentsAdmin.setVisible(false);
+        contentsAdmin.setManaged(false);
         crewAdmin.setVisible(true);
         crewAdmin.setManaged(true);
         subscriptionsAdmin.setVisible(false);
@@ -785,7 +784,6 @@ public class AdminProfileController {
             episodeSeasonMenuError.setText("Season is required");
         }
         Season season = Season.findById(episodeSeasonMenu.getId());
-        System.out.println(episodeSeasonMenu.getId());
         Series series = Series.findById(season.getSeriesId());
         if (currentEpisode == null) {
             Episode episode = new Episode(title, duration, releaseYear, poster, description, episodeSeasonMenu.getId());
@@ -798,10 +796,6 @@ public class AdminProfileController {
             currentEpisode.setDuration(duration);
             currentEpisode.setPoster(poster);
             season.updateEpisode(currentEpisode);
-        }
-        for(Episode episode : season.getEpisodes()){
-            System.out.println(episode.getTitle());
-            System.out.println(episode.getPoster());
         }
         initializeEpisodesContainer(season.getId());
     }
