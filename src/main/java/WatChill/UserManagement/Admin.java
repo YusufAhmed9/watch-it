@@ -216,16 +216,16 @@ public class Admin extends User {
             }
             Scanner scanner = new Scanner(System.in);
             String id = getValidInput(scanner, "Enter id to update: ", "^[0-9]+$");
-            
+
             String choice = getValidInput(scanner, " [ 1 ]: Update firstName\n" + //
-                                " [ 2 ]: Update lastName [ 3 ]: Update Date Of Birth\\n" + //
-                                " [ 4 ]: Nationality\n" + //
-                                " [ 5 ]: gender\n" + //
-                                " [ 6 ]: Content Created\n" + //
-                                " [ 7 ]: Instagram profile\n" + //
-                                " [ 8 ]: Profile Picture\n" + //
-                                " [ 9 ]: Twitter profile\n" + //
-                                " [ 10 ]: Exit\n Enter choice: ", "^(10|[1-9])$");
+                    " [ 2 ]: Update lastName [ 3 ]: Update Date Of Birth\\n" + //
+                    " [ 4 ]: Nationality\n" + //
+                    " [ 5 ]: gender\n" + //
+                    " [ 6 ]: Content Created\n" + //
+                    " [ 7 ]: Instagram profile\n" + //
+                    " [ 8 ]: Profile Picture\n" + //
+                    " [ 9 ]: Twitter profile\n" + //
+                    " [ 10 ]: Exit\n Enter choice: ", "^(10|[1-9])$");
 
             Crew c = Crew.findById(id);
             if (choice.equals("1"))
@@ -253,13 +253,13 @@ public class Admin extends User {
             else if (choice.equals("6"))
             {
                 System.out.println("Movies he created: \n");
-                for (int i = 0; i < c.getContentCreated().size(); i++) 
+                for (int i = 0; i < c.getContentCreated().size(); i++)
                 {
                     System.out.println(c.getContentCreated().get(i));
                 }
                 String movieToBeReplaced = getValidInput(scanner, "Enter the movie to be replaced: ", "^[a-zA-Z]+$");
                 String newMovie = getValidInput(scanner, "Enter the new movie: ", "^[a-zA-Z]+$");
-                for (int i = 0; i < c.getContentCreated().size(); i++) 
+                for (int i = 0; i < c.getContentCreated().size(); i++)
                 {
                     if (c.getContentCreated().get(i).equals(movieToBeReplaced))
                     {
@@ -370,7 +370,7 @@ public class Admin extends User {
             }
         }
     }
-    
+
     private void deleteCrew() {
         Crew crew = getValidCrew();
         crew.delete();
@@ -662,7 +662,7 @@ public class Admin extends User {
         Season season = Season.findById(seasonId);
         season.addEpisode(episode);
         Series series = Series.findById(season.getSeriesId());
-        series.updateSeason(seasonId);
+        series.updateSeason(season);
         series.save();
     }
 

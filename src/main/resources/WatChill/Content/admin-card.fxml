@@ -2,87 +2,71 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="100.0" prefWidth="623.0" style="-fx-background-color: rgba(20, 20, 20, 0.508);" styleClass="search-result-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.AdminCardController">
-    <children>
-        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="main-image">
-            <image>
-                <Image url="@Series/media/DareDevil.jpg" />
-            </image>
+<HBox alignment="CENTER_LEFT" centerShape="false" prefHeight="172.0" style="-fx-background-color: #0F0F0F; -fx-background-radius: 50;" styleClass="episode-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Content.AdminCardController">
+   <children>
+      <ImageView fx:id="posterImage" fitHeight="172.0" fitWidth="270.0" styleClass="episode-poster">
+         <clip>
+            <Rectangle arcHeight="50" arcWidth="50" height="172" width="270" />
+         </clip>
+      </ImageView>
+      <VBox prefHeight="677.0" prefWidth="788.0" styleClass="episode-labels">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </HBox.margin>
+         <children>
+            <Label fx:id="titleText" style="-fx-text-fill: #fff;" styleClass="episode-title" text="S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1" textFill="LIGHTGRAY">
+               <font>
+                  <Font name="Manrope SemiBold" size="27.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="subTitleText" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="episode-release-date" text="September 28, 2013">
+               <padding>
+                  <Insets left="15.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Manrope Medium" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="descriptionText" alignment="CENTER" opacity="0.48" style="-fx-text-fill: #fff;" styleClass="episode-description" text="Episode's description" textFill="LIGHTGRAY">
+               <padding>
+                  <Insets left="15.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Manrope Medium" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+      <ImageView fx:id="editButton">
+         <image>
+            <Image url="@../User/edit-circle.png" />
+         </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-        </ImageView>
-        <VBox prefHeight="112.0" prefWidth="540.0" styleClass="text-container" HBox.hgrow="ALWAYS">
-            <children>
-                <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Daredevil" wrappingWidth="493.1014764592511">
-                    <font>
-                        <Font name="Manrope SemiBold" size="22.0" />
-                    </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </Text>
-                <Text fx:id="subTitleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
-                    <font>
-                        <Font name="Manrope Medium" size="12.0" />
-                    </font></Text>
-                <Text fx:id="descriptionText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
-                    <font>
-                        <Font name="Manrope Medium" size="12.0" />
-                    </font></Text>
-            </children>
-            <padding>
-                <Insets left="10.0" top="10.0" />
-            </padding>
-        </VBox>
-      <VBox alignment="CENTER" style="-fx-background-color: rgba(0, 0, 0, 0.7);">
-         <children>
-            <StackPane fx:id="editButton">
-               <children>
-                  <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE">
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                  </Circle>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@pencil.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </StackPane>
-            <StackPane fx:id="deleteButton">
-               <children>
-                  <Circle fill="WHITE" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@trash-can.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </StackPane>
-         </children>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </VBox>
-    </children>
+      </ImageView>
+      <ImageView fx:id="deleteButton">
+         <image>
+            <Image url="@../User/delete-circle.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </HBox>
