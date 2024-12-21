@@ -289,3 +289,11 @@
     -fx-text-fill: #fff;
     -fx-font-weight: Bold;
 }
+
+.chart {
+    -fx-background-color: lightblue;
+}
+
+.chart-plot-background {
+    -fx-background-color: #f0f0f0;
+}

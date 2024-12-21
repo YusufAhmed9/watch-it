@@ -132,8 +132,16 @@ public class SearchController {
     private void handleContentSort() {
         String sortType = sortMenu.getText();
         if (sortType.equals("Rating")) {
-            // TODO
-//            contents.sort(Comparator.comparing(Content::).reversed());
+            if (getSearchType().equals("Series")) {
+                List<Series> series = new ArrayList<>(contents.stream().filter(Series.class::isInstance).map(Series.class::cast).toList());
+                series.sort(Comparator.comparing(Series::getRating).reversed());
+                contents = new ArrayList<>(series);
+            }
+            else {
+                List<Movie> movies = new ArrayList<>(contents.stream().filter(Movie.class::isInstance).map(Movie.class::cast).toList());
+                movies.sort(Comparator.comparing(Movie::getRating).reversed());
+                contents = new ArrayList<>(movies);
+            }
         }
         else if (sortType.equals("Views")) {
             contents.sort(Comparator.comparingInt(Content::getViewsCount).reversed());
@@ -240,8 +248,8 @@ public class SearchController {
 
     private void redirectToMoviePage(String movieId) {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Movie/movie.fxml"));
+            String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/movie.fxml"));
             root = loader.load();
 
             MovieController movieController = loader.getController();
@@ -250,6 +258,7 @@ public class SearchController {
             scene = searchResultsContainer.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -261,8 +270,8 @@ public class SearchController {
 
     private void redirectToSeriesPage(String seriesId) {
         try {
-            String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Series/Series.fxml"));
+            String css = getClass().getResource("/WatChill/style/Series.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Series.fxml"));
             root = loader.load();
 
             SeriesController seriesController = loader.getController();
@@ -271,6 +280,7 @@ public class SearchController {
             scene = searchResultsContainer.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
@@ -291,6 +301,7 @@ public class SearchController {
             scene = searchResultsContainer.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
+            scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();

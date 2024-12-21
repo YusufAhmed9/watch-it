@@ -151,6 +151,26 @@ public class Subscription {
         return Month.of(maxRevenueIndex).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
     }
 
+    public static Map<String, Double> getMonthlyRevenues() {
+        Map<String, Double> monthlyRevenues = new LinkedHashMap<>(); // Map to store month names and revenues
+
+        for (Month month : Month.values()) {
+            monthlyRevenues.put(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH), 0.0);
+        }
+
+        // Iterate through subscriptions and calculate revenues
+        for (Subscription subscription : retrieveSubscriptions()) {
+            int monthIndex = subscription.getStartDate().getMonth().getValue(); // Get month index (not 0-based)
+            String monthName = Month.of(monthIndex).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+            double subscriptionPrice = subscription.plan.getPrice();
+
+            // Add the subscription price to the corresponding month's revenue
+            monthlyRevenues.put(monthName, monthlyRevenues.get(monthName) + subscriptionPrice);
+        }
+
+        return monthlyRevenues;
+    }
+
     // Get current subscription index from ArrayList
     private int findSubscriptionIndex() {
         for (int i = 0; i < retrieveSubscriptions().size(); i++) {
