@@ -27,7 +27,7 @@ public class ContentCardController {
     private ImageView posterImage;
 
     @FXML
-    private Text titleText;
+    private Label titleText;
 
     @FXML
     private Label releaseDateText;

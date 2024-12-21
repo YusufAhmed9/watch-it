@@ -10,12 +10,16 @@ import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
 import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
+import WatChill.Subscription.Subscription;
 import WatChill.UserWatchRecord.UserWatchRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -31,13 +35,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class AdminProfileController {
 
     @FXML
-    VBox contentsAdmin;
+    VBox contentAdmin;
     @FXML
     Label username;
     @FXML
@@ -66,7 +71,7 @@ public class AdminProfileController {
     VBox mainContainer;
 
     @FXML
-    VBox contentAdmin;
+    VBox contentsAdmin;
     @FXML
     TextField contentTitle;
     @FXML
@@ -177,6 +182,7 @@ public class AdminProfileController {
     VBox durationContainer;
     @FXML
     MenuButton contentType;
+
     @FXML
     VBox seasonAdmin;
     @FXML
@@ -231,6 +237,14 @@ public class AdminProfileController {
     Button episodePosterButton;
     @FXML
     VBox episodeAdmin;
+
+    @FXML
+    VBox subscriptionsAdmin;
+    @FXML
+    BarChart<String, Double> monthsChart;
+    @FXML
+    PieChart plansPie;
+
     private Season currentSeason = null;
     private Episode currentEpisode = null;
 
@@ -274,10 +288,12 @@ public class AdminProfileController {
         contentsAdmin.setManaged(false);
         crewAdmin.setVisible(false);
         crewAdmin.setManaged(false);
+        subscriptionsAdmin.setVisible(false);
+        subscriptionsAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
+        episodeAdmin.setManaged(false);
         seasonAdmin.setVisible(false);
         seasonAdmin.setManaged(false);
-        episodeAdmin.setManaged(false);
-        episodeAdmin.setVisible(false);
         User user = User.getCurrentUser();
         username.setText(user.getUsername());
         email.setText(user.getEmail());
@@ -286,19 +302,18 @@ public class AdminProfileController {
     }
 
     public void displayContent() {
-        currentContentLanguages.clear();
-        currentContentCrews.clear();
-        currentContentGenres.clear();
         infoContainer.setVisible(false);
         infoContainer.setManaged(false);
         contentsAdmin.setVisible(true);
         contentsAdmin.setManaged(true);
         crewAdmin.setVisible(false);
         crewAdmin.setManaged(false);
+        subscriptionsAdmin.setVisible(false);
+        subscriptionsAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
+        episodeAdmin.setManaged(false);
         seasonAdmin.setVisible(false);
         seasonAdmin.setManaged(false);
-        episodeAdmin.setManaged(false);
-        episodeAdmin.setVisible(false);
         initializeMovies();
         initializeSeries();
         initializeContentsInputs();
@@ -320,17 +335,46 @@ public class AdminProfileController {
         }
     }
 
-    public void displayCrew() {
+    public void displaySubscriptions() {
         infoContainer.setVisible(false);
         infoContainer.setManaged(false);
         contentsAdmin.setVisible(false);
         contentsAdmin.setManaged(false);
-        crewAdmin.setVisible(true);
-        crewAdmin.setManaged(true);
+        crewAdmin.setVisible(false);
+        crewAdmin.setManaged(false);
+        subscriptionsAdmin.setVisible(true);
+        subscriptionsAdmin.setManaged(true);
+        episodeAdmin.setVisible(false);
+        episodeAdmin.setManaged(false);
         seasonAdmin.setVisible(false);
         seasonAdmin.setManaged(false);
-        episodeAdmin.setManaged(false);
+        for (Map.Entry<String, Integer> entry : Subscription.getPlansSubscriptions().entrySet()) {
+            plansPie.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        monthsChart.getYAxis().setLabel("Revenues");
+        monthsChart.getXAxis().setLabel("Months");
+        for (Map.Entry<String, Double> entry : Subscription.getMonthlyRevenues().entrySet()) {
+            System.out.println(entry);
+            XYChart.Series<String, Double> series = new XYChart.Series<>();
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            monthsChart.getData().add(series);
+        }
+    }
+
+    public void displayCrew() {
+        infoContainer.setVisible(false);
+        infoContainer.setManaged(false);
+        contentsAdmin.setVisible(true);
+        contentsAdmin.setManaged(true);
+        crewAdmin.setVisible(true);
+        crewAdmin.setManaged(true);
+        subscriptionsAdmin.setVisible(false);
+        subscriptionsAdmin.setManaged(false);
         episodeAdmin.setVisible(false);
+        episodeAdmin.setManaged(false);
+        seasonAdmin.setVisible(false);
+        seasonAdmin.setManaged(false);
         initializeCrew();
         initializeCrewInputs();
         for (MenuItem item : genderMenu.getItems()) {
@@ -339,7 +383,7 @@ public class AdminProfileController {
         for (MenuItem item : crewType.getItems()) {
             item.setOnAction(_ -> crewType.setText(item.getText()));
         }
-        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/"));
+        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/media"));
     }
 
     public void editInfo(ActionEvent actionEvent) {
@@ -865,6 +909,7 @@ public class AdminProfileController {
         }
     }
 
+
     public void handleFileChoose(TextField fileInput, String directoryPath) {
         // Create a FileChooser instance
         FileChooser fileChooser = new FileChooser();
@@ -1114,7 +1159,7 @@ public class AdminProfileController {
             movieController.build(movieId);
 
             root = loader.load();
-            scene = contentsAdmin.getScene();
+            scene = contentAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
             scene.getStylesheets().clear();
@@ -1134,7 +1179,7 @@ public class AdminProfileController {
             root = loader.load();
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
-            scene = contentsAdmin.getScene();
+            scene = contentAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
             scene.getStylesheets().clear();
