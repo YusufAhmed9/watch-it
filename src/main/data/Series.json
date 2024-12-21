@@ -46,7 +46,14 @@
       "description" : "Nice one",
       "seasonId" : "2"
     } ],
-    "seriesId" : "2"
+    "seriesId" : "1"
+  }, {
+    "id" : "550b5159-d78c-4466-81ba-f4ee10f059a2",
+    "title" : "test",
+    "description" : "test",
+    "releaseDate" : [ 2024, 12, 2 ],
+    "episodes" : [ ],
+    "seriesId" : "1"
   } ],
   "description" : "Greatest series ever",
   "languages" : [ "English", "Japanese" ],

@@ -63,7 +63,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#displayMyInfo" styleClass="main-button" text="Seasons">
+                              <Button mnemonicParsing="false" onAction="#displaySeasons" styleClass="main-button" text="Seasons">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -74,7 +74,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#displayMyInfo" styleClass="main-button" text="Episode">
+                              <Button mnemonicParsing="false" onAction="#displayEpisode" styleClass="main-button" text="Episode">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -835,6 +835,304 @@
                                        </children>
                                     </VBox>
                                     <VBox fx:id="crewContainer" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="seasonAdmin" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Season" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Manrope Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="seasonForm" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Title" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="seasonTitle" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="seasonTitleError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Description" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="seasonDescription" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="seasonDescriptionError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Release Date" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <DatePicker fx:id="seasonReleaseYear" prefHeight="25.0" prefWidth="403.0" style="-fx-background-color: transparent;" />
+                                                <Text fx:id="seasonReleaseYearError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Select Series" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <MenuButton fx:id="seriesMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Series">
+                                                   <VBox.margin>
+                                                      <Insets bottom="30.0" />
+                                                   </VBox.margin>
+                                                </MenuButton>
+                                                <Text fx:id="seriesMenuError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="createSeason" mnemonicParsing="false" onAction="#saveSeason" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Create" textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="seasonContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="episodeAdmin" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Episode" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Manrope Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="seasonForm1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Title" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="episodeTitle" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="episodeTitleError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Description" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="episodeDescription" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="episodeDescriptionError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Duration (In minutes)" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="episodeDuration" maxWidth="400.0" prefHeight="26.0" prefWidth="350.0" styleClass="form-input" />
+                                                <Text fx:id="episodeDurationError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Release Date" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <DatePicker fx:id="episodeReleaseDate" prefHeight="25.0" prefWidth="403.0" style="-fx-background-color: transparent;" />
+                                                <Text fx:id="episodeReleaseDateError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Select Series" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <MenuButton fx:id="episodeSeriesMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Series">
+                                                   <VBox.margin>
+                                                      <Insets bottom="30.0" />
+                                                   </VBox.margin>
+                                                </MenuButton>
+                                                <Text fx:id="episodeSeriesMenuError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Select Season" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <MenuButton fx:id="episodeSeasonMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="400.0" styleClass="admin-menu-button" text="Season">
+                                                   <VBox.margin>
+                                                      <Insets bottom="30.0" />
+                                                   </VBox.margin>
+                                                </MenuButton>
+                                                <Text fx:id="episodeSeasonMenuError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="20.0" prefWidth="397.0" styleClass="form-label" text="Add a poster" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <TextField fx:id="episodePoster" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="317.0" styleClass="form-input" />
+                                                      <Button fx:id="episodePosterButton" mnemonicParsing="false" styleClass="main-button" text="Add">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <Text fx:id="episodePictureError" fill="#f21414" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.9830722808838">
+                                                   <font>
+                                                      <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="createEpisode" mnemonicParsing="false" onAction="#saveEpisode" prefHeight="30.0" prefWidth="313.0" styleClass="main-button" text="Create" textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="episodesContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0" />
                                  </children>
                               </VBox>
                                     </children>
