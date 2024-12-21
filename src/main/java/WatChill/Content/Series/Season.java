@@ -27,7 +27,7 @@ public class Season {
             @JsonProperty("description") String description,
             @JsonProperty("releaseDate") LocalDate releaseDate,
             @JsonProperty("episodes") ArrayList<Episode> episodes,
-            @JsonProperty("seasonId") String seriesId
+            @JsonProperty("seriesId") String seriesId
 
     ) {
         this.id = id;
@@ -61,6 +61,18 @@ public class Season {
 
     public void setSeriesId(String seriesId) {
         this.seriesId = seriesId;
+    }
+
+    public void updateEpisode(Episode updatedEpisode) {
+        for (int i = 0; i < getEpisodes().size(); i++) {
+            Episode episode = getEpisodes().get(i);
+            if (episode.getId().equals(updatedEpisode.getId())) {
+                getEpisodes().set(i, updatedEpisode);  // Replace the old episode with the updated one
+                break;  // Stop once the episode is found and updated
+            }
+        }
+        Series series = Series.findById(getSeriesId());
+        series.updateSeason(this);
     }
 
     public LocalDate getReleaseDate() {
@@ -118,6 +130,7 @@ public class Season {
 
         return !getEpisodes().isEmpty() ? totalRating / getEpisodes().size() : 0.0;
     }
+
     public static Season findById(String id) {
         return Series.retrieveSeries().stream()
                 .flatMap(series -> series.getSeasons().stream())

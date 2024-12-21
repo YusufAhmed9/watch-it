@@ -52,11 +52,12 @@ public class Series extends Content {
     public void addSeason(Season season) {
         seasons.add(season);
     }
-    public void updateSeason(String seasonId){
+
+    public void updateSeason(Season updatedSeason) {
         for (int i = 0; i < getSeasons().size(); i++) {
             Season season = getSeasons().get(i);
-            if (season.getId().equals(seasonId)) {
-                getSeasons().set(i, Season.findById(seasonId));  // Replace the old season with the updated one
+            if (season.getId().equals(updatedSeason.getId())) {
+                getSeasons().set(i, updatedSeason);  // Replace the old season with the updated one
                 break;  // Stop once the season is found and updated
             }
         }

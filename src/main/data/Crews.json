@@ -94,4 +94,16 @@
   "twitterLink" : "https://twitter.com/Zendaya",
   "picture" : "/WatChill/Crew/zendaya.jpg",
   "contentCreated" : [ "f5b19f6b-7ad7-45f4-949d-9e71a1bc46c8" ]
+}, {
+  "@class" : "WatChill.Crew.Cast.Cast",
+  "id" : "6864f94e-d11f-4c52-90a0-46fd609f8a72",
+  "firstName" : "1",
+  "lastName" : "1",
+  "dateOfBirth" : [ 2024, 12, 3 ],
+  "gender" : "Male",
+  "nationality" : "Egyptian",
+  "instagramLink" : "https://www.instagram.com/5",
+  "twitterLink" : "https://twitter.com/5",
+  "picture" : "/WatChill/Crew/mediacdcd8be6b05897668a70c036ab6545bc.jpg",
+  "contentCreated" : [ ]
 } ]

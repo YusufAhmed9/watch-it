@@ -4,9 +4,7 @@ import WatChill.Content.AdminCardController;
 import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Movie.MovieController;
-import WatChill.Content.Series.Season;
-import WatChill.Content.Series.Series;
-import WatChill.Content.Series.SeriesController;
+import WatChill.Content.Series.*;
 import WatChill.Crew.AddCrewController;
 import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
@@ -25,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -38,7 +37,7 @@ import java.util.regex.Pattern;
 public class AdminProfileController {
 
     @FXML
-    VBox contentAdmin;
+    VBox contentsAdmin;
     @FXML
     Label username;
     @FXML
@@ -67,7 +66,7 @@ public class AdminProfileController {
     VBox mainContainer;
 
     @FXML
-    VBox contentsAdmin;
+    VBox contentAdmin;
     @FXML
     TextField contentTitle;
     @FXML
@@ -178,6 +177,62 @@ public class AdminProfileController {
     VBox durationContainer;
     @FXML
     MenuButton contentType;
+    @FXML
+    VBox seasonAdmin;
+    @FXML
+    VBox episodesContainer;
+    @FXML
+    TextField seasonTitle;
+    @FXML
+    TextField seasonDescription;
+    @FXML
+    DatePicker seasonReleaseYear;
+    @FXML
+    Text seasonTitleError;
+    @FXML
+    Text seasonDescriptionError;
+    @FXML
+    Text seasonReleaseYearError;
+    @FXML
+    MenuButton seriesMenu;
+    @FXML
+    VBox seasonContainer;
+    @FXML
+    Text seriesMenuError;
+    @FXML
+    TextField episodeTitle;
+    @FXML
+    Text episodeTitleError;
+    @FXML
+    TextField episodeDescription;
+    @FXML
+    Text episodeDescriptionError;
+    @FXML
+    TextField episodeDuration;
+    @FXML
+    Text episodeDurationError;
+    @FXML
+    DatePicker episodeReleaseDate;
+    @FXML
+    Text episodeReleaseDateError;
+    @FXML
+    MenuButton episodeSeriesMenu;
+    @FXML
+    Text episodeSeriesMenuError;
+    @FXML
+    MenuButton episodeSeasonMenu;
+    @FXML
+    Text episodeSeasonMenuError;
+    @FXML
+    TextField episodePoster;
+    @FXML
+    Text episodePictureError;
+    @FXML
+    Button episodePosterButton;
+    @FXML
+    VBox episodeAdmin;
+    private Season currentSeason = null;
+    private Episode currentEpisode = null;
 
     private Crew currentCrew = null;
     private Content currentContent = null;
@@ -219,6 +274,10 @@ public class AdminProfileController {
         contentsAdmin.setManaged(false);
         crewAdmin.setVisible(false);
         crewAdmin.setManaged(false);
+        seasonAdmin.setVisible(false);
+        seasonAdmin.setManaged(false);
+        episodeAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
         User user = User.getCurrentUser();
         username.setText(user.getUsername());
         email.setText(user.getEmail());
@@ -236,6 +295,10 @@ public class AdminProfileController {
         contentsAdmin.setManaged(true);
         crewAdmin.setVisible(false);
         crewAdmin.setManaged(false);
+        seasonAdmin.setVisible(false);
+        seasonAdmin.setManaged(false);
+        episodeAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
         initializeMovies();
         initializeSeries();
         initializeContentsInputs();
@@ -264,6 +327,10 @@ public class AdminProfileController {
         contentsAdmin.setManaged(false);
         crewAdmin.setVisible(true);
         crewAdmin.setManaged(true);
+        seasonAdmin.setVisible(false);
+        seasonAdmin.setManaged(false);
+        episodeAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
         initializeCrew();
         initializeCrewInputs();
         for (MenuItem item : genderMenu.getItems()) {
@@ -272,7 +339,7 @@ public class AdminProfileController {
         for (MenuItem item : crewType.getItems()) {
             item.setOnAction(_ -> crewType.setText(item.getText()));
         }
-        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/media"));
+        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/"));
     }
 
     public void editInfo(ActionEvent actionEvent) {
@@ -539,6 +606,265 @@ public class AdminProfileController {
         displayCrew();
     }
 
+    public void saveSeason() throws IOException {
+        String title = seasonTitle.getText();
+        String description = seasonDescription.getText();
+        LocalDate releaseYear = seasonReleaseYear.getValue();
+        seasonTitleError.setText("");
+        seasonDescriptionError.setText("");
+        seasonReleaseYearError.setText("");
+        seriesMenuError.setText("");
+
+        if (title.isEmpty()) {
+            seasonTitleError.setText("Title is required");
+            return;
+        }
+        if (description.isEmpty()) {
+            seasonDescriptionError.setText("Description is required");
+            return;
+        }
+        if (releaseYear == null || releaseYear.isAfter(LocalDate.now())) {
+            seasonReleaseYearError.setText("Release date is required");
+            return;
+        }
+        if (seriesMenu.getText().equals("Series")) {
+            seriesMenuError.setText("Series is required");
+            return;
+        }
+        Series series = Series.findById(seriesMenu.getId());
+        if (currentSeason == null) {
+            Season season = new Season(title, description, releaseYear, new ArrayList<>(), series.getId());
+            series.getSeasons().add(season);
+        } else {
+            currentSeason.setTitle(title);
+            currentSeason.setDescription(description);
+            currentSeason.setReleaseDate(releaseYear);
+            assert series != null;
+            series.updateSeason(currentSeason);
+        }
+        addSeasons(series.getId());
+    }
+
+    public void displaySeasons() {
+        infoContainer.setVisible(false);
+        infoContainer.setManaged(false);
+        contentsAdmin.setVisible(false);
+        contentsAdmin.setManaged(false);
+        crewAdmin.setVisible(false);
+        crewAdmin.setManaged(false);
+        seasonAdmin.setVisible(true);
+        seasonAdmin.setManaged(true);
+        episodeAdmin.setManaged(false);
+        episodeAdmin.setVisible(false);
+        seriesMenu.getItems().clear();
+        for (Series series : Series.retrieveSeries()) {
+            MenuItem item = new MenuItem();
+            item.setText(series.getTitle());
+            item.setOnAction(_ -> {
+                        try {
+                            addSeasons(series.getId());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        seriesMenu.setText(series.getTitle());
+                        seriesMenu.setId(series.getId());
+                    }
+            );
+            seriesMenu.getItems().add(item);
+        }
+    }
+
+    private void addSeasons(String seriesId) throws IOException {
+        seasonContainer.getChildren().clear();
+        Series series = Series.findById(seriesId);
+        for (Season season : series.getSeasons()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/admin-card.fxml"));
+            HBox seasonCard = loader.load();
+            AdminCardController adminCardController = loader.getController();
+            adminCardController.setData(season.getTitle(), season.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), season.getDescription(), season.getId(), () -> series.getSeasons().remove(season), () -> editSeason(season.getId()), () -> {
+                try {
+                    addSeasons(seriesId);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            seasonContainer.getChildren().add(seasonCard);
+        }
+    }
+
+    private void editSeason(String seasonId) {
+        currentSeason = Season.findById(seasonId);
+        seasonTitle.setText(currentSeason.getTitle());
+        seasonDescription.setText(currentSeason.getDescription());
+        seasonReleaseYear.setValue(currentSeason.getReleaseDate());
+    }
+
+    public void saveEpisode() throws IOException {
+        String title = episodeTitle.getText();
+        String description = episodeDescription.getText();
+        LocalDate releaseYear = episodeReleaseDate.getValue();
+        String poster = episodePoster.getText();
+        int duration;
+        try {
+            duration = Integer.parseInt(episodeDuration.getText());
+        } catch (NumberFormatException exception) {
+            episodeDuration.setText("Invalid format");
+            return;
+        }
+        episodeTitleError.setText("");
+        episodeDescriptionError.setText("");
+        episodeReleaseDateError.setText("");
+        episodeDurationError.setText("");
+        episodePictureError.setText("");
+
+        if (title.isEmpty()) {
+            episodeTitleError.setText("Title is required");
+            return;
+        }
+        if (description.isEmpty()) {
+            episodeDescriptionError.setText("Description is required");
+            return;
+        }
+        if (releaseYear == null || releaseYear.isAfter(LocalDate.now())) {
+            episodeReleaseDateError.setText("Release date is required");
+            return;
+        }
+        if (poster.isEmpty()) {
+            episodePictureError.setText("Picture is required");
+            return;
+        }
+        if (episodeSeriesMenu.getText().equals("Series")) {
+            episodeSeriesMenuError.setText("Series is required");
+            return;
+        }
+        if(episodeSeasonMenu.getText().equals("Season")){
+            episodeSeasonMenuError.setText("Season is required");
+        }
+        Season season = Season.findById(episodeSeasonMenu.getId());
+        System.out.println(episodeSeasonMenu.getId());
+        Series series = Series.findById(season.getSeriesId());
+        if (currentEpisode == null) {
+            Episode episode = new Episode(title, duration, releaseYear, poster, description, episodeSeasonMenu.getId());
+            season.getEpisodes().add(episode);
+            series.updateSeason(season);
+        } else {
+            currentEpisode.setTitle(title);
+            currentEpisode.setDescription(description);
+            currentEpisode.setReleaseDate(releaseYear);
+            currentEpisode.setDuration(duration);
+            currentEpisode.setPoster(poster);
+            season.updateEpisode(currentEpisode);
+        }
+        for(Episode episode : season.getEpisodes()){
+            System.out.println(episode.getTitle());
+            System.out.println(episode.getPoster());
+        }
+        initializeEpisodesContainer(season.getId());
+    }
+
+    public void displayEpisode() {
+        infoContainer.setVisible(false);
+        infoContainer.setManaged(false);
+        contentsAdmin.setVisible(false);
+        contentsAdmin.setManaged(false);
+        crewAdmin.setVisible(false);
+        crewAdmin.setManaged(false);
+        seasonAdmin.setVisible(false);
+        seasonAdmin.setManaged(false);
+        episodeAdmin.setManaged(true);
+        episodeAdmin.setVisible(true);
+        episodeSeriesMenu.getItems().clear();
+        episodeSeasonMenu.getItems().clear();
+        episodesContainer.getChildren().clear();
+        for (Series series : Series.retrieveSeries()) {
+            MenuItem item = new MenuItem();
+            item.setText(series.getTitle());
+            item.setOnAction(_ -> {
+                        initializeEpisodeSeasons(series.getId());
+                        episodeSeriesMenu.setText(series.getTitle());
+                        episodeSeriesMenu.setId(series.getId());
+                    }
+            );
+            episodeSeriesMenu.getItems().add(item);
+        }
+        episodePosterButton.setOnAction(_ -> handleFileChoose(episodePoster, "/WatChill/Content/Series/media/"));
+
+    }
+
+    private void initializeEpisodeSeasons(String seriesId) {
+        episodeSeasonMenu.getItems().clear();
+        Series series = Series.findById(seriesId);
+        for (Season season : series.getSeasons()) {
+            MenuItem item = new MenuItem();
+            item.setText(season.getTitle());
+            item.setOnAction(_ -> {
+                try {
+                    initializeEpisodesContainer(season.getId());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                episodeSeasonMenu.setText(season.getTitle());
+                episodeSeasonMenu.setId(season.getId());
+            });
+            episodeSeasonMenu.getItems().add(item);
+        }
+    }
+
+    private void initializeEpisodesContainer(String seasonId) throws IOException {
+        episodesContainer.getChildren().clear();
+        Season season = Season.findById(seasonId);
+        for (Episode episode : season.getEpisodes()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/admin-card.fxml"));
+            HBox episodeCard = loader.load();
+            AdminCardController adminCardController = loader.getController();
+            adminCardController.setData(episode.getPoster(), episode.getTitle(), episode.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), episode.getDescription(), episode.getId(), ()->{
+                season.getEpisodes().remove(episode);
+                Series series = Series.findById(season.getSeriesId());
+                series.updateSeason(season);
+                try {
+                    initializeEpisodesContainer(season.getId());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            },()->editEpisode(episode.getId()), () ->redirectToEpisodePage(episode.getId()),()-> {
+                try {
+                    initializeEpisodesContainer(seasonId);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            episodesContainer.getChildren().add(episodeCard);
+        }
+    }
+
+    private void editEpisode(String episodeId) {
+        currentEpisode = Episode.findById(episodeId);
+        episodeTitle.setText(currentEpisode.getTitle());
+        episodeDescription.setText(currentEpisode.getDescription());
+        episodeReleaseDate.setValue(currentEpisode.getReleaseDate());
+        episodeDuration.setText(((Integer)(currentEpisode.getDuration())).toString());
+        episodePoster.setText(currentEpisode.getPoster());
+    }
+    private void redirectToEpisodePage(String episodeId) {
+        try {
+            String css = getClass().getResource("/WatChill/style/Episode.css").toExternalForm();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Series/Episode.fxml"));
+            root = loader.load();
+            EpisodeController episodeController = loader.getController();
+            episodeController.build(episodeId);
+            stage = (Stage) episodesContainer.getScene().getWindow();
+            scene = episodesContainer.getScene();
+            scene.setRoot(root);
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleFileChoose(TextField fileInput, String directoryPath) {
         // Create a FileChooser instance
         FileChooser fileChooser = new FileChooser();
@@ -788,7 +1114,7 @@ public class AdminProfileController {
             movieController.build(movieId);
 
             root = loader.load();
-            scene = contentAdmin.getScene();
+            scene = contentsAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
             scene.getStylesheets().clear();
@@ -808,7 +1134,7 @@ public class AdminProfileController {
             root = loader.load();
             SeriesController seriesController = loader.getController();
             seriesController.build(seriesId);
-            scene = contentAdmin.getScene();
+            scene = contentsAdmin.getScene();
             stage = (Stage) scene.getWindow();
             scene.setRoot(root);
             scene.getStylesheets().clear();
