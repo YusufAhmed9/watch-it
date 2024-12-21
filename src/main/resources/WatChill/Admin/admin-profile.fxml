@@ -868,7 +868,7 @@
                                     </HBox>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <BarChart fx:id="monthsChart">
+                                          <BarChart fx:id="monthsChart" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>

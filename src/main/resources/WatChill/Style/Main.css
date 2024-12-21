@@ -291,7 +291,7 @@
 }
 
 .chart {
-    -fx-background-color: lightblue;
+    -fx-background-color: #eee;
 }
 
 .chart-plot-background {

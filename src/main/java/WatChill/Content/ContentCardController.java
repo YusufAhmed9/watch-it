@@ -33,13 +33,10 @@ public class ContentCardController {
     private Label releaseDateText;
 
     @FXML
-    ImageView addToWatchLater;
+    ImageView addToWatchLaterButton;
 
     @FXML
-    StackPane addToWatchLaterButton;
-
-    @FXML
-    StackPane redirectToContentButton;
+    ImageView redirectToContentButton;
 
     Parent root;
     Stage stage;
@@ -73,17 +70,17 @@ public class ContentCardController {
             if (customer.findMovieWatchLaterIndex(content.getId()) == -1) {
                 addToWatchLaterButton.setOnMouseClicked(_ -> {
                     customer.addToWatchLater(content);
-                    addToWatchLater.setImage(new Image("Vector.png"));
+                    addToWatchLaterButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/plus.png").toExternalForm()));
                     if (rerender != null) {
                         rerender.run();
                     }
                 });
             }
             else {
-                addToWatchLater.setImage(new Image("minus.png"));
+                addToWatchLaterButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/minus-circle.png").toExternalForm()));
                 addToWatchLaterButton.setOnMouseClicked(_ -> {
                     customer.removeFromWatchLater(content.getId());
-                    addToWatchLater.setImage(new Image("Vector.png"));
+                    addToWatchLaterButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/plus.png").toExternalForm()));
                    if (rerender != null) {
                        rerender.run();
                    }
