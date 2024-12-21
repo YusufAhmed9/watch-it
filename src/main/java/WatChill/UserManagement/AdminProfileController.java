@@ -12,12 +12,14 @@ import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
 import WatChill.Subscription.Subscription;
 import WatChill.UserWatchRecord.UserWatchRecord;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -348,17 +350,31 @@ public class AdminProfileController {
         episodeAdmin.setManaged(false);
         seasonAdmin.setVisible(false);
         seasonAdmin.setManaged(false);
+        plansPie.getData().clear();
         for (Map.Entry<String, Integer> entry : Subscription.getPlansSubscriptions().entrySet()) {
             plansPie.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
         }
 
+        CategoryAxis xAxis = (CategoryAxis) monthsChart.getXAxis();
+        xAxis.setLabel("Months");
+        xAxis.setTickLabelRotation(45);
+        xAxis.setAutoRanging(false);
+        xAxis.setCategories(FXCollections.observableArrayList(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ));
+
         monthsChart.getYAxis().setLabel("Revenues");
         monthsChart.getXAxis().setLabel("Months");
+        monthsChart.getData().clear();
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        series.setName("Monthly Revenues");
+
         for (Map.Entry<String, Double> entry : Subscription.getMonthlyRevenues().entrySet()) {
-            XYChart.Series<String, Double> series = new XYChart.Series<>();
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-            monthsChart.getData().add(series);
         }
+
+        monthsChart.getData().add(series);
     }
 
     public void displayCrew() {
@@ -382,7 +398,7 @@ public class AdminProfileController {
         for (MenuItem item : crewType.getItems()) {
             item.setOnAction(_ -> crewType.setText(item.getText()));
         }
-        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/media"));
+        pictureButton.setOnAction(_ -> handleFileChoose(pictureInput, "/WatChill/Crew/"));
     }
 
     public void editInfo(ActionEvent actionEvent) {
@@ -699,6 +715,8 @@ public class AdminProfileController {
         seasonAdmin.setManaged(true);
         episodeAdmin.setManaged(false);
         episodeAdmin.setVisible(false);
+        subscriptionsAdmin.setVisible(false);
+        subscriptionsAdmin.setManaged(false);
         seriesMenu.getItems().clear();
         for (Series series : Series.retrieveSeries()) {
             MenuItem item = new MenuItem();
@@ -811,6 +829,8 @@ public class AdminProfileController {
         seasonAdmin.setManaged(false);
         episodeAdmin.setManaged(true);
         episodeAdmin.setVisible(true);
+        subscriptionsAdmin.setVisible(false);
+        subscriptionsAdmin.setManaged(false);
         episodeSeriesMenu.getItems().clear();
         episodeSeasonMenu.getItems().clear();
         episodesContainer.getChildren().clear();
