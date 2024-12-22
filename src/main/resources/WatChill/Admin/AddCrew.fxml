@@ -21,7 +21,7 @@
          <center>
             <VBox maxWidth="1.7976931348623157E308" spacing="20.0" style="-fx-background-color: #141414;">
                <children>
-                  <Label style="-fx-text-fill: #fff;" text="Select Crew">
+                  <Label style="-fx-text-fill: #fff;" styleClass="home-trending" text="Select Crew">
                      <font>
                         <Font name="Manrope Bold" size="28.0" />
                      </font>
@@ -661,7 +661,7 @@
                      <children>
                         <VBox style="-fx-background-color: #141414; -fx-background-radius: 50;">
                            <children>
-                              <Label style="-fx-text-fill: #fff;" text="Current Crew">
+                              <Label style="-fx-text-fill: #fff;" styleClass="home-trending" text="Current Crew">
                                  <font>
                                     <Font name="Manrope Bold" size="28.0" />
                                  </font>
@@ -821,7 +821,7 @@
                                     <Image url="@../Crew/Button%20(1).png" />
                                  </image>
                               </ImageView>
-                              <Label alignment="CENTER" text="Cancel">
+                              <Label alignment="CENTER" styleClass="home-trending" text="Cancel">
                                  <font>
                                     <Font name="Manrope Bold" size="35.0" />
                                  </font>
@@ -842,7 +842,7 @@
                                     <Image url="@../Crew/Button%20(1).png" />
                                  </image>
                               </ImageView>
-                              <Label alignment="CENTER" text="Add" StackPane.alignment="CENTER">
+                              <Label alignment="CENTER" styleClass="home-trending" text="Add" StackPane.alignment="CENTER">
                                  <font>
                                     <Font name="Manrope Bold" size="35.0" />
                                  </font>
