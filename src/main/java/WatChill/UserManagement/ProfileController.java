@@ -4,7 +4,6 @@ import WatChill.Content.Content;
 import WatChill.Content.ContentCardController;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
-import WatChill.Content.WatchableContent;
 import WatChill.Content.WatchedContent;
 import WatChill.Search.SearchResultController;
 import WatChill.Subscription.BasicPlan;

@@ -37,7 +37,7 @@
     "releaseDate" : [ 2024, 12, 3 ],
     "episodes" : [ {
       "@class" : "WatChill.Content.Series.Episode",
-      "id" : "1",
+      "id" : "3",
       "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
       "duration" : 25,
       "releaseDate" : [ 2024, 12, 3 ],
