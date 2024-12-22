@@ -651,6 +651,20 @@ public class AdminProfileController {
             else {
                 crew = new Cast(crew.getId(), firstName, lastName, date, gender, nationalityValue, instagram, twitter, crew.getContentCreated(), picturePath);
             }
+            for (Movie movie : Movie.retrieveMovies()) {
+                for (int i = 0; i <  movie.getCrews().size(); i++) {
+                    if (movie.getCrews().get(i).getId().equals(crew.getId())) {
+                        movie.getCrews().set(i, crew);
+                    }
+                }
+            }
+            for (Series series : Series.retrieveSeries()) {
+                for (int i = 0; i <  series.getCrews().size(); i++) {
+                    if (series.getCrews().get(i).getId().equals(crew.getId())) {
+                        series.getCrews().set(i, crew);
+                    }
+                }
+            }
         }
         else {
             if (crewType.equals("Director")) {
@@ -968,7 +982,7 @@ public class AdminProfileController {
                         crew.getNationality(),
                         crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")),
                         crew.getId(),
-                        () -> crew.delete(),
+                        () -> deleteCrew(crew.getId()),
                         () -> setEditedCrew(crew.getId()),
                         () -> redirectToCrewPage(crew.getId()),
                         () -> initializeCrew()
@@ -979,6 +993,18 @@ public class AdminProfileController {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void deleteCrew(String crewId) {
+        Crew crew = Crew.findById(crewId);
+        for (String contentId : crew.getContentCreated()) {
+            Content content = Movie.findById(contentId);
+            if (content == null) {
+                content = Series.findById(contentId);
+            }
+            content.getCrews().remove(crew);
+        }
+        crew.delete();
     }
 
     private void setEditedCrew(String crewId) {

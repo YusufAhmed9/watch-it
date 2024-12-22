@@ -72,10 +72,6 @@ public class ProfileController {
     @FXML
     BorderPane profileBorderPane;
 
-    Parent root;
-    Stage stage;
-    Scene scene;
-
     public void initialize() {
         initializeHeader();
         displayWatchLater();
@@ -97,6 +93,7 @@ public class ProfileController {
         watchlaterFlowPane.getChildren().clear();
         Customer customer = (Customer) User.getCurrentUser();
         if (customer.getWatchLater().isEmpty()) {
+            watchLaterContainer.getChildren().clear();
             Text noWatchLaterText = new Text("No content in your watch later.");
             noWatchLaterText.setFill(Color.WHITE);
             noWatchLaterText.getStyleClass().add("subscription-text");
