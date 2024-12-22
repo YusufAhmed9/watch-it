@@ -26,6 +26,8 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -61,7 +63,7 @@ public class SeriesController {
     private Stage stage;
 
 
-    private void initializeSeries(String seriesId) {
+    private void initializeSeries(String seriesId) throws ParseException {
         this.currentSeries = Series.findById(seriesId);
         seriesTitle.setText(currentSeries.getTitle());
         for (Season season : currentSeries.getSeasons()) {
@@ -109,7 +111,7 @@ public class SeriesController {
         genresBox.getStyleClass().add("genres-box");
     }
 
-    public void addRating() {
+    public void addRating() throws ParseException {
         ratingBox.getChildren().clear();
         int star = 1;
         for (; star <= Math.floor(currentSeries.getRating()); star++) {
@@ -120,7 +122,8 @@ public class SeriesController {
             ImageView starImage = new ImageView(getClass().getResource("/WatChill/Content/Star 5.png").toExternalForm());
             ratingBox.getChildren().add(starImage);
         }
-        Label rating = new Label(((Double) currentSeries.getRating()).toString() + "/5");
+        DecimalFormat df = new DecimalFormat("#.00");
+        Label rating = new Label(((Double) df.parse(df.format(currentSeries.getRating())).doubleValue()).toString() + "/5");
         rating.getStyleClass().add("rating-text");
         ratingBox.getChildren().add(rating);
     }
@@ -294,7 +297,7 @@ public class SeriesController {
         }
     }
 
-    public void build(String seriesId) {
+    public void build(String seriesId) throws ParseException {
         initializeSeries(seriesId);
     }
 
