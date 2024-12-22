@@ -45,6 +45,7 @@ public class MoviePlayerController {
     ImageView playMovieButton;
     @FXML
     BorderPane moviePlayerBorderPane;
+    int previousRating = 0;
 
     public void initializePage(String movieId) {
         movie = Movie.findById(movieId);
@@ -59,13 +60,26 @@ public class MoviePlayerController {
         ratingLabel.setText(((Double) movie.getRating()).toString());
         playMovieButton.setOnMouseClicked(_ -> {
             if (User.getCurrentUser() instanceof Customer) {
-                ((Customer) User.getCurrentUser()).watchContent(movie, new Review("", 0));
+                Customer customer = (Customer) User.getCurrentUser();
+                if (!movieWatched(customer.getId())) {
+                    customer.watchContent(movie, new Review("", 0));
+                }
             }
         });
+        playMovieButton.setCursor(Cursor.HAND);
         initializeRating();
         initializeHeader();
     }
 
+    private boolean movieWatched(String userId) {
+        for (UserWatchRecord userWatchRecord : UserWatchRecord.getUserWatchRecord(userId)) {
+            if (userWatchRecord.getWatchedContent().getId().equals(movie.getId())) {
+                previousRating = userWatchRecord.getReview().getRating();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void addGenres() {
         genresBox.getChildren().clear();
@@ -96,48 +110,55 @@ public class MoviePlayerController {
     }
 
     public void initializeRating() {
-
         final int starCount = 5;
         ImageView[] stars = new ImageView[starCount];
-        // Create the stars and set their hover effects
         for (int i = 0; i < starCount; i++) {
             ImageView star = new ImageView(new Image(getClass().getResource("/WatChill/Content/Empty star.png").toExternalForm()));
             star.setFitHeight(48); // Adjust size as needed
             star.setFitWidth(48);
 
-            int currentStarIndex = i;
-
-            // Set hover event (on mouse enter)
-            star.setOnMouseEntered(event -> {
-                fillStars(stars, currentStarIndex);
-            });
-            star.setOnMouseClicked(event -> {
-                fillStars(stars, currentStarIndex);
-                if (User.getCurrentUser() instanceof Customer) {
-                    ((Customer) User.getCurrentUser()).watchContent(movie, new Review("", currentStarIndex + 1));
-                }
-                for(int j = 0; j < starCount; j++){
-                    stars[j].setOnMouseClicked(null);
-                    stars[j].setOnMouseEntered(null);
-                    stars[j].setOnMouseExited(null);
-                }
-            });
-
-            // Set event to reset when the mouse exits any star
-            star.setOnMouseExited(event -> {
-                resetStars(stars);
-            });
-
-            star.setCursor(Cursor.HAND);
-            // Add star to the array and the HBox
             stars[i] = star;
             starsBox.getChildren().add(star);
         }
+        if (User.getCurrentUser() instanceof Customer) {
+            Customer customer = (Customer) User.getCurrentUser();
+            if (movieWatched(customer.getId())) {
+                fillStars(stars, previousRating);
+            } else {
+                // Create the stars and set their hover effects
+                for (int i = 0; i < starCount; i++) {
 
+                    int currentStarIndex = i;
+
+                    // Set hover event (on mouse enter)
+                    stars[i].setOnMouseEntered(event -> {
+                        fillStars(stars, currentStarIndex);
+                    });
+                    stars[i].setOnMouseClicked(event -> {
+                        fillStars(stars, currentStarIndex);
+                        if (User.getCurrentUser() instanceof Customer) {
+                            ((Customer) User.getCurrentUser()).watchContent(movie, new Review("", currentStarIndex + 1));
+                        }
+                        for (int j = 0; j < starCount; j++) {
+                            stars[j].setOnMouseClicked(null);
+                            stars[j].setOnMouseEntered(null);
+                            stars[j].setOnMouseExited(null);
+                        }
+                    });
+
+                    // Set event to reset when the mouse exits any star
+                    stars[i].setOnMouseExited(event -> {
+                        resetStars(stars);
+                    });
+
+                    stars[i].setCursor(Cursor.HAND);
+                }
+            }
+        }
     }
 
     private void fillStars(ImageView[] stars, int index) {
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             stars[i].setImage(new Image(getClass().getResource("/WatChill/Content/star.png").toExternalForm()));
         }
     }
@@ -148,6 +169,7 @@ public class MoviePlayerController {
             star.setImage(new Image(getClass().getResource("/WatChill/Content/Empty star.png").toExternalForm()));
         }
     }
+
     private void initializeHeader() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/header.fxml"));

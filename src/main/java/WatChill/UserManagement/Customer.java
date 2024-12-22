@@ -4,7 +4,6 @@ import WatChill.Content.Content;
 import WatChill.Content.Movie.Movie;
 import WatChill.Content.Series.Episode;
 import WatChill.Content.Series.Series;
-import WatChill.Content.WatchableContent;
 import WatChill.Content.WatchedContent;
 import WatChill.Crew.Crew;
 import WatChill.Crew.Director.Director;
