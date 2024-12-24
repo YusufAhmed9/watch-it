@@ -8,6 +8,7 @@ import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
 import WatChill.Search.SearchController;
 import WatChill.Search.SearchResultController;
+import WatChill.Subscription.Subscription;
 import WatChill.UserManagement.Customer;
 import WatChill.UserManagement.User;
 import javafx.event.ActionEvent;
@@ -179,6 +180,12 @@ public class SeriesController {
                     if (User.getCurrentUser() == null) {
                         playButton.setVisible(false);
                     }
+                    if (User.getCurrentUser() instanceof Customer) {
+                        Customer customer = (Customer) User.getCurrentUser();
+                        if (Subscription.getUserSubscription(customer.getId()) == null) {
+                            playButton.setVisible(false);
+                        }
+                    }
                     episodeContainer.getChildren().add(playButton);
 
                     episodesContainer.getChildren().add(episodeContainer);
@@ -193,7 +200,7 @@ public class SeriesController {
         directorsBox.getChildren().clear();
         for (Crew crew : currentSeries.getCrews()) {
             VBox castBox = new VBox();
-            ImageView castImage = new ImageView(crew.getPicture());
+            ImageView castImage = new ImageView(getClass().getResource(crew.getPicture()).toExternalForm());
             double size = 100; // Set desired image size
             castImage.setFitWidth(size);
             castImage.setFitHeight(size);

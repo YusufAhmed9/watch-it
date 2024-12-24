@@ -252,9 +252,9 @@ public class AdminProfileController {
 
     private Crew currentCrew = null;
     private Content currentContent = null;
-    private ArrayList<Crew> currentContentCrews = new ArrayList<>();
-    private ArrayList<String> currentContentLanguages = new ArrayList<>();
-    private ArrayList<String> currentContentGenres = new ArrayList<>();
+    private ArrayList<Crew> currentContentCrews;
+    private ArrayList<String> currentContentLanguages;
+    private ArrayList<String> currentContentGenres;
 
     Stage stage;
     Parent root;
@@ -304,6 +304,9 @@ public class AdminProfileController {
     }
 
     public void displayContent() {
+        currentContentGenres = new ArrayList<>();
+        currentContentCrews = new ArrayList<>();
+        currentContentLanguages = new ArrayList<>();
         infoContainer.setVisible(false);
         infoContainer.setManaged(false);
         contentsAdmin.setVisible(true);
@@ -540,6 +543,12 @@ public class AdminProfileController {
             else {
                 content = new Series(currentContent.getId(), title, releaseDate, ((Series) currentContent).getSeasons(), description, languages, country, genres, crews, poster, budget, revenue);
             }
+            for (Crew crew : Crew.retrieveCrews()) {
+                crew.getContentCreated().remove(content.getId());
+            }
+            for (Crew crew : content.getCrews()) {
+                crew.getContentCreated().add(content.getId());
+            }
         }
         else {
             if (contentType.getText().equals("Movie")) {
@@ -547,6 +556,9 @@ public class AdminProfileController {
             }
             else {
                 content = new Series(UUID.randomUUID().toString(), title, releaseDate, new ArrayList<>(), description, languages, country, genres, crews, poster, budget, revenue);
+            }
+            for (Crew crew : content.getCrews()) {
+                crew.getContentCreated().add(content.getId());
             }
         }
         if (content instanceof Movie) {
@@ -570,7 +582,7 @@ public class AdminProfileController {
                     mainContainer.getChildren().remove(addCrew);
                     contentsAdmin.setVisible(true);
                     contentsAdmin.setManaged(true);
-                    currentContentCrews = new ArrayList<>(crews);
+                    currentContentCrews = crews;
                 },
                 () -> {
                     mainContainer.getChildren().remove(addCrew);
@@ -645,7 +657,7 @@ public class AdminProfileController {
         Crew crew;
         if (getCurrentCrew() != null) {
             crew = getCurrentCrew();
-            if (crewType.equals("Director")) {
+            if (crewType.getText().equals("Director")) {
                 crew = new Director(crew.getId(), firstName, lastName, date, gender, nationalityValue, instagram, twitter, crew.getContentCreated(), picturePath);
             }
             else {
@@ -667,7 +679,7 @@ public class AdminProfileController {
             }
         }
         else {
-            if (crewType.equals("Director")) {
+            if (crewType.getText().equals("Director")) {
                 crew = new Director(firstName, lastName, date, gender, nationalityValue, instagram, twitter, picturePath);
             }
             else {
@@ -859,7 +871,7 @@ public class AdminProfileController {
             );
             episodeSeriesMenu.getItems().add(item);
         }
-        episodePosterButton.setOnAction(_ -> handleFileChoose(episodePoster, "/WatChill/Content/Series/media/"));
+        episodePosterButton.setOnAction(_ -> handleFileChoose(episodePoster, "/WatChill/Content/media/"));
 
     }
 
@@ -1002,7 +1014,7 @@ public class AdminProfileController {
             if (content == null) {
                 content = Series.findById(contentId);
             }
-            content.getCrews().remove(crew);
+            content.getCrews().removeIf(c -> c.getId().equals(crewId));
         }
         crew.delete();
     }
@@ -1174,14 +1186,7 @@ public class AdminProfileController {
                 }
             }
         }
-        for (UserWatchRecord userWatchRecord : UserWatchRecord.retrieveRecords()) {
-            if (userWatchRecord.getWatchedContent() instanceof Movie) {
-                Movie movie = (Movie) userWatchRecord.getWatchedContent();
-                if (movie.getId().equals(content.getId())) {
-                    userWatchRecord.delete();
-                }
-            }
-        }
+        UserWatchRecord.retrieveRecords().removeIf(record -> record.getWatchedContent().getId().equals(contentId));
         if (content instanceof Movie) {
             ((Movie) content).delete();
         }

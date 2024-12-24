@@ -1,154 +1,75 @@
 [ {
   "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "review" : {
-    "content" : "",
-    "rating" : 4
-  },
-  "watchedContent" : {
-    "@class" : "WatChill.Content.Movie.Movie",
-    "id" : "b804f34a-59e7-45e1-83b3-fd582f930b4f",
-    "title" : "The Dark Knight",
-    "releaseDate" : [ 2008, 7, 18 ],
-    "duration" : 152,
-    "languages" : [ "English", "Mandarin" ],
-    "genres" : [ "Action", "Crime", "Drama" ],
-    "country" : "USA",
-    "budget" : 185.0,
-    "revenue" : 1004.9,
-    "poster" : "/WatChill/Content/Movie/media/TheDarkKnight.jpg",
-    "viewsCount" : 15000000,
-    "description" : "Batman faces off against the Joker, a criminal mastermind who seeks to create chaos in Gotham City.",
-    "crews" : [ {
-      "@class" : "WatChill.Crew.Cast.Cast",
-      "id" : "3",
-      "firstName" : "Christian",
-      "lastName" : "Bale",
-      "dateOfBirth" : [ 1974, 1, 30 ],
-      "gender" : "Male",
-      "nationality" : "British",
-      "instagramLink" : "https://www.instagram.com/christianbale/",
-      "twitterLink" : "https://twitter.com/Christian_Bale_",
-      "picture" : "/WatChill/Crew/christian bale.jpg",
-      "contentCreated" : [ "b804f34a-59e7-45e1-83b3-fd582f930b4f" ]
-    }, {
-      "@class" : "WatChill.Crew.Cast.Cast",
-      "id" : "4",
-      "firstName" : "Heath",
-      "lastName" : "Ledger",
-      "dateOfBirth" : [ 1979, 4, 4 ],
-      "gender" : "Male",
-      "nationality" : "Australian",
-      "instagramLink" : "https://www.instagram.com/heathledger/",
-      "twitterLink" : "https://twitter.com/HeathLedger",
-      "picture" : "/WatChill/Crew/heath ledger.jpg",
-      "contentCreated" : [ "b804f34a-59e7-45e1-83b3-fd582f930b4f" ]
-    } ]
-  },
-  "watchDate" : [ 2024, 12, 22 ]
-}, {
-  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "review" : {
-    "content" : "",
-    "rating" : 3
-  },
-  "watchedContent" : {
-    "@class" : "WatChill.Content.Movie.Movie",
-    "id" : "e9021abf-54f1-4f29-b2d8-dfefc1c947d3",
-    "title" : "Inception",
-    "releaseDate" : [ 2010, 7, 16 ],
-    "duration" : 148,
-    "languages" : [ "English", "Japanese", "French" ],
-    "genres" : [ "Action", "Adventure", "Sci-Fi" ],
-    "country" : "USA",
-    "budget" : 160.0,
-    "revenue" : 836.8,
-    "poster" : "/WatChill/Content/Movie/media/Inception.jpg",
-    "viewsCount" : 12000000,
-    "description" : "A skilled thief is given a chance at redemption if he can successfully perform an inception.",
-    "crews" : [ {
-      "@class" : "WatChill.Crew.Cast.Cast",
-      "id" : "1",
-      "firstName" : "Leonardo",
-      "lastName" : "DiCaprio",
-      "dateOfBirth" : [ 1974, 11, 11 ],
-      "gender" : "Male",
-      "nationality" : "American",
-      "instagramLink" : "https://www.instagram.com/leonardodicaprio/",
-      "twitterLink" : "https://twitter.com/LeoDiCaprio",
-      "picture" : "/WatChill/Crew/Leonardo Di Caprio.jpg",
-      "contentCreated" : [ "e9021abf-54f1-4f29-b2d8-dfefc1c947d3" ]
-    }, {
-      "@class" : "WatChill.Crew.Cast.Cast",
-      "id" : "2",
-      "firstName" : "Joseph",
-      "lastName" : "Gordon-Levitt",
-      "dateOfBirth" : [ 1981, 2, 17 ],
-      "gender" : "Male",
-      "nationality" : "American",
-      "instagramLink" : "https://www.instagram.com/hitrecordjoe/",
-      "twitterLink" : "https://twitter.com/hitRECordJoe",
-      "picture" : "/WatChill/Crew/joseph gordon-levitt.jpg",
-      "contentCreated" : [ "e9021abf-54f1-4f29-b2d8-dfefc1c947d3" ]
-    } ]
-  },
-  "watchDate" : [ 2024, 12, 22 ]
-}, {
-  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "review" : {
-    "content" : "",
-    "rating" : 4
-  },
-  "watchedContent" : {
-    "@class" : "WatChill.Content.Series.Episode",
-    "id" : "1",
-    "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-    "duration" : 25,
-    "releaseDate" : [ 2024, 12, 3 ],
-    "viewsCount" : 0,
-    "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-    "description" : "Nice one",
-    "seasonId" : "1"
-  },
-  "watchDate" : [ 2024, 12, 22 ]
-}, {
-  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "review" : {
-    "content" : "",
-    "rating" : 4
-  },
-  "watchedContent" : {
-    "@class" : "WatChill.Content.Series.Episode",
-    "id" : "2",
-    "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 2",
-    "duration" : 25,
-    "releaseDate" : [ 2024, 12, 3 ],
-    "viewsCount" : 0,
-    "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode2.jpg",
-    "description" : "Nice one",
-    "seasonId" : "1"
-  },
-  "watchDate" : [ 2024, 12, 22 ]
-}, {
-  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "userId" : "3aa50beb-344f-4a6d-80c2-6cc6eeeaf84b",
   "review" : {
     "content" : "",
     "rating" : 0
   },
   "watchedContent" : {
+    "@class" : "WatChill.Content.Movie.Movie",
+    "id" : "1e30706b-e920-4ca5-8e38-37c5675fb81b",
+    "title" : "t",
+    "releaseDate" : [ 2024, 12, 15 ],
+    "duration" : 120,
+    "languages" : [ "e" ],
+    "genres" : [ "e" ],
+    "country" : "usa",
+    "budget" : 12.0,
+    "revenue" : 12.0,
+    "poster" : "/WatChill/Content/media/TheDarkKnight.jpg",
+    "viewsCount" : 0,
+    "description" : "t",
+    "crews" : [ {
+      "@class" : "WatChill.Crew.Director.Director",
+      "id" : "0ee7ea5b-6822-4eb5-8d1e-8356334f9423",
+      "firstName" : "Christoph",
+      "lastName" : "Nolan",
+      "dateOfBirth" : [ 2024, 12, 1 ],
+      "gender" : "Male",
+      "nationality" : "e",
+      "instagramLink" : "https://www.instagram.com/christoph_nolan",
+      "twitterLink" : "https://twitter.com/christoph_nolan",
+      "picture" : "/WatChill/Crew/christopher_nolan.jpg",
+      "contentCreated" : [ "1e30706b-e920-4ca5-8e38-37c5675fb81b" ]
+    } ]
+  },
+  "watchDate" : [ 2024, 12, 22 ]
+}, {
+  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
+  "userId" : "3aa50beb-344f-4a6d-80c2-6cc6eeeaf84b",
+  "review" : {
+    "content" : "",
+    "rating" : 4
+  },
+  "watchedContent" : {
     "@class" : "WatChill.Content.Series.Episode",
-    "id" : "3",
-    "title" : "To You, in 2000 Years/The Fall of Shiganshina, Part 1",
-    "duration" : 25,
+    "id" : "b7aee1a8-6e11-4b67-86f0-add1a8ccbcc8",
+    "title" : "yousf !#?%!@%",
+    "duration" : 120,
+    "releaseDate" : [ 2024, 12, 6 ],
+    "viewsCount" : 0,
+    "poster" : "/WatChill/Content/media/Episode1.jpg",
+    "description" : "adel",
+    "seasonId" : "f6dddab6-6a8c-42d7-a9a4-b13f50858ebd"
+  },
+  "watchDate" : [ 2024, 12, 22 ]
+}, {
+  "@class" : "WatChill.UserWatchRecord.UserWatchRecord",
+  "userId" : "3aa50beb-344f-4a6d-80c2-6cc6eeeaf84b",
+  "review" : {
+    "content" : "",
+    "rating" : 5
+  },
+  "watchedContent" : {
+    "@class" : "WatChill.Content.Series.Episode",
+    "id" : "677a10e5-26dc-477d-835a-7df001aa95d0",
+    "title" : "1",
+    "duration" : 1,
     "releaseDate" : [ 2024, 12, 3 ],
     "viewsCount" : 0,
-    "poster" : "/WatChill/Content/Series/media/Attack On Titan/Episode1.jpg",
-    "description" : "Nice one",
-    "seasonId" : "2"
+    "poster" : "/WatChill/Content/media/Episode2.jpg",
+    "description" : "1",
+    "seasonId" : "ac813297-f218-4d30-9ddb-ac1cec0b807e"
   },
   "watchDate" : [ 2024, 12, 22 ]
 } ]
