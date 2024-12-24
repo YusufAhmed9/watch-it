@@ -1,34 +1,45 @@
 [ {
   "@class" : "WatChill.Subscription.Subscription",
-  "id" : "254915e2-4d9d-4217-88fe-572d823ae857",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "startDate" : [ 2024, 12, 17 ],
+  "id" : "42d8125f-9c61-41ac-9ea9-3ff133e02caf",
+  "userId" : "3aa50beb-344f-4a6d-80c2-6cc6eeeaf84b",
+  "startDate" : [ 2024, 12, 22 ],
   "plan" : {
     "@class" : "WatChill.Subscription.BasicPlan",
     "maxMoviesCount" : 5,
     "price" : 10.0
   },
-  "moviesLeftCount" : 0
+  "moviesLeftCount" : 2
 }, {
   "@class" : "WatChill.Subscription.Subscription",
-  "id" : "3eae8385-f446-4f97-9610-0fbb6b42f923",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
-  "startDate" : [ 2024, 12, 18 ],
-  "plan" : {
-    "@class" : "WatChill.Subscription.StandardPlan",
-    "maxMoviesCount" : 10,
-    "price" : 20.0
-  },
-  "moviesLeftCount" : 0
-}, {
-  "@class" : "WatChill.Subscription.Subscription",
-  "id" : "c600f374-ee01-4f72-992b-6c1726a61b58",
-  "userId" : "11059493-6588-456c-8470-f9a9852c8a13",
+  "id" : "cb39ff1f-2bd6-44fc-8489-d53d71620702",
+  "userId" : "2c66f30e-7cc7-4056-bc9a-a563bbe26bda",
   "startDate" : [ 2024, 12, 22 ],
   "plan" : {
     "@class" : "WatChill.Subscription.PremiumPlan",
     "maxMoviesCount" : 30,
     "price" : 30.0
   },
-  "moviesLeftCount" : 27
+  "moviesLeftCount" : 30
+}, {
+  "@class" : "WatChill.Subscription.Subscription",
+  "id" : "ffaa85eb-0d62-4461-87fd-37481dd67462",
+  "userId" : "f759e078-1ea9-486f-9f82-51035e6cdfa7",
+  "startDate" : [ 2024, 12, 22 ],
+  "plan" : {
+    "@class" : "WatChill.Subscription.StandardPlan",
+    "maxMoviesCount" : 10,
+    "price" : 20.0
+  },
+  "moviesLeftCount" : 10
+}, {
+  "@class" : "WatChill.Subscription.Subscription",
+  "id" : "d232674a-3b56-4a98-877e-89b63ec48265",
+  "userId" : "b711f55f-f606-4074-8e4a-cf796edf6c34",
+  "startDate" : [ 2024, 12, 22 ],
+  "plan" : {
+    "@class" : "WatChill.Subscription.PremiumPlan",
+    "maxMoviesCount" : 30,
+    "price" : 30.0
+  },
+  "moviesLeftCount" : 30
 } ]

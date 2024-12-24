@@ -4,6 +4,7 @@ import WatChill.Crew.Cast.Cast;
 import WatChill.Crew.Crew;
 import WatChill.Crew.CrewController;
 import WatChill.Crew.Director.Director;
+import WatChill.Subscription.Subscription;
 import WatChill.UserManagement.Customer;
 import WatChill.UserManagement.User;
 import javafx.fxml.FXML;
@@ -71,21 +72,28 @@ public class MovieController {
         addCrew();
         addGenres();
         addRating();
-        if(User.getCurrentUser() == null){
+        if (User.getCurrentUser() == null) {
             playButton.setVisible(false);
             watchLaterButton.setVisible(false);
         }
-        playButton.setOnMouseClicked(_->redirectToMoviePlayerPage(movieId));
+        if (User.getCurrentUser() instanceof Customer) {
+            Customer customer = (Customer) User.getCurrentUser();
+            if (Subscription.getUserSubscription(customer.getId()) == null) {
+                playButton.setVisible(false);
+            }
+        }
+        playButton.setOnMouseClicked(_ -> redirectToMoviePlayerPage(movieId));
         initializeHeader();
         initializeScroll();
     }
 
-    private void initializeScroll(){
-        castsRight.setOnMouseClicked(_->scrollRight(castsScrollPane));
-        castsLeft.setOnMouseClicked(_->scrollLeft(castsScrollPane));
-        directorsRight.setOnMouseClicked(_->scrollRight(directorScrollPane));
-        directorsLeft.setOnMouseClicked(_->scrollLeft(directorScrollPane));
+    private void initializeScroll() {
+        castsRight.setOnMouseClicked(_ -> scrollRight(castsScrollPane));
+        castsLeft.setOnMouseClicked(_ -> scrollLeft(castsScrollPane));
+        directorsRight.setOnMouseClicked(_ -> scrollRight(directorScrollPane));
+        directorsLeft.setOnMouseClicked(_ -> scrollLeft(directorScrollPane));
     }
+
     public void addGenres() {
         genresBox.getChildren().clear();
         for (String genre : movie.getGenres()) {
@@ -142,7 +150,6 @@ public class MovieController {
                 castsBox.getChildren().add(castBox);
             } else {
                 directorsBox.getChildren().add(castBox);
-
             }
         }
     }
@@ -194,7 +201,8 @@ public class MovieController {
             }
         }
     }
-    public void redirectToMoviePlayerPage(String movieId){
+
+    public void redirectToMoviePlayerPage(String movieId) {
         try {
             String css = getClass().getResource("/WatChill/style/Movie.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Content/Movie/MoviePlayer.fxml"));
@@ -223,6 +231,7 @@ public class MovieController {
             e.printStackTrace();
         }
     }
+
     public void build(String movieId) {
         initializePage(movieId);
     }
