@@ -634,7 +634,7 @@ public class AdminProfileController {
             genderError.setText("Gender is required.");
             return;
         }
-        if (!isInputValid(instagram, "^https?://www\\.instagram\\.com/.+$")) {
+        if (!isInputValid(instagram, "^https?://instagram\\.com/.+$")) {
             instagramLinkError.setText("Invalid instagram link.");
             return;
         }
