@@ -171,10 +171,10 @@ public class HomeController {
     }
 
     private void initializeScroll() {
-        trendingSeriesLeft.setOnMouseClicked(_ -> scrollLeft(trendingSeriesScrollPane));
-        trendingMoviesRight.setOnMouseClicked(_ -> scrollRight(trendingSeriesScrollPane));
-        trendingMoviesLeft.setOnMouseClicked(_ -> scrollLeft(trendingMoviesScrollPane));
         trendingMoviesRight.setOnMouseClicked(_ -> scrollRight(trendingMoviesScrollPane));
+        trendingMoviesLeft.setOnMouseClicked(_ -> scrollLeft(trendingMoviesScrollPane));
+        trendingSeriesLeft.setOnMouseClicked(_ -> scrollLeft(trendingSeriesScrollPane));
+        trendingSeriesRight.setOnMouseClicked(_ -> scrollRight(trendingSeriesScrollPane));
         recommendationLeft.setOnMouseClicked(_ -> scrollLeft(recommendationScrollPane));
         recommendationRight.setOnMouseClicked(_ -> scrollRight(recommendationScrollPane));
     }
@@ -297,7 +297,7 @@ public class HomeController {
     }
 
     private void scrollLeft(ScrollPane scrollPane) {
-        double newHValue = Math.min(scrollPane.getHvalue() - 0.4, 1); // Scroll right
+        double newHValue = Math.min(scrollPane.getHvalue() - 0.4, 1); // Scroll Left
         scrollPane.setHvalue(newHValue);
     }
 

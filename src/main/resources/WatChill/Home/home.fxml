@@ -83,7 +83,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                           <HBox alignment="CENTER" prefHeight="100.0">
                                              <children>
-                                                <ImageView fx:id="trendingSeriesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                <ImageView fx:id="trendingMoviesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -94,7 +94,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </ImageView>
-                                                <ImageView fx:id="trendingSeriesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="trendingMoviesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -237,7 +237,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                                           <HBox alignment="CENTER" prefHeight="100.0">
                                              <children>
-                                                <ImageView fx:id="trendingMoviesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                <ImageView fx:id="trendingSeriesLeft" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
@@ -248,7 +248,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </ImageView>
-                                                <ImageView fx:id="trendingMoviesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="trendingSeriesRight" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@arrow.png" />
                                                    </image>
