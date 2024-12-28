@@ -49,6 +49,8 @@ public class EpisodeController {
     private Label ratingLabel;
     @FXML
     StackPane ratingBox;
+    @FXML
+    VBox profileList;
     Parent root;
 
     Stage stage;
@@ -245,6 +247,8 @@ public class EpisodeController {
             e.printStackTrace();
         }
     }
+
+
 
     public void build(String episodeId) {
         initializePage(episodeId);

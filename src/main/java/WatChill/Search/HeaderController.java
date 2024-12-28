@@ -43,20 +43,21 @@ public class HeaderController {
     ImageView profileIcon;
     @FXML
     VBox header;
-
+    @FXML
+    VBox profileList;
 
     Parent root;
     Stage stage;
     Scene scene;
 
     public void initialize() {
+        hideProfileList();
         User currentUser = User.getCurrentUser();
         if (currentUser != null) {
             signInButton.setVisible(false);
             signUpButton.setVisible(false);
             profileIcon.setVisible(true);
-        }
-        else {
+        } else {
             signInButton.setVisible(true);
             signUpButton.setVisible(true);
             profileIcon.setVisible(false);
@@ -67,6 +68,16 @@ public class HeaderController {
         }
         searchMenu.setText(searchMenu.getItems().get(0).getText());
         searchResultsContainer.setManaged(false);
+        profileIcon.setFocusTraversable(true);
+        profileIcon.setOnMouseClicked(_ -> profileIcon.requestFocus());
+        profileIcon.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                displayProfileList();
+            } else {
+                hideProfileList();
+            }
+        });
+        profileList.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent::consume);
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -81,8 +92,7 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -99,8 +109,7 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -121,8 +130,7 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -173,8 +181,7 @@ public class HeaderController {
         String path;
         if (User.getCurrentUser() instanceof Customer) {
             path = "/WatChill/User/profile.fxml";
-        }
-        else {
+        } else {
             path = "/WatChill/Admin/admin-profile.fxml";
         }
         try {
@@ -188,8 +195,7 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -214,13 +220,12 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void redirectToHome(Event event) {
+    public void redirectToHome() {
         try {
             String css = getClass().getResource("/WatChill/style/Main.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Home/home.fxml"));
@@ -232,8 +237,7 @@ public class HeaderController {
             scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -246,8 +250,7 @@ public class HeaderController {
         if (searchQuery.isEmpty()) {
             searchResultsContainer.setVisible(false);
             return;
-        }
-        else {
+        } else {
             searchResultsContainer.setVisible(true);
         }
         if (searchType.equals("Series")) {
@@ -270,8 +273,7 @@ public class HeaderController {
                     break;
                 }
             }
-        }
-        else if (searchType.equals("Movies")) {
+        } else if (searchType.equals("Movies")) {
             ArrayList<Movie> searchResults = Movie.searchByTitle(searchQuery);
             for (int i = 0; i < searchResults.size(); i++) {
                 Movie movie = searchResults.get(i);
@@ -291,8 +293,7 @@ public class HeaderController {
                     break;
                 }
             }
-        }
-        else if (searchType.equals("Crew")) {
+        } else if (searchType.equals("Crew")) {
             ArrayList<Crew> searchResults = Crew.searchByName(searchQuery);
             for (int i = 0; i < searchResults.size(); i++) {
                 Crew crew = searchResults.get(i);
@@ -313,5 +314,20 @@ public class HeaderController {
                 }
             }
         }
+    }
+
+    public void displayProfileList() {
+        profileList.setVisible(true);
+        profileList.setManaged(true);
+    }
+
+    public void hideProfileList() {
+        profileList.setVisible(false);
+        profileList.setManaged(false);
+    }
+
+    public void signOut() {
+        User.setCurrentUser(null);
+        redirectToHome();
     }
 }
