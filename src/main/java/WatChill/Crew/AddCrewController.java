@@ -21,16 +21,17 @@ public class AddCrewController {
     @FXML
     StackPane confirmButton;
 
-    private void initializePage(ArrayList<Crew> crews) throws IOException {
+    private void initializePage(ArrayList<Crew> crews) {
         crewFlowPane.getChildren().clear();
         currentCrewFlowPane.getChildren().clear();
+        ArrayList<String> crewIds = new ArrayList<>(crews.stream().map(Crew::getId).toList());
         for (Crew crew : Crew.retrieveCrews()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Crew/AddCrewCard.fxml"));
             try {
                 VBox crewCard = loader.load();
                 AddCrewCardController addCrewCardController = loader.getController();
                 addCrewCardController.build(crew.getId(), () -> addCrewToList(crews, crew, crewCard));
-                if (crews.contains(crew)) {
+                if (crewIds.contains(crew.getId())) {
                     addCrewCardController.addButton.setImage(new Image(getClass().getResource("/WatChill/Content/Series/media/minus-circle.png").toExternalForm()));
                     currentCrewFlowPane.getChildren().add(crewCard);
                 }
