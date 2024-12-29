@@ -8,14 +8,11 @@ import WatChill.Content.Series.Series;
 import WatChill.Content.Series.SeriesController;
 import WatChill.Crew.Crew;
 import WatChill.Crew.CrewController;
-import WatChill.Crew.Director.Director;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,7 +23,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 public class SearchController {
 
@@ -183,6 +179,7 @@ public class SearchController {
     private void renderSearchResults() {
         searchResultsContainer.getChildren().clear();
         if (searchType.equals("Series")) {
+            int count = 0;
             if (getContents().isEmpty()) {
                 displayNoResultsMessage();
                 return;
@@ -195,15 +192,27 @@ public class SearchController {
 
                     searchResult.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
 
+                    if (getContents().size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (count == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (count == (getContents().size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
+
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(series.getPoster(), series.getTitle(), series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), series.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
+                    count++;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
         else if (searchType.equals("Movies")) {
+            int count = 0;
             if (getContents().isEmpty()) {
                 displayNoResultsMessage();
                 return;
@@ -216,15 +225,27 @@ public class SearchController {
 
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
+                    if (getContents().size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (count == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (count == (getContents().size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
+
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
+                    count++;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
         else {
+            int count = 0;
             if (getCrews().isEmpty()) {
                 displayNoResultsMessage();
                 return;
@@ -236,9 +257,20 @@ public class SearchController {
 
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
+                    if (getCrews().size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (count == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (count == (getCrews().size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
+
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
                     searchResultsContainer.getChildren().add(searchResult);
+                    count++;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

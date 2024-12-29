@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="100.0" prefWidth="623.0" style="-fx-background-color: rgba(20, 20, 20, 0.508);" styleClass="search-result-card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Search.SearchResultController">
+<HBox alignment="CENTER_LEFT" centerShape="false" minWidth="-Infinity" prefHeight="172.0" prefWidth="550.0" style="-fx-background-color: #0F0F0F; -fx-background-radius: 0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WatChill.Search.SearchResultController">
     <children>
-        <ImageView fx:id="posterImage" fitHeight="112.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="main-image">
+        <ImageView fx:id="posterImage" fitHeight="172.0" fitWidth="150.0">
+            <clip>
+                <Rectangle arcHeight="50" arcWidth="50" height="172" width="150" />
+            </clip>
             <image>
-                <Image url="@../Series/media/AOTPoster.jpg" />
+                <Image url="@../Crew/christian%20bale.jpg" />
             </image>
         </ImageView>
-        <VBox prefHeight="112.0" prefWidth="540.0" styleClass="text-container" HBox.hgrow="ALWAYS">
+        <VBox prefHeight="677.0" prefWidth="788.0" HBox.hgrow="SOMETIMES">
+            <HBox.margin>
+                <Insets bottom="10.0" left="10.0" top="10.0" />
+            </HBox.margin>
             <children>
-                <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Attack On Titan" wrappingWidth="493.1014764592511">
+                <Label fx:id="titleText" style="-fx-text-fill: #fff;" styleClass="title-text" text="S1 E1 - To You, in 2000 Years/The Fall of Shiganshina, Part 1" textFill="LIGHTGRAY">
                     <font>
-                        <Font name="Manrope SemiBold" size="22.0" />
+                        <Font name="Manrope SemiBold" size="27.0" />
                     </font>
-                </Text>
-                <Text fx:id="releaseDateText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
-               <font>
-                  <Font name="Manrope Medium" size="12.0" />
-               </font></Text>
-                <Text fx:id="descriptionText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="season-text" text="3 Seasons" wrappingWidth="295.517578125">
-               <font>
-                  <Font name="Manrope Medium" size="12.0" />
-               </font></Text>
+                    <padding>
+                        <Insets left="10.0" top="5.0" />
+                    </padding>
+                </Label>
+                <Label fx:id="releaseDateText" alignment="CENTER" style="-fx-text-fill: #fff;" styleClass="season-text" text="September 28, 2013">
+                    <padding>
+                        <Insets left="15.0" top="5.0" />
+                    </padding>
+                    <font>
+                        <Font name="Manrope Medium" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="descriptionText" opacity="0.48" style="-fx-text-fill: #fff;" styleClass="season-text" text="Episode's description" textFill="LIGHTGRAY">
+                    <padding>
+                        <Insets left="15.0" top="5.0" />
+                    </padding>
+                    <font>
+                        <Font name="Manrope Medium" size="18.0" />
+                    </font>
+                </Label>
             </children>
-            <padding>
-                <Insets left="10.0" top="10.0" />
-            </padding>
         </VBox>
     </children>
+    <cursor>
+        <Cursor fx:constant="HAND" />
+    </cursor>
 </HBox>
