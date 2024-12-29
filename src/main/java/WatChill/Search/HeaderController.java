@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -79,14 +80,6 @@ public class HeaderController {
             }
         });
         profileList.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent::consume);
-//        Rectangle clip = new Rectangle();
-//        clip.setArcWidth(30);
-//        clip.setArcHeight(30);
-//        searchResultsContainer.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
-//            clip.setWidth(newBounds.getWidth());
-//            clip.setHeight(newBounds.getHeight());
-//        });
-//        searchResultsContainer.setClip(clip);
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -252,7 +245,7 @@ public class HeaderController {
     }
 
     public void handleSearch(KeyEvent keyEvent) {
-        searchResultsContainer.setLayoutX((searchInput.getScene().getWindow().getWidth() / 4));
+//        searchResultsContainer.setLayoutX((searchInput.getScene().getWindow().getWidth() / 4));
         String searchType = searchMenu.getText();
         String searchQuery = searchInput.getText();
         searchResultsContainer.getChildren().clear();
@@ -269,18 +262,23 @@ public class HeaderController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                     HBox searchResult = loader.load();
+                    String newRadius = "";
 
                     searchResult.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
 
                     if (searchResults.size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
-                    }
-                    else if (i == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        newRadius = " -fx-background-radius: 50 50 50 50;";
+                    } else if (i == 0) {
+                        newRadius = " -fx-background-radius: 50 50 0 0;";
+                    } else if (i == 2) {
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
                     else if (i == (searchResults.size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
+
+                    searchResult.setStyle(searchResult.getStyle() + newRadius);
+                    HBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
 
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(series.getPoster(), series.getTitle(), series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), series.getDescription());
@@ -299,18 +297,23 @@ public class HeaderController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                     HBox searchResult = loader.load();
+                    String newRadius = "";
 
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
                     if (searchResults.size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
-                    }
-                    else if (i == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        newRadius = " -fx-background-radius: 50 50 50 50;";
+                    } else if (i == 0) {
+                        newRadius = " -fx-background-radius: 50 50 0 0;";
+                    } else if (i == 2) {
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
                     else if (i == (searchResults.size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
+
+                    searchResult.setStyle(searchResult.getStyle() + newRadius);
+                    VBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
 
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
@@ -329,18 +332,23 @@ public class HeaderController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/WatChill/Search/searchResult.fxml"));
                     HBox searchResult = loader.load();
+                    String newRadius = "";
 
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
                     if (searchResults.size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
-                    }
-                    else if (i == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        newRadius = " -fx-background-radius: 50 50 50 50;";
+                    } else if (i == 0) {
+                        newRadius = " -fx-background-radius: 50 50 0 0;";
+                    } else if (i == 2) {
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
                     else if (i == (searchResults.size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        newRadius = " -fx-background-radius: 0 0 50 50;";
                     }
+
+                    searchResult.setStyle(searchResult.getStyle() + newRadius);
+                    HBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
 
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
@@ -353,6 +361,7 @@ public class HeaderController {
                 }
             }
         }
+        searchResultsContainer.setLayoutX((searchInput.getScene().getWindow().getWidth() / 2) - (searchResultsContainer.getMaxWidth() / 2));
     }
 
     public void displayProfileList() {

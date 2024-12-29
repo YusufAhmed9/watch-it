@@ -10,6 +10,7 @@ import WatChill.Crew.Crew;
 import WatChill.Crew.CrewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -193,15 +194,16 @@ public class SearchController {
                     searchResult.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
 
                     if (getContents().size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50;");
                     }
                     else if (count == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0;");
                     }
                     else if (count == (getContents().size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50;");
                     }
 
+                    HBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(series.getPoster(), series.getTitle(), series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), series.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
@@ -226,15 +228,16 @@ public class SearchController {
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
                     if (getContents().size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50;");
                     }
                     else if (count == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0;");
                     }
                     else if (count == (getContents().size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50;");
                     }
 
+                    HBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
@@ -258,15 +261,16 @@ public class SearchController {
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
 
                     if (getCrews().size() == 1) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50;");
                     }
                     else if (count == 0) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0;");
                     }
                     else if (count == (getCrews().size() - 1)) {
-                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50;");
                     }
 
+                    HBox.setMargin(searchResult, new Insets(0, 0, 5, 0));
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
                     searchResultsContainer.getChildren().add(searchResult);

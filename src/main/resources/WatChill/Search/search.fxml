@@ -61,7 +61,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <VBox fx:id="searchResultsContainer" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="374.0" prefWidth="424.0" style="-fx-background-color: #141414; -fx-background: transparent;" />
+                              <VBox fx:id="searchResultsContainer" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="374.0" prefWidth="424.0" spacing="5.0" style="-fx-background-color: #141414; -fx-background: transparent;" />
                            </children>
                         </VBox>
                      </center>
