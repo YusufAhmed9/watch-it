@@ -81,7 +81,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0">
+                  <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="71.0">
                      <children>
                         <ImageView fx:id="profileIcon" fitHeight="42.0" fitWidth="42.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                            <image>
