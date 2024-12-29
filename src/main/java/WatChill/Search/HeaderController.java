@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.time.format.DateTimeFormatter;
@@ -78,6 +79,14 @@ public class HeaderController {
             }
         });
         profileList.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent::consume);
+//        Rectangle clip = new Rectangle();
+//        clip.setArcWidth(30);
+//        clip.setArcHeight(30);
+//        searchResultsContainer.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
+//            clip.setWidth(newBounds.getWidth());
+//            clip.setHeight(newBounds.getHeight());
+//        });
+//        searchResultsContainer.setClip(clip);
     }
 
     public void redirectToSignUp(ActionEvent actionEvent) {
@@ -263,6 +272,16 @@ public class HeaderController {
 
                     searchResult.setOnMouseClicked(_ -> redirectToSeriesPage(series.getId()));
 
+                    if (searchResults.size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (i == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (i == (searchResults.size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
+
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(series.getPoster(), series.getTitle(), series.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), series.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
@@ -283,6 +302,16 @@ public class HeaderController {
 
                     searchResult.setOnMouseClicked(_ -> redirectToMoviePage(movie.getId()));
 
+                    if (searchResults.size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (i == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (i == (searchResults.size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
+
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(movie.getPoster(), movie.getTitle(), movie.getReleaseDate().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")), movie.getDescription());
                     searchResultsContainer.getChildren().add(searchResult);
@@ -302,6 +331,16 @@ public class HeaderController {
                     HBox searchResult = loader.load();
 
                     searchResult.setOnMouseClicked(_ -> redirectToCrewPage(crew.getId()));
+
+                    if (searchResults.size() == 1) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 50 50");
+                    }
+                    else if (i == 0) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 50 50 0 0");
+                    }
+                    else if (i == (searchResults.size() - 1)) {
+                        searchResult.setStyle(searchResult.getStyle() + " -fx-background-radius: 0 0 50 50");
+                    }
 
                     SearchResultController searchResultController = loader.getController();
                     searchResultController.setData(crew.getPicture(), crew.getFirstName() + " " + crew.getLastName(), crew.getNationality(), crew.getDateOfBirth().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy")));
