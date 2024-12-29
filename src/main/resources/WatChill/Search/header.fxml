@@ -91,7 +91,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="searchResultsContainer" maxHeight="10.0" maxWidth="634.0" prefHeight="10.0" prefWidth="546.0" style="-fx-background-radius: 0 0 20 20;" visible="false">
+                  <VBox fx:id="searchResultsContainer" maxHeight="10.0" maxWidth="634.0" prefHeight="10.0" prefWidth="546.0" spacing="30.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" visible="false">
                      <HBox.margin>
                         <Insets right="100.0" />
                      </HBox.margin>

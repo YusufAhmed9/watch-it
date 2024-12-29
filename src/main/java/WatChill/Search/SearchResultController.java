@@ -1,6 +1,7 @@
 package WatChill.Search;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -11,13 +12,14 @@ public class SearchResultController {
     private ImageView posterImage;
 
     @FXML
-    private Text titleText;
+    private Label titleText;
 
     @FXML
-    private Text releaseDateText;
+    private Label releaseDateText;
 
     @FXML
-    private Text descriptionText;
+    private Label descriptionText;
+
 
     public void setData(String imagePath, String title, String releaseDate, String description) {
         posterImage.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
